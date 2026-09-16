@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tapamme toimia – Palvelutukku Kolmio</title>
+<meta name="description" content="Näin Palvelutukku Kolmio toimii: toimitusvarmuus, hävikin hallinta, aito lähiruoka, joustavat tilauskanavat ja hyvä palvelu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ink:#17181a;
+    --ink-soft:#3a3b3d;
+    --paper:#faf8f5;
+    --surface:#ffffff;
+    --surface-2:#f2efe9;
+    --orange:#ea5902;
+    --orange-deep:#b8430a;
+    --slate:#5f6062;
+    --line:rgba(23,24,26,0.12);
+    --shadow:0 1px 2px rgba(23,24,26,0.06), 0 12px 28px -14px rgba(23,24,26,0.18);
+    --radius:14px;
+    --container:1180px;
+    color-scheme:light;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Karla",system-ui,-apple-system,Segoe UI,sans-serif;
+    font-size:1rem;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{
+    font-family:"Jost",system-ui,-apple-system,Segoe UI,sans-serif;
+    font-weight:600;
+    line-height:1.15;
+    margin:0;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font:inherit;}
+
+  .skip-link{
+    position:absolute;left:1rem;top:-3rem;
+    background:var(--orange);color:#fff;
+    padding:.6rem 1rem;border-radius:8px;z-index:100;
+    transition:top .15s ease;
+  }
+  .skip-link:focus{top:1rem;}
+
+  .container{
+    max-width:var(--container);
+    margin-inline:auto;
+    padding-inline:clamp(1.25rem, 4vw, 3rem);
+  }
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:"Jost",sans-serif;
+    font-size:.8125rem;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--orange-deep);
+  }
+  .eyebrow::before{
+    content:"";
+    width:20px;height:2px;
+    background:var(--orange);
+    flex:none;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-header .container{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1.5rem;
+    padding-block:.9rem;
+  }
+  .logo{
+    display:flex;align-items:center;
+    text-decoration:none;
+    flex:none;
+  }
+  .logo img{height:44px;width:auto;display:block;}
+
+  .nav-toggle{
+    display:none;
+    background:none;border:1px solid var(--line);
+    border-radius:8px;
+    width:42px;height:42px;
+    align-items:center;justify-content:center;
+    cursor:pointer;
+    flex:none;
+  }
+  .nav-toggle svg{width:20px;height:20px;stroke:var(--ink);}
+
+  .primary-nav{display:flex;align-items:center;gap:clamp(1rem,2vw,1.9rem);flex-wrap:wrap;justify-content:flex-end;}
+  .primary-nav a{
+    text-decoration:none;
+    font-size:.95rem;
+    font-weight:500;
+    color:var(--ink-soft);
+    padding-block:.35rem;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .primary-nav a:hover,
+  .primary-nav a:focus-visible{color:var(--ink);border-color:var(--orange);}
+  .primary-nav a.current{color:var(--ink);border-color:var(--orange);}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:var(--orange);
+    color:#fff !important;
+    padding:.65rem 1.25rem;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.9rem;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:background .15s ease, transform .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--orange-deep);transform:translateY(-1px);}
+
+  @media (max-width:900px){
+    .nav-toggle{display:inline-flex;}
+    .primary-nav{
+      position:fixed;inset:64px 0 0 0;
+      background:var(--paper);
+      flex-direction:column;
+      align-items:stretch;
+      padding:1.5rem clamp(1.25rem,4vw,3rem) 2rem;
+      gap:0;
+      border-top:1px solid var(--line);
+      transform:translateY(-8px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .15s ease, transform .15s ease;
+      overflow-y:auto;
+    }
+    .primary-nav.is-open{opacity:1;transform:translateY(0);pointer-events:auto;}
+    .primary-nav a{padding-block:.85rem;border-bottom:1px solid var(--line);width:100%;}
+    .primary-nav .btn{margin-top:1rem;justify-content:center;}
+  }
+
+  /* ---------- Page banner ---------- */
+  .page-banner{
+    background:var(--surface-2);
+    border-bottom:1px solid var(--line);
+    padding-block:clamp(2.5rem,6vw,4rem);
+  }
+  .page-banner h1{font-size:clamp(2rem,1.7rem + 1.6vw,2.9rem);}
+
+  /* ---------- Feature rows ---------- */
+  .features{padding-block:clamp(1rem,3vw,2rem);}
+  .feature-row{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:clamp(2rem,5vw,3.5rem);
+    align-items:center;
+    padding-block:clamp(2.5rem,5vw,3.5rem);
+    border-bottom:1px solid var(--line);
+  }
+  .feature-row:last-child{border-bottom:none;}
+  .feature-row.reverse{grid-template-columns:1fr 220px;}
+  .feature-row.reverse .feature-icon-wrap{order:2;}
+  .feature-icon-wrap{display:flex;justify-content:center;}
+  .feature-icon{
+    width:120px;height:120px;border-radius:50%;
+    background:color-mix(in srgb, var(--orange) 12%, var(--surface));
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .feature-icon svg{width:54px;height:54px;stroke:var(--orange);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .feature-content h3{font-size:1.5rem;margin-bottom:.9rem;}
+  .feature-content p{color:var(--ink-soft);margin-bottom:.75rem;}
+  .feature-content p:last-child{margin-bottom:0;}
+  .feature-content p.lead-line{font-family:"Jost",sans-serif;font-weight:500;font-size:1.15rem;color:var(--ink);}
+
+  @media (max-width:760px){
+    .feature-row,.feature-row.reverse{grid-template-columns:1fr;}
+    .feature-row .feature-icon-wrap,
+    .feature-row.reverse .feature-icon-wrap{order:-1;}
+    .feature-icon{width:88px;height:88px;}
+    .feature-icon svg{width:42px;height:42px;}
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer{
+    background:var(--surface-2);
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-block:clamp(3rem,6vw,4.5rem) 2rem;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr 1.2fr;
+    gap:clamp(2rem,5vw,3.5rem);
+  }
+  .site-footer h3{color:var(--ink);font-size:1.15rem;margin-bottom:1rem;}
+  .footer-col p{color:var(--ink-soft);font-size:.95rem;margin-bottom:.4rem;}
+  .footer-col a{text-decoration:none;color:var(--ink-soft);}
+  .footer-col a:hover{color:var(--orange-deep);}
+  .footer-address{margin-bottom:1rem;}
+  .footer-links{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem;}
+  .social-row{display:flex;gap:.75rem;margin-top:1rem;}
+  .social-row a{
+    width:38px;height:38px;border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--surface);
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .social-row a:hover{border-color:var(--orange);background:color-mix(in srgb, var(--orange) 12%, var(--surface));}
+  .social-row svg{width:17px;height:17px;stroke:var(--ink);fill:none;}
+
+  .badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:1.1rem;margin-top:1rem;}
+  .badge-row img{height:40px;width:auto;display:block;border-radius:6px;}
+
+  .footer-bottom{
+    max-width:var(--container);
+    margin:clamp(2.5rem,5vw,3.5rem) auto 0;
+    padding:1.5rem clamp(1.25rem,4vw,3rem) 0;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem;
+    font-size:.85rem;color:var(--slate);
+  }
+
+  @media (max-width:900px){.footer-grid{grid-template-columns:1fr;}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:0.001ms !important;animation-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Siirry sisältöön</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html" aria-label="Palvelutukku Kolmio, etusivu">
+      <img src="assets/images/logo.png" alt="Palvelutukku Kolmio">
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" id="navToggle" aria-label="Avaa valikko">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Päävalikko">
+      <a href="index.html">Etusivu</a>
+      <a href="tapamme-toimia.html" class="current">Tapamme toimia</a>
+      <a href="/sinun-tukkusi/">Sinun tukkusi</a>
+      <a href="/vastuullisuus/">Vastuullisuus</a>
+      <a href="https://patunetti.fi/ajankohtaista/cat/lounasklubi" target="_blank" rel="noopener">Lounasklubi</a>
+      <a href="https://patunetti.fi/customer/account/login" target="_blank" rel="noopener">Verkkokauppa</a>
+      <a class="btn" href="/sinun-tukkusi/#ota-yhteytta">Ota yhteyttä</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-banner">
+    <div class="container">
+      <span class="eyebrow">Palvelutukku Kolmio</span>
+      <h1>Tapamme toimia</h1>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+
+      <div class="feature-row">
+        <div class="feature-icon-wrap">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="17" cy="16" r="6"/><path d="M7 40c0-7 4.5-11 10-11s10 4 10 11"/><circle cx="33" cy="18" r="5"/><path d="M41 40c0-6-3.5-9-8-9"/></svg>
+          </span>
+        </div>
+        <div class="feature-content">
+          <h3>Olemme kumppanisi</h3>
+          <p class="lead-line">Jotta me voimme menestyä, täytyy sinun menestyä!</p>
+          <p>Olipa ravintolasi lounasravintola, iltaravintola, kahvila, grilli, leipomo, pizzeria tai muu ammattikeittiö, tervetuloa asiakkaaksemme.</p>
+          <p>Toimialallamme ovat yleistyneet monenlaiset allekirjoitusrahat, vuosihyvitteet, kärkihinnat, kuljetus- ja keräilymaksut ja monet muut asiat, jotka vaikeuttavat hintavertailuiden tekemistä. Tukut tarjoavat lisäksi kovin eritasoisia palvelumalleja. Me tarjoamme sinulle aitoa kilpailukykyä. Etsimme yhdessä kanssasi ratkaisuja, jotka parantavat sinun kannattavuuttasi ja auttavat erottautumaan kilpailijoista.</p>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-icon-wrap">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><rect x="4" y="16" width="22" height="14" rx="2"/><path d="M26 21h8l6 6v3H26z"/><circle cx="13" cy="34" r="3.5"/><circle cx="33" cy="34" r="3.5"/></svg>
+          </span>
+        </div>
+        <div class="feature-content">
+          <h3>Toimitusvarmuus ja laatu</h3>
+          <p>Toimitusvarmuutemme on alan huippua. Asiakkaanamme voit luottaa siihen, että tilaamasi kuorma toimitetaan sinulle sovitussa aikataulussa. Mahdollisten toimituspoikkeamien kohdalla olemme yhteydessä heti aamulla ja ratkaisemme syntyneen tilanteen saman tien.</p>
+          <p>Tuoretuotteiden osalta laatumme on alan paras. Toimitamme tuoretuotteet ilman välivarastointeja suoraan keittiöösi. Uskomme, että laadukkaat ja tuoreet raaka-aineet ovat avain menestykseen.</p>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-icon-wrap">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><rect x="10" y="8" width="28" height="34" rx="3"/><rect x="17" y="5" width="14" height="7" rx="2"/><path d="M16 24l6 6 12-14"/></svg>
+          </span>
+        </div>
+        <div class="feature-content">
+          <h3>Hävikin hallinta</h3>
+          <p class="lead-line">Tarjoamme tehokkaat työkalut hävikin hallintaan.</p>
+          <p>Tänään pilkotut kasvikset ja kuoritut juurekset ovat keittiössäsi seuraavana päivänä. Paikallisena tukkuna voimme toimittaa tuotteemme selkeästi tuoreempina.</p>
+          <p>Myymme myös purettuja myyntieriä, jotta voit tilata juuri tarvitsemasi määrän tuotteita.</p>
+          <p>Suunnittelemme toimitusajat yhdessä kanssasi, jotta tavaratoimitukset palvelevat parhaiten sinun toimintaasi ja pystyt käyttämään raaka-aineet tehokkaasti. Tuoreena saapuvat raaka-aineet mahdollistavat puskuroinnin sinun keittiössäsi kulutuksen mukaan.</p>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-icon-wrap">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M12 34C10 20 20 8 38 8c1 16-10 28-26 26z"/><path d="M14 32C20 24 26 18 34 12"/></svg>
+          </span>
+        </div>
+        <div class="feature-content">
+          <h3>Aitoa lähiruokaa</h3>
+          <p>Lähellä tuotetuista raaka-aineista valmistettu ruoka maistuu paremmalta. Aidosti tuoreet, lähellä tuotetut raaka-aineet eivät ole vain makuelämys – ne vähentävät hävikkiä ja kuljetusmatkoja ja luonto kiittää.</p>
+          <p>Teemme tiivistä yhteistyötä paikallisten tuottajien kanssa. Tuomme alueemme laadukkaimman lähiruoan sinun pöytääsi lyhintä reittiä.</p>
+          <p>Työllistämme paikallisesti ja sitoudumme alueelliseen elinkeinotoimintaan.</p>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-icon-wrap">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M6 8h5l4 20h18l4-14H14"/><circle cx="17" cy="38" r="3"/><circle cx="31" cy="38" r="3"/></svg>
+          </span>
+        </div>
+        <div class="feature-content">
+          <h3>Tilauskanavat</h3>
+          <p class="lead-line">Nettikauppa on Palvelutukussa hyvä renki.</p>
+          <p>Palvelutukun asiakkaana saat palvelua nopeasti ja tavoitat meidät puhelimella tai viestillä. Yhteydenottoosi vastaa tuttu henkilö, joka tuntee sinut ja edustamasi yrityksen tarpeet. Puhelinpalvelumme auttaa sinua ruokalistasuunnittelussa ja opastaa tulevien sesonkien parhaat tuotteet. Verkkokaupassa teet tilauksia silloin, kun sinulle sopii.</p>
+          <p>Palvelutukulla on laaja valikoima tunnettuja merkkituotteita sekä laadukkaita Patu-tuotemerkin tuotteita kilpailukykyiseen hintaan. Uusien tuotteiden lisääminen valikoimaan tapahtuu nopeasti.</p>
+          <p>Asiakkaanamme löydät meiltä eväät erottua kilpailijoistasi. Hinnoittelemme sinun valikoimasi edullisesti.</p>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-icon-wrap">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M8 26v-4a16 16 0 0 1 32 0v4"/><rect x="4" y="24" width="9" height="14" rx="4"/><rect x="35" y="24" width="9" height="14" rx="4"/><path d="M40 38v2a4 4 0 0 1-4 4h-6"/></svg>
+          </span>
+        </div>
+        <div class="feature-content">
+          <h3>Hyvä ja joustava palvelu</h3>
+          <p>Meille Palvelutukku Kolmiossa on tärkeää, että asiakkaanamme voit keskittyä omaan liiketoimintaasi ja luottaa siihen, että me huolehdimme tuotteiden toimituksesta luotettavasti ja nopeasti.</p>
+          <p>Paikallisena tukkuna pystymme reagoimaan muuttuneisiin tarpeisiisi nopeasti ja räätälöimään palveluitamme tarpeidesi mukaan.</p>
+          <p>Meidän kanssamme et ole yksin, kun tilanne vaatii nopeaa toimintaa.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h3>Palvelutukku Kolmio</h3>
+      <p class="footer-address">Paanakatu 8<br>15150 Lahti</p>
+      <p><a href="tel:+3583871370">Puh: 03 871 370</a></p>
+      <p><a href="mailto:info@palvelutukkukolmio.fi">info@palvelutukkukolmio.fi</a></p>
+      <div class="footer-links">
+        <a href="/tietosuoja/">Tietosuojaseloste ja evästeet</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Löydä meidät</h3>
+      <p>Paanakatu 8, 15150 Lahti</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=Paanakatu+8%2C+15150+Lahti" target="_blank" rel="noopener">Avaa kartta →</a></p>
+      <div class="social-row">
+        <a href="https://www.facebook.com/palvelutukkukolmio" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/palvelutukku.kolmio/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Kumppanit ja sertifikaatit</h3>
+      <p>Osa Suomen Palvelutukkurit Oy -ketjua.</p>
+      <div class="badge-row">
+        <img src="assets/images/luotettava-kumppani.png" alt="Luotettava Kumppani">
+        <img src="assets/images/oiva.png" alt="Oiva-raportti">
+        <img src="assets/images/culinary-team-finland.png" alt="Culinary Team Finland, Suomen Kokkimaajoukkue">
+        <img src="assets/images/suomen-keittiomestarit.png" alt="Suomen Keittiömestarit">
+        <img src="assets/images/kiwa-iso.png" alt="Kiwa certified, ISO 9001 ja 14001">
+        <img src="assets/images/rinki.jpg" alt="Rinki, mukana pakkauskierrätyksessä">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Palvelutukku Kolmio</span>
+    <span>Paikallinen palvelutukku Päijät-Hämeessä, Kymenlaaksossa ja Etelä-Karjalassa</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('primary-nav');
+    if(!toggle || !nav) return;
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
