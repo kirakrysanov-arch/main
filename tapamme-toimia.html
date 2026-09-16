@@ -161,11 +161,21 @@
 
   /* ---------- Page banner ---------- */
   .page-banner{
-    background:var(--surface-2);
-    border-bottom:1px solid var(--line);
-    padding-block:clamp(2.5rem,6vw,4rem);
+    position:relative;
+    background:
+      linear-gradient(100deg, rgba(10,8,6,.88) 0%, rgba(10,8,6,.66) 42%, rgba(10,8,6,.28) 100%),
+      url("assets/images/hero.jpg") center 30% / cover no-repeat;
+    background-color:#0a0806;
+    padding-block:clamp(3rem,7vw,4.5rem);
   }
-  .page-banner h1{font-size:clamp(2rem,1.7rem + 1.6vw,2.9rem);}
+  .page-banner .container{position:relative;z-index:1;}
+  .page-banner .eyebrow{color:#ffb27a;}
+  .page-banner .eyebrow::before{background:#ffb27a;}
+  .page-banner h1{font-size:clamp(2rem,1.7rem + 1.6vw,2.9rem);color:#fdfbf8;}
+
+  @media (max-width:640px){
+    .page-banner{background-position:65% 30%;}
+  }
 
   /* ---------- Feature rows ---------- */
   .features{padding-block:clamp(1rem,3vw,2rem);}
