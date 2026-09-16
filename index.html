@@ -231,13 +231,18 @@
     background:var(--surface);
     border:1px solid var(--line);
     border-radius:var(--radius);
-    padding:2rem 1.75rem;
-    display:flex;flex-direction:column;gap:1rem;
+    overflow:hidden;
+    display:flex;flex-direction:column;
     box-shadow:var(--shadow);
     text-decoration:none;
     transition:transform .18s ease, box-shadow .18s ease;
   }
   .offer-card:hover,.offer-card:focus-visible{transform:translateY(-4px);}
+  .offer-cover{aspect-ratio:5/7;overflow:hidden;background:var(--surface-2);}
+  .offer-cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+  .offer-card:hover .offer-cover img{transform:scale(1.03);}
+  .offer-body{padding:1.5rem 1.5rem 1.75rem;display:flex;flex-direction:column;gap:.6rem;flex:1;}
+  .offer-card--icon .offer-body{padding:2rem 1.75rem;gap:1rem;}
   .offer-icon{
     width:52px;height:52px;
     border-radius:12px;
@@ -434,22 +439,28 @@
       </div>
       <div class="offers-grid">
         <a class="offer-card" href="https://issuu.com/proim/docs/hyv_patulta_-lehti?fr=sMmM3YjY2MDE1Mjc" target="_blank" rel="noopener">
-          <span class="offer-icon"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7a2 2 0 0 1 2 2v13a1.5 1.5 0 0 0-1.5-1.5H4z"/><path d="M20 5h-7a2 2 0 0 0-2 2v13a1.5 1.5 0 0 1 1.5-1.5H20z"/></svg></span>
-          <h3>Hyvää Patulta -lehti</h3>
-          <p>Uusimmat uutiset, reseptit ja ajankohtaiset aiheet suoraan alaltamme.</p>
-          <span class="offer-cta">Lue lehti <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="offer-cover"><img src="assets/images/lehti-kansi.jpg" alt="Hyvää Patulta -lehti, 8-9 | 2026" loading="lazy"></div>
+          <div class="offer-body">
+            <h3>Hyvää Patulta -lehti</h3>
+            <p>Uusimmat uutiset, reseptit ja ajankohtaiset aiheet suoraan alaltamme.</p>
+            <span class="offer-cta">Lue lehti <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
         </a>
         <a class="offer-card" href="https://issuu.com/proim/docs/patu_katalogi_kolmio?fr=sOWFhYTgzODI5NjI" target="_blank" rel="noopener">
-          <span class="offer-icon"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="13" height="16" rx="1.5"/><path d="M8 8h5M8 12h5M8 16h3"/></svg></span>
-          <h3>Kampanjakatalogi</h3>
-          <p>Kauden kampanjatuotteet ja edulliset hinnat koottuna yhteen katalogiin.</p>
-          <span class="offer-cta">Selaa katalogia <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <div class="offer-cover"><img src="assets/images/katalogi-kansi.jpg" alt="Palvelutukkurit Patu, kampanjakatalogi 9-12 2026" loading="lazy"></div>
+          <div class="offer-body">
+            <h3>Kampanjakatalogi</h3>
+            <p>Kauden kampanjatuotteet ja edulliset hinnat koottuna yhteen katalogiin.</p>
+            <span class="offer-cta">Selaa katalogia <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
         </a>
-        <a class="offer-card" href="https://www.palvelutukkukolmio.fi/wp-content/uploads/2026/09/Viikkotarjous-viikot-37-38.pdf" target="_blank" rel="noopener">
-          <span class="offer-icon"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5 12.9 20a2 2 0 0 1-2.8 0l-6-6a2 2 0 0 1 0-2.9L11.7 3.6a2 2 0 0 1 1.5-.6h5.3a2 2 0 0 1 2 2v5.3a2 2 0 0 1-.6 1.5z"/><circle cx="15" cy="9" r="1.4"/></svg></span>
-          <h3>Omat tarjoukset</h3>
-          <p>Tämän viikon viikkotarjoukset — ladattavissa suoraan PDF-muodossa.</p>
-          <span class="offer-cta">Avaa tarjoukset <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <a class="offer-card offer-card--icon" href="https://www.palvelutukkukolmio.fi/wp-content/uploads/2026/09/Viikkotarjous-viikot-37-38.pdf" target="_blank" rel="noopener">
+          <div class="offer-body">
+            <span class="offer-icon"><svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5 12.9 20a2 2 0 0 1-2.8 0l-6-6a2 2 0 0 1 0-2.9L11.7 3.6a2 2 0 0 1 1.5-.6h5.3a2 2 0 0 1 2 2v5.3a2 2 0 0 1-.6 1.5z"/><circle cx="15" cy="9" r="1.4"/></svg></span>
+            <h3>Omat tarjoukset</h3>
+            <p>Tämän viikon viikkotarjoukset — ladattavissa suoraan PDF-muodossa.</p>
+            <span class="offer-cta">Avaa tarjoukset <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
         </a>
       </div>
     </div>
