@@ -180,40 +180,51 @@
 
   /* ---------- Hero ---------- */
   .hero{
-    padding-block:clamp(3rem,7vw,5.5rem) clamp(2.5rem,6vw,4rem);
+    padding-block:clamp(2.5rem,6vw,4.5rem) clamp(2.5rem,6vw,4rem);
   }
   .hero .container{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    text-align:left;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:clamp(2rem,5vw,3.5rem);
+    align-items:center;
   }
-  .hero-copy{display:flex;flex-direction:column;gap:1.25rem;max-width:42rem;}
-  .hero h1{font-size:clamp(2.1rem,1.7rem + 2vw,3.4rem);}
+  .hero-copy{display:flex;flex-direction:column;gap:1.25rem;max-width:34rem;}
+  .hero h1{font-size:clamp(2.1rem,1.7rem + 2vw,3.2rem);}
   .hero p.lead{
     font-size:clamp(1.05rem,1rem + .3vw,1.2rem);
     color:var(--ink-soft);
     max-width:36rem;
   }
   .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.5rem;}
+  .hero-photo{
+    border-radius:var(--radius);
+    overflow:hidden;
+    aspect-ratio:4/3;
+    box-shadow:var(--shadow);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+
+  @media (max-width:860px){
+    .hero .container{grid-template-columns:1fr;}
+    .hero-photo{order:-1;aspect-ratio:16/10;}
+  }
 
   /* ---------- Divider band ---------- */
   .band{
     position:relative;
-    background:
-      linear-gradient(100deg, rgba(10,8,6,.82) 0%, rgba(10,8,6,.58) 45%, rgba(10,8,6,.32) 100%),
-      url("http://www.palvelutukkukolmio.fi/wp-content/uploads/2025/04/PalvelutukkuKolmioPar-1024x589.jpg") center 30% / cover no-repeat;
-    background-color:var(--ink);
-    color:#fdfbf8;
+    background:var(--surface-2);
+    color:var(--ink);
+    border-block:1px solid var(--line);
     overflow:hidden;
-    padding-block:clamp(3rem,8vw,4.5rem);
+    padding-block:clamp(2.5rem,6vw,3.5rem);
   }
   .band .container{
     position:relative;z-index:1;
     display:flex;align-items:center;justify-content:space-between;
     gap:1.5rem;flex-wrap:wrap;
   }
-  .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:38rem;color:#fdfbf8;}
+  .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:40rem;color:var(--ink);}
+  .band.band--cta{background:color-mix(in srgb, var(--orange) 10%, var(--paper));border-color:color-mix(in srgb, var(--orange) 30%, transparent);}
 
   /* ---------- Sections ---------- */
   section{padding-block:clamp(3.5rem,7vw,6rem);}
@@ -422,6 +433,9 @@
           <a class="btn" href="#tarjoukset">Tutustu tarjouksiin</a>
           <a class="btn btn-outline" href="/sinun-tukkusi/#ota-yhteytta">Ota yhteyttä</a>
         </div>
+      </div>
+      <div class="hero-photo">
+        <img src="http://www.palvelutukkukolmio.fi/wp-content/uploads/2025/04/PalvelutukkuKolmioPar-1024x589.jpg" alt="Kokki valmistelee tuoreita raaka-aineita Palvelutukku Kolmion tuotteista" width="1024" height="589">
       </div>
     </div>
   </section>
