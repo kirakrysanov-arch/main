@@ -133,8 +133,13 @@
 
   /* ---------- Story / stats ---------- */
   .story-lead{font-size:13.5pt;line-height:1.62;color:var(--ink-soft);max-width:150mm;margin-bottom:7mm;position:relative;z-index:1;}
+  .pull-quote{
+    font-family:"Jost",sans-serif;font-weight:600;font-size:20pt;line-height:1.3;
+    color:var(--ink);max-width:130mm;margin:10mm 0;padding-left:7mm;
+    border-left:3px solid var(--orange);position:relative;z-index:1;
+  }
   .story-lead strong{color:var(--ink);}
-  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:auto;position:relative;z-index:1;}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:12mm;position:relative;z-index:1;}
   .stat-tile{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8mm 5mm;text-align:center;box-shadow:0 1px 2px rgba(23,24,26,.04);}
   .stat-tile .num{font-family:"Jost",sans-serif;font-weight:700;font-size:25pt;color:var(--orange-deep);display:block;font-variant-numeric:tabular-nums;}
   .stat-tile .label{font-size:8.5pt;color:var(--slate);margin-top:2.5mm;display:block;line-height:1.3;letter-spacing:.01em;}
@@ -163,6 +168,13 @@
   .logo-rules ul{margin:0;padding-left:4.5mm;font-size:9.8pt;color:var(--ink-soft);line-height:1.75;}
   .logo-rules li{margin-bottom:1.5mm;}
   .rule-bad{color:var(--orange-deep);}
+  .logo-bg-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm;position:relative;z-index:1;}
+  .logo-bg-tile{
+    border:1px solid var(--line);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    padding:9mm;
+  }
+  .logo-bg-tile img{height:11mm;}
 
   /* ---------- Colors ---------- */
   .swatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6mm;position:relative;z-index:1;}
@@ -278,7 +290,8 @@
   <div class="page-head"><span class="kicker">Meidän tarinamme</span><span class="page-index"><b>02</b> / 10</span></div>
   <h2 class="h-title">Täyden palvelun tukkuliike vuodesta 1977</h2>
   <p class="story-lead">Palvelutukku Kolmio on valtakunnalliseen <strong>Suomen Palvelutukkurit</strong> -ketjuun kuuluva täyden palvelun tukkuliike. Aloitimme toimintamme vihannestukkuliikkeenä — siitä juontaa juurensa myös virallinen nimemme <strong>Vihanneskolmio Oy</strong>. Nykyisin valikoimaamme kuuluvat kaikki elintarvikeryhmät ja laaja valikoima non-food-tuotteita, mutta paikallisuus ja aito palvelu ovat pysyneet toimintamme ytimessä koko matkan.</p>
-  <p class="story-lead">Toimitamme tuotteet Päijät-Hämeen, Kymenlaakson ja Etelä-Karjalan alueen ravintoloihin, keittiöihin ja kahviloihin — usein jopa saman päivän aikana. Jotta me voimme menestyä, täytyy sinun menestyä.</p>
+  <p class="story-lead">Toimitamme tuotteet Päijät-Hämeen, Kymenlaakson ja Etelä-Karjalan alueen ravintoloihin, keittiöihin ja kahviloihin — usein jopa saman päivän aikana.</p>
+  <p class="pull-quote">"Jotta me voimme menestyä, täytyy sinun menestyä!"</p>
   <div class="stat-grid">
     <div class="stat-tile"><span class="num">1977</span><span class="label">Perustettu</span></div>
     <div class="stat-tile"><span class="num">99,47%</span><span class="label">Toimitusvarmuus 2024</span></div>
@@ -336,6 +349,17 @@
         <li class="rule-bad">Älä kierrä logoa tai lisää sen ympärille kehyksiä.</li>
       </ul>
     </div>
+  </div>
+  <div class="section-label" style="margin-top:11mm;">Logo vaaleilla taustoilla</div>
+  <div class="logo-bg-row">
+    <div class="logo-bg-tile" style="background:var(--surface);"><img src="assets/images/logo.png" alt=""></div>
+    <div class="logo-bg-tile" style="background:var(--paper);"><img src="assets/images/logo.png" alt=""></div>
+    <div class="logo-bg-tile" style="background:var(--surface-2);"><img src="assets/images/logo.png" alt=""></div>
+  </div>
+  <div class="type-pairing-note" style="margin-top:8mm;">
+    <span class="chip">Tiedostomuoto verkkoon: SVG tai PNG</span>
+    <span class="chip">Tiedostomuoto printtiin: PDF tai EPS</span>
+    <span class="chip">Tausta: aina läpinäkyvä</span>
   </div>
   <div class="pagefoot"><span>Palvelutukku Kolmio — Brändikirja</span><span>04</span></div>
 </section>
@@ -459,6 +483,24 @@
     <img src="assets/images/rinki.jpg" alt="" style="border-radius:3px;">
   </div>
   <p class="icon-note">Sertifikaatti- ja kumppanuusmerkit esitetään aina alkuperäisinä versioinaan — niitä ei värjätä uudelleen tai muokata. Omat ikonit noudattavat yhtenäistä pyöreää muotoa ja kevyttä, käsintehtyä viivapiirrosta.</p>
+  <div class="logo-rules" style="margin-top:11mm;">
+    <div>
+      <h4>Koko ja sijoittelu</h4>
+      <ul>
+        <li>Ikonit esitetään aina ympyrän muotoisina, ei koskaan neliönä tai vapaana muotona.</li>
+        <li>Suositeltu vähimmäiskoko digitaalisessa käytössä on 48&nbsp;px.</li>
+        <li>Kahden ikonin väliin jätetään aina tasainen tila, ei koskaan tiiviimpi kuin ikonin oma säde.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Sertifikaattien käyttö</h4>
+      <ul>
+        <li>Sertifikaattimerkkejä ei koskaan skaalata suhteettomasti tai rajata.</li>
+        <li>Vähintään yksi sertifikaatti näkyy aina verkkosivun jalkatunnisteessa.</li>
+        <li>Painotuotteissa merkit voidaan esittää mustavalkoisena, jos värillinen versio ei erotu.</li>
+      </ul>
+    </div>
+  </div>
   <div class="pagefoot"><span>Palvelutukku Kolmio — Brändikirja</span><span>08</span></div>
 </section>
 
@@ -474,7 +516,7 @@
   </ul>
 
   <div class="quote-pair">
-    <div class="quote-box good"><span class="tag">Näin puhumme</span>"Jotta me voimme menestyä, täytyy sinun menestyä!"</div>
+    <div class="quote-box good"><span class="tag">Näin puhumme</span>"Meidän kanssamme et ole yksin, kun tilanne vaatii nopeaa toimintaa."</div>
     <div class="quote-box bad"><span class="tag">Emme näin</span>"Olemme alan johtava toimija ja tarjoamme kokonaisvaltaisia ratkaisuja."</div>
   </div>
 
@@ -493,6 +535,13 @@
       <span class="txt"><strong>Jani Tukia</strong><span>Yrittäjä, Lounasravintola El´Si</span></span>
     </div>
   </div>
+
+  <div class="section-label" style="margin-top:2mm;">Tilastokortti</div>
+  <div class="ui-row">
+    <div class="stat-tile" style="width:44mm;"><span class="num" style="font-size:20pt;">99,47%</span><span class="label">Toimitusvarmuus 2024</span></div>
+  </div>
+
+  <p class="body-specimen" style="margin-top:2mm;">Kaikki komponentit jakavat saman kulmapyöristyksen (10px), ohuen rajaviivan ja kevyen varjon — näin verkkosivu, esitteet ja tämä brändikirja tuntuvat samalta perheeltä.</p>
 
   <div class="pagefoot"><span>Palvelutukku Kolmio — Brändikirja</span><span>09</span></div>
 </section>
