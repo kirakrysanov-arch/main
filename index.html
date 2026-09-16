@@ -7,7 +7,7 @@
 <meta name="description" content="Palvelutukku Kolmio on täyden palvelun palvelutukku Lahdessa. Palvelemme Päijät-Hämeessä, Kymenlaaksossa ja Etelä-Karjalassa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
 <style>
   :root{
     --ink:#17181a;
@@ -93,25 +93,11 @@
     padding-block:.9rem;
   }
   .logo{
-    display:flex;align-items:center;gap:.6rem;
+    display:flex;align-items:center;
     text-decoration:none;
     flex:none;
   }
-  .logo-word{display:flex;flex-direction:column;align-items:center;line-height:.8;}
-  .logo-line1{
-    font-family:"Anton",sans-serif;
-    font-size:1.4rem;
-    color:var(--orange);
-    letter-spacing:.01em;
-    white-space:nowrap;
-  }
-  .logo-line2{
-    font-family:"Anton",sans-serif;
-    font-size:.85rem;
-    color:var(--orange);
-    letter-spacing:.08em;
-    margin-top:.2rem;
-  }
+  .logo img{height:44px;width:auto;display:block;}
 
   .nav-toggle{
     display:none;
@@ -398,10 +384,7 @@
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/" aria-label="Palvelutukku Kolmio, etusivu">
-      <span class="logo-word">
-        <span class="logo-line1">Palvelutukku</span>
-        <span class="logo-line2">Kolmio</span>
-      </span>
+      <img src="assets/images/logo.png" alt="Palvelutukku Kolmio">
     </a>
 
     <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" id="navToggle" aria-label="Avaa valikko">
