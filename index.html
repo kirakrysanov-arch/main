@@ -7,7 +7,7 @@
 <meta name="description" content="Palvelutukku Kolmio on täyden palvelun palvelutukku Lahdessa. Palvelemme Päijät-Hämeessä, Kymenlaaksossa ja Etelä-Karjalassa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
 <style>
   :root{
     --ink:#17181a;
@@ -80,7 +80,7 @@
 
   .skip-link{
     position:absolute;left:1rem;top:-3rem;
-    background:var(--ink);color:var(--paper);
+    background:var(--orange);color:#fff;
     padding:.6rem 1rem;border-radius:8px;z-index:100;
     transition:top .15s ease;
   }
@@ -93,7 +93,7 @@
   }
 
   .eyebrow{
-    display:inline-flex;align-items:center;gap:.5rem;
+    display:inline-flex;align-items:center;gap:.6rem;
     font-family:"Jost",sans-serif;
     font-size:.8125rem;
     font-weight:600;
@@ -103,10 +103,8 @@
   }
   .eyebrow::before{
     content:"";
-    width:0;height:0;
-    border-left:5px solid transparent;
-    border-right:5px solid transparent;
-    border-bottom:8px solid var(--orange);
+    width:20px;height:2px;
+    background:var(--orange);
     flex:none;
   }
 
@@ -127,17 +125,20 @@
     text-decoration:none;
     flex:none;
   }
-  .logo-mark{width:30px;height:26px;flex:none;}
-  .logo-text{
-    font-family:"Jost",sans-serif;
-    font-weight:500;
-    font-size:1.2rem;
-    color:var(--ink);
+  .logo-word{display:flex;flex-direction:column;align-items:center;line-height:.8;}
+  .logo-line1{
+    font-family:"Anton",sans-serif;
+    font-size:1.4rem;
+    color:var(--orange);
+    letter-spacing:.01em;
     white-space:nowrap;
   }
-  .logo-text b{
-    font-weight:700;
+  .logo-line2{
+    font-family:"Anton",sans-serif;
+    font-size:.85rem;
     color:var(--orange);
+    letter-spacing:.08em;
+    margin-top:.2rem;
   }
 
   .nav-toggle{
@@ -210,39 +211,26 @@
     padding-block:clamp(3rem,7vw,5.5rem) clamp(2.5rem,6vw,4rem);
   }
   .hero .container{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:clamp(2rem,5vw,4rem);
-    align-items:center;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    text-align:left;
   }
-  .hero-copy{display:flex;flex-direction:column;gap:1.25rem;max-width:38rem;}
+  .hero-copy{display:flex;flex-direction:column;gap:1.25rem;max-width:42rem;}
   .hero h1{font-size:clamp(2.1rem,1.7rem + 2vw,3.4rem);}
   .hero p.lead{
     font-size:clamp(1.05rem,1rem + .3vw,1.2rem);
     color:var(--ink-soft);
-    max-width:34rem;
+    max-width:36rem;
   }
   .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.5rem;}
-
-  .hero-art{
-    position:relative;
-    aspect-ratio:1/1;
-    max-width:420px;
-    margin-inline:auto;
-    width:100%;
-  }
-  .hero-art svg{width:100%;height:100%;}
-
-  @media (max-width:820px){
-    .hero .container{grid-template-columns:1fr;}
-    .hero-art{order:-1;max-width:260px;}
-  }
 
   /* ---------- Divider band ---------- */
   .band{
     position:relative;
-    background:var(--ink);
-    color:#f3f1ec;
+    background:var(--surface-2);
+    color:var(--ink);
+    border-block:1px solid var(--line);
     overflow:hidden;
     padding-block:clamp(2.5rem,6vw,3.5rem);
   }
@@ -251,14 +239,8 @@
     display:flex;align-items:center;justify-content:space-between;
     gap:1.5rem;flex-wrap:wrap;
   }
-  .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:40rem;}
-  .band .triangles{
-    position:absolute;inset:0;
-    opacity:.5;
-  }
-  .band.band--cta{background:var(--orange);color:#1c0b00;}
-  .band.band--cta .btn{background:var(--ink);color:#fff !important;}
-  .band.band--cta .btn:hover{background:#000;}
+  .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:40rem;color:var(--ink);}
+  .band.band--cta{background:color-mix(in srgb, var(--orange) 10%, var(--paper));border-color:color-mix(in srgb, var(--orange) 30%, transparent);}
 
   /* ---------- Sections ---------- */
   section{padding-block:clamp(3.5rem,7vw,6rem);}
@@ -318,10 +300,10 @@
   .promise-lead p{font-size:clamp(1.05rem,1rem+.3vw,1.15rem);color:var(--ink-soft);}
   .promise-features{display:flex;flex-direction:column;gap:1.5rem;}
   .promise-feature{display:flex;gap:1rem;align-items:flex-start;}
-  .tri-bullet{
-    flex:none;width:18px;height:18px;margin-top:.3rem;
+  .dot-bullet{
+    flex:none;width:10px;height:10px;margin-top:.5rem;
+    border-radius:50%;
     background:var(--orange);
-    clip-path:polygon(50% 0, 100% 100%, 0 100%);
   }
   .promise-feature h4{font-size:1.05rem;margin-bottom:.3rem;}
   .promise-feature p{color:var(--ink-soft);font-size:.95rem;}
@@ -357,7 +339,8 @@
   }
   .avatar{
     width:38px;height:38px;border-radius:50%;
-    background:var(--ink);color:var(--paper);
+    background:color-mix(in srgb, var(--orange) 14%, var(--surface));
+    color:var(--orange-deep);
     display:flex;align-items:center;justify-content:center;
     font-family:"Jost",sans-serif;font-weight:600;font-size:.85rem;
     flex:none;
@@ -371,8 +354,9 @@
 
   /* ---------- Footer ---------- */
   .site-footer{
-    background:var(--ink);
-    color:#e9e7e2;
+    background:var(--surface-2);
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
     padding-block:clamp(3rem,6vw,4.5rem) 2rem;
   }
   .footer-grid{
@@ -380,29 +364,31 @@
     grid-template-columns:1.1fr 1fr 1.2fr;
     gap:clamp(2rem,5vw,3.5rem);
   }
-  .site-footer h3{color:#fff;font-size:1.15rem;margin-bottom:1rem;}
-  .footer-col p{color:#c9c6c0;font-size:.95rem;margin-bottom:.4rem;}
-  .footer-col a{text-decoration:none;color:#c9c6c0;}
-  .footer-col a:hover{color:#fff;}
+  .site-footer h3{color:var(--ink);font-size:1.15rem;margin-bottom:1rem;}
+  .footer-col p{color:var(--ink-soft);font-size:.95rem;margin-bottom:.4rem;}
+  .footer-col a{text-decoration:none;color:var(--ink-soft);}
+  .footer-col a:hover{color:var(--orange-deep);}
   .footer-address{margin-bottom:1rem;}
   .footer-links{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem;}
   .social-row{display:flex;gap:.75rem;margin-top:1rem;}
   .social-row a{
     width:38px;height:38px;border-radius:50%;
-    border:1px solid rgba(255,255,255,.2);
+    border:1px solid var(--line);
+    background:var(--surface);
     display:flex;align-items:center;justify-content:center;
     transition:border-color .15s ease, background .15s ease;
   }
-  .social-row a:hover{border-color:var(--orange);background:rgba(234,89,2,.15);}
-  .social-row svg{width:17px;height:17px;stroke:#fff;fill:none;}
+  .social-row a:hover{border-color:var(--orange);background:color-mix(in srgb, var(--orange) 12%, var(--surface));}
+  .social-row svg{width:17px;height:17px;stroke:var(--ink);fill:none;}
 
   .badge-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem;}
   .badge{
     font-size:.78rem;
     padding:.4rem .75rem;
     border-radius:999px;
-    border:1px solid rgba(255,255,255,.18);
-    color:#d8d5cf;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink-soft);
     white-space:nowrap;
   }
 
@@ -410,9 +396,9 @@
     max-width:var(--container);
     margin:clamp(2.5rem,5vw,3.5rem) auto 0;
     padding:1.5rem clamp(1.25rem,4vw,3rem) 0;
-    border-top:1px solid rgba(255,255,255,.12);
+    border-top:1px solid var(--line);
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:.75rem;
-    font-size:.85rem;color:#a9a6a0;
+    font-size:.85rem;color:var(--slate);
   }
 
   @media (max-width:900px){.footer-grid{grid-template-columns:1fr;}}
@@ -429,10 +415,10 @@
 <header class="site-header">
   <div class="container">
     <a class="logo" href="/" aria-label="Palvelutukku Kolmio, etusivu">
-      <svg class="logo-mark" viewBox="0 0 30 26" aria-hidden="true">
-        <polygon points="15,1 29,25 1,25" fill="none" stroke="#ea5902" stroke-width="2.4" stroke-linejoin="round"/>
-      </svg>
-      <span class="logo-text">Palvelu<b>tukku Kolmio</b></span>
+      <span class="logo-word">
+        <span class="logo-line1">Palvelutukku</span>
+        <span class="logo-line2">Kolmio</span>
+      </span>
     </a>
 
     <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" id="navToggle" aria-label="Avaa valikko">
@@ -463,13 +449,6 @@
           <a class="btn" href="#tarjoukset">Tutustu tarjouksiin</a>
           <a class="btn btn-outline" href="/sinun-tukkusi/#ota-yhteytta">Ota yhteyttä</a>
         </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 400 400">
-          <polygon points="200,40 360,340 40,340" fill="none" stroke="#17181a" stroke-width="3" opacity="0.16"/>
-          <polygon points="150,120 290,360 10,360" fill="#ea5902" opacity="0.92"/>
-          <polygon points="255,20 340,180 170,180" fill="#5f6062" opacity="0.85"/>
-        </svg>
       </div>
     </div>
   </section>
@@ -519,21 +498,21 @@
       </div>
       <div class="promise-features">
         <div class="promise-feature">
-          <span class="tri-bullet" aria-hidden="true"></span>
+          <span class="dot-bullet" aria-hidden="true"></span>
           <div>
             <h4>Toimitusvarmuus</h4>
             <p>Kuormassa tulee aina kaikki tilatut tuotteet — tuoreina ja ajallaan.</p>
           </div>
         </div>
         <div class="promise-feature">
-          <span class="tri-bullet" aria-hidden="true"></span>
+          <span class="dot-bullet" aria-hidden="true"></span>
           <div>
             <h4>Joustava palvelu</h4>
             <p>Palvelu ja toimitukset räätälöityvät tarpeidesi mukaan, myös yllättävissä tilanteissa.</p>
           </div>
         </div>
         <div class="promise-feature">
-          <span class="tri-bullet" aria-hidden="true"></span>
+          <span class="dot-bullet" aria-hidden="true"></span>
           <div>
             <h4>Oma yhteyshenkilö</h4>
             <p>Vastuumyyjä on nopeasti tavoitettavissa ja tuntee liiketoimintasi kuin omansa.</p>
