@@ -209,7 +209,14 @@
     gap:1.5rem;flex-wrap:wrap;
   }
   .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:40rem;color:var(--ink);}
-  .band.band--cta{background:color-mix(in srgb, var(--orange) 10%, var(--paper));border-color:color-mix(in srgb, var(--orange) 30%, transparent);}
+  .band.band--cta{
+    background:
+      linear-gradient(100deg, rgba(10,8,6,.80) 0%, rgba(10,8,6,.5) 55%, rgba(10,8,6,.22) 100%),
+      url("assets/images/cta-salad.jpg") center 55% / cover no-repeat;
+    background-color:var(--ink);
+    border-color:transparent;
+  }
+  .band.band--cta p{color:#fdfbf8;}
 
   /* ---------- Sections ---------- */
   section{padding-block:clamp(3.5rem,7vw,6rem);}
