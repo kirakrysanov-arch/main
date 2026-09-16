@@ -200,19 +200,20 @@
   /* ---------- Divider band ---------- */
   .band{
     position:relative;
-    background:var(--surface-2);
-    color:var(--ink);
-    border-block:1px solid var(--line);
+    background:
+      linear-gradient(100deg, rgba(10,8,6,.82) 0%, rgba(10,8,6,.58) 45%, rgba(10,8,6,.32) 100%),
+      url("http://www.palvelutukkukolmio.fi/wp-content/uploads/2025/04/PalvelutukkuKolmioPar-1024x589.jpg") center 30% / cover no-repeat;
+    background-color:var(--ink);
+    color:#fdfbf8;
     overflow:hidden;
-    padding-block:clamp(2.5rem,6vw,3.5rem);
+    padding-block:clamp(3rem,8vw,4.5rem);
   }
   .band .container{
     position:relative;z-index:1;
     display:flex;align-items:center;justify-content:space-between;
     gap:1.5rem;flex-wrap:wrap;
   }
-  .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:40rem;color:var(--ink);}
-  .band.band--cta{background:color-mix(in srgb, var(--orange) 10%, var(--paper));border-color:color-mix(in srgb, var(--orange) 30%, transparent);}
+  .band p{font-family:"Jost",sans-serif;font-size:clamp(1.15rem,1rem + 1vw,1.6rem);font-weight:500;max-width:38rem;color:#fdfbf8;}
 
   /* ---------- Sections ---------- */
   section{padding-block:clamp(3.5rem,7vw,6rem);}
