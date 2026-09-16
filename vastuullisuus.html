@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tapamme toimia – Palvelutukku Kolmio</title>
-<meta name="description" content="Näin Palvelutukku Kolmio toimii: toimitusvarmuus, hävikin hallinta, aito lähiruoka, joustavat tilauskanavat ja hyvä palvelu.">
+<title>Vastuullisuus – Palvelutukku Kolmio</title>
+<meta name="description" content="Palvelutukku Kolmion vastuullisuus: ympäristösertifikaatit, hiilijalanjäljen laskenta, vastuullinen hankinta ja sosiaalinen vastuu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
@@ -92,11 +92,7 @@
     gap:1.5rem;
     padding-block:.9rem;
   }
-  .logo{
-    display:flex;align-items:center;
-    text-decoration:none;
-    flex:none;
-  }
+  .logo{display:flex;align-items:center;text-decoration:none;flex:none;}
   .logo img{height:44px;width:auto;display:block;}
 
   .nav-toggle{
@@ -163,51 +159,43 @@
   .page-banner{
     position:relative;
     background:
-      linear-gradient(100deg, rgba(10,8,6,.88) 0%, rgba(10,8,6,.66) 42%, rgba(10,8,6,.28) 100%),
-      url("assets/images/hero.jpg") center 30% / cover no-repeat;
+      linear-gradient(100deg, rgba(10,8,6,.82) 0%, rgba(10,8,6,.58) 45%, rgba(10,8,6,.26) 100%),
+      url("assets/images/salaatti-banner.jpg") center 40% / cover no-repeat;
     background-color:#0a0806;
-    padding-block:clamp(3rem,7vw,4.5rem);
+    padding-block:clamp(2.5rem,6vw,3.5rem);
   }
   .page-banner .container{position:relative;z-index:1;}
-  .page-banner .eyebrow{color:#ffb27a;}
-  .page-banner .eyebrow::before{background:#ffb27a;}
-  .page-banner h1{font-size:clamp(2rem,1.7rem + 1.6vw,2.9rem);color:#fdfbf8;}
+  .page-banner h1{font-size:clamp(1.8rem,1.5rem + 1.6vw,2.6rem);color:#fdfbf8;max-width:42rem;}
 
-  @media (max-width:640px){
-    .page-banner{background-position:65% 30%;}
+  .intro{padding-block:clamp(2rem,5vw,3rem) 0;}
+  .intro p{color:var(--ink-soft);font-size:1.05rem;max-width:54rem;}
+
+  /* ---------- Split sections ---------- */
+  .split{padding-block:clamp(2.5rem,5vw,3.5rem);}
+  .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,3.5rem);align-items:center;}
+  .split-grid + .split-grid{margin-top:clamp(2rem,5vw,3rem);}
+  .split-text{display:flex;flex-direction:column;gap:1rem;}
+  .split-text p{color:var(--ink-soft);}
+  .split-media img{border-radius:var(--radius);box-shadow:var(--shadow);width:100%;}
+  .split h2{font-size:clamp(1.5rem,1.3rem + 1vw,2rem);margin-bottom:1.5rem;}
+  .split > .container > p.lead{color:var(--ink-soft);margin-bottom:1.75rem;max-width:54rem;}
+
+  @media (max-width:820px){
+    .split-grid{grid-template-columns:1fr;}
+    .split-grid .split-media{order:-1;max-width:280px;margin-inline:auto;}
   }
 
-  /* ---------- Feature rows ---------- */
-  .features{padding-block:clamp(1rem,3vw,2rem);}
-  .feature-row{
-    display:grid;
-    grid-template-columns:220px 1fr;
-    gap:clamp(2rem,5vw,3.5rem);
-    align-items:center;
-    padding-block:clamp(2.5rem,5vw,3.5rem);
-    border-bottom:1px solid var(--line);
-  }
-  .feature-row:last-child{border-bottom:none;}
-  .feature-row.reverse{grid-template-columns:1fr 220px;}
-  .feature-row.reverse .feature-icon-wrap{order:2;}
-  .feature-icon-wrap{display:flex;justify-content:center;}
-  .feature-icon{
-    width:150px;height:150px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    flex:none;
-  }
-  .feature-icon img{width:100%;height:100%;border-radius:50%;object-fit:cover;}
-  .feature-content h3{font-size:1.5rem;margin-bottom:.9rem;}
-  .feature-content p{color:var(--ink-soft);margin-bottom:.75rem;}
-  .feature-content p:last-child{margin-bottom:0;}
-  .feature-content p.lead-line{font-family:"Jost",sans-serif;font-weight:500;font-size:1.15rem;color:var(--ink);}
+  /* ---------- Stats ---------- */
+  .stat-row{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:1.5rem;}
+  .stat-tile{display:flex;flex-direction:column;gap:.2rem;}
+  .stat-tile .num{font-family:"Jost",sans-serif;font-weight:700;font-size:2.2rem;color:var(--orange-deep);font-variant-numeric:tabular-nums;}
+  .stat-tile .label{font-size:.85rem;color:var(--slate);}
 
-  @media (max-width:760px){
-    .feature-row,.feature-row.reverse{grid-template-columns:1fr;}
-    .feature-row .feature-icon-wrap,
-    .feature-row.reverse .feature-icon-wrap{order:-1;}
-    .feature-icon{width:88px;height:88px;}
-  }
+  /* ---------- Recruitment CTA ---------- */
+  .recruit{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .recruit .container{max-width:44rem;}
+  .recruit h3{font-size:1.4rem;margin-bottom:1rem;}
+  .recruit p{color:var(--ink-soft);margin-bottom:1.25rem;}
 
   /* ---------- Footer ---------- */
   .site-footer{
@@ -216,11 +204,7 @@
     border-top:1px solid var(--line);
     padding-block:clamp(3rem,6vw,4.5rem) 2rem;
   }
-  .footer-grid{
-    display:grid;
-    grid-template-columns:1.1fr 1fr 1.2fr;
-    gap:clamp(2rem,5vw,3.5rem);
-  }
+  .footer-grid{display:grid;grid-template-columns:1.1fr 1fr 1.2fr;gap:clamp(2rem,5vw,3.5rem);}
   .site-footer h3{color:var(--ink);font-size:1.15rem;margin-bottom:1rem;}
   .footer-col p{color:var(--ink-soft);font-size:.95rem;margin-bottom:.4rem;}
   .footer-col a{text-decoration:none;color:var(--ink-soft);}
@@ -273,9 +257,9 @@
 
     <nav class="primary-nav" id="primary-nav" aria-label="Päävalikko">
       <a href="index.html">Etusivu</a>
-      <a href="tapamme-toimia.html" class="current">Tapamme toimia</a>
+      <a href="tapamme-toimia.html">Tapamme toimia</a>
       <a href="sinun-tukkusi.html">Sinun tukkusi</a>
-      <a href="vastuullisuus.html">Vastuullisuus</a>
+      <a href="vastuullisuus.html" class="current">Vastuullisuus</a>
       <a href="https://patunetti.fi/ajankohtaista/cat/lounasklubi" target="_blank" rel="noopener">Lounasklubi</a>
       <a href="https://patunetti.fi/customer/account/login" target="_blank" rel="noopener">Verkkokauppa</a>
       <a class="btn" href="sinun-tukkusi.html#ota-yhteytta">Ota yhteyttä</a>
@@ -288,86 +272,90 @@
   <section class="page-banner">
     <div class="container">
       <span class="eyebrow">Palvelutukku Kolmio</span>
-      <h1>Tapamme toimia</h1>
+      <h1>Vastuullinen liiketoiminta</h1>
     </div>
   </section>
 
-  <section class="features">
+  <section class="intro">
     <div class="container">
+      <p>Meille Palvelutukku Kolmiossa on tärkeää olla edelläkävijänä tekemässä vastuullisia valintoja. Pyrimme aktiivisesti edistämään vastuullista liiketoimintaa eri näkökulmista.</p>
+    </div>
+  </section>
 
-      <div class="feature-row">
-        <div class="feature-icon-wrap">
-          <span class="feature-icon"><img src="assets/images/icon-kumppanisi.png" alt="" loading="lazy"></span>
+  <section class="split">
+    <div class="container">
+      <h2>Ympäristösertifikaatti</h2>
+
+      <div class="split-grid">
+        <div class="split-text">
+          <p>Palvelutukku Kolmiolla sekä PATU-ketjulla on ISO14001 standardin mukainen ympäristöohjelma.</p>
+          <p>ISO 14001 -standardi määrittelee prosesseja ja menetelmiä, joiden avulla voimme kokonaisvaltaisesti ja tavoitteellisesti parantaa ympäristöasioidemme hallintaa ja edistää kestävää kehitystä. Meillä ajatellaan, että ympäristön suojelu ja energian säästö eivät tarkoita lisäkustannuksia, vaan näillä toimilla voidaan aidosti tehostaa toimintaa ja saada vaikuttavia tuloksia.</p>
         </div>
-        <div class="feature-content">
-          <h3>Olemme kumppanisi</h3>
-          <p class="lead-line">Jotta me voimme menestyä, täytyy sinun menestyä!</p>
-          <p>Olipa ravintolasi lounasravintola, iltaravintola, kahvila, grilli, leipomo, pizzeria tai muu ammattikeittiö, tervetuloa asiakkaaksemme.</p>
-          <p>Toimialallamme ovat yleistyneet monenlaiset allekirjoitusrahat, vuosihyvitteet, kärkihinnat, kuljetus- ja keräilymaksut ja monet muut asiat, jotka vaikeuttavat hintavertailuiden tekemistä. Tukut tarjoavat lisäksi kovin eritasoisia palvelumalleja. Me tarjoamme sinulle aitoa kilpailukykyä. Etsimme yhdessä kanssasi ratkaisuja, jotka parantavat sinun kannattavuuttasi ja auttavat erottautumaan kilpailijoista.</p>
+        <div class="split-media">
+          <img src="assets/images/iso-9001-14001-full.jpg" alt="Kiwa certified, ISO 9001 ja ISO 14001, Inspecta Sertifiointi Oy" loading="lazy" style="max-width:220px;margin-inline:auto;">
         </div>
       </div>
 
-      <div class="feature-row reverse">
-        <div class="feature-icon-wrap">
-          <span class="feature-icon"><img src="assets/images/icon-toimitusvarmuus.png" alt="" loading="lazy"></span>
+      <div class="split-grid">
+        <div class="split-text">
+          <p>Olemme mukana vuoden 2025 Keskuskauppakamarin järjestämässä Ilmasto-ohjelmassa ja laskeneet hiilijalanjälkemme. Tavoitteemme on toimia hiilineutraalisti ja kaikki meillä käytettävä energia tuotetaan hiilidioksidivapaasti. Teemme pitkäjänteistä työtä, jotta toimintamme kuormittaisi ympäristöä mahdollisimman vähän. Panostamme aktiivisesti myös jätteen ja hävikin määrien minimointiin. Jätteet kierrätetään tai hyödynnetään jatkojalostuksen kautta ja teemme aktiivisesti työtä ruokahävikin pienentämiseen läpi koko toimintaketjumme hankinnasta loppukäyttäjään.</p>
         </div>
-        <div class="feature-content">
-          <h3>Toimitusvarmuus ja laatu</h3>
-          <p>Toimitusvarmuutemme on alan huippua. Asiakkaanamme voit luottaa siihen, että tilaamasi kuorma toimitetaan sinulle sovitussa aikataulussa. Mahdollisten toimituspoikkeamien kohdalla olemme yhteydessä heti aamulla ja ratkaisemme syntyneen tilanteen saman tien.</p>
-          <p>Tuoretuotteiden osalta laatumme on alan paras. Toimitamme tuoretuotteet ilman välivarastointeja suoraan keittiöösi. Uskomme, että laadukkaat ja tuoreet raaka-aineet ovat avain menestykseen.</p>
+        <div class="split-media">
+          <img src="assets/images/hiilijalanjalki-badge.jpg" alt="Kauppakamarin hiilijalanjälki laskettu -merkki, Vihanneskolmio Oy 2024, 12,2 tCO2e" loading="lazy" style="max-width:220px;margin-inline:auto;">
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="feature-row">
-        <div class="feature-icon-wrap">
-          <span class="feature-icon"><img src="assets/images/icon-havikinhallinta.png" alt="" loading="lazy"></span>
+  <section class="split" style="background:var(--surface-2);">
+    <div class="container">
+      <h2>Vastuullisuus liiketoiminnassa</h2>
+      <p class="lead">Suomen Palvelutukkurit Oy ja siihen kuuluvat Patu-tukut tekevät hankintayhteistyötä vain sertifioitujen, tunnettujen ja luotettavien kumppaneiden kanssa. Tuoteturvallisuus on meille elinehto ja siksi myös siihen liittyvä läpinäkyvyys on meille erityisen tärkeää. Selvitämme raaka-aineiden ja pakkausmateriaalien alkuperän sekä huolehdimme niiden vastuullisuudesta.</p>
+
+      <div class="split-grid">
+        <div class="split-text">
+          <p>Paikallinen liiketoiminta ja paikallisen tuotannon tukeminen ja korostaminen liiketoiminnassamme on meille tärkeä arvo, mutta sen kautta voimme myös taata asiakkaillemme laadukkaimmat ja tuoreimmat raaka-aineet turvallisesti ja ympäristön kannalta vähiten kuormittavasti. Valitsemme myös aina tuotteen sen mahdollistaessa, Patu-tuotteiden tuottajaksi tai valmistajaksi kotimaisen toimijan. Esimerkiksi Patu Korvapuusti on meille paikallisen leipomon leipomaa ja Patu Kahvi kotimaista paahtoa.</p>
+          <p>Toimitusvarmuutemme sekä asiakastyytyväisyytemme (NPS) ovat alamme huippuluokkaa.</p>
+          <div class="stat-row">
+            <div class="stat-tile">
+              <span class="num">99,47%</span>
+              <span class="label">Toimitusvarmuus 2024</span>
+            </div>
+            <div class="stat-tile">
+              <span class="num">77</span>
+              <span class="label">Asiakastyytyväisyys (NPS)</span>
+            </div>
+          </div>
         </div>
-        <div class="feature-content">
-          <h3>Hävikin hallinta</h3>
-          <p class="lead-line">Tarjoamme tehokkaat työkalut hävikin hallintaan.</p>
-          <p>Tänään pilkotut kasvikset ja kuoritut juurekset ovat keittiössäsi seuraavana päivänä. Paikallisena tukkuna voimme toimittaa tuotteemme selkeästi tuoreempina.</p>
-          <p>Myymme myös purettuja myyntieriä, jotta voit tilata juuri tarvitsemasi määrän tuotteita.</p>
-          <p>Suunnittelemme toimitusajat yhdessä kanssasi, jotta tavaratoimitukset palvelevat parhaiten sinun toimintaasi ja pystyt käyttämään raaka-aineet tehokkaasti. Tuoreena saapuvat raaka-aineet mahdollistavat puskuroinnin sinun keittiössäsi kulutuksen mukaan.</p>
+        <div class="split-media">
+          <img src="assets/images/patu-kahvi.png" alt="Patu Kahvi, kotimaista paahtoa" loading="lazy">
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="feature-row reverse">
-        <div class="feature-icon-wrap">
-          <span class="feature-icon"><img src="assets/images/icon-lahiruoka.png" alt="" loading="lazy"></span>
+  <section class="split">
+    <div class="container">
+      <h2>Sosiaalinen vastuu</h2>
+      <div class="split-grid">
+        <div class="split-text">
+          <p>Meille Palvelutukku Kolmiolla sosiaalinen vastuu muodostuu edellä mainittujen asioiden lisäksi työnantajan vastuusta. Työpaikkana haluamme olla työntekijöillemme turvallinen ja tasa-arvoinen. Meille henkilöstö on tärkein voimavaramme ja haluamme panostaa henkilöstömme hyvinvointiin.</p>
+          <p>Henkilöstön hyvinvointia on meillä tukemassa esimerkiksi laaja työterveyshuolto, hierontaetu sekä liikunta- ja kulttuurietu. Pidämme myös säännöllisesti henkilöstön virkistyspäiviä.</p>
+          <p>Työturvallisuuden parantamisen puitteissa olemme osallistuneet mm. työturvallisuudella tuottavuutta ja työhyvinvointia Safe-In Log -hankkeeseen vuosina 2020–2022. Panostamme myös jatkuvasti henkilöstömme osaamisen kehittämiseen. Sen lisäksi, että osaamistamme kehittämällä pystymme palvelemaan asiakkaitamme paremmin, on se myös tärkeää henkilötasolla.</p>
         </div>
-        <div class="feature-content">
-          <h3>Aitoa lähiruokaa</h3>
-          <p>Lähellä tuotetuista raaka-aineista valmistettu ruoka maistuu paremmalta. Aidosti tuoreet, lähellä tuotetut raaka-aineet eivät ole vain makuelämys – ne vähentävät hävikkiä ja kuljetusmatkoja ja luonto kiittää.</p>
-          <p>Teemme tiivistä yhteistyötä paikallisten tuottajien kanssa. Tuomme alueemme laadukkaimman lähiruoan sinun pöytääsi lyhintä reittiä.</p>
-          <p>Työllistämme paikallisesti ja sitoudumme alueelliseen elinkeinotoimintaan.</p>
+        <div class="split-media">
+          <img src="assets/images/ilpo-ja-aatu.jpg" alt="Palvelutukku Kolmio - Ilpo ja Aatu" loading="lazy">
+          <p style="color:var(--ink-soft);margin-top:1rem;">Työ on aina mielekkäämpää, kun oppii uusia asioita ja pystyy hyödyntämään niitä työssään. Olemmekin huomanneet, että henkilöstön työtyytyväisyys on kasvanut harppauksin henkilöstön osaamiseen liittyvien hankkeiden jälkeen. Työtyytyväisyytemme onkin erinomaista tasoa.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="feature-row">
-        <div class="feature-icon-wrap">
-          <span class="feature-icon"><img src="assets/images/icon-tilauskanavat.png" alt="" loading="lazy"></span>
-        </div>
-        <div class="feature-content">
-          <h3>Tilauskanavat</h3>
-          <p class="lead-line">Nettikauppa on Palvelutukussa hyvä renki.</p>
-          <p>Palvelutukun asiakkaana saat palvelua nopeasti ja tavoitat meidät puhelimella tai viestillä. Yhteydenottoosi vastaa tuttu henkilö, joka tuntee sinut ja edustamasi yrityksen tarpeet. Puhelinpalvelumme auttaa sinua ruokalistasuunnittelussa ja opastaa tulevien sesonkien parhaat tuotteet. Verkkokaupassa teet tilauksia silloin, kun sinulle sopii.</p>
-          <p>Palvelutukulla on laaja valikoima tunnettuja merkkituotteita sekä laadukkaita Patu-tuotemerkin tuotteita kilpailukykyiseen hintaan. Uusien tuotteiden lisääminen valikoimaan tapahtuu nopeasti.</p>
-          <p>Asiakkaanamme löydät meiltä eväät erottua kilpailijoistasi. Hinnoittelemme sinun valikoimasi edullisesti.</p>
-        </div>
-      </div>
-
-      <div class="feature-row reverse">
-        <div class="feature-icon-wrap">
-          <span class="feature-icon"><img src="assets/images/icon-joustavapalvelu.png" alt="" loading="lazy"></span>
-        </div>
-        <div class="feature-content">
-          <h3>Hyvä ja joustava palvelu</h3>
-          <p>Meille Palvelutukku Kolmiossa on tärkeää, että asiakkaanamme voit keskittyä omaan liiketoimintaasi ja luottaa siihen, että me huolehdimme tuotteiden toimituksesta luotettavasti ja nopeasti.</p>
-          <p>Paikallisena tukkuna pystymme reagoimaan muuttuneisiin tarpeisiisi nopeasti ja räätälöimään palveluitamme tarpeidesi mukaan.</p>
-          <p>Meidän kanssamme et ole yksin, kun tilanne vaatii nopeaa toimintaa.</p>
-        </div>
-      </div>
-
+  <section class="recruit">
+    <div class="container">
+      <h3>Haluaisitko tulla osaksi työyhteisöämme?</h3>
+      <p>Työllistämme esimerkiksi varastossa logistiikkatyöntekijöitä keräilemään asiakastilauksia ja toimistossa asiakaspalveluhenkilöitä vastaanottamaan asiakkaidemme tilauksia tai tekemään tuotehankintoja. Mikäli kiinnostuit mahdollisista avoimista työpaikoista, ole meihin yhteydessä ja lähetä hakemuksesi sähköpostitse.</p>
+      <a class="btn" href="mailto:rekrytointi@palvelutukkukolmio.fi">rekrytointi@palvelutukkukolmio.fi</a>
     </div>
   </section>
 
