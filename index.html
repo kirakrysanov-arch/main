@@ -231,7 +231,7 @@
   /* Offers */
   .offers-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:1.5rem;
   }
   .offer-card{
@@ -280,6 +280,7 @@
   .promo-gallery{
     display:grid;
     grid-template-columns:repeat(3,1fr);
+    align-items:start;
     gap:1.1rem;
   }
   .promo-item{
@@ -307,7 +308,21 @@
     letter-spacing:.04em;text-transform:uppercase;
     padding:.3rem .55rem;border-radius:999px;
   }
-  .promo-name{padding:.85rem 1rem 1rem;font-size:.92rem;font-weight:600;color:var(--ink);}
+  .promo-name{padding:.85rem 1rem 0;font-size:.92rem;font-weight:600;color:var(--ink);}
+  .promo-price-badge{
+    position:absolute;top:.6rem;right:.6rem;
+    width:60px;height:60px;border-radius:50%;
+    background:var(--orange);color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    line-height:1.05;text-align:center;
+    box-shadow:var(--shadow);
+    font-family:"Jost",sans-serif;
+  }
+  .promo-price-badge strong{font-size:.85rem;font-weight:700;}
+  .promo-price-badge span{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.03em;}
+  .promo-meta{padding:.3rem 1rem 0;font-size:.82rem;color:var(--slate);}
+  .promo-price{padding:.3rem 1rem 0;font-size:.85rem;font-weight:600;color:var(--orange-deep);}
+  .promo-code{padding:.3rem 1rem 1rem;font-size:.78rem;color:var(--slate);}
   .promo-cta-row{
     margin-top:clamp(1.75rem,4vw,2.25rem);
     display:flex;align-items:center;justify-content:space-between;
@@ -502,6 +517,14 @@
             <span class="offer-cta">Selaa katalogia <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
+        <a class="offer-card" href="https://www.palvelutukkukolmio.fi/wp-content/uploads/2026/09/Viikkotarjous-viikot-37-38.pdf" target="_blank" rel="noopener">
+          <div class="offer-cover"><img src="assets/images/viikkotarjous-kansi.png" alt="Viikkotarjoukset, viikot 37-38" loading="lazy"></div>
+          <div class="offer-body">
+            <h3>Omat tarjoukset</h3>
+            <p>Tämän viikon viikkotarjoukset — ladattavissa suoraan PDF-muodossa.</p>
+            <span class="offer-cta">Avaa tarjoukset <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
       </div>
 
       <div class="promo-panel">
@@ -550,10 +573,13 @@
           </div>
           <div class="promo-item a3">
             <div class="promo-thumb promo-thumb--photo">
-              <span class="promo-tag">Tarjous</span>
               <img src="assets/images/patu-kahvi.png" alt="Patu Kahvi" loading="lazy">
+              <span class="promo-price-badge"><strong>4,25&euro;</strong><span>/kg</span></span>
             </div>
             <p class="promo-name">Patu Kahvi</p>
+            <p class="promo-meta">Kahvi, Suomi, 500g</p>
+            <p class="promo-price">8,50&euro;/pkt sis. alv</p>
+            <p class="promo-code">Tuotenro: 118820</p>
           </div>
         </div>
         <div class="promo-cta-row">
