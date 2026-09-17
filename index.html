@@ -231,7 +231,7 @@
   /* Offers */
   .offers-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:1.5rem;
   }
   .offer-card{
@@ -260,6 +260,61 @@
   .offer-card:hover .offer-cta svg{transform:translateX(3px);}
 
   @media (max-width:900px){.offers-grid{grid-template-columns:1fr;}}
+
+  /* Omat tarjoukset panel */
+  .promo-panel{
+    margin-top:clamp(2.5rem,5vw,3.5rem);
+    background:linear-gradient(180deg, color-mix(in srgb, var(--orange) 6%, var(--surface)) 0%, var(--surface) 100%);
+    border:1px solid var(--line);
+    border-radius:calc(var(--radius) + 6px);
+    padding:clamp(2rem,4vw,3rem);
+  }
+  .promo-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:1.5rem;flex-wrap:wrap;
+    margin-bottom:clamp(1.75rem,4vw,2.5rem);
+  }
+  .promo-head .eyebrow{margin-bottom:.7rem;}
+  .promo-head h3{font-size:clamp(1.4rem,1.2rem+.8vw,1.9rem);}
+  .promo-head p{color:var(--ink-soft);font-size:.95rem;max-width:34rem;margin-top:.5rem;}
+  .promo-gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1.1rem;
+  }
+  .promo-item{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .promo-thumb{
+    aspect-ratio:1/1;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .promo-thumb svg{width:38%;height:38%;}
+  .promo-item.a1 .promo-thumb{background:color-mix(in srgb, var(--orange) 14%, var(--surface));color:var(--orange-deep);}
+  .promo-item.a2 .promo-thumb{background:color-mix(in srgb, var(--slate) 16%, var(--surface));color:var(--slate);}
+  .promo-item.a3 .promo-thumb{background:var(--surface-2);color:var(--ink-soft);}
+  .promo-tag{
+    position:absolute;top:.6rem;left:.6rem;
+    background:var(--orange);color:#fff;
+    font-family:"Jost",sans-serif;font-size:.7rem;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;
+    padding:.3rem .55rem;border-radius:999px;
+  }
+  .promo-name{padding:.85rem 1rem 1rem;font-size:.92rem;font-weight:600;color:var(--ink);}
+  .promo-cta-row{
+    margin-top:clamp(1.75rem,4vw,2.25rem);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;flex-wrap:wrap;
+  }
+  .promo-cta-row p{color:var(--slate);font-size:.875rem;max-width:28rem;}
+
+  @media (max-width:900px){.promo-gallery{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.promo-gallery{grid-template-columns:1fr 1fr;}.promo-head{align-items:flex-start;}}
 
   /* Promise */
   .promise{background:var(--surface-2);}
@@ -445,14 +500,64 @@
             <span class="offer-cta">Selaa katalogia <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
-        <a class="offer-card" href="https://www.palvelutukkukolmio.fi/wp-content/uploads/2026/09/Viikkotarjous-viikot-37-38.pdf" target="_blank" rel="noopener">
-          <div class="offer-cover"><img src="assets/images/viikkotarjous-kansi.png" alt="Viikkotarjoukset, viikot 37-38" loading="lazy"></div>
-          <div class="offer-body">
+      </div>
+
+      <div class="promo-panel">
+        <div class="promo-head">
+          <div>
+            <span class="eyebrow">Joka viikko uutta</span>
             <h3>Omat tarjoukset</h3>
-            <p>Tämän viikon viikkotarjoukset — ladattavissa suoraan PDF-muodossa.</p>
-            <span class="offer-cta">Avaa tarjoukset <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <p>Kokoamme joka viikko oman valikoimamme parhaat edut yhteen — kuusi nostoa tämän viikon tarjouksista. Koko listan ja hinnat löydät ladattavasta PDF:stä.</p>
           </div>
-        </a>
+        </div>
+        <div class="promo-gallery">
+          <div class="promo-item a1">
+            <div class="promo-thumb">
+              <span class="promo-tag">Tarjous</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 2.5 3 4.8 3 6.8A3 3 0 0 1 9 9.8C9 7.8 10 5.5 12 3Z"/><path d="M12 12v9"/><path d="M8.5 21c0-3 1.5-5 3.5-5s3.5 2 3.5 5"/></svg>
+            </div>
+            <p class="promo-name">Tuore salaatti</p>
+          </div>
+          <div class="promo-item a2">
+            <div class="promo-thumb">
+              <span class="promo-tag">Tarjous</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13c3-5 13-5 16 0" /><path d="M6 13c1 3 2.5 6 6 6s5-3 6-6"/><circle cx="12" cy="9" r="1"/></svg>
+            </div>
+            <p class="promo-name">Leipomotuotteet</p>
+          </div>
+          <div class="promo-item a3">
+            <div class="promo-thumb">
+              <span class="promo-tag">Tarjous</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c4-2 12-2 16 0" /><path d="M4 10c0 4 1 9 8 10 7-1 8-6 8-10" /><path d="M9 9.5c1-2 5-2 6 0"/></svg>
+            </div>
+            <p class="promo-name">Liha ja grillituotteet</p>
+          </div>
+          <div class="promo-item a1">
+            <div class="promo-thumb">
+              <span class="promo-tag">Tarjous</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c4 3 8 3 12 0" /><path d="M6 4c-1 6 0 12 2 16h8c2-4 3-10 2-16" /></svg>
+            </div>
+            <p class="promo-name">Kalatuotteet</p>
+          </div>
+          <div class="promo-item a2">
+            <div class="promo-thumb">
+              <span class="promo-tag">Tarjous</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="10" height="16" rx="2"/><path d="M10 4V2h4v2"/><path d="M7 10h10"/></svg>
+            </div>
+            <p class="promo-name">Maito ja meijerituotteet</p>
+          </div>
+          <div class="promo-item a3">
+            <div class="promo-thumb">
+              <span class="promo-tag">Tarjous</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h9a3 3 0 0 1 0 6h-1"/><path d="M6 8v8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-1"/><path d="M3 4h3"/><path d="M4 4v4"/></svg>
+            </div>
+            <p class="promo-name">Patu Kahvi</p>
+          </div>
+        </div>
+        <div class="promo-cta-row">
+          <p>Nämä ovat esimerkkinostoja valikoimastamme — ajantasaiset hinnat ja koko tuotevalikoima löytyvät viikoittain päivittyvästä PDF:stä.</p>
+          <a class="btn" href="https://www.palvelutukkukolmio.fi/wp-content/uploads/2026/09/Viikkotarjous-viikot-37-38.pdf" target="_blank" rel="noopener">Lataa viikon tarjoukset (PDF)</a>
+        </div>
       </div>
     </div>
   </section>
