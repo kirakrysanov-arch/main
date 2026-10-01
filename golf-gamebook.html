@@ -1,0 +1,679 @@
+<title>Kira's Application Round</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a yardage book. Hero tee box → 9-hole scorecard (the bold moment) → the work sample as a "back nine" → 19th hole. */
+:root{
+  --paper:#f5f8f2;        /* scorecard stock */
+  --card:#ffffff;
+  --mint:#dcf1df;         /* fairway wash */
+  --mint-2:#c4e7ca;
+  --rough:#0d3a23;        /* deep green ink */
+  --ink:#14261b;
+  --ink-soft:#4b5f52;
+  --line:rgba(13,58,35,.16);
+  --fairway:#1f8f4e;      /* accent */
+  --flag:#d8432b;         /* under par = red, as on every scorecard */
+  --sand:#efe3c2;
+  --contour:rgba(31,143,78,.22);
+  --on-rough:#eaf6ec;
+  --f-display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --f-body:"Hanken Grotesk", system-ui, -apple-system, sans-serif;
+  --f-mono:"DM Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0b1a12; --card:#112619; --mint:#163322; --mint-2:#1d402b; --rough:#06140c;
+  --ink:#e6f1e8; --ink-soft:#9fb5a6; --line:rgba(220,241,223,.14); --fairway:#4cc27e;
+  --flag:#ff7a5f; --sand:#3a3622; --contour:rgba(76,194,126,.18); --on-rough:#eaf6ec; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#0b1a12; --card:#112619; --mint:#163322; --mint-2:#1d402b; --rough:#06140c;
+  --ink:#e6f1e8; --ink-soft:#9fb5a6; --line:rgba(220,241,223,.14); --fairway:#4cc27e;
+  --flag:#ff7a5f; --sand:#3a3622; --contour:rgba(76,194,126,.18); --on-rough:#eaf6ec; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;line-height:1.02;letter-spacing:-.02em;text-wrap:balance;font-weight:800}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fairway);font-weight:500}
+section{padding-block:clamp(64px,9vw,120px)}
+:focus-visible{outline:3px solid var(--fairway);outline-offset:3px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* ---------- tee box (hero) ---------- */
+.hero{position:relative;overflow:hidden;background:var(--mint);padding-block:28px 72px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.topbar{position:relative;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar .badge{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:99px}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center;margin-top:clamp(40px,7vw,80px)}
+.hero h1{font-size:clamp(46px,7.4vw,96px);color:var(--rough)}
+:root[data-theme="dark"] .hero h1{color:var(--ink)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .hero h1{color:var(--ink)} }
+.hero h1 em{font-style:normal;color:var(--fairway)}
+.hero .lede{margin-top:24px;font-size:clamp(18px,2vw,21px);max-width:34ch;color:var(--ink-soft)}
+.hole-tag{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.hole-tag span{font-family:var(--f-mono);font-size:13px;color:var(--ink-soft)}
+.hole-tag b{color:var(--ink);font-weight:500}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:99px;padding:13px 22px;font-weight:700;text-decoration:none;border:2px solid var(--rough);font-size:16px}
+.btn.solid{background:var(--rough);color:var(--on-rough)}
+:root[data-theme="dark"] .btn{border-color:var(--fairway)}
+:root[data-theme="dark"] .btn.solid{background:var(--fairway);color:#06140c}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .btn{border-color:var(--fairway)} :root:not([data-theme="light"]) .btn.solid{background:var(--fairway);color:#06140c} }
+
+/* leaderboard phone card */
+.board{background:var(--card);border-radius:26px;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(13,58,35,.45);overflow:hidden;max-width:420px;justify-self:end;width:100%;transform:rotate(1.5deg)}
+.board-head{background:var(--rough);color:var(--on-rough);padding:18px 20px 14px}
+.board-head small{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.board-head h3{font-size:20px;margin-top:4px;color:var(--on-rough)}
+.board-tabs{display:flex;background:var(--fairway);color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.board-tabs span{flex:1;text-align:center;padding:7px 0}
+.board-tabs span.on{background:rgba(0,0,0,.18)}
+.row{display:grid;grid-template-columns:26px 40px 1fr auto auto;gap:12px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);font-size:15px}
+.row:last-child{border-bottom:0}
+.row .pos{font-family:var(--f-mono);color:var(--ink-soft)}
+.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-family:var(--f-display);font-size:15px}
+.avatar.k{background:var(--fairway);color:#fff}
+.avatar.p{background:var(--sand);color:var(--ink-soft)}
+.row .name b{display:block;line-height:1.2}
+.row .name small{color:var(--ink-soft);font-size:12.5px}
+.to-par{font-family:var(--f-mono);font-weight:500;font-size:20px}
+.to-par.under{color:var(--flag)}
+.follow{border:0;border-radius:99px;background:#2f80ed;color:#fff;font-size:12.5px;font-weight:700;padding:6px 12px;min-width:84px;transition:background .2s}
+.follow[aria-pressed="true"]{background:var(--fairway)}
+.row.lead{background:color-mix(in srgb,var(--mint) 55%,transparent)}
+.board-foot{padding:12px 18px;font-size:12.5px;color:var(--ink-soft);font-family:var(--f-mono);display:flex;justify-content:space-between}
+
+/* ---------- stat strip ---------- */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-block:40px;border-bottom:1px solid var(--line)}
+.strip div{display:flex;flex-direction:column;gap:2px}
+.strip b{font-family:var(--f-display);font-size:clamp(28px,3.4vw,40px);color:var(--fairway);line-height:1}
+.strip span{font-size:14px;color:var(--ink-soft)}
+
+/* ---------- section headers ---------- */
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:44px}
+.sec-head h2{font-size:clamp(36px,5vw,64px)}
+.sec-head p{color:var(--ink-soft);max-width:52ch}
+
+/* ---------- the scorecard ---------- */
+.scorecard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.sc-scroll{overflow-x:auto}
+.sc{border-collapse:collapse;width:100%;min-width:760px;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.sc th,.sc td{text-align:center;padding:0;border-left:1px solid var(--line);height:52px}
+.sc th:first-child,.sc td:first-child{text-align:left;padding-left:18px;border-left:0;width:120px;font-family:var(--f-body);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.sc thead th{background:var(--rough);color:var(--on-rough);font-weight:500;font-size:15px}
+.sc thead th button{width:100%;height:52px;background:none;border:0;color:inherit;font-family:var(--f-mono);font-size:15px}
+.sc thead th.sel{background:var(--fairway)}
+.sc thead th button:hover{background:rgba(255,255,255,.1)}
+.sc tbody tr+tr td{border-top:1px solid var(--line)}
+.sc .tot{background:var(--mint);font-weight:500}
+.sc tr.par td{color:var(--ink-soft)}
+.sc tr.score td button{width:100%;height:52px;background:none;border:0;display:grid;place-items:center}
+.sc td.selcol{background:color-mix(in srgb,var(--mint) 60%,transparent)}
+.mark{display:grid;place-items:center;width:34px;height:34px;font-size:17px;font-weight:500;position:relative}
+.mark.birdie{border:2px solid var(--flag);border-radius:50%;color:var(--flag)}
+.mark.eagle{border:2px solid var(--flag);border-radius:50%;color:var(--flag);box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--flag)}
+.mark.par{color:var(--ink)}
+.sc .label-row td:first-child{color:var(--ink-soft)}
+.sc tr.what td{font-family:var(--f-body);font-size:12px;line-height:1.25;color:var(--ink-soft);height:auto;padding:10px 6px;vertical-align:top}
+.legend{display:flex;gap:22px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-soft);align-items:center}
+.legend span{display:inline-flex;gap:8px;align-items:center}
+.legend .mark{width:22px;height:22px;font-size:11px}
+
+.hole-detail{display:grid;grid-template-columns:260px 1fr;gap:0;border-top:1px solid var(--line)}
+.hd-map{background:var(--mint);position:relative;min-height:260px;border-right:1px solid var(--line)}
+.hd-map svg{position:absolute;inset:0;width:100%;height:100%}
+.hd-body{padding:clamp(22px,3.4vw,40px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.hd-top{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.hd-top h3{font-size:clamp(26px,3vw,36px)}
+.chip{font-family:var(--f-mono);font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
+.chip.r{border-color:var(--flag);color:var(--flag)}
+.hd-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.hd-cols h4{font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fairway);margin-bottom:6px}
+.hd-cols p{font-size:16px}
+.hd-quote{font-size:15px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:14px}
+.hd-nav{display:flex;gap:10px;margin-top:auto}
+.hd-nav button{border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:8px 16px;font-size:14px;font-weight:600}
+
+/* ---------- back nine: work sample ---------- */
+.back{background:var(--rough);color:var(--on-rough);position:relative;overflow:hidden}
+.back .sec-head p{color:color-mix(in srgb,var(--on-rough) 70%,transparent)}
+.back .eyebrow{color:#7fdca0}
+.back h2{color:var(--on-rough)}
+.spec{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.panel{background:rgba(255,255,255,.05);border:1px solid rgba(234,246,236,.12);border-radius:22px;padding:clamp(20px,3vw,32px);min-width:0;display:flex;flex-direction:column;gap:16px}
+.panel h3{font-size:24px;color:var(--on-rough)}
+.panel .eyebrow{font-size:11.5px}
+.panel p{color:color-mix(in srgb,var(--on-rough) 78%,transparent);font-size:15.5px}
+.p-push{grid-column:span 5}
+.p-season{grid-column:span 7}
+.p-reel{grid-column:span 7}
+.p-mail{grid-column:span 5}
+
+/* lock screen */
+.lock{background:linear-gradient(160deg,#1b5e3a,#0a2416 70%);border-radius:28px;padding:22px 14px 18px;display:flex;flex-direction:column;gap:10px;border:1px solid rgba(255,255,255,.1)}
+.lock .clock{text-align:center;font-family:var(--f-display);font-size:54px;font-weight:700;color:#fff;line-height:1;letter-spacing:-.03em}
+.lock .date{text-align:center;color:rgba(255,255,255,.75);font-size:13px;margin-bottom:6px}
+.notif{background:rgba(255,255,255,.88);color:#14261b;border-radius:16px;padding:10px 12px;display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:13.5px;line-height:1.35;transition:transform .25s, opacity .25s}
+.notif .ico{width:30px;height:30px;border-radius:8px;background:#0d3a23;color:#7fdca0;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:12px}
+.notif b{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+.notif b small{font-weight:400;color:#5a6b60}
+.notif .why{display:block;margin-top:4px;font-family:var(--f-mono);font-size:10.5px;color:#1f8f4e;letter-spacing:.02em}
+
+/* season card */
+.season{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:center}
+.sc-phone{aspect-ratio:9/16;max-width:240px;width:100%;border-radius:26px;overflow:hidden;position:relative;background:#0a2416;border:1px solid rgba(255,255,255,.12)}
+.slide{position:absolute;inset:0;padding:24px 20px;display:flex;flex-direction:column;justify-content:space-between;opacity:0;transition:opacity .45s;color:#fff}
+.slide.on{opacity:1}
+.slide .k{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.slide .big{font-family:var(--f-display);font-weight:800;font-size:68px;line-height:.9;letter-spacing:-.04em}
+.slide .mid{font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1.08}
+.slide .s{font-size:13px;opacity:.85}
+.s1{background:radial-gradient(120% 80% at 80% 10%,#2fae63,#0d3a23 70%)}
+.s2{background:linear-gradient(180deg,#f6e7b8,#e3c16f);color:#2a2410}
+.s3{background:radial-gradient(100% 70% at 20% 90%,#d8432b,#5b1a10 75%)}
+.s4{background:linear-gradient(180deg,#dcf1df,#9fd9ad);color:#0d3a23}
+.dots{position:absolute;top:10px;left:14px;right:14px;display:flex;gap:4px;z-index:2}
+.dots i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden}
+.dots i.done{background:rgba(255,255,255,.9)}
+.s2 ~ .dots i{background:rgba(0,0,0,.2)}
+.season-ctrl{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.season-ctrl button{background:transparent;border:1px solid rgba(234,246,236,.3);color:var(--on-rough);border-radius:99px;padding:7px 14px;font-size:13.5px;font-weight:600}
+.season-ctrl button[aria-pressed="true"]{background:#7fdca0;color:#06140c;border-color:#7fdca0}
+.ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px;color:color-mix(in srgb,var(--on-rough) 82%,transparent)}
+.ul li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.ul li::before{content:"";width:8px;height:8px;border-radius:50%;background:#7fdca0;margin-top:9px}
+
+/* reel script */
+.beats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.beat{background:rgba(0,0,0,.25);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.beat .t{font-family:var(--f-mono);font-size:11px;color:#7fdca0}
+.beat .vo{font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.15;color:#fff}
+.beat .shot{font-size:12.5px;color:rgba(234,246,236,.65);line-height:1.4}
+
+/* email A/B */
+.inbox{background:#fff;color:#14261b;border-radius:16px;overflow:hidden}
+.mail{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 14px;border-bottom:1px solid #e3ebe5;font-size:14px}
+.mail:last-child{border-bottom:0}
+.mail .from{font-weight:700}
+.mail .tag{font-family:var(--f-mono);font-size:11px;color:#1f8f4e;align-self:center}
+.mail .subj{grid-column:1/-1;font-weight:600}
+.mail .pre{grid-column:1/-1;color:#5a6b60;font-size:13px;line-height:1.35}
+
+/* ---------- calendar ---------- */
+.cal-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+.cal{border-collapse:collapse;width:100%;min-width:760px;font-size:15px}
+.cal th{font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:14px 18px;border-bottom:1px solid var(--line)}
+.cal td{padding:16px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.cal tr:last-child td{border-bottom:0}
+.cal td:first-child{font-family:var(--f-mono);white-space:nowrap;color:var(--fairway);font-weight:500}
+.cal td b{font-family:var(--f-display);font-size:18px;display:block;line-height:1.15;margin-bottom:2px}
+.ch{display:flex;gap:6px;flex-wrap:wrap}
+.ch span{font-family:var(--f-mono);font-size:11.5px;padding:3px 8px;border-radius:6px;background:var(--mint);color:var(--ink)}
+
+/* ---------- 90 days ---------- */
+.rounds{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.round{border-top:4px solid var(--fairway);padding-top:18px;display:flex;flex-direction:column;gap:10px}
+.round .eyebrow{color:var(--ink-soft)}
+.round h3{font-size:26px}
+.round ul{margin:0;padding-left:18px;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px;font-size:15.5px}
+
+/* ---------- 19th hole ---------- */
+.nineteenth{background:var(--mint);position:relative;overflow:hidden}
+.nineteenth canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.n-inner{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.nineteenth h2{font-size:clamp(40px,6vw,80px);color:var(--rough)}
+:root[data-theme="dark"] .nineteenth h2{color:var(--ink)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .nineteenth h2{color:var(--ink)} }
+.nineteenth p{margin-top:18px;max-width:48ch;color:var(--ink-soft)}
+.contact{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.contact .addr{font-family:var(--f-mono);font-size:clamp(14px,1.7vw,17px);word-break:break-all;user-select:all}
+.copy-state{font-size:13px;color:var(--fairway);min-height:1.2em}
+footer{padding-block:28px;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero-grid,.sec-head,.n-inner{grid-template-columns:1fr}
+  .board{justify-self:start;transform:none}
+  .spec > *{grid-column:1/-1}
+  .rounds{grid-template-columns:1fr}
+  .strip{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .hole-detail{grid-template-columns:1fr}
+  .hd-map{min-height:160px;border-right:0;border-bottom:1px solid var(--line)}
+  .hd-cols{grid-template-columns:1fr}
+  .season{grid-template-columns:1fr}
+  .beats{grid-template-columns:1fr 1fr}
+  .row{grid-template-columns:22px 36px 1fr auto;gap:10px}
+  .row .follow{grid-column:3/-1;justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} html{scroll-behavior:auto} }
+</style>
+
+<!-- ================= TEE BOX ================= -->
+<header class="hero" id="top">
+  <canvas id="contours-hero" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="topbar">
+      <span class="badge">Application · Marketing Content Coordinator</span>
+      <span class="badge">For the Golf GameBook marketing team</span>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <div class="hole-tag"><span>Hole <b>1</b></span><span>Par <b>4</b></span><span>Espoo → Ruoholahti</span><span>Wind <b>favourable</b></span></div>
+        <h1>Kira Krysanov is on the tee. <em>Keep score.</em></h1>
+        <p class="lede">I read your job ad nine times, so I turned it into nine holes. Below is how I'd play each one, plus a back nine of content I made for GameBook on spec.</p>
+        <div class="cta-row">
+          <a class="btn solid" href="#scorecard">See my scorecard ↓</a>
+          <a class="btn" href="#back-nine">Skip to the work sample</a>
+        </div>
+      </div>
+
+      <div class="board" role="group" aria-label="Mock live leaderboard">
+        <div class="board-head">
+          <small>Live · Applicant Open 2026</small>
+          <h3>Marketing Content Coordinator</h3>
+        </div>
+        <div class="board-tabs"><span class="on">Stroke play</span><span>Feed</span><span>Stats</span></div>
+        <div class="row lead">
+          <span class="pos">1</span>
+          <span class="avatar k">KK</span>
+          <span class="name"><b>Kira Krysanov</b><small>Haaga-Helia · Helsinki</small></span>
+          <span class="to-par under" id="kira-score">E</span>
+          <button class="follow" id="follow" aria-pressed="false">Follow</button>
+        </div>
+        <div class="row">
+          <span class="pos">–</span>
+          <span class="avatar p">JD</span>
+          <span class="name"><b>The job description</b><small>Sets par on every hole</small></span>
+          <span class="to-par">E</span>
+          <span></span>
+        </div>
+        <div class="board-foot"><span id="thru">Thru 0</span><span>Gross 36 · Par 36</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="strip">
+    <div><b class="mono">9</b><span>responsibilities, played as holes</span></div>
+    <div><b class="mono">4</b><span>pieces of spec work for GameBook</span></div>
+    <div><b class="mono">7</b><span>months of content calendar, Oct–Apr</span></div>
+    <div><b class="mono">90</b><span>days to owning the content engine</span></div>
+  </div>
+</div>
+
+<!-- ================= SCORECARD ================= -->
+<section id="scorecard">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Front nine · the job, hole by hole</p>
+        <h2>My scorecard against your job ad</h2>
+      </div>
+      <p>Par is what the role asks for. The score is my honest self-assessment, so not every hole is a birdie. Tap any hole to see the shot.</p>
+    </div>
+
+    <div class="scorecard">
+      <div class="sc-scroll">
+        <table class="sc" id="sc">
+          <thead><tr><th scope="col">Hole</th></tr></thead>
+          <tbody>
+            <tr class="what"><td>Brief</td></tr>
+            <tr class="par"><td>Par</td></tr>
+            <tr class="score"><td>Kira</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="legend">
+        <span><span class="mark eagle">2</span>Eagle: proof already shipped</span>
+        <span><span class="mark birdie">3</span>Birdie: strong, with a plan</span>
+        <span><span class="mark par">4</span>Par: solid, room to grow</span>
+      </div>
+      <div class="hole-detail" aria-live="polite">
+        <div class="hd-map"><svg id="hole-svg" viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg></div>
+        <div class="hd-body">
+          <div class="hd-top"><h3 id="hd-title"></h3><span class="chip" id="hd-par"></span><span class="chip r" id="hd-score"></span></div>
+          <div class="hd-cols">
+            <div><h4>The ask</h4><p id="hd-ask"></p></div>
+            <div><h4>How I play it</h4><p id="hd-play"></p></div>
+          </div>
+          <p class="hd-quote" id="hd-proof"></p>
+          <div class="hd-nav"><button id="prev">← Previous hole</button><button id="next">Next hole →</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BACK NINE ================= -->
+<section class="back" id="back-nine">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Back nine · spec work</p>
+        <h2>Content I'd ship in my first season</h2>
+      </div>
+      <p>The Nordic courses are closing for winter right now, and that is a content moment. These are concepts written for GameBook's channels. The numbers are sample data.</p>
+    </div>
+
+    <div class="spec">
+      <!-- push -->
+      <div class="panel p-push">
+        <p class="eyebrow">Push notifications · one weekend</p>
+        <h3>Right message, right hole</h3>
+        <div class="lock" id="lock">
+          <div class="clock mono" id="lock-time">07:12</div>
+          <div class="date">Saturday 3 October</div>
+        </div>
+        <p>Each one is tied to something that just happened in the app, so it never reads as a broadcast.</p>
+      </div>
+
+      <!-- season card -->
+      <div class="panel p-season">
+        <p class="eyebrow">Campaign concept · December</p>
+        <h3>The Season Card: your 2026 in golf</h3>
+        <div class="season">
+          <div class="sc-phone" id="phone" aria-label="Season Card story preview, sample data">
+            <div class="slide s1 on"><span class="k">Your 2026 season</span><div><div class="big mono">31</div><div class="mid">rounds logged. 4,118 strokes. Zero excuses.</div></div><span class="s">Swipe for the good part →</span></div>
+            <div class="slide s2"><span class="k">Personal best</span><div><div class="big mono">84</div><div class="mid">at your home course, 14 August.</div></div><span class="s">Seven better than your first round of the year.</span></div>
+            <div class="slide s3"><span class="k">Your nemesis</span><div><div class="mid">Hole 7.</div><div class="big mono">+1.9</div></div><span class="s">Average over par. It owes you a ball and an apology.</span></div>
+            <div class="slide s4"><span class="k">Your crew</span><div><div class="mid">You played 22 rounds with Aino. She won 12.</div></div><span class="s">Share your card. Tag the rival.</span></div>
+            <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+            <p>A shareable year-in-review built from data golfers already log. Every story ends in a share, and every share is a GameBook ad made by a golfer.</p>
+            <ul class="ul">
+              <li>Push on the first frosty weekend: "Your season is in."</li>
+              <li>Email with the full card and a Gold Membership gift offer for the holidays</li>
+              <li>Creators post their own cards first, so fans want theirs</li>
+              <li>Landing page in the CMS for the SEO term "golf year in review"</li>
+            </ul>
+            <div class="season-ctrl" id="season-ctrl" role="group" aria-label="Story slides">
+              <button aria-pressed="true">1</button><button aria-pressed="false">2</button><button aria-pressed="false">3</button><button aria-pressed="false">4</button><button id="season-play" aria-pressed="false">Pause</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- reel -->
+      <div class="panel p-reel">
+        <p class="eyebrow">TikTok / Reels script · series</p>
+        <h3>"The Honest Scorecard"</h3>
+        <p>A recurring short-form series about the gap between the score golfers claim at the bar and the score their scorecard shows. It's relatable, a little cheeky, and the app is the hero without a hard sell.</p>
+        <div class="beats">
+          <div class="beat"><span class="t">0:00–0:02 · Hook</span><span class="vo">"He told the bar he shot 82."</span><span class="shot">Clubhouse, pint raised, confident nod.</span></div>
+          <div class="beat"><span class="t">0:02–0:06 · Turn</span><span class="vo">"His friends were keeping score."</span><span class="shot">Phone screen: the live leaderboard updates.</span></div>
+          <div class="beat"><span class="t">0:06–0:10 · Reveal</span><span class="vo">91. With a 9 on the par 3.</span><span class="shot">Zoom on the scorecard. Friends lose it.</span></div>
+          <div class="beat"><span class="t">0:10–0:13 · Close</span><span class="vo">"Every stroke counts. Literally."</span><span class="shot">End card. Comment prompt: "What did you tell the bar?"</span></div>
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="panel p-mail">
+        <p class="eyebrow">Email · subject line A/B test</p>
+        <h3>Season Card launch email</h3>
+        <div class="inbox">
+          <div class="mail"><span class="from">Golf GameBook</span><span class="tag">A · curiosity</span><span class="subj">Your 2026 season, scored ⛳</span><span class="pre">31 rounds, one personal best and a hole that owes you an apology.</span></div>
+          <div class="mail"><span class="from">Golf GameBook</span><span class="tag">B · specific</span><span class="subj">You beat your first round by 7 strokes this year</span><span class="pre">Your Season Card is ready. See how far you came.</span></div>
+          <div class="mail"><span class="from">Golf GameBook</span><span class="tag">Holdout</span><span class="subj">Your golf year in review is here</span><span class="pre">The control. If it wins, I'll buy the coffee.</span></div>
+        </div>
+        <p>Personalised subject lines need clean data fields, so I'd test B on a segment first and report open rate and card shares, not just clicks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CALENDAR ================= -->
+<section id="calendar">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Content calendar draft · Oct 2026 – Apr 2027</p>
+        <h2>An off-season with no dead weeks</h2>
+      </div>
+      <p>In the Nordics, winter is when golf content usually goes quiet. I'd use it to grow habits for the next season, and to show off the new office.</p>
+    </div>
+    <div class="cal-wrap">
+      <table class="cal">
+        <thead><tr><th scope="col">Month</th><th scope="col">Moment</th><th scope="col">Idea</th><th scope="col">Channels</th></tr></thead>
+        <tbody>
+          <tr><td>Oct</td><td><b>Last round of the season</b>Nordic courses close</td><td>"Last Round" push to Nordic users, then a carousel of community final rounds and frosty first tees.</td><td><div class="ch"><span>Push</span><span>IG</span><span>FB</span></div></td></tr>
+          <tr><td>Nov</td><td><b>Simulator season</b>Indoor golf takes over</td><td>Winter practice plan email. Creators show how they keep scoring sharp indoors.</td><td><div class="ch"><span>Email</span><span>YouTube</span><span>TikTok</span></div></td></tr>
+          <tr><td>Dec</td><td><b>The Season Card</b>Year in review</td><td>Shareable recap stories, launch email A/B test, Gold Membership as a holiday gift.</td><td><div class="ch"><span>Push</span><span>Email</span><span>IG</span><span>Web</span></div></td></tr>
+          <tr><td>Jan</td><td><b>New office, Ruoholahti</b>Behind the scenes</td><td>Moving day series, meet-the-team posts and a putting-mat office tour. Good for employer brand too.</td><td><div class="ch"><span>LinkedIn</span><span>TikTok</span></div></td></tr>
+          <tr><td>Feb</td><td><b>Golf trip planning</b>Spain and Portugal</td><td>Course guide landing pages using GameBook's course data. Group trip formats like scramble explained in 30 seconds.</td><td><div class="ch"><span>Web / SEO</span><span>Email</span><span>Reels</span></div></td></tr>
+          <tr><td>Mar</td><td><b>Pre-season challenge</b>Creator collab</td><td>Partner creators each play the same format with the app and their followers chase their scores.</td><td><div class="ch"><span>YouTube</span><span>IG</span><span>Push</span></div></td></tr>
+          <tr><td>Apr</td><td><b>Masters week &amp; opening day</b>Season kicks off</td><td>Prediction game, live leaderboard content and a "first round back" push when Nordic courses open.</td><td><div class="ch"><span>All channels</span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:72px">
+      <p class="eyebrow">My first 90 days</p>
+      <div class="rounds">
+        <div class="round"><span class="eyebrow">Days 1–30 · Practice round</span><h3>Walk the course</h3><ul><li>Audit every channel, template and past campaign</li><li>Learn the tone of voice until I can write it without the guide</li><li>Tidy the asset library with one naming system</li></ul></div>
+        <div class="round"><span class="eyebrow">Days 31–60 · Competition</span><h3>Own the calendar</h3><ul><li>Run the weekly content plan across social, email, push and web</li><li>Ship the December campaign on time, with assets in place a week early</li><li>Start a monthly content performance report</li></ul></div>
+        <div class="round"><span class="eyebrow">Days 61–90 · Match play</span><h3>Bring the creators in</h3><ul><li>Write a creator brief template and a repurposing checklist</li><li>Plan the spring creator challenge with the team</li><li>Share what worked, what didn't, and the next three tests</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 19TH HOLE ================= -->
+<section class="nineteenth" id="nineteenth">
+  <canvas id="contours-end" aria-hidden="true"></canvas>
+  <div class="wrap n-inner">
+    <div>
+      <p class="eyebrow">The 19th hole</p>
+      <h2>Let's talk about it over a coffee in Espoo.</h2>
+      <p>I'd love to hear how the team plans the season, and which of these ideas you'd change first. My CV is attached to the application.</p>
+    </div>
+    <div class="contact">
+      <span class="eyebrow">Kira Krysanov</span>
+      <span class="addr" id="addr">kira.krysanov@gmail.com</span>
+      <button class="btn solid" id="copy" type="button">Copy email address</button>
+      <span class="copy-state" id="copy-state"></span>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>Made by Kira Krysanov for an application to Golf GameBook. This is not an official Golf GameBook page.</span><span class="mono">Gross 29 · Net −7</span></div></footer>
+
+<script>
+(function(){
+  /* ---------------- contour lines, like a yardage book ---------------- */
+  function contours(canvas, seeds){
+    const ctx = canvas.getContext('2d');
+    function draw(){
+      const r = canvas.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio||1, 2);
+      canvas.width = r.width*dpr; canvas.height = r.height*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,r.width,r.height);
+      ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--contour').trim() || 'rgba(31,143,78,.2)';
+      ctx.lineWidth = 1.4;
+      seeds.forEach(s=>{
+        const cx = s.x*r.width, cy = s.y*r.height;
+        for(let k=1;k<=s.n;k++){
+          ctx.beginPath();
+          for(let a=0;a<=Math.PI*2+0.01;a+=0.04){
+            const wob = 1 + 0.14*Math.sin(3*a + s.p + k*0.35) + 0.07*Math.sin(5*a - s.p*1.7 + k*0.2);
+            const rad = k*s.step*wob;
+            const x = cx + Math.cos(a)*rad*s.sx, y = cy + Math.sin(a)*rad;
+            a===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+          }
+          ctx.closePath(); ctx.stroke();
+        }
+      });
+    }
+    draw();
+    let t; window.addEventListener('resize', ()=>{clearTimeout(t); t=setTimeout(draw,120)});
+    try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);}catch(e){}
+    new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  }
+  contours(document.getElementById('contours-hero'), [
+    {x:.06,y:.25,n:9,step:34,sx:.75,p:.4},{x:.97,y:.85,n:11,step:30,sx:.9,p:2.1},{x:.62,y:-.05,n:5,step:30,sx:1.4,p:1.2}]);
+  contours(document.getElementById('contours-end'), [
+    {x:.95,y:.2,n:10,step:32,sx:.8,p:.9},{x:.05,y:1.05,n:7,step:34,sx:1.1,p:2.6}]);
+
+  /* ---------------- the nine holes ---------------- */
+  const holes = [
+    {name:"Create & publish", short:"Content across channels", par:4, score:4,
+     ask:"Create, edit and publish content for Instagram, TikTok, YouTube, Facebook, LinkedIn, email, push and the website.",
+     play:"One idea, cut per channel. I write the core message once, then shape it for how each place is read: a hook for TikTok, a scannable carousel for Instagram, a 40-character push.",
+     proof:"Par, not birdie: the range is wide, and I'd rather prove it in my first month than claim it here. The back nine below is a start."},
+    {name:"Content calendar", short:"Plan & schedule", par:4, score:3,
+     ask:"Own the content: plan, organise and schedule across channels so campaigns launch on time and the presence stays consistent.",
+     play:"A single calendar with every channel on it, a weekly planning slot and a two-week buffer. If something slips, the calendar shows it on Monday, not on launch day.",
+     proof:"The draft calendar further down this page covers October to April, including the move to Ruoholahti."},
+    {name:"Campaigns", short:"Brief → publication", par:5, score:4,
+     ask:"Support the planning and execution of campaigns, coordinating deliverables, timelines and assets across the team.",
+     play:"Every campaign gets one page: the goal, the audience, the deliverables, who owns each, and the due dates. I chase the asset list so the Head of Marketing doesn't have to.",
+     proof:"Spec example: the Season Card campaign below, from push to email to creators to a landing page."},
+    {name:"Asset library", short:"Findable, on brand", par:3, score:2,
+     ask:"Organise and manage the content and asset library so materials are easy to find, up to date and on brand.",
+     play:"One naming convention (date_campaign_channel_format_v#), folders by campaign, and a clear archive. If an asset takes more than ten seconds to find, the system has failed.",
+     proof:"Building a brand book forced me to make these rules for real: which logo, which colour, which photo, where it lives."},
+    {name:"Creators & agencies", short:"Brief, collect, repurpose", par:4, score:4,
+     ask:"Coordinate with golf content creators and agencies: briefing, collecting, reviewing and repurposing their content.",
+     play:"A one-page creator brief (the message, the must-show app moment, deadlines, usage rights) and a repurposing checklist, so one creator video becomes five posts.",
+     proof:"Par: this is where I'd learn the most from the team. My 90-day plan ends with the creator brief template."},
+    {name:"Website & CMS", short:"Pages & landing pages", par:4, score:2,
+     ask:"Update and maintain website content and landing pages in the CMS.",
+     play:"I think about web pages as structure first: what the visitor came for, what they should do next, and what the search engine needs to understand the page.",
+     proof:"Eagle: I redesigned the website of Palvelutukku Kolmio, a Finnish foodservice wholesaler, across five pages, and built a 10-page brand book from it."},
+    {name:"Visuals & short video", short:"Design & edit", par:3, score:2,
+     ask:"Create simple visuals and short-form videos for social media and email.",
+     play:"Templates first, so quick posts still look on brand. For video: hook in the first second, captions always, under 15 seconds unless the story earns more.",
+     proof:"This page is the visual sample. The Reels script below shows how I plan a short video beat by beat."},
+    {name:"Performance", short:"Measure & report", par:4, score:4,
+     ask:"Monitor and report on content performance and engagement, and share insights to improve the content.",
+     play:"A short monthly report with three things: what worked, what didn't, and what we test next. I'd track saves, shares and app installs over likes.",
+     proof:"Par: I know what to look for. I want to learn GameBook's own funnel, from post to install to first round logged."},
+    {name:"Community & voice", short:"Golfers & brand", par:5, score:4,
+     ask:"Engage with the community, follow golf trends and conversations, and keep everything consistent with the brand and tone of voice.",
+     play:"Reply like a playing partner, not a help desk. I'd keep a running list of jokes, complaints and phrases golfers use, and feed it back into the content.",
+     proof:"Brand books are my homework: tone of voice is a set of choices you can write down, and then everyone can follow it."}
+  ];
+  const yards = [372,401,512,168,389,356,154,417,498];
+
+  const sc = document.getElementById('sc');
+  const hr = sc.querySelector('thead tr'), wr = sc.querySelector('tr.what'), pr = sc.querySelector('tr.par'), srow = sc.querySelector('tr.score');
+  function cls(d){return d<=-2?'eagle':d===-1?'birdie':'par'}
+  holes.forEach((h,i)=>{
+    hr.insertAdjacentHTML('beforeend', `<th scope="col" data-i="${i}"><button data-i="${i}" aria-label="Hole ${i+1}: ${h.name}">${i+1}</button></th>`);
+    wr.insertAdjacentHTML('beforeend', `<td data-i="${i}">${h.short}</td>`);
+    pr.insertAdjacentHTML('beforeend', `<td data-i="${i}">${h.par}</td>`);
+    srow.insertAdjacentHTML('beforeend', `<td data-i="${i}"><button data-i="${i}" aria-label="Score ${h.score} on hole ${i+1}"><span class="mark ${cls(h.score-h.par)}">${h.score}</span></button></td>`);
+  });
+  const parT = holes.reduce((a,h)=>a+h.par,0), scT = holes.reduce((a,h)=>a+h.score,0);
+  hr.insertAdjacentHTML('beforeend','<th scope="col">Out</th>');
+  wr.insertAdjacentHTML('beforeend','<td class="tot">Total</td>');
+  pr.insertAdjacentHTML('beforeend',`<td class="tot">${parT}</td>`);
+  srow.insertAdjacentHTML('beforeend',`<td class="tot"><span class="mark" style="color:var(--flag)">${scT}</span></td>`);
+
+  const $ = id => document.getElementById(id);
+  let cur = 0;
+  function holeSvg(i){
+    const s = ((i*37)%11)/11, dog = (i%3)-1;
+    const tee = [60+s*40, 228], green = [130+dog*60, 52];
+    const mid = [130 - dog*45 + s*20, 140];
+    const path = `M${tee[0]},${tee[1]} Q${mid[0]},${mid[1]} ${green[0]},${green[1]}`;
+    return `
+      <path d="${path}" stroke="var(--mint-2)" stroke-width="64" fill="none" stroke-linecap="round"/>
+      <path d="${path}" stroke="var(--fairway)" stroke-opacity=".28" stroke-width="40" fill="none" stroke-linecap="round"/>
+      <ellipse cx="${mid[0]+ (dog>=0?42:-42)}" cy="${mid[1]-20}" rx="18" ry="11" fill="var(--sand)"/>
+      <ellipse cx="${green[0]-26}" cy="${green[1]+18}" rx="12" ry="8" fill="var(--sand)"/>
+      <circle cx="${green[0]}" cy="${green[1]}" r="22" fill="var(--fairway)" fill-opacity=".55"/>
+      <line x1="${green[0]}" y1="${green[1]}" x2="${green[0]}" y2="${green[1]-26}" stroke="var(--ink)" stroke-width="1.6"/>
+      <path d="M${green[0]},${green[1]-26} l14,5 l-14,5 z" fill="var(--flag)"/>
+      <rect x="${tee[0]-9}" y="${tee[1]-5}" width="18" height="9" rx="2" fill="var(--rough)"/>
+      <path d="${path}" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="3 5" fill="none"/>
+      <text x="14" y="26" font-family="DM Mono, monospace" font-size="13" fill="var(--ink)">HOLE ${i+1}</text>
+      <text x="14" y="44" font-family="DM Mono, monospace" font-size="11" fill="var(--ink-soft)">${yards[i]} m · PAR ${holes[i].par}</text>`;
+  }
+  function select(i){
+    cur = (i+holes.length)%holes.length;
+    const h = holes[cur], d = h.score-h.par;
+    sc.querySelectorAll('[data-i]').forEach(el=>{
+      const on = +el.dataset.i===cur;
+      if(el.tagName==='TH') el.classList.toggle('sel',on);
+      if(el.tagName==='TD') el.classList.toggle('selcol',on);
+    });
+    $('hd-title').textContent = `Hole ${cur+1}: ${h.name}`;
+    $('hd-par').textContent = `Par ${h.par} · ${yards[cur]} m`;
+    $('hd-score').textContent = d<=-2?`Eagle · ${h.score}`:d===-1?`Birdie · ${h.score}`:`Par · ${h.score}`;
+    $('hd-ask').textContent = h.ask; $('hd-play').textContent = h.play; $('hd-proof').textContent = h.proof;
+    $('hole-svg').innerHTML = holeSvg(cur);
+  }
+  sc.addEventListener('click', e=>{const b=e.target.closest('button[data-i]'); if(b) select(+b.dataset.i)});
+  $('prev').onclick=()=>select(cur-1); $('next').onclick=()=>select(cur+1);
+  select(5);
+
+  /* ---------------- hero leaderboard: play the round ---------------- */
+  const reduce = window.matchMedia('(prefers-color-scheme: no-preference)') && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt = n => n===0?'E':(n<0?'−'+(-n):'+'+n);
+  const scoreEl = $('kira-score'), thru = $('thru');
+  let running = 0;
+  function finish(){scoreEl.textContent = fmt(scT-parT); thru.textContent='F · 9 holes'}
+  if(reduce){ finish(); }
+  else {
+    holes.forEach((h,i)=>setTimeout(()=>{
+      running += h.score-h.par; scoreEl.textContent = fmt(running);
+      thru.textContent = i===8?'F · 9 holes':'Thru '+(i+1);
+    }, 700 + i*380));
+  }
+  $('follow').addEventListener('click', e=>{
+    const b=e.currentTarget, on=b.getAttribute('aria-pressed')!=='true';
+    b.setAttribute('aria-pressed',on); b.textContent = on?'Following ✓':'Follow';
+  });
+
+  /* ---------------- lock screen notifications ---------------- */
+  const notifs = [
+    {t:'07:12', app:'Golf GameBook', when:'now', body:'14°C and almost no wind at your home course. Your group tees off at 09:40. Scorecard\'s ready when you are.', why:'trigger: tee time today + weather'},
+    {t:'11:58', app:'Golf GameBook', when:'now', body:'Aino just birdied 7 and leads Saturday Skins by 2. Your move on 8.', why:'trigger: friend\'s live round'},
+    {t:'14:05', app:'Golf GameBook', when:'now', body:'Round saved: 86. That\'s your best score at this course this season. Share the card?', why:'trigger: personal best'},
+    {t:'18:30', app:'Golf GameBook', when:'now', body:'Most Finnish courses close this month. Got one last round in you? 3 friends are playing Sunday.', why:'trigger: season end + friends\' plans'}
+  ];
+  const lock = $('lock'), lt = $('lock-time');
+  notifs.forEach(n=>{
+    lock.insertAdjacentHTML('beforeend', `<div class="notif"><span class="ico">GGB</span><div><b>${n.app}<small class="mono">${n.t}</small></b>${n.body}<span class="why">${n.why}</span></div></div>`);
+  });
+  const items = [...lock.querySelectorAll('.notif')];
+  let ni = items.length-1;
+  function showN(){ items.forEach((el,i)=>{el.style.opacity = i<=ni?1:.28}); lt.textContent = notifs[ni].t; }
+  if(!reduce){ ni=0; showN(); setInterval(()=>{ni=(ni+1)%items.length; showN()}, 2200); } else showN();
+
+  /* ---------------- season card story ---------------- */
+  const slides=[...document.querySelectorAll('#phone .slide')], dots=[...document.querySelectorAll('#dots i')];
+  const ctrls=[...document.querySelectorAll('#season-ctrl button:not(#season-play)')], play=$('season-play');
+  let si=0, auto=!reduce, timer;
+  function showS(i){
+    si=(i+slides.length)%slides.length;
+    slides.forEach((s,k)=>s.classList.toggle('on',k===si));
+    dots.forEach((d,k)=>d.classList.toggle('done',k<=si));
+    ctrls.forEach((c,k)=>c.setAttribute('aria-pressed',k===si));
+  }
+  function tick(){clearInterval(timer); if(auto) timer=setInterval(()=>showS(si+1),2600); play.textContent=auto?'Pause':'Play'}
+  ctrls.forEach((c,k)=>c.addEventListener('click',()=>{showS(k); tick()}));
+  $('phone').addEventListener('click',()=>{showS(si+1); tick()});
+  play.addEventListener('click',()=>{auto=!auto; tick()});
+  showS(0); tick();
+
+  /* ---------------- copy email ---------------- */
+  $('copy').addEventListener('click',()=>{
+    const v=$('addr').textContent.trim(), st=$('copy-state');
+    const sel=()=>{const r=document.createRange(); r.selectNodeContents($('addr')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); st.textContent='Selected. Press Ctrl+C or ⌘C to copy.'};
+    try{ navigator.clipboard.writeText(v).then(()=>st.textContent='Copied to your clipboard.', sel); }catch(e){ sel(); }
+  });
+})();
+</script>
