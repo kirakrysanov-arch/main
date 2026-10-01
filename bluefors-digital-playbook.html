@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bluefors Digital Playbook</title>
+<meta name="description" content="An independent work sample by Kira Krysanov for the Digital Marketing Manager role at Bluefors: homepage audit, KPI framework, Q4 2026 content calendar and ready-to-post social drafts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column that "cools down" stage by stage, 300 K → 10 mK, like the plates of a dilution refrigerator. */
+:root{
+  --bg:#f6f8fa;
+  --surface:#ffffff;
+  --ink:#0f1a24;
+  --ink-soft:#4a5866;
+  --line:rgba(15,26,36,.12);
+  --copper:#a8641c;
+  --copper-soft:#f3e6d6;
+  --frost:#2a6f9e;
+  --frost-soft:#e2eef6;
+  --hi:#b3261e; --hi-soft:#fbe7e5;
+  --med:#8a5a00; --med-soft:#fbf0d9;
+  --lo:#2e6b3a; --lo-soft:#e3f1e5;
+  --display:"Familjen Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1219; --surface:#121c26; --ink:#e7edf2; --ink-soft:#a3b1bd; --line:rgba(231,237,242,.13);
+    --copper:#e0a25a; --copper-soft:#2e2216; --frost:#7fb8de; --frost-soft:#14283a;
+    --hi:#f28b82; --hi-soft:#3a1a18; --med:#e9c26b; --med-soft:#33280f; --lo:#8fcf9b; --lo-soft:#16301c;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1219; --surface:#121c26; --ink:#e7edf2; --ink-soft:#a3b1bd; --line:rgba(231,237,242,.13);
+  --copper:#e0a25a; --copper-soft:#2e2216; --frost:#7fb8de; --frost-soft:#14283a;
+  --hi:#f28b82; --hi-soft:#3a1a18; --med:#e9c26b; --med-soft:#33280f; --lo:#8fcf9b; --lo-soft:#16301c;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:0 64px}
+h1,h2,h3{font-family:var(--display);line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:700}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:var(--frost)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.mono{font-family:var(--mono)}
+.prose{max-width:66ch;color:var(--ink-soft)}
+.prose strong{color:var(--ink)}
+
+/* Stage rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.rail ol{list-style:none;margin:0 auto;padding:10px 20px;max-width:1040px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.rail a{display:flex;gap:8px;align-items:baseline;white-space:nowrap;text-decoration:none;color:var(--ink-soft);font-size:.85rem;padding:6px 10px;border-radius:999px}
+.rail a:hover{background:var(--surface);color:var(--ink)}
+.rail .t{font-family:var(--mono);font-size:.75rem;color:var(--copper)}
+
+/* Hero */
+.hero{padding-block:56px 40px;display:grid;gap:22px}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--copper)}
+.hero .lede{font-size:1.15rem;max-width:60ch;color:var(--ink-soft)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:.88rem;color:var(--ink-soft)}
+.meta b{color:var(--ink);font-weight:600}
+.gauge{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px}
+.gauge div{display:grid;gap:6px}
+.gauge span{display:block;height:6px;border-radius:3px}
+.gauge small{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+
+/* Sections */
+section.stage{padding-block:56px 8px;border-top:1px solid var(--line);display:grid;gap:22px;scroll-margin-top:60px}
+.stage-head{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:baseline}
+.temp{font-family:var(--mono);font-size:1rem;color:var(--copper);border:1px solid var(--copper);border-radius:6px;padding:2px 8px;white-space:nowrap}
+.stage-head .plate{grid-column:2;font-family:var(--mono);font-size:.75rem;color:var(--ink-soft);letter-spacing:.04em}
+
+/* Strengths */
+.keep{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.keep li{list-style:none;background:var(--lo-soft);border-radius:10px;padding:14px 16px;font-size:.93rem}
+.keep b{display:block;color:var(--lo);font-family:var(--display);font-size:1rem;margin-bottom:2px}
+ul.keep{margin:0;padding:0}
+
+/* Findings */
+.findings{display:grid;gap:14px}
+details.f{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+details.f summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+details.f summary::-webkit-details-marker{display:none}
+.sev{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.sev.hi{background:var(--hi-soft);color:var(--hi)} .sev.med{background:var(--med-soft);color:var(--med)} .sev.lo{background:var(--lo-soft);color:var(--lo)}
+.f h3{font-size:1.05rem}
+.chev{font-family:var(--mono);color:var(--ink-soft);transition:transform .2s}
+details[open] .chev{transform:rotate(90deg)}
+.f-body{padding:0 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;font-size:.92rem;color:var(--ink-soft)}
+.f-body h4{margin:0 0 4px;font-family:var(--mono);font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
+.f-body q{font-style:italic}
+.note{font-size:.85rem;color:var(--ink-soft);background:var(--frost-soft);border-radius:10px;padding:12px 16px;max-width:80ch}
+
+/* KPI table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.9rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;font-family:var(--display);white-space:nowrap}
+
+/* Calendar */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters span{font-family:var(--mono);font-size:.75rem;color:var(--ink-soft);margin-right:4px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;font-size:.85rem;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.weeks{display:grid;gap:10px}
+.week{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.week-label{display:grid;gap:2px;align-content:start}
+.week-label b{font-family:var(--display);font-size:1rem}
+.week-label small{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+.week-label .anchor{font-size:.78rem;color:var(--copper);font-weight:600;margin-top:4px}
+.items{display:grid;gap:8px}
+.item{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;font-size:.92rem}
+.item .ch{font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);padding-top:3px}
+.item .what{display:flex;gap:8px;align-items:baseline}
+.item .what .dot{transform:translateY(-1px)}
+.item em{font-style:normal;color:var(--ink-soft)}
+.week.empty{display:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.85rem;color:var(--ink-soft)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+
+/* Posts */
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:12px;grid-template-rows:auto auto 1fr auto;min-width:0}
+.post-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+.post pre{margin:0;white-space:pre-wrap;font-family:var(--body);font-size:.9rem;line-height:1.55;color:var(--ink)}
+.post .ph{background:var(--med-soft);color:var(--med);border-radius:4px;padding:0 3px}
+.post-foot{display:grid;gap:8px;font-size:.83rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:12px}
+.post-foot b{color:var(--ink);font-weight:600}
+.copy{justify-self:start;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:6px 12px;font-size:.82rem;cursor:pointer}
+.copy:hover{border-color:var(--copper);color:var(--copper)}
+
+/* 90 days */
+.plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;align-content:start}
+.phase .days{font-family:var(--mono);font-size:.75rem;color:var(--copper)}
+.phase ul{margin:0;padding-left:18px;font-size:.92rem;color:var(--ink-soft);display:grid;gap:6px}
+
+footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:grid;gap:8px;font-size:.85rem;color:var(--ink-soft)}
+footer b{color:var(--ink)}
+
+@media (max-width:760px){
+  .f-body{grid-template-columns:1fr}
+  .plan{grid-template-columns:1fr}
+  .week{grid-template-columns:1fr;gap:10px}
+  .item{grid-template-columns:1fr;gap:0}
+  details.f summary{grid-template-columns:1fr auto}
+  details.f summary .sev{grid-column:1/-1;justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Sections">
+  <ol>
+    <li><a href="#intro"><span class="t">300 K</span>Intro</a></li>
+    <li><a href="#audit"><span class="t">50 K</span>Website audit</a></li>
+    <li><a href="#kpis"><span class="t">4 K</span>Measurement</a></li>
+    <li><a href="#calendar"><span class="t">1 K</span>Q4 calendar</a></li>
+    <li><a href="#posts"><span class="t">100 mK</span>Social drafts</a></li>
+    <li><a href="#plan"><span class="t">10 mK</span>First 90 days</a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+<header class="hero" id="intro">
+  <p class="eyebrow">Work sample · Digital Marketing Manager, Helsinki</p>
+  <h1>Bluefors Digital Playbook</h1>
+  <p class="lede">Before applying, I studied Bluefors' homepage the way I would in my first week in the role: what it does well, where it leaks demand, and what I would publish this quarter. This page holds the audit, a measurement framework, a Q4 2026 content calendar and six social posts ready for review.</p>
+  <div class="meta">
+    <span>Prepared by <b>Kira Krysanov</b></span>
+    <span>Snapshot of <b>bluefors.com</b> on <b>1 Oct 2026</b></span>
+    <span>Independent sample, not commissioned by Bluefors</span>
+  </div>
+  <div class="gauge" aria-hidden="true">
+    <div><span style="background:#c98a46"></span><small>300 K</small></div>
+    <div><span style="background:#b88a5c"></span><small>50 K</small></div>
+    <div><span style="background:#8f8d83"></span><small>4 K</small></div>
+    <div><span style="background:#6a8ea6"></span><small>1 K</small></div>
+    <div><span style="background:#4a86b4"></span><small>100 mK</small></div>
+    <div><span style="background:#2a6f9e"></span><small>10 mK</small></div>
+  </div>
+  <p class="prose" style="font-size:.9rem">The sections follow the plates of a dilution refrigerator, from room temperature down to the mixing chamber. Each step goes from diagnosis toward execution.</p>
+</header>
+
+<section class="stage" id="audit">
+  <div class="stage-head">
+    <span class="temp">50 K</span><h2>Homepage audit</h2>
+    <span class="plate">FIRST STAGE · REMOVE THE BIGGEST HEAT LOADS</span>
+  </div>
+  <p class="prose">The homepage already looks like a market leader. The opportunities are in conversion paths, consistency and making the site easier for search engines and AI answer engines to understand. Findings are ranked by expected commercial impact.</p>
+
+  <h3>Keep and build on</h3>
+  <ul class="keep">
+    <li><b>Ownable visuals</b>Gold-plated cryostat photography and "Cool For Progress" are instantly recognisable.</li>
+    <li><b>Named proof</b>Testimonials carry real names and institutions: The University of Chicago, Silicon Quantum Computing.</li>
+    <li><b>Fresh news</b>Three stories in September alone, plus a "Latest" ticker in the hero.</li>
+    <li><b>Customer logo wall</b>Aalto, AIST, Alice &amp; Bob, D-Wave, Fujitsu, IQM, Jülich and more.</li>
+  </ul>
+
+  <div class="findings">
+    <details class="f" open>
+      <summary><span class="sev hi">High</span><h3>Two different headline numbers for installed systems</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>Homepage: <q>over 1 500 systems installed and fully-operational</q>. Bluefors' LinkedIn company page: <q>more than 1,800 systems delivered</q>.</div>
+        <div><h4>Why it matters</h4>This is the company's main proof point. AI answer engines and journalists quote whichever number they find first, so two figures weaken both.</div>
+        <div><h4>Fix</h4>Agree one figure and one definition (delivered vs operational). Store it in a single place and update the site, LinkedIn, press boilerplate and sales decks together.</div>
+      </div>
+    </details>
+
+    <details class="f" open>
+      <summary><span class="sev hi">High</span><h3>Only one call to action, and it asks for a sales conversation</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>The hero offers only <q>Contact Sales</q>. The newsletter appears only as a footer link. Product cards end in <q>Read more</q>.</div>
+        <div><h4>Why it matters</h4>A physicist scoping a lab or a QPU team planning a roadmap is months from buying. With no mid-funnel offer, these visitors leave anonymous and never reach Salesforce.</div>
+        <div><h4>Fix</h4>Add tiered offers: "Talk to an application scientist", gated spec sheets or system sizing guides, webinar registration and a newsletter signup in the page body. Score each one in Salesforce.</div>
+      </div>
+    </details>
+
+    <details class="f" open>
+      <summary><span class="sev hi">High</span><h3>The H1 never says what Bluefors makes</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>H1: <q>Delivering the Quantum Future, Today</q>. The words "dilution refrigerator" and "cryogenic" don't appear above the fold.</div>
+        <div><h4>Why it matters</h4>Search engines and LLMs weight headings heavily when deciding what an entity is. The category Bluefors leads is missing from its most important heading.</div>
+        <div><h4>Fix</h4>Keep the brand line and add a category subhead, for example "Dilution refrigerators and cryogenic infrastructure for quantum computing". A/B test the version with the category name.</div>
+      </div>
+    </details>
+
+    <details class="f">
+      <summary><span class="sev med">Medium</span><h3>Four carousels hide most of the content</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>Customer logos (3 slides), products (3 visible), testimonials (2 visible) and news all sit behind arrows.</div>
+        <div><h4>Why it matters</h4>Few visitors click past the first slide, so most logos and products go unseen. Content loaded inside sliders can also be harder for crawlers to read.</div>
+        <div><h4>Fix</h4>Replace the product slider with a static category grid that matches the menu: dilution refrigerators, 1K/4K systems, measurement infrastructure, cryocoolers, helium management. Check scroll depth and click data in analytics first.</div>
+      </div>
+    </details>
+
+    <details class="f">
+      <summary><span class="sev med">Medium</span><h3>Homepage speaks only to quantum computing</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>The Applications menu lists Low Temperature Physics, Medical and Life Sciences and Clean Energy. None of them appear on the homepage.</div>
+        <div><h4>Why it matters</h4>Visitors from adjacent markets can't see themselves on the page. The site also misses a chance to segment visitors by need.</div>
+        <div><h4>Fix</h4>Add an "I'm working on…" chooser (QPU development, physics research, sensing, life sciences). Each path sets a field in the CRM and starts the matching nurture track.</div>
+      </div>
+    </details>
+
+    <details class="f">
+      <summary><span class="sev med">Medium</span><h3>Strong expertise, not yet packaged for AI answer engines</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>The September research article on wiring density and the customer stories hold real expertise. The homepage has no FAQ or explainer content to support them.</div>
+        <div><h4>Why it matters</h4>Buyers now ask ChatGPT, Perplexity and Google AI Overviews things like "best dilution refrigerator for superconducting qubits". Those tools cite pages that answer in plain, structured language.</div>
+        <div><h4>Fix</h4>Build a "Cryogenics explained" hub with short Q&amp;A pages, FAQ and Product schema, specs as HTML rather than PDF, and an llms.txt file. Track AI citations monthly against a fixed set of prompts.</div>
+      </div>
+    </details>
+
+    <details class="f">
+      <summary><span class="sev med">Medium</span><h3>Event block doesn't ask for a meeting</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>"NYC Quantum Summit 2026, October 05 – October 06" is listed with a skyline photo and no registration or booking link.</div>
+        <div><h4>Why it matters</h4>Pre-booked meetings are where event ROI comes from. Without a booking link, the site can't feed the booth calendar.</div>
+        <div><h4>Fix</h4>Add "Book a meeting with our team" on every upcoming event card, routed into a Salesforce campaign with a 48-hour follow-up rule.</div>
+      </div>
+    </details>
+
+    <details class="f">
+      <summary><span class="sev lo">Low</span><h3>Vague link text, truncated titles and thin body type</h3><span class="chev">›</span></summary>
+      <div class="f-body">
+        <div><h4>Evidence</h4>Repeated <q>Read more</q> links. Story links cut off mid-word: <q>Building the Foundations of the Quant…</q>. Body copy is set in a light grey, thin weight.</div>
+        <div><h4>Why it matters</h4>Descriptive links help screen readers (WCAG 2.4.4) and give search engines anchor text. Low-contrast body text is hard to read on laptops in bright labs.</div>
+        <div><h4>Fix</h4>Use descriptive link text ("Read the XLDsl system specs"), let titles wrap to two lines, and check body text against WCAG AA contrast.</div>
+      </div>
+    </details>
+  </div>
+  <p class="note">Scope: this audit is based on a full-page capture of the public homepage. I'd verify page speed, structured data, analytics tagging and CRM form routing with the team in week one. The figures quoted come from Bluefors' own homepage and LinkedIn page.</p>
+</section>
+
+<section class="stage" id="kpis">
+  <div class="stage-head">
+    <span class="temp">4 K</span><h2>Measurement framework</h2>
+    <span class="plate">PULSE-TUBE STAGE · STABLE BASELINES BEFORE GOING COLDER</span>
+  </div>
+  <p class="prose">One KPI tree from first visit to pipeline, so every channel report answers the same question: <strong>did this move a qualified buyer closer to a conversation with Sales?</strong> Targets are set after a four-week baseline, not guessed upfront.</p>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Funnel stage</th><th>Primary KPI</th><th>Supporting signals</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Discover</td><td>Non-branded organic sessions to product and application pages</td><td>Rankings for category terms, AI-answer citations across 20 tracked prompts, LinkedIn impressions among target accounts</td><td>GA4, Search Console, GEO tracker, LinkedIn</td></tr>
+        <tr><td>Engage</td><td>Engaged sessions per visit to product pages</td><td>Scroll depth, spec views, webinar attendance, newsletter growth</td><td>GA4, webinar platform, marketing automation</td></tr>
+        <tr><td>Convert</td><td>Marketing-qualified leads by offer tier</td><td>Form conversion rate per CTA, meetings booked per event</td><td>Marketing automation, Salesforce</td></tr>
+        <tr><td>Accept</td><td>MQL → SQL conversion rate</td><td>Sales acceptance time, rejection reasons, data completeness</td><td>Salesforce</td></tr>
+        <tr><td>Revenue</td><td>Marketing-sourced and influenced pipeline (€)</td><td>Pipeline per campaign, deal velocity in target accounts</td><td>Salesforce campaign influence</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Benchmark set for share of voice: Oxford Instruments NanoScience, Maybell Quantum, ICEoxford and Zero Point Cryogenics. A monthly one-page report goes to Sales leadership: three numbers, one insight and one decision.</p>
+</section>
+
+<section class="stage" id="calendar">
+  <div class="stage-head">
+    <span class="temp">1 K</span><h2>Q4 2026 content calendar</h2>
+    <span class="plate">STILL · STEADY CIRCULATION</span>
+  </div>
+  <p class="prose">Thirteen weeks built around events and stories Bluefors has already published, organised into five content pillars. Every week has one flagship piece and a channel plan. Filter by pillar to check the balance.</p>
+  <div class="legend" id="legend"></div>
+  <div class="filters" role="group" aria-label="Filter by pillar" id="filters"><span>FILTER</span></div>
+  <div class="weeks" id="weeks"></div>
+  <p class="note">Dates to confirm internally: Bluefors' presence at Q2B Chicago (8–10 Dec 2026) and spokesperson availability. Placeholders are marked in the drafts below.</p>
+</section>
+
+<section class="stage" id="posts">
+  <div class="stage-head">
+    <span class="temp">100 mK</span><h2>Social drafts, ready for review</h2>
+    <span class="plate">COLD PLATE · READY TO SHIP</span>
+  </div>
+  <p class="prose">Six LinkedIn posts from the calendar, written in Bluefors' voice: confident, warm and grounded in physics. <span class="ph" style="background:var(--med-soft);color:var(--med);border-radius:4px;padding:0 4px">Highlighted</span> text marks facts I'd confirm with the team before publishing.</p>
+  <div class="posts" id="postGrid"></div>
+</section>
+
+<section class="stage" id="plan">
+  <div class="stage-head">
+    <span class="temp">10 mK</span><h2>My first 90 days</h2>
+    <span class="plate">MIXING CHAMBER · WHERE THE WORK HAPPENS</span>
+  </div>
+  <div class="plan">
+    <div class="phase">
+      <span class="days">DAYS 1–30 · LISTEN</span>
+      <h3>Map the ecosystem</h3>
+      <ul>
+        <li>Meet Sales, Product Marketing and IT, and shadow two customer calls</li>
+        <li>Audit Salesforce: lead sources, campaign structure, data quality</li>
+        <li>Set the KPI baseline and the first monthly report</li>
+        <li>Fix quick wins: the systems number, event booking links, link text</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <span class="days">DAYS 31–60 · FIX</span>
+      <h3>Build the conversion layer</h3>
+      <ul>
+        <li>Launch tiered CTAs and lead scoring with Sales sign-off</li>
+        <li>Event playbook: pre-booking, badge-scan routing, 48-hour follow-up</li>
+        <li>Brief the agency on the homepage test for the H1 and product grid</li>
+        <li>Publish the first five "Cryogenics explained" pages</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <span class="days">DAYS 61–90 · SCALE</span>
+      <h3>Prove pipeline impact</h3>
+      <ul>
+        <li>ABM pilot with Sales on 20 named accounts</li>
+        <li>Nurture tracks by application segment</li>
+        <li>GEO tracker live, with a quarterly AI-visibility report</li>
+        <li>Q1 2027 plan built from Q4 results</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>Kira Krysanov</b> · Applicant, Digital Marketing Manager, Bluefors (Helsinki)</p>
+  <p>Independent work sample made for a job application. Not affiliated with or endorsed by Bluefors. Quotes and figures come from bluefors.com and Bluefors' LinkedIn page as of 1 October 2026.</p>
+</footer>
+</main>
+
+<script>
+const PILLARS={
+  proof:{name:"Proof",desc:"customer outcomes",c:"#c0782a"},
+  physics:{name:"Physics",desc:"education & research",c:"#2a7fb8"},
+  partners:{name:"Partners & news",desc:"ecosystem moments",c:"#7a5cc0"},
+  people:{name:"People",desc:"makers & careers",c:"#3d9a57"},
+  product:{name:"Product & applications",desc:"what we build",c:"#c24a6e"}
+};
+const WEEKS=[
+ {w:"W41",d:"5–11 Oct",a:"NYC Quantum Summit, 5–6 Oct",i:[
+  ["LinkedIn","proof","Live from NYC Quantum Summit: booth photo + \"meet us\" post (Post 3)"],
+  ["Instagram","people","Behind the scenes: team setting up the booth (Stories)"],
+  ["Website","partners","Event recap blog with 3 takeaways, published 8 Oct"]]},
+ {w:"W42",d:"12–18 Oct",i:[
+  ["LinkedIn","physics","Carousel: \"Why wiring density sets a ceiling\", from the 9 Sep research (Post 1)"],
+  ["Website","physics","Q&A explainer page on wiring density, the first \"Cryogenics explained\" entry"]]},
+ {w:"W43",d:"19–25 Oct",i:[
+  ["LinkedIn","proof","Customer quote card: Tian Zhong, University of Chicago (Post 2)"],
+  ["Email","partners","October newsletter: Xanadu partnership, wiring research, NYC recap"]]},
+ {w:"W44",d:"26 Oct–1 Nov",i:[
+  ["LinkedIn","partners","Xanadu partnership: engineer-to-engineer interview clip (Post 4)"],
+  ["Website","partners","Partnership landing page with FAQ schema"]]},
+ {w:"W45",d:"2–8 Nov",i:[
+  ["LinkedIn","people","\"Meet the makers\" ep. 1: a Helsinki production specialist (Post 5)"],
+  ["Website","people","Careers page refresh: link the series to open positions"]]},
+ {w:"W46",d:"9–15 Nov",i:[
+  ["YouTube","physics","Short: \"From room temperature to millikelvin, plate by plate\" (60 s)"],
+  ["LinkedIn","physics","Native cut of the same video + temperature comparison (Post 6)"]]},
+ {w:"W47",d:"16–22 Nov",i:[
+  ["LinkedIn","product","PT205 pulse tube cryocooler spotlight for SNSPD applications"],
+  ["LinkedIn","partners","Thought-leadership post from Greg Parker, President, Cryocoolers"]]},
+ {w:"W48",d:"23–29 Nov",i:[
+  ["Website","proof","Silicon Quantum Computing story turned into a 1-page case study"],
+  ["Email","proof","ABM sequence to target accounts ahead of Q2B: case study + meeting invite"]]},
+ {w:"W49",d:"30 Nov–6 Dec",a:"Pre-event push",i:[
+  ["LinkedIn","partners","\"Find us at Q2B Chicago\" with meeting-booking link (confirm attendance)"],
+  ["Email","partners","Invitation to contacts in North America, segmented by application"]]},
+ {w:"W50",d:"7–13 Dec",a:"Q2B Chicago, 8–10 Dec",i:[
+  ["LinkedIn","proof","Daily event coverage: talks, booth conversations, customer photos"],
+  ["CRM","product","Badge scans into Salesforce within 48 h; post-event nurture starts"]]},
+ {w:"W51",d:"14–20 Dec",i:[
+  ["LinkedIn","product","Applications spotlight: medical & life sciences and clean energy"],
+  ["Website","product","Homepage \"I'm working on…\" chooser goes live (A/B test)"]]},
+ {w:"W52",d:"21–27 Dec",i:[
+  ["LinkedIn","proof","\"2026 in Cool\" recap carousel with the agreed systems-delivered figure"],
+  ["Email","proof","December newsletter: year in review + 2027 events preview"]]},
+ {w:"W53",d:"28 Dec–3 Jan",i:[
+  ["LinkedIn","people","Holiday greeting from the Helsinki team, #CoolForProgress"],
+  ["Internal","physics","Q1 plan: APS Global Physics Summit 2027 pre-campaign, GEO report #1"]]}
+];
+const POSTS=[
+ {pillar:"physics",when:"W42 · Carousel, 6 slides",title:"Wiring density",text:
+`Every qubit needs wires. Every wire carries heat. At the coldest stage of a quantum computer, the heat budget is tiny.
+
+So how many qubits can one cryostat actually wire?
+
+Our researchers set out to derive the limits of quantum computer wiring density. Swipe through for the short version 👉
+
+1 · Why every control line is a heat leak
+2 · The cooling budget at the mixing chamber
+3 · Where today's wiring approaches hit the ceiling
+4 · <span class="ph">[Key finding from the 9 Sep paper]</span>
+5 · What it means for utility-scale roadmaps
+
+Full article in the comments.
+
+#CoolForProgress #QuantumComputing #Cryogenics`,
+ visual:"Gold-on-black slides, one diagram per slide, Bluefors photography on the cover",cta:"Read the article (link in first comment)"},
+ {pillar:"proof",when:"W43 · Quote card + photo",title:"Year-long experiment",text:
+`One experiment. Running for about a year.
+
+"Once the fridge is cold, our experiment times vary from few weeks to few months. I think the longest running experiment we had was about one year."
+— Tian Zhong, Assistant Professor, The University of Chicago
+
+For a research group, uptime means results. That's what our systems are built for.
+
+Read the full story from Tian's lab 👇
+
+#CoolForProgress #QuantumResearch`,
+ visual:"Portrait from the existing customer story, quote overlaid in white",cta:"Customer story link"},
+ {pillar:"proof",when:"W41 · Photo, event day 1",title:"NYC Quantum Summit",text:
+`Good morning from the NYC Quantum Summit 🗽
+
+Our team is here today and tomorrow (5–6 October). Come talk to us about cryogenic infrastructure for your next system, from your first dilution refrigerator to utility-scale.
+
+Find us at <span class="ph">[booth no.]</span>, or book 20 minutes with <span class="ph">[name, title]</span> using the link in the comments.
+
+#CoolForProgress #NYCQuantumSummit`,
+ visual:"Real booth photo with the team, taken on the day",cta:"Book a meeting (event campaign in Salesforce)"},
+ {pillar:"partners",when:"W44 · 60–90 s video",title:"Xanadu partnership",text:
+`Utility-scale quantum computing needs utility-scale cooling.
+
+Last month, Xanadu and Bluefors announced a partnership to redefine cryogenic infrastructure for utility-scale quantum computing.
+
+We asked <span class="ph">[Bluefors engineer]</span> and <span class="ph">[Xanadu engineer]</span> one question: what has to change when you go from lab scale to data-center scale?
+
+Their answer in 90 seconds 🎥
+
+#CoolForProgress #QuantumComputing @Xanadu`,
+ visual:"Two-person interview, split screen, captions burned in",cta:"Partnership page with FAQ"},
+ {pillar:"people",when:"W45 · Photo series, ep. 1",title:"Meet the makers",text:
+`Meet the makers, episode 1 🔧
+
+<span class="ph">[Name]</span> has built <span class="ph">[number]</span> dilution refrigerators in our Helsinki factory.
+
+"<span class="ph">[One sentence on the most satisfying moment in the build]</span>"
+
+Every system that cools a quantum processor starts with hands like these.
+
+We're hiring in Helsinki and beyond. Open positions in the comments.
+
+#CoolForProgress #LifeAtBluefors #Helsinki`,
+ visual:"Workshop portrait, gold plates in the foreground",cta:"Open positions page"},
+ {pillar:"physics",when:"W46 · Native video",title:"Colder than space",text:
+`Deep space: about 2.7 kelvin.
+Inside a Bluefors dilution refrigerator: millikelvin. That's colder than space, and close to absolute zero.
+
+Why go that far? Superconducting qubits are so sensitive that heat itself is noise. Cool them down and quantum states can survive long enough to compute.
+
+Here's the journey, plate by plate, in 60 seconds ❄️
+
+#CoolForProgress #Physics #QuantumComputing`,
+ visual:"Vertical camera move down a cryostat with a temperature counter per plate",cta:"\"Cryogenics explained\" hub"}
+];
+
+const legend=document.getElementById('legend'), filters=document.getElementById('filters'), weeksEl=document.getElementById('weeks'), grid=document.getElementById('postGrid');
+const active=new Set(Object.keys(PILLARS));
+Object.entries(PILLARS).forEach(([k,p])=>{
+  legend.insertAdjacentHTML('beforeend',`<span><i class="dot" style="background:${p.c}"></i><b style="color:var(--ink);font-weight:600">${p.name}</b>&nbsp;${p.desc}</span>`);
+  const b=document.createElement('button');
+  b.className='chip';b.type='button';b.id='f-'+k;b.setAttribute('aria-pressed','true');
+  b.innerHTML=`<i class="dot" style="background:${p.c}"></i>${p.name}`;
+  b.addEventListener('click',()=>{
+    if(active.has(k)&&active.size===1){Object.keys(PILLARS).forEach(x=>active.add(x));}
+    else if(active.size===Object.keys(PILLARS).length){active.clear();active.add(k);}
+    else active.has(k)?active.delete(k):active.add(k);
+    sync();
+  });
+  filters.appendChild(b);
+});
+WEEKS.forEach(wk=>{
+  const items=wk.i.map(([ch,p,t])=>`<div class="item" data-p="${p}"><span class="ch">${ch.toUpperCase()}</span><span class="what"><i class="dot" style="background:${PILLARS[p].c}" title="${PILLARS[p].name}"></i><span>${t}</span></span></div>`).join('');
+  weeksEl.insertAdjacentHTML('beforeend',`<article class="week"><div class="week-label"><b>${wk.d}</b><small>${wk.w} · 2026</small>${wk.a?`<span class="anchor">${wk.a}</span>`:''}</div><div class="items">${items}</div></article>`);
+});
+function sync(){
+  Object.keys(PILLARS).forEach(k=>document.getElementById('f-'+k).setAttribute('aria-pressed',active.has(k)));
+  weeksEl.querySelectorAll('.week').forEach(w=>{
+    let n=0;w.querySelectorAll('.item').forEach(it=>{const on=active.has(it.dataset.p);it.hidden=!on;if(on)n++;});
+    w.classList.toggle('empty',n===0);
+  });
+}
+POSTS.forEach((p,i)=>{
+  const pil=PILLARS[p.pillar];
+  const plain=p.text.replace(/<[^>]+>/g,'');
+  grid.insertAdjacentHTML('beforeend',`<article class="post"><div class="post-top"><span style="display:inline-flex;gap:6px;align-items:center"><i class="dot" style="background:${pil.c}"></i>${pil.name.toUpperCase()}</span><span>${p.when}</span></div><h3>Post ${i+1} · ${p.title}</h3><pre>${p.text}</pre><div class="post-foot"><span><b>Visual:</b> ${p.visual}</span><span><b>CTA:</b> ${p.cta}</span><span class="mono" style="font-size:.72rem">${plain.length} characters</span><button class="copy" type="button" data-i="${i}">Copy text</button></div></article>`);
+});
+grid.addEventListener('click',e=>{
+  const b=e.target.closest('.copy');if(!b)return;
+  const pre=b.closest('.post').querySelector('pre');
+  const txt=POSTS[b.dataset.i].text.replace(/<[^>]+>/g,'');
+  navigator.clipboard.writeText(txt).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy text',1600);}).catch(()=>{
+    const r=document.createRange();r.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Text selected, press Ctrl+C';
+  });
+});
+</script>
+</body>
+</html>
