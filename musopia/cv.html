@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kira Krysanov CV</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+:root{--or:#FF7A00;--or-soft:#FFEBD8;--pu:#4A10A8;--ink:#141414;--ink2:#444;--mute:#8A8A8A;--line:#E6E2DA;--paper:#FAF8F4}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:210mm 297mm;margin:0}
+body{font-family:"Instrument Sans",sans-serif;color:var(--ink);word-spacing:.04em;background:#d9d6d0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;margin:0 auto;display:grid;grid-template-columns:232px 1fr;background:var(--paper);overflow:hidden;position:relative}
+@media screen{.page{margin:24px auto;box-shadow:0 8px 30px rgba(0,0,0,.15)}}
+h1,h2,h3,.disp{font-family:"Bricolage Grotesque",sans-serif;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+
+/* sidebar */
+.side{background:var(--ink);color:#fff;padding:34px 24px 26px;position:relative;overflow:hidden}
+.side svg.wave{position:absolute;left:-10px;bottom:30px;opacity:.9}
+.photo{width:118px;height:118px;border-radius:50%;object-fit:cover;border:3px solid var(--or)}
+.side h1{font-size:36px;line-height:.95;font-weight:800;margin-top:20px}
+.role{margin-top:10px;font-size:13px;font-weight:600;color:var(--or);line-height:1.35}
+.sh{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:22px 0 9px}
+.kv{margin-bottom:8px}
+.kv span{display:block;font-size:8.5px;color:#9a9a9a}
+.kv b{font-size:10.5px;font-weight:500}
+.lang{display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:5px}
+.lang em{font-style:normal;color:#9a9a9a;font-size:9.5px}
+.side p{font-size:10px;line-height:1.45;color:#ddd}
+
+/* main */
+.main{padding:26px 32px 18px 30px}
+.summary{background:#fff;border:1px solid var(--line);border-left:4px solid var(--or);border-radius:12px;padding:13px 16px;font-size:11.2px;line-height:1.5;color:var(--ink2)}
+.summary b{color:var(--ink)}
+h2{font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px;margin:14px 0 8px}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.job{display:grid;grid-template-columns:96px 1fr;gap:12px;margin-bottom:8px}
+.when{font-size:9px;color:var(--or);font-weight:700;line-height:1.4}
+.when span{display:block;color:var(--mute);font-weight:500}
+.job h3{font-size:13.5px;font-weight:700}
+.job .t{font-size:10px;color:var(--ink2);margin-top:1px}
+.job ul{margin-top:5px;padding-left:13px}
+.job li{font-size:10px;line-height:1.38;color:var(--ink2);margin-bottom:2px}
+.job li::marker{color:var(--or)}
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.pc .tag{font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pu)}
+.pc h3{font-size:12.5px;font-weight:700;margin-top:3px}
+.pc p{font-size:9.8px;line-height:1.42;color:var(--ink2);margin-top:4px}
+.pc.hi{border-color:var(--or)}
+.pc.hi .tag{color:#C25E00}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sk h4{font-size:8.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chips span{font-size:9.5px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.chips span.k{background:var(--or-soft);border-color:transparent;color:#8A3F00;font-weight:600}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:6px 10px}
+.tools div{font-size:10.5px;font-weight:700}
+.tools span{display:block;font-size:9px;font-weight:400;color:var(--mute)}
+</style>
+</head>
+<body>
+<section class="page">
+  <aside class="side">
+    <img class="photo" src="kira-photo.png" alt="Kira Krysanov">
+    <h1>Kira<br>Krysanov</h1>
+    <div class="role">Product &amp; Visual Designer<br><span style="color:#fff;font-weight:500">UI/UX · Brand · Motion</span></div>
+
+    <div class="sh">Contact</div>
+    <div class="kv"><span>Email</span><b>kira.krysanov@gmail.com</b></div>
+    <div class="kv"><span>Phone</span><b>+358 45 8722655</b></div>
+    <div class="kv"><span>Website</span><b>www.lumux.fi</b></div>
+    <div class="kv"><span>LinkedIn</span><b>linkedin.com/in/kirakrysanov</b></div>
+    <div class="kv"><span>Location</span><b>Vantaa, Finland · hybrid in Helsinki</b></div>
+
+    <div class="sh">Languages</div>
+    <div class="lang"><span>English</span><em>Native / bilingual</em></div>
+    <div class="lang"><span>Russian</span><em>Native / bilingual</em></div>
+    <div class="lang"><span>Finnish</span><em>Limited working</em></div>
+
+    <div class="sh">Education</div>
+    <div style="font-size:11.5px;font-weight:700">BBA, Marketing</div>
+    <p style="margin-top:2px">Haaga-Helia University of Applied Sciences · 2010–2014</p>
+
+    <div class="sh">How I work</div>
+    <p>I start from the user's goal, sketch flows before screens, prototype in Figma, and check designs against data after launch. Ten years of video and motion work help me design moments that feel alive, not just usable.</p>
+
+    <svg class="wave" width="260" height="90" viewBox="0 0 260 90">
+      <path d="M0 45 Q 13 5 26 45 T 52 45 T 78 45 T 104 45 T 130 45 T 156 45 T 182 45 T 208 45 T 234 45 T 260 45" stroke="#4A10A8" stroke-width="1.5" fill="none" opacity=".8"/>
+      <path d="M96 45 Q 104 0 112 45 Q 120 90 128 45 Q 136 5 144 45 Q 152 85 160 45 Z" fill="#FF7A00"/>
+    </svg>
+  </aside>
+
+  <main class="main">
+    <div class="summary">
+      <b>Designer with 10+ years in visual, brand and video design for Finnish tech companies, and hands-on UI/UX work since 2020.</b> I design and prototype in Figma, work closely with developers to ship, and use campaign and website data to decide what to improve next. I'm now focusing on product design for consumer apps. For Musopia, I've included a retention concept for the JustinGuitar app's first month, with research, hi-fi UI, a clickable prototype and an experiment plan.
+    </div>
+
+    <h2>Selected work</h2>
+    <div class="proj">
+      <div class="pc hi">
+        <div class="tag">Product concept · 2026 · attached</div>
+        <h3>First 30 Days: beginner retention for JustinGuitar</h3>
+        <p>Desk research on Musopia, its products and app-store feedback. Problem framing, design principles, 6 hi-fi screens, a 15-screen clickable wireframe prototype, hypotheses with metrics, and design-system and Unity handoff notes.</p>
+      </div>
+      <div class="pc">
+        <div class="tag">Web redesign + brand book · 2026</div>
+        <h3>Palvelutukku Kolmio</h3>
+        <p>A redesign concept for a Finnish food-service wholesaler: 4 responsive website pages, product and offer components, and a 10-page brand book derived from the new UI.</p>
+      </div>
+    </div>
+
+    <h2>Experience</h2>
+    <div class="job">
+      <div class="when">May 2023 – Present<span>Helsinki</span></div>
+      <div>
+        <h3>Videobot</h3>
+        <div class="t">Visual Brand Manager · Content Strategist &amp; Producer</div>
+        <ul>
+          <li>Own the company website's UX/UI: structure, page design and continuous improvement</li>
+          <li>Lead brand initiatives to keep one consistent visual identity across web, marketing and video</li>
+          <li>Blend creative ideas with data to choose, test and iterate on campaigns</li>
+          <li>Plan and produce content tailored to specific audiences, and develop strategies to grow brand visibility</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <div class="when">Feb 2020 – Jan 2023<span>Helsinki</span></div>
+      <div>
+        <h3>Leadoo</h3>
+        <div class="t">Visual Brand Designer · UI/UX Designer · Video Producer</div>
+        <ul>
+          <li>Designed website UI and content for a user-friendly experience, and worked closely with the developer to ship and maintain it</li>
+          <li>Shaped the company's brand identity and visual design language</li>
+          <li>Built and maintained reusable brand asset libraries and marketing materials</li>
+          <li>Ran video production end to end: strategy, scripting, filming, editing and publishing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job">
+      <div class="when">Sep 2015 – Feb 2020<span>Helsinki</span></div>
+      <div>
+        <h3>Management Events</h3>
+        <div class="t">Video Marketing Specialist</div>
+        <ul>
+          <li>Produced targeted video and YouTube content that supported lead generation and turned prospects into customers</li>
+          <li>Boosted brand visibility across operations in 11 countries</li>
+        </ul>
+      </div>
+    </div>
+    <div class="job" style="margin-bottom:0">
+      <div class="when">May 2013 – Present<span>Helsinki</span></div>
+      <div>
+        <h3>Lumux</h3>
+        <div class="t">Private Entrepreneur</div>
+        <ul>
+          <li>Corporate video and content: explainers, recruitment films and event coverage, with video strategies built around each client's goals</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="sk"><h4>Product &amp; UX</h4><div class="chips"><span class="k">UI/UX Design</span><span class="k">Prototyping</span><span class="k">User Journeys &amp; Flows</span><span>Wireframing</span><span>Website Design</span><span>Data-informed Iteration</span><span>Dev Collaboration</span></div></div>
+      <div class="sk"><h4>Visual &amp; Motion</h4><div class="chips"><span class="k">Visual Brand Design</span><span class="k">Motion Design</span><span>Typography</span><span>Graphic Design</span><span>Video Production</span><span>Content Strategy</span><span>Project Management</span></div></div>
+    </div>
+
+    <h2>Tools</h2>
+    <div class="tools">
+      <div>Figma<span>UI design, prototyping</span></div>
+      <div>Adobe XD<span>UI design, prototyping</span></div>
+      <div>After Effects<span>Motion design</span></div>
+      <div>Premiere Pro<span>Video editing</span></div>
+      <div>Illustrator<span>Graphic design</span></div>
+      <div>Adobe CC<span>Digital creatives</span></div>
+      <div>WordPress<span>Website content</span></div>
+      <div>Asana<span>Project management</span></div>
+    </div>
+  </main>
+</section>
+</body>
+</html>
