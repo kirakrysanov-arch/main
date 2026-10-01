@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First 30 Days</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+:root{
+  --or:#FF7A00; --or-soft:#FFE7D1; --pu:#4A10A8; --pu-soft:#ECE4FA;
+  --ink:#141414; --ink2:#4A4A4A; --mute:#8A8A8A; --line:#E4E0D8;
+  --paper:#F7F5F1; --white:#FFFFFF;
+  --app:#12182A; --app2:#1C2440; --app3:#2A3456; --appText:#F3F4F8; --appMute:#9AA3BD;
+  --good:#2FBF71;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:297mm 210mm;margin:0}
+html,body{background:#d9d6d0}
+body{font-family:"Instrument Sans",system-ui,sans-serif;word-spacing:.06em;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:297mm;height:210mm;position:relative;overflow:hidden;background:var(--paper);padding:15mm 18mm;page-break-after:always;break-after:page;margin:0 auto}
+@media screen{.page{margin:24px auto;box-shadow:0 8px 30px rgba(0,0,0,.15)}}
+h1,h2,h3,.disp{font-family:"Bricolage Grotesque",sans-serif;letter-spacing:-.02em}
+h2{font-size:38px;line-height:1.02;font-weight:700}
+h3{font-size:17px;font-weight:700;line-height:1.15}
+p{font-size:12.5px;line-height:1.55;color:var(--ink2)}
+em.o{font-style:italic;color:var(--or)}
+.kicker{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.foot{position:absolute;left:18mm;right:18mm;bottom:8mm;display:flex;justify-content:space-between;font-size:9px;color:var(--mute);letter-spacing:.04em}
+.spark{color:var(--or)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--white);border-radius:16px;padding:18px 20px;border:1px solid var(--line)}
+.pill{display:inline-block;font-size:10px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--or-soft);color:#A04A00}
+.pill.p{background:var(--pu-soft);color:var(--pu)}
+.num{font-family:"Bricolage Grotesque";font-weight:800;font-size:40px;line-height:1;letter-spacing:-.03em}
+.src{font-size:8.5px;color:var(--mute);line-height:1.4}
+
+/* ---------- phone ---------- */
+.phone{width:224px;height:462px;border-radius:36px;background:#0B0B0F;padding:8px;box-shadow:0 18px 40px rgba(20,20,40,.22),inset 0 0 0 1.5px #2b2b33;flex:none}
+.scr{position:relative;width:100%;height:100%;border-radius:29px;overflow:hidden;background:var(--app);color:var(--appText);font-size:10px;font-family:"Instrument Sans"}
+.sb{height:26px;display:flex;justify-content:space-between;align-items:center;padding:0 18px;font-size:9.5px;font-weight:600}
+.sb .isl{width:62px;height:17px;background:#000;border-radius:10px}
+.in{padding:4px 14px}
+.scr h4{font-family:"Bricolage Grotesque";font-size:18px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.am{color:var(--appMute)}
+.abtn{display:block;text-align:center;background:var(--or);color:#1a0e00;font-weight:700;font-size:11px;border-radius:14px;padding:11px}
+.abtn.ghost{background:transparent;color:var(--appText);border:1px solid var(--app3)}
+.tile{background:var(--app2);border-radius:14px;padding:11px}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:50px;background:#0E1322;border-top:1px solid #222a44;display:flex;justify-content:space-around;align-items:center;font-size:8px;color:var(--appMute)}
+.tabbar div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.tabbar i{width:16px;height:16px;border-radius:5px;background:#2A3456;display:block}
+.tabbar .on{color:var(--or)} .tabbar .on i{background:var(--or)}
+.chord{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;font-family:"Bricolage Grotesque";font-weight:800;font-size:15px}
+.ch-done{background:var(--or);color:#1a0e00}
+.ch-now{background:transparent;border:2px dashed var(--or);color:var(--or)}
+.ch-lock{background:var(--app3);color:var(--appMute)}
+
+/* annotations */
+.ann{display:flex;gap:9px;align-items:flex-start;margin-bottom:7px}
+.ann b{flex:none;width:20px;height:20px;border-radius:50%;background:var(--or);color:#fff;font-size:10.5px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.ann p{font-size:10.6px;line-height:1.4}
+.ann p strong{color:var(--ink)}
+.dot{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--or);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(255,122,0,.25);z-index:5}
+</style>
+</head>
+<body>
+
+<!-- =============== 1 COVER =============== -->
+<section class="page" style="background:var(--ink);color:#fff;padding:0">
+  <svg style="position:absolute;inset:0" width="100%" height="100%" viewBox="0 0 1123 794" preserveAspectRatio="none">
+    <path d="M0 560 C 220 470, 380 640, 620 560 S 960 470, 1123 520 L1123 794 L0 794Z" fill="#FF7A00"/>
+    <path d="M0 650 C 260 600, 420 720, 700 650 S 1000 610, 1123 660 L1123 794 L0 794Z" fill="#4A10A8"/>
+  </svg>
+  <svg style="position:absolute;right:40px;top:120px" width="520" height="220" viewBox="0 0 520 220">
+    <g fill="none" stroke-width="2">
+      <path d="M0 110 Q 20 20 40 110 T 80 110 T 120 110 T 160 110 T 200 110 T 240 110 T 280 110 T 320 110 T 360 110 T 400 110 T 440 110 T 480 110 T 520 110" stroke="#8B5CF6" opacity=".55"/>
+      <path d="M0 110 Q 26 50 52 110 T 104 110 T 156 110 T 208 110 T 260 110 T 312 110 T 364 110 T 416 110 T 468 110 T 520 110" stroke="#FF7A00" opacity=".9"/>
+    </g>
+    <g fill="#FF7A00">
+      <path d="M232 110 Q 245 10 258 110 Q 271 210 284 110 Q 297 0 310 110 Q 323 200 336 110 Q 349 30 362 110 Z"/>
+    </g>
+  </svg>
+  <div style="position:absolute;left:64px;top:56px;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#bbb">
+    <span style="color:#FF7A00;font-weight:700">Design concept</span> · For Musopia · Senior Product Designer application
+  </div>
+  <div style="position:absolute;left:64px;top:150px;width:560px">
+    <h1 style="font-size:92px;line-height:.92;font-weight:800">First<br><span style="font-style:italic;color:#FF7A00">30</span> days<span style="color:#FF7A00;font-size:54px;vertical-align:top">✦</span></h1>
+    <p style="color:#ddd;font-size:17px;line-height:1.45;margin-top:26px;max-width:470px">How a beginner's first month in the JustinGuitar app could feel more like playing music, and less like homework.</p>
+  </div>
+  <div style="position:absolute;left:64px;bottom:44px;color:#fff;font-size:12.5px;line-height:1.6">
+    <strong style="font-size:15px">Kira Krysanov</strong><br>Product designer · October 2026
+  </div>
+  <div style="position:absolute;right:64px;bottom:44px;color:#fff;font-size:10px;text-align:right;opacity:.85;max-width:300px;line-height:1.5">
+    An independent, unsolicited concept, not affiliated with Musopia or JustinGuitar.
+  </div>
+</section>
+
+<!-- =============== 2 HELLO =============== -->
+<section class="page">
+  <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:56px;height:100%">
+    <div>
+      <div class="kicker">Hello, Musopia</div>
+      <h2 style="margin-top:14px">I'd rather show you<br>how I think than <em class="o">tell you.</em></h2>
+      <p style="margin-top:22px;font-size:13.5px">Your mission is to help people's dream of playing an instrument come true. Most people who start don't make it through the first year, so the dream usually falls apart in the first few weeks. That's a design problem, and it's the one I'd most like to work on with you.</p>
+      <p style="margin-top:12px;font-size:13.5px">So instead of a cover letter, here is a small, end-to-end piece of work. I studied Musopia and its products, framed one problem, designed a concept for it, and planned how to test it. The concept is built around what JustinGuitar already does well: Justin's teaching, the Practice Assistant, One Minute Changes and the Instant Play Method.</p>
+      <p style="margin-top:12px;font-size:13.5px">I've only seen the product from the outside, so treat everything here as a set of hypotheses for us to question together.</p>
+      <div style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap">
+        <span class="pill">Discovery</span><span class="pill">Interaction design</span><span class="pill">Hi-fi UI</span><span class="pill p">Experiment design</span><span class="pill p">Design system</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;padding-top:6px">
+      <div class="kicker" style="color:var(--pu)">Inside</div>
+      <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)">
+        <div style="display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)"><span class="disp" style="font-weight:800;color:var(--or);width:26px">01</span><div><h3>What I learned</h3><p style="font-size:11.5px">Musopia, its products, and what learners say about them</p></div></div>
+        <div style="display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)"><span class="disp" style="font-weight:800;color:var(--or);width:26px">02</span><div><h3>The problem worth solving</h3><p style="font-size:11.5px">Where beginners give up, and why</p></div></div>
+        <div style="display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)"><span class="disp" style="font-weight:800;color:var(--or);width:26px">03</span><div><h3>Principles &amp; flow</h3><p style="font-size:11.5px">Five rules for the first month, and the journey they produce</p></div></div>
+        <div style="display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)"><span class="disp" style="font-weight:800;color:var(--or);width:26px">04</span><div><h3>The concept: six screens</h3><p style="font-size:11.5px">Why-song onboarding, Today, listening One Minute Changes, progress, song unlocked, comeback</p></div></div>
+        <div style="display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)"><span class="disp" style="font-weight:800;color:var(--or);width:26px">05</span><div><h3>How we'd know it works</h3><p style="font-size:11.5px">Hypotheses, metrics, guardrails and a rollout plan</p></div></div>
+        <div style="display:flex;gap:18px;padding:13px 0;border-bottom:1px solid var(--line)"><span class="disp" style="font-weight:800;color:var(--or);width:26px">06</span><div><h3>System &amp; handoff</h3><p style="font-size:11.5px">Tokens, components and notes for a Unity build</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:18mm;right:18mm;bottom:20mm;display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <div class="card" style="padding:14px 16px"><div class="kicker">My first 30 days</div><p style="font-size:11px;margin-top:6px">Take the beginner course myself on the free guitar, read support tickets and store reviews, and sit in on data reviews.</p></div>
+    <div class="card" style="padding:14px 16px"><div class="kicker">60 days</div><p style="font-size:11px;margin-top:6px">Run a first discovery and prototype cycle with product, data and engineering, and test with real learners.</p></div>
+    <div class="card" style="padding:14px 16px"><div class="kicker">90 days</div><p style="font-size:11px;margin-top:6px">Ship a first experiment and contribute its components back to the design system with clear documentation.</p></div>
+  </div>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>02</span></div>
+</section>
+
+<!-- =============== 3 RESEARCH =============== -->
+<section class="page">
+  <div class="kicker">01 · What I learned</div>
+  <h2 style="margin-top:10px">A small Helsinki team with a <em class="o">very big</em> classroom.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px">
+    <div class="card"><div class="num">4.5M<span class="spark" style="font-size:24px">+</span></div><p style="margin-top:6px;font-size:11px">students reported for the JustinGuitar app, built with Justin Sandercoe</p></div>
+    <div class="card"><div class="num">1,500<span class="spark" style="font-size:24px">+</span></div><p style="margin-top:6px;font-size:11px">songs and 210 lesson videos (36 h) across Grades 1–3</p></div>
+    <div class="card"><div class="num">4.9<span class="spark" style="font-size:24px">★</span></div><p style="margin-top:6px;font-size:11px">App Store rating from 22k+ reviews (4.6 on Google Play)</p></div>
+    <div class="card"><div class="num">~25</div><p style="margin-top:6px;font-size:11px">people in Vallila, Helsinki and remote, on three continents</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:22px;margin-top:22px">
+    <div>
+      <h3>The portfolio</h3>
+      <p style="margin-top:8px;font-size:11.5px"><strong style="color:var(--ink)">JustinGuitar Lessons &amp; Songs</strong>: a structured course with the Practice Assistant, 10-minute daily routines and a large play-along library. <strong style="color:var(--ink)">Music Theory by Justin Guitar</strong>: a newer companion app. <strong style="color:var(--ink)">Kala</strong>: a ukulele tuner, Color Chord lessons and a 2,000+ song songbook that listens to you play (500k+ downloads). The roots go back to <strong style="color:var(--ink)">FourChords</strong>, <strong style="color:var(--ink)">Ukeoke</strong> and ChordShaker, and to partnerships with Yamaha (GigMaker) and Little Kids Rock / Music Will in classrooms.</p>
+    </div>
+    <div>
+      <h3>What makes it work</h3>
+      <p style="margin-top:8px;font-size:11.5px">The <strong style="color:var(--ink)">Instant Play Method</strong> uses simplified chords, strum patterns, tempo control and lyrics, so you play a real song in minutes. Justin's teaching is calm, trusted and kind. The pedagogy is real: <strong style="color:var(--ink)">One Minute Changes</strong> gives you one clear number to beat. Freemium subscriptions fund it all.</p>
+      <p style="margin-top:8px;font-size:11.5px">There's a brand that knows its voice too: <em>"ignite the music in you."</em></p>
+    </div>
+    <div>
+      <h3>Where learners feel friction</h3>
+      <div style="margin-top:8px;display:flex;flex-direction:column;gap:7px">
+        <div style="font-size:11px;line-height:1.4;padding:8px 10px;background:var(--white);border-left:3px solid var(--or);border-radius:4px">Progress doesn't sync between phone, tablet and the website</div>
+        <div style="font-size:11px;line-height:1.4;padding:8px 10px;background:var(--white);border-left:3px solid var(--or);border-radius:4px">Lessons mention videos that only live on the website</div>
+        <div style="font-size:11px;line-height:1.4;padding:8px 10px;background:var(--white);border-left:3px solid var(--or);border-radius:4px">Licensing removes songs, sometimes the one you were learning</div>
+        <div style="font-size:11px;line-height:1.4;padding:8px 10px;background:var(--white);border-left:3px solid var(--pu);border-radius:4px">The community asks "is it worth it?", so the value needs to be felt early</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:20px;display:grid;grid-template-columns:200px repeat(4,1fr);gap:12px;align-items:stretch">
+    <div style="padding-top:4px"><h3>The neighbourhood</h3><p style="font-size:10.5px;margin-top:6px">JustinGuitar shouldn't try to out-game the gamers. Its edge is a teacher people trust.</p></div>
+    <div class="card" style="padding:11px 13px"><strong style="font-size:12px">Yousician</strong><p style="font-size:10px;margin-top:3px;line-height:1.4">Helsinki neighbour. Gamified, listens to your playing, multi-instrument.</p></div>
+    <div class="card" style="padding:11px 13px"><strong style="font-size:12px">Fender Play</strong><p style="font-size:10px;margin-top:3px;line-height:1.4">Video course from a guitar maker, driven by retention in the hardware business.</p></div>
+    <div class="card" style="padding:11px 13px"><strong style="font-size:12px">Simply Guitar</strong><p style="font-size:10px;margin-top:3px;line-height:1.4">Mic-based feedback and fast first songs. Strong at onboarding.</p></div>
+    <div class="card" style="padding:11px 13px;border-color:var(--or)"><strong style="font-size:12px;color:#C25E00">JustinGuitar</strong><p style="font-size:10px;margin-top:3px;line-height:1.4">A human teacher with a proven method. The opportunity is to make that method feel alive on a phone.</p></div>
+  </div>
+  <p class="src" style="position:absolute;left:18mm;right:18mm;bottom:15mm">Sources: musopia.net; JustinGuitar app listings on the App Store and Google Play; justinguitar.com and community.justinguitar.com; Kala listing on Google Play and kalabrand.com; Tracxn and LinkedIn company data; FiBAN. Figures are as publicly reported in 2025–26.</p>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>03</span></div>
+</section>
+
+<!-- =============== 4 PROBLEM =============== -->
+<section class="page">
+  <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:44px">
+    <div>
+      <div class="kicker">02 · The problem</div>
+      <h2 style="margin-top:10px">Wanting to play is easy. <em class="o">Staying</em> is the hard part.</h2>
+      <div style="display:flex;gap:26px;margin-top:24px">
+        <div><div class="num" style="font-size:56px;color:var(--pu)">75%</div><p style="font-size:11px;max-width:150px;margin-top:4px">of people would like to play an instrument (Musopia)</p></div>
+        <div><div class="num" style="font-size:56px;color:var(--or)">90%</div><p style="font-size:11px;max-width:160px;margin-top:4px">of new guitarists quit within 12 months (Fender, 2019)</p></div>
+      </div>
+      <p style="margin-top:18px">Fender's CEO put it plainly: <em>"We don't have a problem attracting new entrants. We have a retention issue."</em> For a subscription app, the first weeks decide everything, including trial conversion, renewals, ratings and word of mouth.</p>
+      <p style="margin-top:10px">Beginners quit for reasons that are physical and emotional before they are about content. Their fingers hurt, progress feels invisible, the songs they wanted feel far away, and one missed day turns into a missed week.</p>
+    </div>
+    <div>
+      <div class="card" style="padding:18px 20px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <h3>Motivation across a beginner's first month</h3>
+          <span class="pill p">Hypothesis to validate</span>
+        </div>
+        <svg viewBox="0 0 560 250" width="100%" style="margin-top:8px;height:300px">
+          <g stroke="#ECE8E1" stroke-width="1">
+            <line x1="40" y1="30" x2="550" y2="30"/><line x1="40" y1="95" x2="550" y2="95"/><line x1="40" y1="160" x2="550" y2="160"/><line x1="40" y1="215" x2="550" y2="215" stroke="#CFC9BF"/>
+          </g>
+          <text x="34" y="34" font-size="10" text-anchor="end" fill="#8A8A8A">high</text>
+          <text x="34" y="219" font-size="10" text-anchor="end" fill="#8A8A8A">low</text>
+          <g font-size="10" fill="#8A8A8A" text-anchor="middle">
+            <text x="50" y="246">Day 1</text><text x="170" y="246">Week 1</text><text x="300" y="246">Week 2</text><text x="420" y="246">Week 3</text><text x="540" y="246">Day 30</text>
+          </g>
+          <!-- today -->
+          <path d="M50 40 C 90 45, 120 120, 160 150 S 230 175, 270 185 S 360 200, 420 205 S 500 210, 545 212" fill="none" stroke="#B9B3A8" stroke-width="2" stroke-dasharray="5 4"/>
+          <!-- target -->
+          <path d="M50 40 C 90 45, 120 105, 160 118 S 220 95, 270 100 S 330 78, 380 82 S 470 62, 545 55" fill="none" stroke="#FF7A00" stroke-width="2.5"/>
+          <g font-size="10" fill="#141414">
+            <circle cx="140" cy="140" r="5" fill="#fff" stroke="#141414" stroke-width="1.5"/><text x="128" y="172" text-anchor="middle">Sore fingertips</text>
+            <circle cx="245" cy="180" r="5" fill="#fff" stroke="#141414" stroke-width="1.5"/><text x="245" y="200" text-anchor="middle">"I'm not getting faster"</text>
+            <circle cx="350" cy="194" r="5" fill="#fff" stroke="#141414" stroke-width="1.5"/><text x="350" y="186" text-anchor="middle">Missed 3 days</text>
+            <circle cx="460" cy="207" r="5" fill="#fff" stroke="#141414" stroke-width="1.5"/><text x="460" y="196" text-anchor="middle">The F-chord wall</text>
+          </g>
+          <g font-size="10.5" font-weight="600">
+            <text x="545" y="44" fill="#C25E00" text-anchor="end">With the concept</text>
+            <text x="545" y="228" fill="#8A8A8A" text-anchor="end">Today (assumed)</text>
+          </g>
+        </svg>
+      </div>
+      <div class="grid2" style="gap:12px;margin-top:14px">
+        <div class="card" style="padding:14px 16px"><h3 style="font-size:15px">How might we…</h3><p style="font-size:11px;margin-top:4px">…make a beginner's <strong style="color:var(--ink)">invisible progress visible</strong>, so the hard first weeks feel worth it?</p></div>
+        <div class="card" style="padding:14px 16px"><h3 style="font-size:15px">…and…</h3><p style="font-size:11px;margin-top:4px">…keep the <strong style="color:var(--ink)">song that made them start</strong> in sight from day one?</p></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:18mm;right:18mm;bottom:25mm;background:var(--ink);border-radius:16px;padding:16px 22px;display:flex;align-items:center;gap:26px">
+    <div class="disp" style="color:var(--or);font-size:34px;font-weight:800;flex:none">×2</div>
+    <p style="color:#ddd;font-size:12.5px;margin:0"><em>"If we could reduce the abandonment rate by just 10 percent, we could double the size of the industry."</em> (Andy Mooney, Fender). For Musopia, the same lever drives subscription lifetime value. That's why retention in the first month is the business case for this concept, and not just a UX nicety.</p>
+  </div>
+  <p class="src" style="position:absolute;left:18mm;bottom:15mm">Sources: Fender / Andy Mooney via Guitar World &amp; MusicRadar (2019); Musopia via FiBAN. The chart is an illustrative model for research, not measured data.</p>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>04</span></div>
+</section>
+
+<!-- =============== 5 PRINCIPLES + FLOW =============== -->
+<section class="page">
+  <div class="kicker">03 · Principles &amp; flow</div>
+  <h2 style="margin-top:10px">Five rules for the <em class="o">first month.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px">
+    <div class="card" style="padding:16px"><div class="disp" style="font-size:28px;font-weight:800;color:var(--or)">1</div><h3 style="margin-top:6px;font-size:14.5px">Song first</h3><p style="font-size:10.8px;margin-top:6px">Every exercise is a step toward the song that made you start. The path is the curriculum, wrapped in the user's own reason.</p></div>
+    <div class="card" style="padding:16px"><div class="disp" style="font-size:28px;font-weight:800;color:var(--or)">2</div><h3 style="margin-top:6px;font-size:14.5px">Make progress visible</h3><p style="font-size:10.8px;margin-top:6px">Calluses and muscle memory are invisible. Changes per minute are not. Measure the things that are improving and show them.</p></div>
+    <div class="card" style="padding:16px"><div class="disp" style="font-size:28px;font-weight:800;color:var(--or)">3</div><h3 style="margin-top:6px;font-size:14.5px">Rhythm, not streaks</h3><p style="font-size:10.8px;margin-top:6px">Set a weekly target with rest days built in. Sore fingers need breaks, and a broken chain shouldn't make anyone feel like a failure.</p></div>
+    <div class="card" style="padding:16px"><div class="disp" style="font-size:28px;font-weight:800;color:var(--or)">4</div><h3 style="margin-top:6px;font-size:14.5px">No dead ends</h3><p style="font-size:10.8px;margin-top:6px">A hard chord should never stop the music. Instant Play always offers a simpler version, and the real one stays one tap away.</p></div>
+    <div class="card" style="padding:16px"><div class="disp" style="font-size:28px;font-weight:800;color:var(--or)">5</div><h3 style="margin-top:6px;font-size:14.5px">Sound like Justin</h3><p style="font-size:10.8px;margin-top:6px">Every message is warm, specific and honest. "Your fingers remember more than you think" beats "Don't lose your streak!"</p></div>
+  </div>
+
+  <div style="margin-top:26px">
+    <h3>The journey, end to end</h3>
+    <svg viewBox="0 0 1000 190" width="100%" style="margin-top:10px">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#141414"/></marker>
+      <marker id="arp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#4A10A8"/></marker></defs>
+      <g font-family="Instrument Sans" font-size="13">
+        <rect x="0" y="10" width="160" height="66" rx="14" fill="#141414"/><text x="80" y="38" fill="#FF7A00" font-weight="700" text-anchor="middle">A · Why song</text><text x="80" y="58" fill="#fff" text-anchor="middle" font-size="11">Onboarding</text>
+        <rect x="210" y="10" width="160" height="66" rx="14" fill="#141414"/><text x="290" y="38" fill="#FF7A00" font-weight="700" text-anchor="middle">B · Today</text><text x="290" y="58" fill="#fff" text-anchor="middle" font-size="11">10-min session</text>
+        <rect x="420" y="10" width="160" height="66" rx="14" fill="#141414"/><text x="500" y="38" fill="#FF7A00" font-weight="700" text-anchor="middle">C · One Min. Changes</text><text x="500" y="58" fill="#fff" text-anchor="middle" font-size="11">Listening counter</text>
+        <rect x="630" y="10" width="160" height="66" rx="14" fill="#141414"/><text x="710" y="38" fill="#FF7A00" font-weight="700" text-anchor="middle">D · Progress</text><text x="710" y="58" fill="#fff" text-anchor="middle" font-size="11">Visible wins</text>
+        <rect x="840" y="10" width="160" height="66" rx="14" fill="#FF7A00"/><text x="920" y="38" fill="#141414" font-weight="700" text-anchor="middle">E · Song unlocked</text><text x="920" y="58" fill="#141414" text-anchor="middle" font-size="11">Play with the band</text>
+        <rect x="420" y="130" width="160" height="50" rx="14" fill="#4A10A8"/><text x="500" y="160" fill="#fff" font-weight="700" text-anchor="middle">F · Comeback</text>
+        <g stroke="#141414" stroke-width="1.6" fill="none" marker-end="url(#ar)">
+          <line x1="162" y1="43" x2="206" y2="43"/><line x1="372" y1="43" x2="416" y2="43"/><line x1="582" y1="43" x2="626" y2="43"/><line x1="792" y1="43" x2="836" y2="43"/>
+        </g>
+        <path d="M920 78 C 920 130, 820 155, 586 155" stroke="#4A10A8" stroke-width="1.6" fill="none" stroke-dasharray="5 4" marker-end="url(#arp)"/>
+        <path d="M418 155 C 320 155, 290 130, 290 82" stroke="#4A10A8" stroke-width="1.6" fill="none" marker-end="url(#arp)"/>
+        <text x="760" y="172" font-size="11" fill="#4A10A8" text-anchor="middle">no practice for 4+ days, from anywhere</text>
+        <text x="300" y="178" font-size="11" fill="#4A10A8">2-min re-entry</text>
+        <text x="920" y="100" font-size="11" fill="#8A8A8A" text-anchor="middle" dx="-60">↺ next song on the path</text>
+      </g>
+    </svg>
+  </div>
+  <div style="margin-top:14px;display:grid;grid-template-columns:200px repeat(4,1fr);gap:12px">
+    <div><h3>Questions I'd bring to the team</h3></div>
+    <div class="card" style="padding:11px 13px;background:var(--pu-soft);border:none"><p style="font-size:10.5px;color:var(--ink)">Kala already listens to playing. Can that detection be reused for chord changes on guitar?</p></div>
+    <div class="card" style="padding:11px 13px;background:var(--pu-soft);border:none"><p style="font-size:10.5px;color:var(--ink)">Where does the paywall sit compared with the first song unlock today, and what do the cohorts show?</p></div>
+    <div class="card" style="padding:11px 13px;background:var(--pu-soft);border:none"><p style="font-size:10.5px;color:var(--ink)">Can why-songs come from a licence-stable list, so a goal never disappears?</p></div>
+    <div class="card" style="padding:11px 13px;background:var(--pu-soft);border:none"><p style="font-size:10.5px;color:var(--ink)">How much of the first month happens on the website instead of the app, and how does that affect sync?</p></div>
+  </div>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>05</span></div>
+</section>
+
+<!-- =============== 6 SCREENS A B C =============== -->
+<section class="page">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div><div class="kicker">04 · The concept</div><h2 style="margin-top:6px;font-size:30px">Start with the song. Practise <em class="o">toward</em> it.</h2></div>
+    <p style="max-width:300px;font-size:11px;text-align:right">Shown in a dark JustinGuitar-style UI with Musopia orange as the action colour. Song titles are examples.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px">
+
+    <!-- A onboarding -->
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="phone" style="position:relative"><div class="scr">
+        <div class="sb"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+        <div class="in">
+          <div style="height:4px;background:var(--app3);border-radius:2px"><div style="width:60%;height:100%;background:var(--or);border-radius:2px"></div></div>
+          <div class="am" style="margin-top:14px;font-size:9px;letter-spacing:.1em;text-transform:uppercase">Step 3 of 5</div>
+          <h4 style="margin-top:6px">Which song made you pick up a guitar?</h4>
+          <p class="am" style="font-size:9.5px;margin-top:6px;line-height:1.4;color:var(--appMute)">We'll build your first month around it.</p>
+          <div style="margin-top:10px;background:var(--app2);border-radius:12px;padding:9px 11px;color:var(--appMute);font-size:10px">🔍  Search 1,500+ songs</div>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:7px">
+            <div class="tile" style="display:flex;align-items:center;gap:9px;outline:2px solid var(--or)"><div style="width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#2FBF71,#FFC94A)"></div><div style="flex:1"><div style="font-weight:700;font-size:10.5px">Three Little Birds</div><div class="am" style="font-size:9px">Bob Marley · A D E</div></div><span style="color:var(--or);font-size:14px">✓</span></div>
+            <div class="tile" style="display:flex;align-items:center;gap:9px"><div style="width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#4A10A8,#FF7A00)"></div><div style="flex:1"><div style="font-weight:700;font-size:10.5px">Knockin' on Heaven's Door</div><div class="am" style="font-size:9px">Bob Dylan · G D Am C</div></div></div>
+          </div>
+          <div style="margin-top:10px;background:rgba(255,122,0,.12);border-radius:12px;padding:9px 10px;font-size:9.5px;line-height:1.4">You can play this in about <strong style="color:var(--or)">3 weeks</strong> with 10 minutes a day. It only needs 3 chords.</div>
+        </div>
+        <div style="position:absolute;left:14px;right:14px;bottom:16px"><span class="abtn">Build my path</span></div>
+      </div>
+      <div class="dot" style="left:-8px;top:88px">1</div><div class="dot" style="right:-8px;top:390px">2</div>
+      </div>
+      <div style="margin-top:12px;width:100%">
+        <h3 style="font-size:14px">A · The why song</h3>
+        <div class="ann" style="margin-top:8px"><b>1</b><p><strong>The user's reason becomes the goal.</strong> Choosing a song comes before choosing a level.</p></div>
+        <div class="ann"><b>2</b><p><strong>An honest estimate</strong> based on the chords the song needs. Easy songs come first, so the first win is close.</p></div>
+      </div>
+    </div>
+
+    <!-- B today -->
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="phone" style="position:relative"><div class="scr">
+        <div class="sb"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+        <div class="in">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="am" style="font-size:9px">Tuesday</div><h4>Hey Sam 👋</h4></div><div style="width:30px;height:30px;border-radius:50%;background:var(--app3)"></div></div>
+          <div class="tile" style="margin-top:8px;background:linear-gradient(160deg,#2A1A5E,#1C2440)">
+            <div style="font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:#C8B5FF">Your path to</div>
+            <div style="font-family:'Bricolage Grotesque';font-weight:700;font-size:14px;margin-top:2px">Three Little Birds</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:10px">
+              <span class="chord ch-done">A</span><span style="flex:0 0 14px;height:2px;background:var(--or)"></span><span class="chord ch-done">D</span><span style="flex:0 0 14px;height:2px;background:var(--app3)"></span><span class="chord ch-now">E</span><span style="flex:0 0 14px;height:2px;background:var(--app3)"></span><span class="chord ch-lock" style="font-size:13px">♪</span>
+            </div>
+            <div style="font-size:9.5px;margin-top:8px">1 chord to go 🎯</div>
+          </div>
+          <div class="tile" style="margin-top:8px">
+            <div style="display:flex;justify-content:space-between"><strong style="font-size:11px">Today · 10 min</strong><span class="am" style="font-size:9px">Module 2</span></div>
+            <div style="display:flex;flex-direction:column;gap:5px;margin-top:7px;font-size:9.5px">
+              <div style="display:flex;justify-content:space-between"><span>▶  Meet the E chord (Justin)</span><span class="am">3m</span></div>
+              <div style="display:flex;justify-content:space-between"><span>⏱  One Minute Changes · D ↔ E</span><span class="am">3m</span></div>
+              <div style="display:flex;justify-content:space-between"><span>♪  Strum along · A–D</span><span class="am">4m</span></div>
+            </div>
+            <span class="abtn" style="margin-top:8px;padding:7px">Start session</span>
+          </div>
+          <div class="tile" style="margin-top:7px;display:flex;align-items:center;gap:10px;padding:9px 11px">
+            <div style="display:flex;gap:4px">
+              <span style="width:14px;height:14px;border-radius:50%;background:var(--or)"></span><span style="width:14px;height:14px;border-radius:50%;background:var(--or)"></span><span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--or)"></span><span style="width:14px;height:14px;border-radius:50%;background:var(--app3)"></span>
+            </div>
+            <div style="font-size:9.5px;line-height:1.3"><strong>2 of 4 days</strong> · <span class="am">no streak</span></div>
+          </div>
+        </div>
+        <div class="tabbar"><div class="on"><i></i>Today</div><div><i></i>Course</div><div><i></i>Songs</div><div><i></i>Tuner</div></div>
+      </div>
+      <div class="dot" style="right:-8px;top:120px">1</div><div class="dot" style="left:-8px;top:250px">2</div><div class="dot" style="right:-8px;top:400px">3</div>
+      </div>
+      <div style="margin-top:12px;width:100%">
+        <h3 style="font-size:14px">B · Today</h3>
+        <div class="ann" style="margin-top:8px"><b>1</b><p><strong>The song path:</strong> the chords become checkpoints, and the song sits at the end.</p></div>
+        <div class="ann"><b>2</b><p><strong>The Practice Assistant, made concrete:</strong> one button and ten minutes.</p></div>
+        <div class="ann"><b>3</b><p><strong>A weekly rhythm</strong> the user chooses (4 days here). A missed day doesn't reset anything.</p></div>
+      </div>
+    </div>
+
+    <!-- C one minute changes -->
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="phone" style="position:relative"><div class="scr" style="background:#0E1322">
+        <div class="sb"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+        <div class="in" style="text-align:center">
+          <div style="display:flex;justify-content:space-between;font-size:10px"><span class="am">✕</span><span style="font-weight:700">One Minute Changes</span><span class="am">?</span></div>
+          <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px">
+            <span class="chord ch-lock" style="width:46px;height:46px;font-size:20px;color:#fff">D</span>
+            <span style="color:var(--or);font-size:16px">⇄</span>
+            <span class="chord ch-done" style="width:46px;height:46px;font-size:20px;box-shadow:0 0 0 5px rgba(255,122,0,.25)">E</span>
+          </div>
+          <svg viewBox="0 0 160 160" width="150" height="150" style="margin-top:12px">
+            <circle cx="80" cy="80" r="68" stroke="#2A3456" stroke-width="9" fill="none"/>
+            <circle cx="80" cy="80" r="68" stroke="#FF7A00" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="150" transform="rotate(-90 80 80)"/>
+            <text x="80" y="82" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="50" fill="#fff">27</text>
+            <text x="80" y="104" text-anchor="middle" font-size="10" fill="#9AA3BD">changes · 0:21 left</text>
+          </svg>
+          <div style="display:flex;justify-content:center;align-items:flex-end;gap:2px;height:26px;margin-top:6px">
+            <i style="width:3px;height:8px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:16px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:24px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:12px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:20px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:9px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:18px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:25px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:11px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:6px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:15px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:21px;background:#FF7A00;border-radius:2px"></i><i style="width:3px;height:8px;background:#FF7A00;border-radius:2px"></i>
+          </div>
+          <div class="am" style="font-size:9px;margin-top:4px">🎙 Listening: E sounds clean</div>
+          <div class="tile" style="margin-top:12px;display:flex;justify-content:space-around;font-size:9px">
+            <div><div style="font-family:'Bricolage Grotesque';font-size:16px;font-weight:800">22</div><span class="am">Your best</span></div>
+            <div><div style="font-family:'Bricolage Grotesque';font-size:16px;font-weight:800;color:var(--or)">+5</div><span class="am">On pace</span></div>
+            <div><div style="font-family:'Bricolage Grotesque';font-size:16px;font-weight:800">60</div><span class="am">Justin's goal</span></div>
+          </div>
+          <div style="margin-top:9px;font-size:9px;color:var(--appMute)">Can't use the mic? <span style="color:var(--or)">Tap to count</span></div>
+        </div>
+      </div>
+      <div class="dot" style="left:-8px;top:180px">1</div><div class="dot" style="right:-8px;top:290px">2</div><div class="dot" style="left:-8px;top:390px">3</div>
+      </div>
+      <div style="margin-top:12px;width:100%">
+        <h3 style="font-size:14px">C · One Minute Changes that listen</h3>
+        <div class="ann" style="margin-top:8px"><b>1</b><p><strong>Justin's best exercise, now in the app:</strong> the mic counts clean changes, so the user just plays.</p></div>
+        <div class="ann"><b>2</b><p><strong>Compete with yourself, not a leaderboard.</strong> The pace is shown against your personal best.</p></div>
+        <div class="ann"><b>3</b><p><strong>Tap to count is always available</strong> for noisy rooms, privacy or accessibility.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>06</span></div>
+</section>
+
+<!-- =============== 7 SCREENS D E F =============== -->
+<section class="page">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div><div class="kicker">04 · The concept</div><h2 style="margin-top:6px;font-size:30px">Show the wins. <em class="o">Welcome</em> people back.</h2></div>
+    <p style="max-width:300px;font-size:11px;text-align:right">Values in the screens are example data from one learner's month.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px">
+
+    <!-- D progress -->
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="phone" style="position:relative"><div class="scr">
+        <div class="sb"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+        <div class="in">
+          <div class="am" style="font-size:9px">Your progress</div>
+          <h4>You're <span style="color:var(--or)">2.4×</span> faster than on day 1</h4>
+          <div class="tile" style="margin-top:10px;padding:10px 8px 6px">
+            <div style="display:flex;justify-content:space-between;font-size:9px;padding:0 4px"><strong>A ↔ D changes per minute</strong><span class="am">14 days</span></div>
+            <svg viewBox="0 0 200 104" width="100%" style="margin-top:4px">
+              <g stroke="#2A3456" stroke-width="1"><line x1="18" y1="12" x2="196" y2="12"/><line x1="18" y1="47" x2="196" y2="47"/><line x1="18" y1="82" x2="196" y2="82" stroke="#3A4466"/></g>
+              <g font-size="7" fill="#9AA3BD" text-anchor="end"><text x="14" y="15">40</text><text x="14" y="50">20</text><text x="14" y="85">0</text></g>
+              <polyline fill="none" stroke="#FF7A00" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="22,58 35,56 48,52 61,53 74,46 87,44 100,45 113,38 126,36 139,32 152,33 165,26 178,24 191,20"/>
+              <circle cx="22" cy="58" r="3.5" fill="#12182A" stroke="#9AA3BD" stroke-width="1.5"/>
+              <circle cx="191" cy="20" r="4" fill="#FF7A00" stroke="#1C2440" stroke-width="2"/>
+              <text x="26" y="70" font-size="7.5" fill="#9AA3BD">Day 1 · 14</text>
+              <text x="188" y="11" font-size="7.5" fill="#fff" text-anchor="end" font-weight="700">34</text>
+              <g font-size="7" fill="#9AA3BD" text-anchor="middle"><text x="22" y="96">Day 1</text><text x="191" y="96">Today</text></g>
+            </svg>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px">
+            <div class="tile" style="padding:9px"><div style="font-family:'Bricolage Grotesque';font-size:18px;font-weight:800">3</div><div class="am" style="font-size:9px">chords you own</div></div>
+            <div class="tile" style="padding:9px"><div style="font-family:'Bricolage Grotesque';font-size:18px;font-weight:800">2h 40m</div><div class="am" style="font-size:9px">played this month</div></div>
+          </div>
+          <div class="tile" style="margin-top:8px;display:flex;gap:9px;align-items:center">
+            <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#FF7A00,#4A10A8);flex:none"></div>
+            <div style="font-size:9.5px;line-height:1.35"><strong>Justin:</strong> "34 is brilliant. Around 30, most people stop thinking about the shapes."</div>
+          </div>
+        </div>
+        <div class="tabbar"><div class="on"><i></i>Today</div><div><i></i>Course</div><div><i></i>Songs</div><div><i></i>Tuner</div></div>
+      </div>
+      <div class="dot" style="right:-8px;top:60px">1</div><div class="dot" style="left:-8px;top:150px">2</div><div class="dot" style="right:-8px;top:375px">3</div>
+      </div>
+      <div style="margin-top:12px;width:100%">
+        <h3 style="font-size:14px">D · Visible progress</h3>
+        <div class="ann" style="margin-top:8px"><b>1</b><p><strong>One headline in plain language</strong> that compares the user only with themselves.</p></div>
+        <div class="ann"><b>2</b><p><strong>A real skill curve</strong> built from the One Minute Changes data the app already collects.</p></div>
+        <div class="ann"><b>3</b><p><strong>Justin's voice at milestones</strong>, using short pre-recorded lines to keep the human connection.</p></div>
+      </div>
+    </div>
+
+    <!-- E unlocked -->
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="phone" style="position:relative"><div class="scr" style="background:linear-gradient(180deg,#4A10A8 0%,#2A0C66 45%,#12182A 100%)">
+        <div class="sb"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+        <svg viewBox="0 0 220 70" width="100%" style="position:absolute;top:30px;left:0;opacity:.9">
+          <path d="M0 35 Q 12 5 24 35 T 48 35 T 72 35 T 96 35 T 120 35 T 144 35 T 168 35 T 192 35 T 216 35" stroke="#FF7A00" stroke-width="1.5" fill="none" opacity=".6"/>
+          <path d="M84 35 Q 92 0 100 35 Q 108 70 116 35 Q 124 0 132 35 Z" fill="#FF7A00"/>
+        </svg>
+        <div class="in" style="text-align:center;padding-top:80px">
+          <div style="font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#FFB877">✦ Song unlocked ✦</div>
+          <h4 style="font-size:22px;margin-top:6px">Three Little Birds</h4>
+          <div style="font-size:10px;color:#D8CCF5;margin-top:4px">You know every chord now: A, D, E</div>
+          <div style="display:flex;justify-content:center;gap:6px;margin-top:14px"><span class="chord ch-done">A</span><span class="chord ch-done">D</span><span class="chord ch-done">E</span></div>
+          <div class="tile" style="margin-top:16px;text-align:left;background:rgba(18,24,42,.75)">
+            <div style="font-size:9px" class="am">Instant Play setup</div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px"><span>Tempo</span><strong>70% → 100%</strong></div>
+            <div style="height:4px;background:var(--app3);border-radius:2px;margin-top:5px"><div style="width:70%;height:100%;background:var(--or);border-radius:2px"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:9px;font-size:10px"><span>Strum</span><strong>Down · down · down · down</strong></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px"><span>Band &amp; vocals</span><strong style="color:var(--good)">On</strong></div>
+          </div>
+        </div>
+        <div style="position:absolute;left:14px;right:14px;bottom:16px;display:flex;flex-direction:column;gap:7px"><span class="abtn">▶  Play with the band</span><span class="abtn ghost">Share my first song</span></div>
+      </div>
+      <div class="dot" style="left:-8px;top:120px">1</div><div class="dot" style="right:-8px;top:300px">2</div><div class="dot" style="left:-8px;top:440px">3</div>
+      </div>
+      <div style="margin-top:12px;width:100%">
+        <h3 style="font-size:14px">E · The payoff moment</h3>
+        <div class="ann" style="margin-top:8px"><b>1</b><p><strong>A celebration that uses the brand:</strong> Musopia's waveform and the sparkle, used sparingly.</p></div>
+        <div class="ann"><b>2</b><p><strong>Instant Play starts slow</strong> and speeds up, so the first play-through is a success.</p></div>
+        <div class="ann"><b>3</b><p><strong>Sharing is optional</strong> and only offered at a proud moment. It's a quiet growth loop.</p></div>
+      </div>
+    </div>
+
+    <!-- F comeback -->
+    <div style="display:flex;flex-direction:column;align-items:center">
+      <div class="phone" style="position:relative"><div class="scr">
+        <div class="sb"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+        <div class="in">
+          <div style="background:rgba(255,255,255,.08);backdrop-filter:blur(6px);border-radius:16px;padding:10px 11px;display:flex;gap:9px;align-items:flex-start">
+            <div style="width:24px;height:24px;border-radius:7px;background:var(--or);flex:none"></div>
+            <div style="font-size:9.5px;line-height:1.35"><div style="display:flex;justify-content:space-between"><strong>JustinGuitar</strong><span class="am" style="font-size:8.5px">now</span></div>Your fingers remember more than you think. Two minutes of D ↔ E?</div>
+          </div>
+          <div style="text-align:center;margin-top:22px">
+            <div style="font-size:30px">🤘</div>
+            <h4 style="margin-top:6px">Welcome back, Sam</h4>
+            <p style="font-size:10px;line-height:1.45;margin-top:6px;color:var(--appMute)">Six days off is normal, and your calluses are still there. Let's ease back in.</p>
+          </div>
+          <div class="tile" style="margin-top:14px">
+            <div style="font-size:10.5px;font-weight:700">2-minute warm-up</div>
+            <div class="am" style="font-size:9.5px;margin-top:3px">A ↔ D changes, then strum Three Little Birds at 60%</div>
+            <span class="abtn" style="margin-top:9px;padding:9px">Ease back in</span>
+          </div>
+          <div class="tile" style="margin-top:8px;font-size:9.5px">
+            <div style="font-weight:700;font-size:10px">Want a lighter rhythm?</div>
+            <div style="display:flex;gap:5px;margin-top:7px">
+              <span style="flex:1;text-align:center;padding:6px 0;border-radius:8px;background:var(--app3)">2 days</span><span style="flex:1;text-align:center;padding:6px 0;border-radius:8px;background:var(--or);color:#1a0e00;font-weight:700">3 days</span><span style="flex:1;text-align:center;padding:6px 0;border-radius:8px;background:var(--app3)">4 days</span>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:10px;font-size:9px;color:var(--appMute)">Your path progress is safe: <span style="color:var(--or)">2 of 3 chords</span></div>
+        </div>
+      </div>
+      <div class="dot" style="right:-8px;top:40px">1</div><div class="dot" style="left:-8px;top:250px">2</div><div class="dot" style="right:-8px;top:340px">3</div>
+      </div>
+      <div style="margin-top:12px;width:100%">
+        <h3 style="font-size:14px">F · The comeback</h3>
+        <div class="ann" style="margin-top:8px"><b>1</b><p><strong>Specific, kind nudges</strong> that suggest the next tiny action. No guilt about streaks.</p></div>
+        <div class="ann"><b>2</b><p><strong>Re-entry is shorter than a normal session.</strong> Two minutes lowers the barrier more than ten.</p></div>
+        <div class="ann"><b>3</b><p><strong>The plan adapts:</strong> lowering the weekly goal counts as a success, not a failure.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>07</span></div>
+</section>
+
+<!-- =============== 8 MEASURE =============== -->
+<section class="page">
+  <div class="kicker">05 · How we'd know it works</div>
+  <h2 style="margin-top:10px">Ship it as experiments, <em class="o">not as a bet.</em></h2>
+  <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:30px;margin-top:20px">
+    <div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <thead><tr style="text-align:left;color:var(--mute);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase">
+          <th style="padding:0 8px 8px 0;font-weight:700">#</th><th style="padding:0 8px 8px 0;font-weight:700">We believe…</th><th style="padding:0 8px 8px 0;font-weight:700">We'll know if…</th></tr></thead>
+        <tbody>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:10px 8px 10px 0;font-weight:800;color:var(--or)" class="disp">H1</td><td style="padding:10px 8px 10px 0;color:var(--ink2);line-height:1.45">Choosing a <strong style="color:var(--ink)">why song</strong> during onboarding makes the first month feel personal</td><td style="padding:10px 0;color:var(--ink2);line-height:1.45">D7 retention and the share of users who finish their first session go up for new installs</td></tr>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:10px 8px 10px 0;font-weight:800;color:var(--or)" class="disp">H2</td><td style="padding:10px 8px 10px 0;color:var(--ink2);line-height:1.45"><strong style="color:var(--ink)">Listening One Minute Changes</strong> plus a progress curve make improvement feel real</td><td style="padding:10px 0;color:var(--ink2);line-height:1.45">More practice days in weeks 2–4, and more users reach 30 changes per minute</td></tr>
+          <tr style="border-top:1px solid var(--line)"><td style="padding:10px 8px 10px 0;font-weight:800;color:var(--or)" class="disp">H3</td><td style="padding:10px 8px 10px 0;color:var(--ink2);line-height:1.45">A <strong style="color:var(--ink)">weekly rhythm</strong> with kind comebacks keeps more people than daily streaks</td><td style="padding:10px 0;color:var(--ink2);line-height:1.45">More lapsed users come back within 14 days, and fewer turn off notifications</td></tr>
+          <tr style="border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><td style="padding:10px 8px 10px 0;font-weight:800;color:var(--or)" class="disp">H4</td><td style="padding:10px 8px 10px 0;color:var(--ink2);line-height:1.45">Feeling an early <strong style="color:var(--ink)">song unlocked</strong> moment makes paying feel worth it</td><td style="padding:10px 0;color:var(--ink2);line-height:1.45">Trial-to-paid conversion and month-2 renewals go up</td></tr>
+        </tbody>
+      </table>
+      <div class="grid2" style="gap:12px;margin-top:16px">
+        <div class="card" style="padding:12px 14px"><h3 style="font-size:13px">North star</h3><p style="font-size:11px;margin-top:4px"><strong style="color:var(--ink)">Learners who play their first full song within 30 days.</strong> This lines up value for users with revenue.</p></div>
+        <div class="card" style="padding:12px 14px"><h3 style="font-size:13px">Guardrails</h3><p style="font-size:11px;margin-top:4px">Onboarding completion, mic-permission drop-off, refund rate, store rating, crash-free sessions.</p></div>
+      </div>
+    </div>
+    <div>
+      <h3>Rollout</h3>
+      <div style="display:flex;flex-direction:column;gap:0;margin-top:10px;position:relative">
+        <div style="position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--line)"></div>
+        <div style="display:flex;gap:14px;padding-bottom:14px;position:relative"><span style="width:20px;height:20px;border-radius:50%;background:var(--or);flex:none;margin-top:1px"></span><div><strong style="font-size:12px">Weeks 1–2 · Discover</strong><p style="font-size:11px">Interview 8–10 lapsed and active beginners, review cohort data around days 3–10, and set the D7 and D30 baselines.</p></div></div>
+        <div style="display:flex;gap:14px;padding-bottom:14px;position:relative"><span style="width:20px;height:20px;border-radius:50%;background:var(--or);flex:none;margin-top:1px"></span><div><strong style="font-size:12px">Weeks 3–4 · Prototype &amp; test</strong><p style="font-size:11px">Run a clickable Figma prototype with 5–6 beginners holding a real guitar. Test the mic accuracy of chord-change detection with engineering.</p></div></div>
+        <div style="display:flex;gap:14px;padding-bottom:14px;position:relative"><span style="width:20px;height:20px;border-radius:50%;background:var(--pu);flex:none;margin-top:1px"></span><div><strong style="font-size:12px">Weeks 5–8 · Ship H1 + H3</strong><p style="font-size:11px">Start with the cheapest changes, the onboarding question and the weekly rhythm, as an A/B test on new installs in one market.</p></div></div>
+        <div style="display:flex;gap:14px;position:relative"><span style="width:20px;height:20px;border-radius:50%;background:var(--pu);flex:none;margin-top:1px"></span><div><strong style="font-size:12px">Weeks 9+ · Ship H2 + H4</strong><p style="font-size:11px">Add listening One Minute Changes and the unlock moment, then iterate on the cohort curves.</p></div></div>
+      </div>
+      <div class="card" style="margin-top:14px;padding:12px 14px;background:var(--ink);border:none">
+        <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--or);font-weight:700">Events to instrument</div>
+        <p style="font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:#ddd;margin-top:6px;line-height:1.6">why_song_selected · session_started{source} · omc_completed{pair, count, input} · path_chord_mastered · song_unlocked · rhythm_goal_changed · comeback_shown/accepted</p>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:18mm;right:18mm;bottom:20mm">
+    <h3>Usability test script (weeks 3–4), with a guitar in hand</h3>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px">
+      <div class="card" style="padding:12px 14px"><span class="pill">Task 1</span><p style="font-size:10.8px;margin-top:6px;color:var(--ink)">"Set the app up to learn a song you love."</p><p style="font-size:10px;margin-top:4px">Pass: finds or swaps a why song in under 60 s, and understands the time estimate.</p></div>
+      <div class="card" style="padding:12px 14px"><span class="pill">Task 2</span><p style="font-size:10.8px;margin-top:6px;color:var(--ink)">"Do today's practice."</p><p style="font-size:10px;margin-top:4px">Pass: starts without help and can say why each step is there.</p></div>
+      <div class="card" style="padding:12px 14px"><span class="pill">Task 3</span><p style="font-size:10.8px;margin-top:6px;color:var(--ink)">"Do a one-minute chord change."</p><p style="font-size:10px;margin-top:4px">Pass: trusts the count. We log the gap between mic and observed counts and how often people fall back to tapping.</p></div>
+      <div class="card" style="padding:12px 14px"><span class="pill p">Task 4</span><p style="font-size:10.8px;margin-top:6px;color:var(--ink)">"You skipped a week. Open the app."</p><p style="font-size:10px;margin-top:4px">Pass: describes the feeling as "welcome", not "guilty", and finishes the 2-minute re-entry.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>08</span></div>
+</section>
+
+<!-- =============== 9 SYSTEM =============== -->
+<section class="page">
+  <div class="kicker">06 · System &amp; handoff</div>
+  <h2 style="margin-top:10px">Built to slot into a <em class="o">design system</em>, and into Unity.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin-top:22px">
+    <div>
+      <h3>Tokens</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px">
+        <div><div style="height:46px;border-radius:10px;background:#FF7A00"></div><p style="font-size:9.5px;margin-top:4px;line-height:1.3"><strong style="color:var(--ink)">action</strong><br>#FF7A00</p></div>
+        <div><div style="height:46px;border-radius:10px;background:#4A10A8"></div><p style="font-size:9.5px;margin-top:4px;line-height:1.3"><strong style="color:var(--ink)">celebrate</strong><br>#4A10A8</p></div>
+        <div><div style="height:46px;border-radius:10px;background:#12182A"></div><p style="font-size:9.5px;margin-top:4px;line-height:1.3"><strong style="color:var(--ink)">surface</strong><br>#12182A</p></div>
+        <div><div style="height:46px;border-radius:10px;background:#1C2440"></div><p style="font-size:9.5px;margin-top:4px;line-height:1.3"><strong style="color:var(--ink)">surface-2</strong><br>#1C2440</p></div>
+      </div>
+      <div style="margin-top:14px;border-top:1px solid var(--line);padding-top:10px">
+        <div class="disp" style="font-size:24px;font-weight:700">Display: Bricolage</div>
+        <div style="font-size:14px;margin-top:2px">Body: Instrument Sans</div>
+        <p style="font-size:10.5px;margin-top:6px">These are stand-ins for Musopia's own typefaces. Use a 4-pt spacing scale and radii of 10, 14 and 29.</p>
+      </div>
+    </div>
+    <div>
+      <h3>New components</h3>
+      <div style="background:var(--app);border-radius:16px;padding:14px;margin-top:10px;color:#fff">
+        <div style="font-size:9px;color:var(--appMute);margin-bottom:6px">ChordNode · done / current / locked</div>
+        <div style="display:flex;gap:8px"><span class="chord ch-done">A</span><span class="chord ch-now">E</span><span class="chord ch-lock">G</span></div>
+        <div style="font-size:9px;color:var(--appMute);margin:12px 0 6px">RhythmDots · weekly target</div>
+        <div style="display:flex;gap:5px"><span style="width:14px;height:14px;border-radius:50%;background:var(--or)"></span><span style="width:14px;height:14px;border-radius:50%;background:var(--or)"></span><span style="width:14px;height:14px;border-radius:50%;border:2px solid var(--or)"></span><span style="width:14px;height:14px;border-radius:50%;background:var(--app3)"></span></div>
+        <div style="font-size:9px;color:var(--appMute);margin:12px 0 6px">CountRing · timer + count + input source</div>
+        <svg viewBox="0 0 60 60" width="48"><circle cx="30" cy="30" r="24" stroke="#2A3456" stroke-width="5" fill="none"/><circle cx="30" cy="30" r="24" stroke="#FF7A00" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="151" stroke-dashoffset="55" transform="rotate(-90 30 30)"/><text x="30" y="35" text-anchor="middle" fill="#fff" font-family="Bricolage Grotesque" font-weight="800" font-size="15">27</text></svg>
+      </div>
+      <p style="font-size:10.5px;margin-top:8px">Each component has defined states, including empty, loading, offline and mic-denied, before it's handed off.</p>
+    </div>
+    <div>
+      <h3>Notes for a Unity build</h3>
+      <div style="display:flex;flex-direction:column;gap:9px;margin-top:10px">
+        <div class="ann"><b>→</b><p>Export tokens as JSON from Figma variables so Unity UI and native screens read <strong style="color:var(--ink)">one source of truth</strong>.</p></div>
+        <div class="ann"><b>→</b><p>Spec motion in <strong style="color:var(--ink)">ms with easing curves</strong> (unlock: 600 ms, ease-out-back). The waveform is one looping asset.</p></div>
+        <div class="ann"><b>→</b><p>Agree on the chord-detection confidence threshold with engineering. Under the threshold, <strong style="color:var(--ink)">don't count, don't scold</strong>.</p></div>
+        <div class="ann"><b>→</b><p>Give every surface a <strong style="color:var(--ink)">sync status</strong>, which responds to the most common store complaint.</p></div>
+        <div class="ann"><b>→</b><p>Run accessibility checks: AA contrast on dark surfaces, Dynamic Type up to 200%, and a tap-to-count alternative to the mic.</p></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;left:18mm;right:18mm;bottom:20mm">
+    <h3>CountRing states: designed before handoff</h3>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:10px">
+      <div style="background:var(--app);border-radius:14px;padding:12px;color:#fff;display:flex;gap:12px;align-items:center">
+        <svg viewBox="0 0 60 60" width="50" style="flex:none"><circle cx="30" cy="30" r="24" stroke="#2A3456" stroke-width="5" fill="none"/><circle cx="30" cy="30" r="24" stroke="#FF7A00" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="151" stroke-dashoffset="150" transform="rotate(-90 30 30)"/><text x="30" y="35" text-anchor="middle" fill="#fff" font-family="Bricolage Grotesque" font-weight="800" font-size="15">27</text></svg>
+        <div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#FF7A00;font-weight:700">Listening</div><div style="font-size:11px;font-weight:600;margin-top:3px">Counting clean changes</div><div style="font-size:9.5px;color:#9AA3BD;margin-top:2px;line-height:1.35">Live waveform, count ticks with haptic</div></div></div>
+      <div style="background:var(--app);border-radius:14px;padding:12px;color:#fff;display:flex;gap:12px;align-items:center">
+        <svg viewBox="0 0 60 60" width="50" style="flex:none"><circle cx="30" cy="30" r="24" stroke="#2A3456" stroke-width="5" fill="none"/><circle cx="30" cy="30" r="24" stroke="#9AA3BD" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="151" stroke-dashoffset="55" transform="rotate(-90 30 30)"/><text x="30" y="35" text-anchor="middle" fill="#fff" font-family="Bricolage Grotesque" font-weight="800" font-size="15">27</text></svg>
+        <div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#9AA3BD;font-weight:700">Unsure</div><div style="font-size:11px;font-weight:600;margin-top:3px">Keep going, I'm listening</div><div style="font-size:9.5px;color:#9AA3BD;margin-top:2px;line-height:1.35">Low confidence: no count and no error</div></div></div>
+      <div style="background:var(--app);border-radius:14px;padding:12px;color:#fff;display:flex;gap:12px;align-items:center">
+        <svg viewBox="0 0 60 60" width="50" style="flex:none"><circle cx="30" cy="30" r="24" stroke="#2A3456" stroke-width="5" fill="none"/><circle cx="30" cy="30" r="24" stroke="#4A10A8" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="151" stroke-dashoffset="151" transform="rotate(-90 30 30)"/><text x="30" y="35" text-anchor="middle" fill="#fff" font-family="Bricolage Grotesque" font-weight="800" font-size="15">Tap</text></svg>
+        <div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#4A10A8;font-weight:700">Mic off</div><div style="font-size:11px;font-weight:600;margin-top:3px">Tap each change</div><div style="font-size:9.5px;color:#9AA3BD;margin-top:2px;line-height:1.35">Shown when mic is denied or noisy. Equal status.</div></div></div>
+      <div style="background:var(--app);border-radius:14px;padding:12px;color:#fff;display:flex;gap:12px;align-items:center">
+        <svg viewBox="0 0 60 60" width="50" style="flex:none"><circle cx="30" cy="30" r="24" stroke="#2A3456" stroke-width="5" fill="none"/><circle cx="30" cy="30" r="24" stroke="#2FBF71" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="151" stroke-dashoffset="20" transform="rotate(-90 30 30)"/><text x="30" y="35" text-anchor="middle" fill="#fff" font-family="Bricolage Grotesque" font-weight="800" font-size="15">34</text></svg>
+        <div><div style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#2FBF71;font-weight:700">Offline</div><div style="font-size:11px;font-weight:600;margin-top:3px">Saved on this phone</div><div style="font-size:9.5px;color:#9AA3BD;margin-top:2px;line-height:1.35">Syncs when back online, with a clear status</div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>First 30 Days · Kira Krysanov</span><span>09</span></div>
+</section>
+
+<!-- =============== 10 CLOSE =============== -->
+<section class="page" style="background:var(--or);padding:0">
+  <svg style="position:absolute;inset:0" width="100%" height="100%" viewBox="0 0 1123 794" preserveAspectRatio="none">
+    <path d="M0 520 C 250 440, 420 620, 680 540 S 980 470, 1123 500 L1123 794 L0 794Z" fill="#4A10A8"/>
+  </svg>
+  <div style="position:absolute;left:64px;top:70px;width:640px">
+    <div class="kicker" style="color:#141414">Thanks for reading</div>
+    <h2 style="font-size:64px;margin-top:14px;color:#141414;line-height:.98">Let's help more people <em style="color:#fff">stay</em> with the music.</h2>
+    <p style="color:#2a1500;font-size:14px;margin-top:22px;max-width:520px">I'd love to walk you through this concept, hear where it's wrong, and learn what you already know from your data. I'll take the free ukulele too.</p>
+  </div>
+  <div style="position:absolute;left:64px;bottom:60px;color:#fff;font-size:13px;line-height:1.7">
+    <strong style="font-size:20px" class="disp">Kira Krysanov</strong><br>
+    kira.krysanov@gmail.com
+  </div>
+  <div style="position:absolute;right:64px;bottom:60px;color:#fff;font-size:10px;text-align:right;max-width:330px;line-height:1.5;opacity:.9">
+    This independent concept was made for the Musopia Senior Product Designer application. JustinGuitar, Kala and Musopia are the property of their owners. Product facts are from public sources, and all screen data is illustrative.
+  </div>
+</section>
+
+</body>
+</html>
