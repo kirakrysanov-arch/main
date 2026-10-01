@@ -1,0 +1,624 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First 30 Days Wireframes</title>
+<link href="fonts/fonts.css" rel="stylesheet"><style>:root{--or:#FF7A00;--pu:#4A10A8;--ink:#141414;--g1:#F2F1EE;--g2:#E4E2DD;--g3:#BDBAB3;--g4:#77746E;--paper:#F7F5F1}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:297mm 210mm;margin:0}
+body{font-family:"Instrument Sans",sans-serif;color:var(--ink);background:#d9d6d0;word-spacing:.05em;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:inherit;text-decoration:none}
+h1,h2,.h,.h2,.idx,.big{font-family:"Bricolage Grotesque",sans-serif;letter-spacing:-.02em}
+.page{width:297mm;height:210mm;position:relative;overflow:hidden;background:var(--paper);padding:15mm 18mm;break-after:page;margin:0 auto}
+@media screen{.page{margin:24px auto;box-shadow:0 8px 30px rgba(0,0,0,.15)}}
+.kick{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+h2{font-size:34px;font-weight:700;margin-top:8px}
+.lead{font-size:15px;line-height:1.5;color:#444;max-width:620px;margin-top:16px}
+.lead.s{font-size:12.5px;margin-top:6px}
+.foot{position:absolute;left:18mm;right:18mm;bottom:8mm;display:flex;justify-content:space-between;font-size:9px;color:#8a8a8a}
+
+/* cover */
+.cover{background:var(--ink);color:#fff}
+.cover h1{font-size:70px;line-height:.98;font-weight:800;margin-top:60px}
+.cover h1 span{color:var(--or);font-style:italic;font-size:44px;font-weight:700}
+.cover .lead{color:#ccc}
+.how{display:flex;flex-direction:column;gap:10px;margin-top:28px;max-width:560px}
+.how div{display:flex;gap:12px;align-items:center;font-size:12.5px;color:#ddd}
+.how b{width:24px;height:24px;border-radius:50%;background:var(--or);color:#141414;display:flex;align-items:center;justify-content:center;font-size:11px;flex:none}
+.how .o{color:var(--or);font-style:normal;font-weight:700}
+a.hs.inl{color:var(--or);font-weight:700;border-bottom:1.5px solid var(--or);padding:0 2px}
+.mini{position:absolute;right:18mm;top:44mm;width:250px;display:grid;grid-template-columns:1fr;gap:3px}
+.mini a{font-size:11px;color:#ccc;padding:4px 10px;border:1px solid #2c2c2c;border-radius:8px}
+.mini a b{color:var(--or);margin-right:6px}
+.disc{position:absolute;left:18mm;bottom:12mm;font-size:9.5px;color:#888}
+.end{background:var(--or)}
+.end h1{color:#141414;margin-top:150px}.end h1 span{color:#fff}
+.end .lead{color:#2a1500;font-size:16px}
+
+/* ---------- phone (wireframe) ---------- */
+.ph{width:290px;height:600px;border-radius:40px;border:2px solid var(--ink);background:#fff;padding:7px;flex:none}
+.sc{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;background:#fff;font-size:11px;color:var(--ink)}
+.sb{height:28px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;font-size:10px;font-weight:600}
+.isl{width:70px;height:18px;background:var(--ink);border-radius:10px}
+.pad{padding:4px 16px}
+.h{font-size:21px;font-weight:700;line-height:1.1}
+.h2{font-size:15px;font-weight:700}
+.sub{font-size:11px;color:var(--g4);line-height:1.4}
+.cap{font-size:9.5px;color:var(--g4);letter-spacing:.04em}
+.big{font-size:64px;font-weight:800;line-height:1}
+.big.s{font-size:22px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:2px 12px 6px}
+.navt{font-size:11px;font-weight:600}
+.icon{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--g3);display:flex;align-items:center;justify-content:center;font-size:15px}
+.icon.ghost{border-color:transparent}
+.prog{height:5px;background:var(--g2);border-radius:3px;margin-top:4px}
+.prog div{height:100%;background:var(--ink);border-radius:3px}
+.box{background:var(--g1) linear-gradient(to top right,transparent calc(50% - .7px),var(--g3) 50%,transparent calc(50% + .7px)),linear-gradient(to bottom right,transparent calc(50% - .7px),var(--g3) 50%,transparent calc(50% + .7px));border:1.5px solid var(--g3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--g4);text-align:center;padding:8px}
+.box{background-color:var(--g1)}
+.ln{height:7px;background:var(--g2);border-radius:4px;margin-bottom:7px}
+.card{border:1.5px solid var(--g2);border-radius:14px;padding:11px 12px;background:#fff}
+.card.blk{display:block}
+.row{display:flex;align-items:center}.sp{justify-content:space-between}
+.li{display:flex;justify-content:space-between;font-size:10.5px;padding:5px 0;border-bottom:1px dashed var(--g2)}
+.btn{display:block;text-align:center;background:var(--ink);color:#fff;font-weight:700;font-size:12px;border-radius:14px;padding:12px}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.link{display:block;text-align:center;font-size:11px;font-weight:600;text-decoration:underline;margin-top:10px;color:var(--ink)}
+.bottom{position:absolute;left:16px;right:16px;bottom:20px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:block;border:1.5px solid var(--g2);border-radius:12px;padding:11px 12px}
+.opt b{display:block;font-size:12px}.opt span{font-size:10px;color:var(--g4)}
+.opt.row{display:flex;gap:10px;align-items:center}
+.opt.sel{border:2px solid var(--ink)}
+.tick{font-size:14px;color:var(--ink)!important;font-weight:700}
+.art{width:34px;height:34px;border-radius:8px;background:var(--g2);flex:none}
+.search{margin-top:12px;border:1.5px solid var(--g2);border-radius:12px;padding:10px 12px;color:var(--g4);font-size:10.5px}
+.seg{display:flex;gap:6px;margin-top:10px}
+.seg span{flex:1;text-align:center;padding:9px 0;border:1.5px solid var(--g2);border-radius:10px;font-weight:600}
+.seg .sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.path{display:flex;align-items:center;margin-top:8px}
+.pl{flex:1;height:2px;background:var(--g2);margin:0 4px}.pl-on{background:var(--ink)}
+.ch{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;font-family:"Bricolage Grotesque";font-weight:800;font-size:15px;flex:none}
+.ch-done{background:var(--ink);color:#fff}
+.ch-now{border:2px dashed var(--ink)}
+.ch-lock{background:var(--g1);color:var(--g3);border:1.5px solid var(--g2)}
+.ch.big,.ch-big{width:56px;height:56px;font-size:24px;border:2px solid var(--ink)}
+.ch-lock.big{border:1.5px solid var(--g2)}
+.circle{width:72px;height:72px;border-radius:50%;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto}
+.ring{width:150px;height:150px;border-radius:50%;border:10px solid var(--g2);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring span{font-family:"Bricolage Grotesque";font-weight:800;font-size:38px}
+.ring em{font-style:normal;font-size:10px;color:var(--g4)}
+.ring.live{border-color:var(--ink);border-right-color:var(--g2);border-bottom-color:var(--g2)}
+.wave{display:flex;justify-content:center;align-items:flex-end;gap:3px;height:28px;margin-top:14px}
+.wave i{width:4px;background:var(--ink);border-radius:2px}
+.tip{margin-top:6px;font-size:10px;background:var(--g1);border-radius:8px;padding:7px 8px;line-height:1.35}
+.quote{margin-top:12px;font-size:11px;font-style:italic;color:var(--g4);line-height:1.4}
+.dots{display:flex;gap:4px}.dots i{width:14px;height:14px;border-radius:50%;background:var(--g2)}
+.dots i.f{background:var(--ink)}.dots i.o{background:#fff;border:2px solid var(--ink)}
+.lyr{font-size:13px;line-height:1.3;margin-top:14px}
+.lyr .c{display:inline-block;font-family:"Bricolage Grotesque";font-weight:800;font-size:11px;background:var(--ink);color:#fff;border-radius:5px;padding:1px 5px;margin-right:4px;vertical-align:2px}
+.lyr.now{font-weight:700;font-size:15px}
+.lyr.dim{color:var(--g3)}.lyr.dim .c{background:var(--g3)}
+.track{height:5px;background:var(--g2);border-radius:3px;margin-top:6px}.track div{height:100%;background:var(--ink);border-radius:3px}
+.tog{width:32px;height:18px;border-radius:9px;background:var(--g2);position:relative}
+.tog.on{background:var(--ink)}.tog.on::after{content:"";position:absolute;right:2px;top:2px;width:14px;height:14px;border-radius:50%;background:#fff}
+.notif{display:flex;gap:9px;border:1.5px solid var(--g2);border-radius:16px;padding:10px;font-size:10.5px;line-height:1.35;background:var(--g1)}
+.appi{width:26px;height:26px;border-radius:7px;background:var(--ink);flex:none}
+.tabbar{position:absolute;left:0;right:0;bottom:0;height:56px;border-top:1.5px solid var(--g2);display:flex;justify-content:space-around;align-items:center;background:#fff}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9px;color:var(--g4);padding:4px 8px;border-radius:10px}
+.tab i{width:18px;height:18px;border-radius:5px;background:var(--g2);display:block}
+.tab.on{color:var(--ink);font-weight:700}.tab.on i{background:var(--ink)}
+
+/* hotspots */
+.proto a.hs{outline:2.5px solid var(--or);outline-offset:2px}
+.proto a.hs.btn{background:var(--or);color:#141414}
+.proto a.hs.btn.ghost{background:#fff}
+.proto a.hs.link{color:#C25E00;outline-offset:3px;border-radius:6px}
+
+/* prototype page */
+.proto{display:flex;gap:56px;align-items:center;padding-left:40mm}
+.stage{flex:none}
+.side{max-width:380px}
+.idx{font-size:64px;font-weight:800;line-height:1;margin-top:10px;color:var(--or)}
+.idx span{font-size:22px;color:#bbb}
+.why{font-size:14px;line-height:1.55;color:#444;margin-top:12px}
+.hl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a8a8a;margin-top:22px}
+.side ul{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.side li{font-size:12px;padding-left:18px;position:relative}
+.side li::before{content:"";position:absolute;left:0;top:3px;width:10px;height:10px;border-radius:3px;border:2px solid var(--or)}
+.pn{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.pn a{font-size:11px;font-weight:600;border:1.5px solid var(--ink);border-radius:999px;padding:7px 14px}
+.pn a:nth-child(2){background:var(--ink);color:#fff}
+
+/* flow maps */
+.flow{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:34px}
+.tw{display:flex;flex-direction:column;align-items:center}
+.flow{align-items:flex-start}.flow .arr{margin-top:120px}
+.tn{font-size:9.5px;line-height:1.4;color:#555;margin-top:5px;text-align:center}
+.tl{font-size:11px;margin-top:10px;font-weight:600}.tl b{color:var(--or)}
+.arr{font-size:20px;color:var(--g3)}
+</style></head>
+<body><section class="page cover">
+  <div class="kick">Musopia · Senior Product Designer application · Kira Krysanov</div>
+  <h1>First 30 Days<br><span>Wireframes &amp; clickable prototype</span></h1>
+  <p class="lead">15 screens across onboarding, the daily practice loop and the payoff moments. These are the low-fidelity companion to the "First 30 Days" concept deck.</p>
+  <div class="how">
+    <div><b>1</b><span>Open this PDF in a viewer that supports links: Preview, Acrobat or a browser.</span></div>
+    <div><b>2</b><span>Jump to <a class="hs inl" href="#s01" style="">▶ Start the prototype</a> or pick a screen from the flow maps.</span></div>
+    <div><b>3</b><span>Tap anything outlined in <i class="o">orange</i>. That's a hotspot. "Flow map" on every page brings you back.</span></div>
+  </div>
+  <div class="mini"><a href="#s01"><b>01</b> Welcome</a><a href="#s02"><b>02</b> Experience</a><a href="#s03"><b>03</b> Why song</a><a href="#s04"><b>04</b> Path & rhythm</a><a href="#s05"><b>05</b> Mic priming</a><a href="#s06"><b>06</b> Today</a><a href="#s07"><b>07</b> Lesson video</a><a href="#s08"><b>08</b> OMC · ready</a><a href="#s09"><b>09</b> OMC · counting</a><a href="#s10"><b>10</b> OMC · result</a><a href="#s11"><b>11</b> Session done</a><a href="#s12"><b>12</b> Song unlocked</a><a href="#s13"><b>13</b> Play-along</a><a href="#s14"><b>14</b> Comeback</a><a href="#s15"><b>15</b> Progress</a></div>
+  <div class="disc">Independent, unsolicited concept, not affiliated with Musopia or JustinGuitar. Song titles and data are illustrative.</div>
+</section><section class="page" id="flow1">
+  <div class="kick">Flow map 1 of 3</div><h2>Onboarding</h2><p class="lead s">From install to a personal path in under two minutes</p>
+  <div class="flow"><a class="tw" href="#s01"><div class="ph th" style="zoom:0.52"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:26px;text-align:center">
+  <div class="box" style="height:210px">Justin intro video · 20 s</div>
+  <div class="h" style="margin-top:20px">Learn guitar with Justin</div>
+  <div class="sub" style="margin:8px 18px 0">Play your first real song in your first weeks.</div>
+</div>
+<div class="bottom"><span class="btn" style="">Get started</span><div class="link" style="margin-top:10px">I already have an account</div></div></div></div><div class="tl"><b>01</b> Welcome</div><div class="tn" style="width:150px">Lead with the teacher people trust. Justin's face and voice come before any form.</div></a><span class="arr">→</span><a class="tw" href="#s02"><div class="ph th" style="zoom:0.52"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad"><div class="prog"><div style="width:25%"></div></div><div class="cap">Step 1 of 4</div>
+  <div class="h" style="margin-top:12px">Have you played guitar before?</div>
+  <div class="opts" style="margin-top:16px">
+    <span class="opt sel" style=""><b>Never</b><span>Start from your first chord</span></span>
+    <div class="opt"><b>A few chords</b><span>Start at Module 3</span></div>
+    <div class="opt"><b>I play songs</b><span>Take a 2-min check</span></div>
+  </div>
+</div></div></div><div class="tl"><b>02</b> Experience</div><div class="tn" style="width:150px">One question sets the starting module, so beginners are never shown content above their level.</div></a><span class="arr">→</span><a class="tw" href="#s03"><div class="ph th" style="zoom:0.52"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad"><div class="prog"><div style="width:50%"></div></div><div class="cap">Step 2 of 4</div>
+  <div class="h" style="margin-top:12px">Which song made you pick up a guitar?</div>
+  <div class="search">⌕  Search 1,500+ songs</div>
+  <div class="cap" style="margin-top:12px">Great first songs</div>
+  <div class="opts">
+    <div class="opt row sel"><span class="art"></span><span style="flex:1"><b>Three Little Birds</b><span>A · D · E · ~3 weeks</span></span><span class="tick">✓</span></div>
+    <div class="opt row"><span class="art"></span><span style="flex:1"><b>Knockin' on Heaven's Door</b><span>G · D · Am · C · ~5 weeks</span></span></div>
+    <div class="opt row"><span class="art"></span><span style="flex:1"><b>Wonderwall</b><span>Em · G · D · A · ~6 weeks</span></span></div>
+  </div>
+</div>
+<div class="bottom"><span class="btn" style="">Build my path</span></div></div></div><div class="tl"><b>03</b> Why song</div><div class="tn" style="width:150px">The user's own reason becomes the goal. The estimate is honest, and the easy songs are listed first.</div></a><span class="arr">→</span><a class="tw" href="#s04"><div class="ph th" style="zoom:0.52"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad"><div class="prog"><div style="width:75%"></div></div><div class="cap">Step 3 of 4</div>
+  <div class="h" style="margin-top:12px">Your path to Three Little Birds</div>
+  <div class="card" style="margin-top:12px"><div class="path"><span class="ch ch-now">A</span><span class="pl "></span><span class="ch ch-lock">D</span><span class="pl "></span><span class="ch ch-lock">E</span><span class="pl "></span><span class="ch ch-lock">♪</span></div>
+    <div class="sub" style="margin-top:8px">3 chords · about 3 weeks at 10 min a day</div></div>
+  <div class="h2" style="margin-top:18px">How many days a week can you play?</div>
+  <div class="seg"><span>2</span><span>3</span><span class="sel">4</span><span>5</span></div>
+  <div class="sub" style="margin-top:8px">Rest days are good for sore fingertips. Missing a day never resets anything.</div>
+</div>
+<div class="bottom"><span class="btn" style="">Continue</span></div></div></div><div class="tl"><b>04</b> Path & rhythm</div><div class="tn" style="width:150px">The path makes the curriculum visible. A weekly rhythm with no streak to break replaces daily streaks.</div></a><span class="arr">→</span><a class="tw" href="#s05"><div class="ph th" style="zoom:0.52"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad" style="text-align:center"><div class="prog"><div style="width:100%"></div></div><div class="cap">Step 4 of 4</div>
+  <div class="circle" style="margin:26px auto 0">🎙</div>
+  <div class="h" style="margin-top:16px">Let Justin's exercises listen</div>
+  <div class="sub" style="margin:8px 6px 0">The app counts your chord changes so you can keep both hands on the guitar. Audio never leaves your phone.</div>
+</div>
+<div class="bottom"><span class="btn" style="">Allow microphone</span><span class="link" style="">Not now: I'll tap to count</span></div></div></div><div class="tl"><b>05</b> Mic priming</div><div class="tn" style="width:150px">Explain the mic before the system prompt appears. Saying no still leads to a complete experience.</div></a></div>
+  <div class="foot"><span>First 30 Days · wireframes · Kira Krysanov</span><span>Tap a screen to open it in the prototype</span></div>
+</section><section class="page" id="flow2">
+  <div class="kick">Flow map 2 of 3</div><h2>Daily practice loop</h2><p class="lead s">Ten focused minutes, with progress made visible</p>
+  <div class="flow"><a class="tw" href="#s06"><div class="ph th" style="zoom:0.45"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:8px">
+  <div class="cap">Tuesday</div><div class="h">Hey Sam</div>
+  <span class="card blk" style="margin-top:10px"><div class="cap">Your path to</div><b style="font-size:13px">Three Little Birds</b><div class="path"><span class="ch ch-done">A</span><span class="pl pl-on"></span><span class="ch ch-done">D</span><span class="pl "></span><span class="ch ch-now">E</span><span class="pl "></span><span class="ch ch-lock">♪</span></div><div class="sub" style="margin-top:6px">1 chord to go</div></span>
+  <div class="card" style="margin-top:8px">
+    <div class="row sp"><b>Today · 10 min</b><span class="cap">Module 2</span></div>
+    <div class="li"><span>▶ Meet the E chord</span><span>3m</span></div>
+    <div class="li"><span>⏱ One Minute Changes · D ⇄ E</span><span>3m</span></div>
+    <div class="li"><span>♪ Strum along · A–D</span><span>4m</span></div>
+    <span class="btn" style="margin-top:8px;padding:9px">Start session</span>
+  </div>
+  <div class="card row" style="margin-top:8px;gap:10px"><span class="dots"><i class="f"></i><i class="f"></i><i class="o"></i><i></i></span><span class="sub"><b>2 of 4 days</b> this week</span></div>
+  <span class="link" style="margin-top:8px">Preview: what a comeback looks like ›</span>
+</div>
+<div class="tabbar"><div class="tab on"><i></i>Today</div><div class="tab "><i></i>Course</div><div class="tab "><i></i>Songs</div><span class="tab "><i></i>Progress</span></div></div></div><div class="tl"><b>06</b> Today</div><div class="tn" style="width:130px">Home is the Practice Assistant turned into one button. The path card shows the goal song every day.</div></a><span class="arr">→</span><a class="tw" href="#s07"><div class="ph th" style="zoom:0.45"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt">1 of 3 · Lesson</span><span class="icon ghost">✕</span></div>
+<div class="box" style="height:178px;margin:0 0 0 0;border-radius:0">Justin · Meet the E chord · 3:12</div>
+<div class="pad">
+  <div class="h2" style="margin-top:12px">The E chord</div>
+  <div class="row" style="gap:12px;margin-top:10px;align-items:flex-start">
+    <div class="box" style="width:96px;height:112px;flex:none">Chord diagram</div>
+    <div style="flex:1"><div class="ln" style="width:95%"></div><div class="ln" style="width:80%"></div><div class="ln" style="width:90%"></div><div class="ln" style="width:60%"></div><div class="tip">Tip: lots of beginners lift finger 1 too early. Keep it down.</div></div>
+  </div>
+</div>
+<div class="bottom"><span class="btn" style="">Next: One Minute Changes</span></div></div></div><div class="tl"><b>07</b> Lesson video</div><div class="tn" style="width:130px">Same lesson content as the website, so there are no dead references to videos missing from the app.</div></a><span class="arr">→</span><a class="tw" href="#s08"><div class="ph th" style="zoom:0.45"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt">2 of 3 · One Minute Changes</span><span class="icon ghost">?</span></div>
+<div class="pad" style="text-align:center">
+  <div class="row" style="justify-content:center;gap:14px;margin-top:22px"><span class="ch ch-big">D</span><span style="font-size:20px">⇄</span><span class="ch ch-big">E</span></div>
+  <div class="sub" style="margin-top:14px">Switch between D and E as many times as you can in one minute. Clean changes only.</div>
+  <div class="ring" style="margin:22px auto 0"><span>1:00</span></div>
+  <div class="row sp card" style="margin-top:18px"><span class="sub">Your best</span><b>22</b><span class="sub">Justin's goal</span><b>60</b></div>
+</div>
+<div class="bottom"><span class="btn" style="">Start (3·2·1)</span><span class="link" style="">Tap to count instead</span></div></div></div><div class="tl"><b>08</b> OMC · ready</div><div class="tn" style="width:130px">A clear goal, a personal best and a fallback that doesn't need the mic, all before the timer starts.</div></a><span class="arr">→</span><a class="tw" href="#s09"><div class="ph th" style="zoom:0.45"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon ghost"></span><span class="navt">Listening…</span><span class="icon ghost"></span></div>
+<div class="pad" style="text-align:center">
+  <div class="row" style="justify-content:center;gap:14px;margin-top:10px"><span class="ch ch-lock big">D</span><span style="font-size:20px">⇄</span><span class="ch ch-done big">E</span></div>
+  <div class="ring live" style="margin:22px auto 0"><span>27</span><em>0:21 left</em></div>
+  <div class="wave"><i style="height:8px"></i><i style="height:16px"></i><i style="height:24px"></i><i style="height:12px"></i><i style="height:20px"></i><i style="height:9px"></i><i style="height:18px"></i><i style="height:25px"></i><i style="height:11px"></i><i style="height:6px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:8px"></i><i style="height:14px"></i></div>
+  <div class="cap" style="margin-top:6px">E sounds clean ✓</div>
+  <div class="card row sp" style="margin-top:14px"><span class="sub">On pace for</span><b>+5 vs best</b></div>
+</div>
+<div class="bottom"><span class="btn ghost" style="">Simulate: timer ends</span></div></div></div><div class="tl"><b>09</b> OMC · counting</div><div class="tn" style="width:130px">Hands stay on the guitar. When detection is unsure it doesn't count and doesn't scold.</div></a><span class="arr">→</span><a class="tw" href="#s10"><div class="ph th" style="zoom:0.45"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon ghost"></span><span class="navt"></span><span class="icon ghost">✕</span></div>
+<div class="pad" style="text-align:center">
+  <div class="cap" style="margin-top:4px">New personal best</div>
+  <div class="big">31</div>
+  <div class="sub">D ⇄ E changes in one minute · +9 since Friday</div>
+  <div class="card" style="margin-top:14px;text-align:left">
+    <div class="row sp"><b>Last 7 tries</b><span class="cap">changes / min</span></div>
+    <svg viewBox="0 0 220 70" width="100%" style="margin-top:6px"><line x1="0" y1="62" x2="220" y2="62" stroke="#ccc"/><polyline points="6,52 40,48 74,46 108,40 142,34 176,30 212,18" fill="none" stroke="#141414" stroke-width="2"/><circle cx="212" cy="18" r="4" fill="#FF7A00"/></svg>
+  </div>
+  <div class="quote">"Over 30 and the shapes start to become automatic. Lovely work." (Justin)</div>
+</div>
+<div class="bottom"><span class="btn" style="">Continue</span></div></div></div><div class="tl"><b>10</b> OMC · result</div><div class="tn" style="width:130px">Turns progress you'd never notice into a number and a line. The only comparison is with the learner's own past.</div></a><span class="arr">→</span><a class="tw" href="#s11"><div class="ph th" style="zoom:0.45"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="text-align:center;padding-top:30px">
+  <div class="circle">✓</div>
+  <div class="h" style="margin-top:14px">Session done</div>
+  <div class="sub">10 min · that's 3 of 4 days this week</div>
+  <div class="card" style="margin-top:16px;text-align:left">
+    <div class="cap">Your path</div><div class="path"><span class="ch ch-done">A</span><span class="pl pl-on"></span><span class="ch ch-done">D</span><span class="pl pl-on"></span><span class="ch ch-done">E</span><span class="pl "></span><span class="ch ch-now">♪</span></div>
+    <div class="sub" style="margin-top:8px"><b>E is in the bag.</b> You know every chord in Three Little Birds.</div>
+  </div>
+</div>
+<div class="bottom"><span class="btn" style="">Unlock my song</span><span class="link" style="">Back to Today</span></div></div></div><div class="tl"><b>11</b> Session done</div><div class="tn" style="width:130px">Every session ends by showing how it moved the user along the path, which links the effort to the goal.</div></a></div>
+  <div class="foot"><span>First 30 Days · wireframes · Kira Krysanov</span><span>Tap a screen to open it in the prototype</span></div>
+</section><section class="page" id="flow3">
+  <div class="kick">Flow map 3 of 3</div><h2>Payoff & return</h2><p class="lead s">The first song, the play-along, coming back and progress</p>
+  <div class="flow"><a class="tw" href="#s12"><div class="ph th" style="zoom:0.58"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="text-align:center;padding-top:22px">
+  <div class="box" style="height:100px">Celebration · waveform + sparkle animation</div>
+  <div class="cap" style="margin-top:14px">✦ Song unlocked ✦</div>
+  <div class="h">Three Little Birds</div>
+  <div class="row" style="justify-content:center;gap:6px;margin-top:10px"><span class="ch ch-done">A</span><span class="ch ch-done">D</span><span class="ch ch-done">E</span></div>
+  <div class="card" style="margin-top:14px;text-align:left">
+    <div class="row sp"><span class="sub">Tempo</span><b>70% → 100%</b></div>
+    <div class="row sp" style="margin-top:6px"><span class="sub">Strum</span><b>↓ ↓ ↓ ↓</b></div>
+    <div class="row sp" style="margin-top:6px"><span class="sub">Band &amp; vocals</span><b>On</b></div>
+  </div>
+</div>
+<div class="bottom"><span class="btn" style="">Play with the band</span><div class="link">Share my first song</div></div></div></div><div class="tl"><b>12</b> Song unlocked</div><div class="tn" style="width:168px">The payoff. Instant Play starts slow so the first play-through feels like a success.</div></a><span class="arr">→</span><a class="tw" href="#s13"><div class="ph th" style="zoom:0.58"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon" style="">‹</span><span class="navt">Three Little Birds</span><span class="icon ghost">⚙</span></div>
+<div class="pad">
+  <div class="row" style="gap:6px;margin-top:4px"><span class="ch ch-done">A</span><span class="cap">next →</span><span class="ch ch-lock">D</span></div>
+  <div class="lyr"><span class="c">A</span>Don't worry about a thing</div>
+  <div class="lyr now"><span class="c">D</span>'Cause every little thing <span class="c">A</span>gonna be all right</div>
+  <div class="lyr dim">Singin' don't worry about a thing</div>
+  <div class="lyr dim"><span class="c">D</span>'Cause every little thing <span class="c">A</span>gonna be…</div>
+  <div class="card" style="margin-top:12px"><div class="row sp"><span class="sub">Tempo</span><b>70%</b></div><div class="track"><div style="width:70%"></div></div>
+  <div class="row sp" style="margin-top:8px"><span class="sub">Simplified chords</span><span class="tog on"></span></div></div>
+</div>
+<div class="bottom row" style="gap:8px"><span class="btn ghost" style="flex:1">❚❚</span><span class="btn" style="flex:3">Finish song</span></div></div></div><div class="tl"><b>13</b> Play-along</div><div class="tn" style="width:168px">The existing play-along player with Instant Play. Simplified chords are always available, so there are no dead ends.</div></a><span class="arr">→</span><a class="tw" href="#s14"><div class="ph th" style="zoom:0.58"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:6px">
+  <div class="notif"><span class="appi"></span><div><div class="row sp"><b>JustinGuitar</b><span class="cap">now</span></div>Your fingers remember more than you think. Two minutes of D ⇄ E?</div></div>
+  <div style="text-align:center;margin-top:22px"><div class="h">Welcome back, Sam</div>
+  <div class="sub" style="margin-top:6px">Six days off is normal, and your calluses are still there.</div></div>
+  <div class="card" style="margin-top:14px"><b>2-minute warm-up</b><div class="sub">A ⇄ D, then strum at 60%</div><span class="btn" style="margin-top:8px;padding:9px">Ease back in</span></div>
+  <div class="card" style="margin-top:8px"><b>Want a lighter rhythm?</b><div class="seg" style="margin-top:8px"><span>2</span><span class="sel">3</span><span>4</span></div></div>
+  <div class="cap" style="text-align:center;margin-top:10px">Your path progress is safe · 2 of 3 chords</div>
+</div></div></div><div class="tl"><b>14</b> Comeback</div><div class="tn" style="width:168px">Re-entry is shorter than a normal session. No streak shaming, and lowering the goal counts as a success.</div></a><span class="arr">→</span><a class="tw" href="#s15"><div class="ph th" style="zoom:0.58"><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:8px">
+  <div class="cap">Your progress</div><div class="h">2.4× faster than on day 1</div>
+  <div class="card" style="margin-top:10px"><div class="row sp"><b>Changes / min</b><span class="cap">A⇄D · D⇄E</span></div>
+    <svg viewBox="0 0 220 80" width="100%" style="margin-top:6px"><line x1="0" y1="72" x2="220" y2="72" stroke="#ccc"/><polyline points="4,62 30,60 56,56 82,54 108,46 134,42 160,36 186,30 214,22" fill="none" stroke="#141414" stroke-width="2"/><polyline points="108,66 134,58 160,52 186,44 214,40" fill="none" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/></svg></div>
+  <div class="row" style="gap:8px;margin-top:8px"><div class="card" style="flex:1"><div class="big s">3</div><div class="cap">chords you own</div></div><div class="card" style="flex:1"><div class="big s">2h 40</div><div class="cap">played this month</div></div></div>
+  <div class="card row" style="margin-top:8px;gap:8px"><span class="art"></span><span class="sub"><b>Songs you can play:</b> Three Little Birds</span></div>
+  <div class="cap" style="margin-top:8px;text-align:center">✓ Synced with justinguitar.com · 2 min ago</div>
+</div>
+<div class="tabbar"><span class="tab "><i></i>Today</span><div class="tab "><i></i>Course</div><div class="tab "><i></i>Songs</div><div class="tab on"><i></i>Progress</div></div></div></div><div class="tl"><b>15</b> Progress</div><div class="tn" style="width:168px">Every skill shown is one the app actually measures. The sync status answers the most common store complaint.</div></a></div>
+  <div class="foot"><span>First 30 Days · wireframes · Kira Krysanov</span><span>Tap a screen to open it in the prototype</span></div>
+</section><section class="page proto" id="s01">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:26px;text-align:center">
+  <div class="box" style="height:210px">Justin intro video · 20 s</div>
+  <div class="h" style="margin-top:20px">Learn guitar with Justin</div>
+  <div class="sub" style="margin:8px 18px 0">Play your first real song in your first weeks.</div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s02" style="">Get started</a><div class="link" style="margin-top:10px">I already have an account</div></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Onboarding</div>
+    <div class="idx">01<span>/15</span></div>
+    <h2>Welcome</h2>
+    <p class="why">Lead with the teacher people trust. Justin's face and voice come before any form.</p>
+    <div class="hl">Hotspots</div><ul><li>Get started → Experience</li></ul>
+    <div class="pn"><a href="#flow1">Flow map</a><a href="#s02">Experience ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s02">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s01" style="">‹</a><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad"><div class="prog"><div style="width:25%"></div></div><div class="cap">Step 1 of 4</div>
+  <div class="h" style="margin-top:12px">Have you played guitar before?</div>
+  <div class="opts" style="margin-top:16px">
+    <a class="hs opt sel" href="#s03" style=""><b>Never</b><span>Start from your first chord</span></a>
+    <div class="opt"><b>A few chords</b><span>Start at Module 3</span></div>
+    <div class="opt"><b>I play songs</b><span>Take a 2-min check</span></div>
+  </div>
+</div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Onboarding</div>
+    <div class="idx">02<span>/15</span></div>
+    <h2>Experience</h2>
+    <p class="why">One question sets the starting module, so beginners are never shown content above their level.</p>
+    <div class="hl">Hotspots</div><ul><li>Never → Why song</li></ul>
+    <div class="pn"><a href="#s01">‹ Welcome</a><a href="#flow1">Flow map</a><a href="#s03">Why song ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s03">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s02" style="">‹</a><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad"><div class="prog"><div style="width:50%"></div></div><div class="cap">Step 2 of 4</div>
+  <div class="h" style="margin-top:12px">Which song made you pick up a guitar?</div>
+  <div class="search">⌕  Search 1,500+ songs</div>
+  <div class="cap" style="margin-top:12px">Great first songs</div>
+  <div class="opts">
+    <div class="opt row sel"><span class="art"></span><span style="flex:1"><b>Three Little Birds</b><span>A · D · E · ~3 weeks</span></span><span class="tick">✓</span></div>
+    <div class="opt row"><span class="art"></span><span style="flex:1"><b>Knockin' on Heaven's Door</b><span>G · D · Am · C · ~5 weeks</span></span></div>
+    <div class="opt row"><span class="art"></span><span style="flex:1"><b>Wonderwall</b><span>Em · G · D · A · ~6 weeks</span></span></div>
+  </div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s04" style="">Build my path</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Onboarding</div>
+    <div class="idx">03<span>/15</span></div>
+    <h2>Why song</h2>
+    <p class="why">The user's own reason becomes the goal. The estimate is honest, and the easy songs are listed first.</p>
+    <div class="hl">Hotspots</div><ul><li>Build my path → Path preview</li></ul>
+    <div class="pn"><a href="#s02">‹ Experience</a><a href="#flow1">Flow map</a><a href="#s04">Path & rhythm ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s04">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s03" style="">‹</a><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad"><div class="prog"><div style="width:75%"></div></div><div class="cap">Step 3 of 4</div>
+  <div class="h" style="margin-top:12px">Your path to Three Little Birds</div>
+  <div class="card" style="margin-top:12px"><div class="path"><span class="ch ch-now">A</span><span class="pl "></span><span class="ch ch-lock">D</span><span class="pl "></span><span class="ch ch-lock">E</span><span class="pl "></span><span class="ch ch-lock">♪</span></div>
+    <div class="sub" style="margin-top:8px">3 chords · about 3 weeks at 10 min a day</div></div>
+  <div class="h2" style="margin-top:18px">How many days a week can you play?</div>
+  <div class="seg"><span>2</span><span>3</span><span class="sel">4</span><span>5</span></div>
+  <div class="sub" style="margin-top:8px">Rest days are good for sore fingertips. Missing a day never resets anything.</div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s05" style="">Continue</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Onboarding</div>
+    <div class="idx">04<span>/15</span></div>
+    <h2>Path & rhythm</h2>
+    <p class="why">The path makes the curriculum visible. A weekly rhythm with no streak to break replaces daily streaks.</p>
+    <div class="hl">Hotspots</div><ul><li>Continue → Mic priming</li></ul>
+    <div class="pn"><a href="#s03">‹ Why song</a><a href="#flow1">Flow map</a><a href="#s05">Mic priming ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s05">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s04" style="">‹</a><span class="navt"></span><span class="icon ghost"></span></div>
+<div class="pad" style="text-align:center"><div class="prog"><div style="width:100%"></div></div><div class="cap">Step 4 of 4</div>
+  <div class="circle" style="margin:26px auto 0">🎙</div>
+  <div class="h" style="margin-top:16px">Let Justin's exercises listen</div>
+  <div class="sub" style="margin:8px 6px 0">The app counts your chord changes so you can keep both hands on the guitar. Audio never leaves your phone.</div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s06" style="">Allow microphone</a><a class="hs link" href="#s06" style="">Not now: I'll tap to count</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Onboarding</div>
+    <div class="idx">05<span>/15</span></div>
+    <h2>Mic priming</h2>
+    <p class="why">Explain the mic before the system prompt appears. Saying no still leads to a complete experience.</p>
+    <div class="hl">Hotspots</div><ul><li>Allow → Today</li><li>Not now → Today</li></ul>
+    <div class="pn"><a href="#s04">‹ Path & rhythm</a><a href="#flow1">Flow map</a><a href="#s06">Today ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s06">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:8px">
+  <div class="cap">Tuesday</div><div class="h">Hey Sam</div>
+  <a class="hs card blk" href="#s12" style="margin-top:10px"><div class="cap">Your path to</div><b style="font-size:13px">Three Little Birds</b><div class="path"><span class="ch ch-done">A</span><span class="pl pl-on"></span><span class="ch ch-done">D</span><span class="pl "></span><span class="ch ch-now">E</span><span class="pl "></span><span class="ch ch-lock">♪</span></div><div class="sub" style="margin-top:6px">1 chord to go</div></a>
+  <div class="card" style="margin-top:8px">
+    <div class="row sp"><b>Today · 10 min</b><span class="cap">Module 2</span></div>
+    <div class="li"><span>▶ Meet the E chord</span><span>3m</span></div>
+    <div class="li"><span>⏱ One Minute Changes · D ⇄ E</span><span>3m</span></div>
+    <div class="li"><span>♪ Strum along · A–D</span><span>4m</span></div>
+    <a class="hs btn" href="#s07" style="margin-top:8px;padding:9px">Start session</a>
+  </div>
+  <div class="card row" style="margin-top:8px;gap:10px"><span class="dots"><i class="f"></i><i class="f"></i><i class="o"></i><i></i></span><span class="sub"><b>2 of 4 days</b> this week</span></div>
+  <a class="hs link" href="#s14" style="margin-top:8px">Preview: what a comeback looks like ›</a>
+</div>
+<div class="tabbar"><div class="tab on"><i></i>Today</div><div class="tab "><i></i>Course</div><div class="tab "><i></i>Songs</div><a class="hs tab " href="#s15"><i></i>Progress</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Daily practice loop</div>
+    <div class="idx">06<span>/15</span></div>
+    <h2>Today</h2>
+    <p class="why">Home is the Practice Assistant turned into one button. The path card shows the goal song every day.</p>
+    <div class="hl">Hotspots</div><ul><li>Start session → Lesson</li><li>Path card → Song unlocked (demo shortcut)</li><li>Progress tab</li><li>Comeback preview</li></ul>
+    <div class="pn"><a href="#s05">‹ Mic priming</a><a href="#flow2">Flow map</a><a href="#s07">Lesson video ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s07">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s06" style="">‹</a><span class="navt">1 of 3 · Lesson</span><span class="icon ghost">✕</span></div>
+<div class="box" style="height:178px;margin:0 0 0 0;border-radius:0">Justin · Meet the E chord · 3:12</div>
+<div class="pad">
+  <div class="h2" style="margin-top:12px">The E chord</div>
+  <div class="row" style="gap:12px;margin-top:10px;align-items:flex-start">
+    <div class="box" style="width:96px;height:112px;flex:none">Chord diagram</div>
+    <div style="flex:1"><div class="ln" style="width:95%"></div><div class="ln" style="width:80%"></div><div class="ln" style="width:90%"></div><div class="ln" style="width:60%"></div><div class="tip">Tip: lots of beginners lift finger 1 too early. Keep it down.</div></div>
+  </div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s08" style="">Next: One Minute Changes</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Daily practice loop</div>
+    <div class="idx">07<span>/15</span></div>
+    <h2>Lesson video</h2>
+    <p class="why">Same lesson content as the website, so there are no dead references to videos missing from the app.</p>
+    <div class="hl">Hotspots</div><ul><li>Next → One Minute Changes</li></ul>
+    <div class="pn"><a href="#s06">‹ Today</a><a href="#flow2">Flow map</a><a href="#s08">OMC · ready ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s08">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s07" style="">‹</a><span class="navt">2 of 3 · One Minute Changes</span><span class="icon ghost">?</span></div>
+<div class="pad" style="text-align:center">
+  <div class="row" style="justify-content:center;gap:14px;margin-top:22px"><span class="ch ch-big">D</span><span style="font-size:20px">⇄</span><span class="ch ch-big">E</span></div>
+  <div class="sub" style="margin-top:14px">Switch between D and E as many times as you can in one minute. Clean changes only.</div>
+  <div class="ring" style="margin:22px auto 0"><span>1:00</span></div>
+  <div class="row sp card" style="margin-top:18px"><span class="sub">Your best</span><b>22</b><span class="sub">Justin's goal</span><b>60</b></div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s09" style="">Start (3·2·1)</a><a class="hs link" href="#s09" style="">Tap to count instead</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Daily practice loop</div>
+    <div class="idx">08<span>/15</span></div>
+    <h2>OMC · ready</h2>
+    <p class="why">A clear goal, a personal best and a fallback that doesn't need the mic, all before the timer starts.</p>
+    <div class="hl">Hotspots</div><ul><li>Start → Counting</li></ul>
+    <div class="pn"><a href="#s07">‹ Lesson video</a><a href="#flow2">Flow map</a><a href="#s09">OMC · counting ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s09">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon ghost"></span><span class="navt">Listening…</span><span class="icon ghost"></span></div>
+<div class="pad" style="text-align:center">
+  <div class="row" style="justify-content:center;gap:14px;margin-top:10px"><span class="ch ch-lock big">D</span><span style="font-size:20px">⇄</span><span class="ch ch-done big">E</span></div>
+  <div class="ring live" style="margin:22px auto 0"><span>27</span><em>0:21 left</em></div>
+  <div class="wave"><i style="height:8px"></i><i style="height:16px"></i><i style="height:24px"></i><i style="height:12px"></i><i style="height:20px"></i><i style="height:9px"></i><i style="height:18px"></i><i style="height:25px"></i><i style="height:11px"></i><i style="height:6px"></i><i style="height:15px"></i><i style="height:21px"></i><i style="height:8px"></i><i style="height:14px"></i></div>
+  <div class="cap" style="margin-top:6px">E sounds clean ✓</div>
+  <div class="card row sp" style="margin-top:14px"><span class="sub">On pace for</span><b>+5 vs best</b></div>
+</div>
+<div class="bottom"><a class="hs btn ghost" href="#s10" style="">Simulate: timer ends</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Daily practice loop</div>
+    <div class="idx">09<span>/15</span></div>
+    <h2>OMC · counting</h2>
+    <p class="why">Hands stay on the guitar. When detection is unsure it doesn't count and doesn't scold.</p>
+    <div class="hl">Hotspots</div><ul><li>Timer ends → Result</li></ul>
+    <div class="pn"><a href="#s08">‹ OMC · ready</a><a href="#flow2">Flow map</a><a href="#s10">OMC · result ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s10">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><span class="icon ghost"></span><span class="navt"></span><span class="icon ghost">✕</span></div>
+<div class="pad" style="text-align:center">
+  <div class="cap" style="margin-top:4px">New personal best</div>
+  <div class="big">31</div>
+  <div class="sub">D ⇄ E changes in one minute · +9 since Friday</div>
+  <div class="card" style="margin-top:14px;text-align:left">
+    <div class="row sp"><b>Last 7 tries</b><span class="cap">changes / min</span></div>
+    <svg viewBox="0 0 220 70" width="100%" style="margin-top:6px"><line x1="0" y1="62" x2="220" y2="62" stroke="#ccc"/><polyline points="6,52 40,48 74,46 108,40 142,34 176,30 212,18" fill="none" stroke="#141414" stroke-width="2"/><circle cx="212" cy="18" r="4" fill="#FF7A00"/></svg>
+  </div>
+  <div class="quote">"Over 30 and the shapes start to become automatic. Lovely work." (Justin)</div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s11" style="">Continue</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Daily practice loop</div>
+    <div class="idx">10<span>/15</span></div>
+    <h2>OMC · result</h2>
+    <p class="why">Turns progress you'd never notice into a number and a line. The only comparison is with the learner's own past.</p>
+    <div class="hl">Hotspots</div><ul><li>Continue → Session done</li></ul>
+    <div class="pn"><a href="#s09">‹ OMC · counting</a><a href="#flow2">Flow map</a><a href="#s11">Session done ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s11">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="text-align:center;padding-top:30px">
+  <div class="circle">✓</div>
+  <div class="h" style="margin-top:14px">Session done</div>
+  <div class="sub">10 min · that's 3 of 4 days this week</div>
+  <div class="card" style="margin-top:16px;text-align:left">
+    <div class="cap">Your path</div><div class="path"><span class="ch ch-done">A</span><span class="pl pl-on"></span><span class="ch ch-done">D</span><span class="pl pl-on"></span><span class="ch ch-done">E</span><span class="pl "></span><span class="ch ch-now">♪</span></div>
+    <div class="sub" style="margin-top:8px"><b>E is in the bag.</b> You know every chord in Three Little Birds.</div>
+  </div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s12" style="">Unlock my song</a><a class="hs link" href="#s06" style="">Back to Today</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Daily practice loop</div>
+    <div class="idx">11<span>/15</span></div>
+    <h2>Session done</h2>
+    <p class="why">Every session ends by showing how it moved the user along the path, which links the effort to the goal.</p>
+    <div class="hl">Hotspots</div><ul><li>Unlock my song → Song unlocked</li><li>Back to Today</li></ul>
+    <div class="pn"><a href="#s10">‹ OMC · result</a><a href="#flow2">Flow map</a><a href="#s12">Song unlocked ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s12">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="text-align:center;padding-top:22px">
+  <div class="box" style="height:100px">Celebration · waveform + sparkle animation</div>
+  <div class="cap" style="margin-top:14px">✦ Song unlocked ✦</div>
+  <div class="h">Three Little Birds</div>
+  <div class="row" style="justify-content:center;gap:6px;margin-top:10px"><span class="ch ch-done">A</span><span class="ch ch-done">D</span><span class="ch ch-done">E</span></div>
+  <div class="card" style="margin-top:14px;text-align:left">
+    <div class="row sp"><span class="sub">Tempo</span><b>70% → 100%</b></div>
+    <div class="row sp" style="margin-top:6px"><span class="sub">Strum</span><b>↓ ↓ ↓ ↓</b></div>
+    <div class="row sp" style="margin-top:6px"><span class="sub">Band &amp; vocals</span><b>On</b></div>
+  </div>
+</div>
+<div class="bottom"><a class="hs btn" href="#s13" style="">Play with the band</a><div class="link">Share my first song</div></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Payoff & return</div>
+    <div class="idx">12<span>/15</span></div>
+    <h2>Song unlocked</h2>
+    <p class="why">The payoff. Instant Play starts slow so the first play-through feels like a success.</p>
+    <div class="hl">Hotspots</div><ul><li>Play with the band → Play-along</li></ul>
+    <div class="pn"><a href="#s11">‹ Session done</a><a href="#flow3">Flow map</a><a href="#s13">Play-along ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s13">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="nav"><a class="hs icon" href="#s12" style="">‹</a><span class="navt">Three Little Birds</span><span class="icon ghost">⚙</span></div>
+<div class="pad">
+  <div class="row" style="gap:6px;margin-top:4px"><span class="ch ch-done">A</span><span class="cap">next →</span><span class="ch ch-lock">D</span></div>
+  <div class="lyr"><span class="c">A</span>Don't worry about a thing</div>
+  <div class="lyr now"><span class="c">D</span>'Cause every little thing <span class="c">A</span>gonna be all right</div>
+  <div class="lyr dim">Singin' don't worry about a thing</div>
+  <div class="lyr dim"><span class="c">D</span>'Cause every little thing <span class="c">A</span>gonna be…</div>
+  <div class="card" style="margin-top:12px"><div class="row sp"><span class="sub">Tempo</span><b>70%</b></div><div class="track"><div style="width:70%"></div></div>
+  <div class="row sp" style="margin-top:8px"><span class="sub">Simplified chords</span><span class="tog on"></span></div></div>
+</div>
+<div class="bottom row" style="gap:8px"><span class="btn ghost" style="flex:1">❚❚</span><a class="hs btn" href="#s06" style="flex:3">Finish song</a></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Payoff & return</div>
+    <div class="idx">13<span>/15</span></div>
+    <h2>Play-along</h2>
+    <p class="why">The existing play-along player with Instant Play. Simplified chords are always available, so there are no dead ends.</p>
+    <div class="hl">Hotspots</div><ul><li>Finish song → Today (next song on the path)</li></ul>
+    <div class="pn"><a href="#s12">‹ Song unlocked</a><a href="#flow3">Flow map</a><a href="#s14">Comeback ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s14">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:6px">
+  <div class="notif"><span class="appi"></span><div><div class="row sp"><b>JustinGuitar</b><span class="cap">now</span></div>Your fingers remember more than you think. Two minutes of D ⇄ E?</div></div>
+  <div style="text-align:center;margin-top:22px"><div class="h">Welcome back, Sam</div>
+  <div class="sub" style="margin-top:6px">Six days off is normal, and your calluses are still there.</div></div>
+  <div class="card" style="margin-top:14px"><b>2-minute warm-up</b><div class="sub">A ⇄ D, then strum at 60%</div><a class="hs btn" href="#s08" style="margin-top:8px;padding:9px">Ease back in</a></div>
+  <div class="card" style="margin-top:8px"><b>Want a lighter rhythm?</b><div class="seg" style="margin-top:8px"><span>2</span><span class="sel">3</span><span>4</span></div></div>
+  <div class="cap" style="text-align:center;margin-top:10px">Your path progress is safe · 2 of 3 chords</div>
+</div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Payoff & return</div>
+    <div class="idx">14<span>/15</span></div>
+    <h2>Comeback</h2>
+    <p class="why">Re-entry is shorter than a normal session. No streak shaming, and lowering the goal counts as a success.</p>
+    <div class="hl">Hotspots</div><ul><li>Ease back in → One Minute Changes</li></ul>
+    <div class="pn"><a href="#s13">‹ Play-along</a><a href="#flow3">Flow map</a><a href="#s15">Progress ›</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page proto" id="s15">
+  <div class="stage"><div class="ph "><div class="sc"><div class="sb"><span>9:41</span><span class="isl"></span><span>▮▮▮</span></div>
+<div class="pad" style="padding-top:8px">
+  <div class="cap">Your progress</div><div class="h">2.4× faster than on day 1</div>
+  <div class="card" style="margin-top:10px"><div class="row sp"><b>Changes / min</b><span class="cap">A⇄D · D⇄E</span></div>
+    <svg viewBox="0 0 220 80" width="100%" style="margin-top:6px"><line x1="0" y1="72" x2="220" y2="72" stroke="#ccc"/><polyline points="4,62 30,60 56,56 82,54 108,46 134,42 160,36 186,30 214,22" fill="none" stroke="#141414" stroke-width="2"/><polyline points="108,66 134,58 160,52 186,44 214,40" fill="none" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/></svg></div>
+  <div class="row" style="gap:8px;margin-top:8px"><div class="card" style="flex:1"><div class="big s">3</div><div class="cap">chords you own</div></div><div class="card" style="flex:1"><div class="big s">2h 40</div><div class="cap">played this month</div></div></div>
+  <div class="card row" style="margin-top:8px;gap:8px"><span class="art"></span><span class="sub"><b>Songs you can play:</b> Three Little Birds</span></div>
+  <div class="cap" style="margin-top:8px;text-align:center">✓ Synced with justinguitar.com · 2 min ago</div>
+</div>
+<div class="tabbar"><a class="hs tab " href="#s06"><i></i>Today</a><div class="tab "><i></i>Course</div><div class="tab "><i></i>Songs</div><div class="tab on"><i></i>Progress</div></div></div></div></div>
+  <div class="side">
+    <div class="kick">Prototype · Payoff & return</div>
+    <div class="idx">15<span>/15</span></div>
+    <h2>Progress</h2>
+    <p class="why">Every skill shown is one the app actually measures. The sync status answers the most common store complaint.</p>
+    <div class="hl">Hotspots</div><ul><li>Today tab</li></ul>
+    <div class="pn"><a href="#s14">‹ Comeback</a><a href="#flow3">Flow map</a></div>
+  </div>
+  <div class="foot"><span>First 30 Days · clickable prototype · Kira Krysanov</span><span>Orange outline = tap target</span></div>
+</section><section class="page cover end">
+  <h1>Thanks for clicking through.<br><span>Happy to walk you through it live.</span></h1>
+  <p class="lead">Kira Krysanov · kira.krysanov@gmail.com</p>
+  <p class="lead s">Next steps I'd take: test this flow with 5 or 6 beginners holding a real guitar, check mic detection accuracy with engineering, then A/B test the onboarding and the weekly rhythm.</p>
+</section></body></html>
