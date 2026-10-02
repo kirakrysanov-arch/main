@@ -118,6 +118,30 @@
   .ct2 p{font:500 14px/1.5 'Lato';color:var(--muted)}
   .ct2.add b{color:var(--teal-d)}
   .foot{padding:30px 0;text-align:center;font:600 13px 'Plus Jakarta Sans';color:#9aa0b8}
+  /* real reChanneld widget style */
+  .rw{background:#fff;border-radius:18px;font-family:'Lato',sans-serif;color:#111;text-align:center}
+  .rw .hd{font:800 26px 'Plus Jakarta Sans';letter-spacing:-.01em}
+  .rw .sb{font:500 13px 'Lato';color:#555;margin:6px 0 20px}
+  .rw .crumb{display:flex;justify-content:center;gap:8px;margin-bottom:14px}
+  .rw .cb{border:1.4px solid #cfcfcf;border-radius:100px;padding:6px 14px;font:700 12.5px 'Lato';color:#555}
+  .rw .cb.on{background:#6f6f6f;border-color:#6f6f6f;color:#fff}
+  .rw .subs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .rw .sp{border:1.4px solid #cfcfcf;border-radius:100px;padding:7px 15px;font:600 12.5px 'Lato';color:#444}
+  .rw .sp.on{background:#6f6f6f;border-color:#6f6f6f;color:#fff}
+  .rw .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+  .rw .cd{border:1.4px solid #e1e1e1;border-radius:12px;padding:26px 16px 14px;position:relative;display:flex;flex-direction:column;align-items:center}
+  .rw .badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#fff;border:1.4px solid #e1e1e1;border-radius:8px;padding:3px 9px;font:800 10.5px 'Lato';white-space:nowrap}
+  .rw .badge i{display:inline-block;width:12px;height:12px;border-radius:50%;background:#14c3a6;color:#fff;font-style:normal;font-size:8px;line-height:12px;margin-right:4px;vertical-align:-1px}
+  .rw .ico{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;margin-bottom:12px}
+  .rw .ico.k{background:#111}.rw .ico.m{background:#777}.rw .ico.l{background:#bdbdbd}
+  .rw .ct{font:700 17px 'Lato';margin-bottom:8px}
+  .rw .cx{font:500 12px/1.5 'Lato';color:#444;min-height:54px}
+  .rw .oh{font:500 11.5px 'Lato';color:#444;margin:10px 0 0}
+  .rw .btn{margin-top:auto;width:100%;border-radius:9px;padding:9px 8px;font:700 12.5px 'Lato';margin-top:14px}
+  .rw .btn.k{background:#111;color:#fff;box-shadow:0 0 0 2px #14c3a6}
+  .rw .btn.m{background:#6f6f6f;color:#fff}
+  .rw .btn.l{background:#d6d6d6;color:#fff}
+  .rw .ft{font:700 11.5px 'Lato';color:#333;margin-top:7px}
 </style>
 </head>
 <body>
@@ -128,20 +152,19 @@
   <div class="logo">RECHANNELD × DC THOMSON</div>
   <h1>Your website, exactly as it is.<br><em>Plus one front door</em> for subscribers.</h1>
   <p>We haven't redesigned anything. These are DC Thomson's own pages, with one reChanneld layer added. It greets subscribers, finds out what they need, and shows them the fastest way to get it done.</p>
-  <div class="pills"><span class="pill"><b>0</b> design changes</span><span class="pill"><b>1</b> line of code</span><span class="pill"><b>0</b> systems replaced</span><span class="pill">Configured by <b>your CX team</b></span></div>
+  <div class="pills"><span class="pill"><b>0</b> design changes</span><span class="pill"><b>Plug-and-play</b> widget</span><span class="pill"><b>0</b> systems replaced</span><span class="pill">Live in <b>a few days</b></span></div>
 </div></section>
 
 <!-- SCENE 1 -->
 <section class="scene"><div class="wrap">
   <div class="sh"><span class="sn">Scene 1 · Homepage</span></div>
   <div class="h2">A subscriber arrives. They now have somewhere to go.</div>
-  <div class="sub">Today the homepage serves advertisers, investors and job seekers, and nothing on it is for subscribers. reChanneld adds a small launcher that only speaks to readers. Nothing else on the page moves.</div>
+  <div class="sub">Today the homepage serves advertisers, investors and job seekers, and nothing on it is for subscribers. reChanneld adds one small “Subscriber help” button that opens the widget. It can also be embedded directly on a help or contact page. Nothing else on the page moves.</div>
   <div class="browser">
     <div class="bbar"><i></i><i></i><i></i><div class="url">dcthomson.co.uk</div></div>
     <div class="shot">
       <img src="img/dcs-home.jpg">
-      <div class="mk" style="right:340px;bottom:120px">1</div>
-      <div class="peek" style="right:24px;bottom:96px"><b>Subscriber?</b> Missing paper, billing or app help: sorted in 2 minutes, any time.</div>
+      <div class="mk" style="right:290px;bottom:34px">1</div>
       <div class="launch" style="right:24px;bottom:26px"><div class="ic">💬</div><div>Subscriber help<small>Usually sorted in 2 min</small></div></div>
     </div>
   </div>
@@ -149,28 +172,27 @@
 
 <!-- SCENE 2 -->
 <section class="scene"><div class="wrap">
-  <div class="sh"><span class="sn">Scene 2 · The front door opens</span></div>
-  <div class="h2">Title, topic, fastest route. Honest about times.</div>
-  <div class="sub">The subscriber picks their title and topic. reChanneld puts the fastest option first and shows real opening hours and wait times, so nobody has to guess which of the four phone lines to call.</div>
+  <div class="sh"><span class="sn">Scene 2 · The reChanneld widget opens</span></div>
+  <div class="h2">Topic, then the best channel, with the most popular choice highlighted.</div>
+  <div class="sub">The subscriber picks a topic (Delivery) and then their exact need (Paper didn't arrive). reChanneld shows the channels side by side, highlights the most popular choice, and is upfront about opening hours and waiting times. This is reChanneld's standard widget with DC Thomson's own topics.</div>
   <div class="browser">
     <div class="bbar"><i></i><i></i><i></i><div class="url">dcthomson.co.uk</div></div>
     <div class="shot">
       <img src="img/dcs-home.jpg">
       <div class="dim"></div>
-      <div class="panel" style="right:24px;top:24px">
-        <div class="mk" style="left:-50px;top:70px">2</div>
-        <div class="mk" style="left:-50px;top:230px">3</div>
-        <div class="mk" style="left:-50px;top:520px">4</div>
-        <div class="ph"><span class="t">Hi! What can we help with?</span><span class="x">✕</span></div>
-        <div class="ps">Which title do you read?</div>
-        <div class="tchips"><span class="tc on">The Courier</span><span class="tc">Press and Journal</span><span class="tc">Sunday Post</span><span class="tc">People's Friend</span><span class="tc">Beano</span><span class="tc">Puzzler</span><span class="tc">Other ▾</span></div>
-        <div class="opt rec"><div class="ic" style="background:#dcfbf6">📰</div><div><div class="t">My paper didn't arrive</div><div class="d">Report it, and we'll credit or replace it</div></div><span class="tg g">2 min · 24/7</span></div>
-        <div class="opt"><div class="ic" style="background:#e6eeff">💳</div><div><div class="t">Billing or payment dates</div><div class="d">See your schedule in My Account</div></div><span class="tg g">Self-service</span></div>
-        <div class="opt"><div class="ic" style="background:#fff1d6">🏖️</div><div><div class="t">Pause for holidays</div><div class="d">Set your dates in seconds</div></div><span class="tg g">1 min</span></div>
-        <div class="opt"><div class="ic" style="background:#efe5ff">📱</div><div><div class="t">App or e-edition help</div><div class="d">Step-by-step for your device</div></div><span class="tg g">3 min</span></div>
-        <div class="opt"><div class="ic" style="background:#ffe5dc">📞</div><div><div class="t">Something else</div><div class="d">Courier subscriptions: 0800 029 4956</div></div><span class="tg y">~4 min wait</span></div>
-        <div class="live"><span><i style="background:#0e8f6a"></i>Self-service: always open</span><span><i style="background:#0e8f6a"></i>Courier team: open until 18:00</span></div>
-        <div class="pw">powered by <b>reChanneld</b></div>
+      <div class="rw" style="position:absolute;left:50%;top:60px;transform:translateX(-50%);width:820px;padding:32px 36px 28px;box-shadow:0 30px 80px rgba(0,0,0,.45)">
+        <div class="mk" style="left:-56px;top:120px">2</div>
+        <div class="mk" style="left:-56px;top:300px">3</div>
+        <div class="mk" style="right:-56px;top:420px">4</div>
+        <div class="hd">👋 Hey, how may we help you?</div>
+        <div class="sb">Select the option that best describes your need, and we'll assist you to the best service channel.</div>
+        <div class="crumb"><span class="cb">‹ Back</span><span class="cb on">↺ Delivery</span></div>
+        <div class="subs"><span class="sp on">Paper didn't arrive</span><span class="sp">Late delivery</span><span class="sp">Holiday pause</span><span class="sp">Change address</span></div>
+        <div class="cards">
+          <div class="cd"><span class="badge"><i>✓</i>Most popular choice</span><div class="ico k">👤</div><div class="ct">My Account</div><div class="cx">Report a missing issue in My Account under “Deliveries”. We'll credit your account or send a replacement.</div><div class="btn k">Report missing paper</div><div class="ft">Resolve immediately</div></div>
+          <div class="cd"><div class="ico m">i</div><div class="ct">Learn more</div><div class="cx">Read what to do if your paper doesn't arrive, and how replacements and credits work.</div><div class="btn m">Read delivery help ↗</div><div class="ft">Login not required</div></div>
+          <div class="cd"><div class="ico l">📞</div><div class="ct">Phone support</div><div class="cx">You can also call The Courier subscriptions team about your delivery.</div><div class="oh">Open today 08:00 – 18:00</div><div class="btn l">Call us</div><div class="ft">Waiting time 5–10 minutes</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -179,81 +201,96 @@
 <!-- SCENE 3 -->
 <section class="scene"><div class="wrap">
   <div class="sh"><span class="sn">Scene 3 · The footer</span></div>
-  <div class="h2">“Cancellation Form” stays exactly where it is. Now it comes with options.</div>
-  <div class="sub">When a subscriber clicks Cancellation Form, reChanneld first shows the alternatives they might prefer, and cancelling is still one click away. The Contact box gets the same treatment: subscribers and advertisers each go to the right place.</div>
-  <div class="fwrap">
-    <div class="browser">
-      <div class="bbar"><i></i><i></i><i></i><div class="url">dcthomson.co.uk · footer</div></div>
-      <div class="shot">
-        <img src="img/dcs-footer.jpg">
-        <div class="hl" style="left:222px;top:142px;width:86px;height:26px"></div>
-        <div class="cursor" style="left:288px;top:152px">👆</div>
-        <div class="mk" style="left:180px;top:139px">5</div>
-        <div class="hl" style="left:374px;top:30px;width:332px;height:100px;border-color:var(--blue);box-shadow:0 0 0 5px rgba(11,79,208,.15)"></div>
-        <div class="mk" style="left:690px;top:10px">6</div>
+  <div class="h2">“Cancellation Form” stays where it is. Now it opens the right options.</div>
+  <div class="sub">Point the existing link at the widget's “Change or cancel” topic. Subscribers see that they can pause or switch to digital, and cancelling online is offered as an equal choice, never hidden. The Contact box can open the widget the same way, so subscribers, advertisers and press each find the right place.</div>
+  <div class="browser" style="margin-bottom:26px">
+    <div class="bbar"><i></i><i></i><i></i><div class="url">dcthomson.co.uk · footer</div></div>
+    <div class="shot" style="display:grid;grid-template-columns:560px 1fr;align-items:start;background:#fff">
+      <div style="position:relative">
+        <img src="img/dcs-footer.jpg" style="width:560px">
+        <div class="hl" style="left:168px;top:107px;width:66px;height:20px"></div>
+        <div class="cursor" style="left:218px;top:114px;font-size:24px">👆</div>
+        <div class="mk" style="left:126px;top:101px">5</div>
+        <div class="hl" style="left:285px;top:24px;width:252px;height:74px;border-color:var(--blue);box-shadow:0 0 0 5px rgba(11,79,208,.15)"></div>
+        <div class="mk" style="left:520px;top:6px">6</div>
+      </div>
+      <div class="rw" style="padding:26px 26px 22px;border-left:1px solid var(--line);border-radius:0">
+        <div class="hd" style="font-size:22px">👋 Hey, how may we help you?</div>
+        <div class="sb">Select the option that best describes your need, and we'll assist you to the best service channel.</div>
+        <div class="crumb"><span class="cb">‹ Back</span><span class="cb on">↺ Change or cancel</span></div>
+        <div class="subs" style="margin-bottom:22px"><span class="sp on">Cancel my subscription</span><span class="sp">Pause delivery</span><span class="sp">Switch to digital</span><span class="sp">Change payment</span></div>
+        <div class="cards">
+          <div class="cd"><div class="ico k">⏸</div><div class="ct">Pause instead</div><div class="cx">Going away or need a break? Pause in My Account and restart automatically.</div><div class="btn k">Pause in My Account</div><div class="ft">Resolve immediately</div></div>
+          <div class="cd"><div class="ico m">📱</div><div class="ct">Switch to digital</div><div class="cx">Keep reading on the app and e-edition, often for less.</div><div class="btn m">See digital offers ↗</div><div class="ft">Login not required</div></div>
+          <div class="cd"><div class="ico m">✕</div><div class="ct">Cancel online</div><div class="cx">Cancel your subscription with the online form. You'll get a confirmation e-mail.</div><div class="btn m">Cancel subscription</div><div class="ft">Takes about 2 minutes</div></div>
+        </div>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:18px">
-      <div class="panel" style="position:relative;width:auto;box-shadow:0 20px 50px rgba(12,13,18,.18)">
-        <div class="ph"><span class="t" style="font-size:19px">Before you go…</span><span class="x">✕</span></div>
-        <div class="ps">If you only need a break or a cheaper option, these might suit you better.</div>
-        <div class="co">
-          <div class="cobox"><div class="e">⏸️</div><b>Pause instead</b><p>Take a break, restart automatically</p><div class="a">Pause →</div></div>
-          <div class="cobox"><div class="e">📱</div><b>Switch to digital</b><p>Keep reading for less</p><div class="a">See price →</div></div>
-          <div class="cobox"><div class="e">💬</div><b>Something wrong?</b><p>We may fix it today</p><div class="a">Call me back →</div></div>
-          <div class="cobox cx"><div class="e">✖️</div><b>Cancel now</b><p>Continue to the form</p><div class="a">Cancel →</div></div>
-        </div>
-        <div class="rule">✓ Cancel is always one click away. Alternatives sit next to it, never in front of it.</div>
-      </div>
-      <div class="panel" style="position:relative;width:auto;box-shadow:0 20px 50px rgba(12,13,18,.18)">
-        <div class="ph"><span class="t" style="font-size:19px">How can we help?</span><span class="x">✕</span></div>
-        <div class="who">
-          <div class="wb on">📰 I'm a subscriber or reader <span>→ subscriber help</span></div>
-          <div class="wb">📣 I want to advertise <span>→ sales team</span></div>
-          <div class="wb">🗞️ Press, careers, other <span>→ contact form</span></div>
-        </div>
-      </div>
+  </div>
+  <div style="display:flex;gap:16px;align-items:center">
+    <div class="rule" style="margin:0;flex:1">✓ Cancelling stays an equal, visible choice. The alternatives sit next to it, never in front of it, in line with UK easy-cancellation expectations.</div>
+    <div class="rw" style="padding:14px 18px;border:1px solid var(--line);display:flex;gap:8px;align-items:center;border-radius:14px">
+      <span style="font:700 12.5px 'Lato';color:#555;margin-right:4px">Contact box → </span><span class="sp on">I'm a subscriber</span><span class="sp">Advertising</span><span class="sp">Press &amp; other</span>
     </div>
   </div>
 </div></section>
 
 <!-- SCENE 4 -->
 <section class="scene"><div class="wrap">
-  <div class="sh"><span class="sn">Scene 4 · Every title, every screen</span></div>
-  <div class="h2">The same front door on title sites and in apps. Live insight for your team.</div>
-  <div class="sub">Add the same layer to The Courier, Press and Journal or People's Friend sites and apps. Each title keeps its own design, and your CX team sees, title by title, where each topic ends up.</div>
-  <div class="two">
-    <div class="card" style="display:grid;grid-template-columns:1fr 250px;gap:20px;align-items:center">
-      <div class="mk" style="left:-50px;top:24px">7</div>
-      <div>
-        <div style="font:800 18px 'Plus Jakarta Sans';margin-bottom:6px">On mobile and in the app</div>
-        <p style="font:500 14px/1.55 'Lato';color:var(--muted)">It opens as a bottom sheet on any title's site or app. Readers who notice a missing paper over breakfast get it sorted before they finish their coffee.</p>
-        <div style="margin-top:16px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"><img src="img/dcs-brands.jpg" style="width:100%;display:block"></div>
-        <p style="font:600 11.5px 'Lato';color:var(--muted);margin-top:6px">Your brands, as they are today. The front door can be added to each one.</p>
-      </div>
-      <div class="phone">
-        <div class="nb">The Courier</div>
-        <div class="ct"><div class="ln" style="width:80%"></div><div class="ln"></div><div class="ln" style="width:60%"></div><div class="ln"></div><div class="ln" style="width:70%"></div></div>
-        <div class="sheet">
-          <div class="t">What can we help with?</div>
-          <div class="mini rec">📰 Paper didn't arrive <span class="g">2 min</span></div>
-          <div class="mini">💳 Billing dates <span class="g">Self-serve</span></div>
-          <div class="mini">⏸️ Pause delivery <span class="g">1 min</span></div>
-          <div class="mini">📞 Talk to us <span class="y">~4 min</span></div>
+  <div class="sh"><span class="sn">Scene 4 · Mobile and analytics</span></div>
+  <div class="h2">Works on every screen. Shows your team what subscribers actually need.</div>
+  <div class="sub">On mobile the same cards stack vertically. In the reChanneld admin panel, your CX team sees widget loads, sessions, top topics and top channels in real time, and can adjust content instantly.</div>
+  <div style="display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start">
+    <div class="card" style="padding:20px;position:relative">
+      <div class="mk" style="left:-56px;top:20px">7</div>
+      <div class="phone" style="height:560px;width:270px">
+        <div class="rw" style="padding:14px 10px;border-radius:0;height:100%;overflow:hidden">
+          <div class="hd" style="font-size:15px">👋 Hey, how may we help you?</div>
+          <div class="sb" style="font-size:9.5px;margin:4px 0 10px">Select the option that best describes your need, and we'll assist you to the best service channel.</div>
+          <div class="crumb" style="gap:5px;margin-bottom:8px"><span class="cb" style="font-size:9.5px;padding:4px 9px">‹ Back</span><span class="cb on" style="font-size:9.5px;padding:4px 9px">↺ Delivery</span></div>
+          <div class="subs" style="gap:5px;margin-bottom:14px"><span class="sp on" style="font-size:9.5px;padding:4px 9px">Paper didn't arrive</span><span class="sp" style="font-size:9.5px;padding:4px 9px">Late delivery</span><span class="sp" style="font-size:9.5px;padding:4px 9px">Holiday pause</span></div>
+          <div class="cd" style="padding:16px 12px 10px;margin-bottom:12px"><span class="badge" style="font-size:8.5px"><i>✓</i>Most popular choice</span><div class="ct" style="font-size:13px;margin-bottom:4px">My Account</div><div class="cx" style="font-size:9.5px;min-height:0">Report a missing issue under “Deliveries”. We'll credit or replace it.</div><div class="btn k" style="font-size:10px;padding:7px;margin-top:8px">Report missing paper</div><div class="ft" style="font-size:9px">Resolve immediately</div></div>
+          <div class="cd" style="padding:14px 12px 10px"><div class="ct" style="font-size:13px;margin-bottom:4px">Learn more</div><div class="cx" style="font-size:9.5px;min-height:0">What to do if your paper doesn't arrive.</div><div class="btn m" style="font-size:10px;padding:7px;margin-top:8px">Read delivery help ↗</div><div class="ft" style="font-size:9px">Login not required</div></div>
         </div>
       </div>
+      <p style="font:600 12px 'Lato';color:var(--muted);text-align:center;margin-top:10px">Same widget on title sites and mobile</p>
     </div>
-    <div class="card dash">
-      <div class="mk" style="right:-50px;top:24px">8</div>
-      <h4>Your CX team's view</h4>
-      <p>Where each topic ends up this week, The Courier (illustrative data)</p>
-      <div class="bar"><span class="l">Missing paper</span><div class="tr"><i style="width:78%;background:#14d6c0"></i><i style="width:8%;background:#2f6bff"></i><i style="width:14%;background:#ff8a5b"></i></div></div>
-      <div class="bar"><span class="l">Billing dates</span><div class="tr"><i style="width:70%;background:#14d6c0"></i><i style="width:12%;background:#2f6bff"></i><i style="width:18%;background:#ff8a5b"></i></div></div>
-      <div class="bar"><span class="l">Holiday pause</span><div class="tr"><i style="width:86%;background:#14d6c0"></i><i style="width:4%;background:#2f6bff"></i><i style="width:10%;background:#ff8a5b"></i></div></div>
-      <div class="bar"><span class="l">App &amp; log-in</span><div class="tr"><i style="width:64%;background:#14d6c0"></i><i style="width:16%;background:#2f6bff"></i><i style="width:20%;background:#ff8a5b"></i></div></div>
-      <div class="bar"><span class="l">Cancel</span><div class="tr"><i style="width:28%;background:#14d6c0"></i><i style="width:12%;background:#2f6bff"></i><i style="width:60%;background:#ff8a5b"></i></div></div>
-      <div class="leg"><span><i style="background:#14d6c0"></i>Self-service</span><span><i style="background:#2f6bff"></i>Form / call-back</span><span><i style="background:#ff8a5b"></i>Phone</span></div>
-      <div class="kp"><div><b>24/7</b><span>help, including Sundays</span></div><div><b>By title</b><span>rules and reports</span></div><div><b>A/B</b><span>test the wording</span></div></div>
+    <div class="card" style="padding:0;position:relative">
+      <div class="mk" style="right:-56px;top:20px">8</div>
+      <div style="display:grid;grid-template-columns:150px 1fr;border-radius:22px;overflow:hidden">
+        <div style="background:#1e2128;color:#c9ccd4;padding:22px 16px;font:600 13px 'Lato';line-height:2.4">
+          <div>⌂ Overview</div><div>☰ Topics</div><div style="background:#2c313b;border-radius:6px;padding:0 8px;color:#fff">▤ Analytics</div><div>⚙ Settings</div>
+        </div>
+        <div style="padding:22px 24px;background:#fff">
+          <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 20px 'Plus Jakarta Sans'">Analytics</span><span style="font:700 10.5px 'Lato';color:#777;letter-spacing:.06em">LAST WEEK · <b style="color:#111;background:#eee;padding:3px 6px;border-radius:4px">LAST MONTH</b> · LAST 3 MONTHS</span></div>
+          <div style="font:600 11px 'Lato';color:#777;margin:6px 0 14px">The Courier · illustrative data</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+            <div style="border:1px solid #eee;border-radius:8px;padding:10px"><div style="font:600 10.5px 'Lato';color:#777">Widget loads</div><b style="font:800 20px 'Plus Jakarta Sans'">18,240</b></div>
+            <div style="border:1px solid #eee;border-radius:8px;padding:10px"><div style="font:600 10.5px 'Lato';color:#777">Sessions</div><b style="font:800 20px 'Plus Jakarta Sans'">6,915</b></div>
+            <div style="border:1px solid #eee;border-radius:8px;padding:10px"><div style="font:600 10.5px 'Lato';color:#777">Finished sessions</div><b style="font:800 20px 'Plus Jakarta Sans'">5,770</b></div>
+            <div style="border:1px solid #eee;border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:38px;height:38px;border-radius:50%;background:conic-gradient(#14c3a6 0 83%,#f39a3d 83% 100%);-webkit-mask:radial-gradient(circle,transparent 11px,#000 12px)"></div><div style="font:600 10px 'Lato';color:#777">● Finished<br>● Unfinished</div></div>
+          </div>
+          <div style="border:1px solid #eee;border-radius:8px;padding:12px 14px;margin-bottom:14px">
+            <div style="font:700 12px 'Lato';margin-bottom:8px">Sessions</div>
+            <div style="display:flex;align-items:flex-end;gap:9px;height:110px">
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:42%;background:#14c3a6"></i><i style="display:block;height:10%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:55%;background:#14c3a6"></i><i style="display:block;height:12%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:48%;background:#14c3a6"></i><i style="display:block;height:9%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:60%;background:#14c3a6"></i><i style="display:block;height:11%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:38%;background:#14c3a6"></i><i style="display:block;height:8%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:70%;background:#14c3a6"></i><i style="display:block;height:14%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:84%;background:#14c3a6"></i><i style="display:block;height:13%;background:#f39a3d"></i></div>
+              <div style="flex:1;display:flex;flex-direction:column-reverse;height:100%"><i style="display:block;height:52%;background:#14c3a6"></i><i style="display:block;height:10%;background:#f39a3d"></i></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="border:1px solid #eee;border-radius:8px;padding:12px 14px"><div style="font:700 12px 'Lato';margin-bottom:8px">Top topics</div>
+              <div style="font:600 11px 'Lato';color:#444;line-height:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="width:110px">Paper didn't arrive</span><i style="height:12px;width:90%;background:#14c3a6;display:block"></i></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="width:110px">Billing dates</span><i style="height:12px;width:62%;background:#14c3a6;display:block"></i></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="width:110px">Holiday pause</span><i style="height:12px;width:44%;background:#14c3a6;display:block"></i></div><div style="display:flex;align-items:center;gap:8px"><span style="width:110px">App &amp; log-in</span><i style="height:12px;width:36%;background:#14c3a6;display:block"></i></div></div></div>
+            <div style="border:1px solid #eee;border-radius:8px;padding:12px 14px"><div style="font:700 12px 'Lato';margin-bottom:8px">Top channels</div>
+              <div style="font:600 11px 'Lato';color:#444;line-height:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="width:90px">My Account</span><i style="height:12px;width:88%;background:#14c3a6;display:block"></i></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="width:90px">Help articles</span><i style="height:12px;width:54%;background:#14c3a6;display:block"></i></div><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px"><span style="width:90px">Online forms</span><i style="height:12px;width:30%;background:#14c3a6;display:block"></i></div><div style="display:flex;align-items:center;gap:8px"><span style="width:90px">Phone</span><i style="height:12px;width:22%;background:#14c3a6;display:block"></i></div></div></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div></section>
@@ -263,14 +300,14 @@
   <div class="mk" style="left:-50px;top:-6px">9</div>
   <div class="h2">What changes on your website</div>
   <div class="ctab">
-    <div class="ct2"><span class="k">Design</span><b>Nothing</b><p>Your pages, navigation and brands stay exactly as they are.</p></div>
-    <div class="ct2"><span class="k">Code</span><b>One line</b><p>One script tag on the pages you choose, on the corporate site, title sites or apps.</p></div>
-    <div class="ct2"><span class="k">Systems</span><b>None replaced</b><p>It links to your existing help centre, My Account (Air Business) and phone teams.</p></div>
-    <div class="ct2 add"><span class="k">Added</span><b>A front door</b><p>For every subscriber, open 24/7, configured by your CX team, with live insight.</p></div>
+    <div class="ct2"><span class="k">Design</span><b>Nothing</b><p>Your pages stay as they are. The widget adapts to your site's design and typography.</p></div>
+    <div class="ct2"><span class="k">Set-up</span><b>Plug-and-play</b><p>An easy-to-install widget for your existing website and service channels.</p></div>
+    <div class="ct2"><span class="k">Time to live</span><b>A few days</b><p>Topics and channels are managed in reChanneld's cloud admin panel by your own team.</p></div>
+    <div class="ct2 add"><span class="k">Compliance</span><b>GDPR, no cookies</b><p>Audited for security and accessibility. Nothing to replace in your systems.</p></div>
   </div>
 </div></section>
 
-<div class="foot">reChanneld · Better choices. Happier customers. · Concept for discussion. Wait times, hours and analytics shown are illustrative.</div>
+<div class="foot">reChanneld · Better choices. Happier customers. · Concept for discussion: topics, wording, hours and analytics figures are illustrative.</div>
 
 </body>
 </html>
