@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>reChanneld for Reach plc</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#0c0d12;--ink2:#1b1d26;--teal:#14d6c0;--teal-d:#0a9e8e;--muted:#5a6075;--line:#e4e6ee;--bg:#f5f6f9;--dc:#0b4fd0;--red:#d9472f;--amber:#c98100}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.52;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9a9fb2;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:2.6mm}
+  h2{font-size:23pt;line-height:1.08;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.6pt;line-height:1.5;color:var(--muted);margin-bottom:6mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  .dark{background:var(--ink);color:#fff;border:none}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.7mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:2mm;width:2mm;height:2mm;border-radius:50%;background:var(--teal)}
+  .logo{font:800 13pt 'Plus Jakarta Sans';letter-spacing:.08em}
+  .src{font-size:7.2pt;color:#9a9fb2;line-height:1.4}
+
+  /* cover */
+  .cover{background:var(--ink);color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(20,214,192,.22),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(11,79,208,.30),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font:700 9pt 'Plus Jakarta Sans';color:#a3a8bf}
+  .pfor{display:inline-block;margin-top:50mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:42pt;line-height:1.03;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:13pt;line-height:1.5;color:#c3c7d8;max-width:150mm}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:20mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a3a8bf}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--teal);text-align:right}
+
+  /* findings */
+  .fd{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin-bottom:5mm}
+  .fd .n{width:8mm;height:8mm;border-radius:2.4mm;background:var(--ink);color:var(--teal);font:800 10pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .fd p{font-size:9.4pt;color:#33384a;margin-bottom:1.6mm}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;position:relative;background:#fff}
+  .shot img{display:block;width:100%}
+  .hl{position:absolute;border:2.4px solid var(--red);border-radius:2mm;box-shadow:0 0 0 4px rgba(217,71,47,.15)}
+  .note{position:absolute;background:var(--red);color:#fff;font:800 7.4pt 'Plus Jakarta Sans';border-radius:1.6mm;padding:1mm 2mm;white-space:nowrap}
+  .lines{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4mm;margin-top:2mm}
+  .ln{border:1.3px solid #f2d0c9;background:#fff8f6;border-radius:2.6mm;padding:2.4mm 2.6mm;font-size:7.8pt;line-height:1.35}
+  .ln b{display:block;font:800 8.2pt 'Plus Jakarta Sans'}
+  .ln i{font-style:normal;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:2mm;margin-top:2mm}
+  .chip{font:700 7.8pt 'Plus Jakarta Sans';background:var(--bg);border-radius:100px;padding:1.2mm 3mm}
+
+  /* mock */
+  .mock{background:linear-gradient(180deg,#f7f8fb,#eceff5);border-radius:4mm;padding:5mm;border:1px solid var(--line)}
+  .bbar{display:flex;gap:1.4mm;align-items:center;margin-bottom:3mm}
+  .bbar i{width:2.2mm;height:2.2mm;border-radius:50%;background:#d3d6e2;display:block}
+  .bbar .url{margin-left:2mm;flex:1;background:#fff;border-radius:1.5mm;font:600 7pt 'Plus Jakarta Sans';color:#8a8fa6;padding:1mm 2.4mm}
+  .wdg{background:#fff;border-radius:3.5mm;box-shadow:0 4mm 10mm rgba(12,13,18,.12);padding:4.2mm}
+  .wq{font:800 11.4pt 'Plus Jakarta Sans'}
+  .ws{font-size:7.9pt;color:var(--muted);margin-bottom:2.8mm}
+  .opt{display:flex;align-items:center;gap:2.6mm;border:1.3px solid var(--line);border-radius:2.4mm;padding:2.2mm 2.6mm;margin-bottom:1.8mm}
+  .opt .ic{width:7mm;height:7mm;border-radius:1.8mm;display:flex;align-items:center;justify-content:center;font-size:10pt;flex:none}
+  .opt .t{font:700 8.5pt 'Plus Jakarta Sans';line-height:1.25}
+  .opt .d{font-size:7.3pt;color:var(--muted)}
+  .opt .tg{margin-left:auto;font:800 6.5pt 'Plus Jakarta Sans';border-radius:100px;padding:.8mm 2mm;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d9;color:#8f5a00}.r{background:#ffe5dc;color:#b0401a}.b{background:#e6eeff;color:#0b4fd0}
+  .pw{font-size:6.6pt;color:#9a9fb2;text-align:center;margin-top:1.4mm}
+  .cap{font-size:7.2pt;color:var(--muted);margin-top:2mm;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .st{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .st span{font:800 7pt 'Plus Jakarta Sans';color:var(--teal-d);letter-spacing:.12em;text-transform:uppercase}
+  .st b{display:block;font:800 10pt 'Plus Jakarta Sans';margin:.6mm 0 1mm}
+  .st p{font-size:8.3pt;margin:0;line-height:1.45}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .fact{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .fact b{display:block;font:800 17pt 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .fact span{font-size:8pt;color:var(--muted);display:block;line-height:1.35}
+  .cta{background:var(--ink);color:#fff;border-radius:5mm;padding:7mm;display:flex;justify-content:space-between;align-items:center;background-image:radial-gradient(80mm 60mm at 100% 0%,rgba(20,214,192,.28),transparent 60%)}
+  .cta h3{font-size:15pt;color:#fff;margin-bottom:1mm}
+  .cta p{color:#c3c7d8;margin:0;font-size:9.4pt}
+  .cta .c{text-align:right;font:800 10.5pt 'Plus Jakarta Sans'}
+  .cta .c span{display:block;font:600 8.6pt 'Lato';color:var(--teal)}
+
+  .score{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5mm;margin-bottom:4mm}
+  .sc{background:var(--bg);border-radius:3mm;padding:3mm 2mm;text-align:center}
+  .sc b{display:block;font:800 15pt 'Plus Jakarta Sans'}
+  .sc span{font:700 6.8pt 'Plus Jakarta Sans';color:var(--muted);text-transform:uppercase;letter-spacing:.04em;line-height:1.25;display:block;margin-top:.6mm}
+  .find{display:grid;grid-template-columns:8mm 1fr;gap:3mm;padding:3mm 0;border-bottom:1px solid var(--line)}
+  .find:last-child{border-bottom:none}
+  .find .n{font:800 12pt 'Plus Jakarta Sans';color:#c3c7d6}
+  .find h4{display:flex;align-items:center;gap:2.4mm;flex-wrap:wrap}
+  .find p{margin:.8mm 0 0;font-size:9pt;color:#383d50}
+  .find .fix{font-size:8.8pt;color:var(--teal-d);font-weight:700;margin-top:.8mm}
+  .find .fix:before{content:"→ "}
+  .tag{display:inline-block;font:800 6.6pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:1mm 2.4mm}
+  .t-red{background:#fde6e2;color:#b2341f}.t-amb{background:#fff1d9;color:#8f5a00}.t-blue{background:#e6eeff;color:#0b4fd0}.t-grn{background:#dcf7ef;color:#0b7a5d}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .ba figure{border-radius:3mm;overflow:hidden;border:1px solid var(--line)}
+  .ba img{width:100%;display:block}
+  .ba figcaption{font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--bg);color:var(--muted)}
+  .ba figure.new figcaption{background:var(--ink);color:var(--teal)}
+  .mkk{display:inline-flex;width:5.4mm;height:5.4mm;border-radius:50%;background:#ffd84d;color:#1a1400;font:800 7.4pt 'Plus Jakarta Sans';align-items:center;justify-content:center;flex:none}
+  .notes{display:flex;flex-direction:column;gap:2.4mm;font-size:8.9pt;line-height:1.45}
+  .notes>div{display:flex;gap:2.5mm}.notes>div>div{display:block}
+  .notes b{font-family:'Plus Jakarta Sans'}
+  .tl{position:relative;margin:1mm 0 4mm;padding-left:6mm;border-left:2px solid var(--line)}
+  .tl div{position:relative;margin-bottom:2.4mm;font-size:9.1pt}
+  .tl div:before{content:"";position:absolute;left:-7.6mm;top:1.3mm;width:3mm;height:3mm;border-radius:50%;background:#fff;border:2px solid var(--teal)}
+  .tl b{font-family:'Plus Jakarta Sans';margin-right:2mm}
+  .rt{width:100%;border-collapse:collapse}
+  .rt td{padding:2.1mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.5pt;vertical-align:top}
+  .rt th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:2mm 2.4mm}
+  .ch{display:inline-block;font:800 6.7pt 'Plus Jakarta Sans';border-radius:100px;padding:.7mm 2.2mm;white-space:nowrap}
+  .sb{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .fr{border:1px solid var(--line);border-radius:3mm;overflow:hidden}
+  .fr .scr{height:30mm;background:var(--ink);position:relative;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font:800 9pt 'Plus Jakarta Sans';padding:3mm;line-height:1.4}
+  .fr .tc{position:absolute;left:2mm;top:2mm;font:800 6.5pt 'Plus Jakarta Sans';background:rgba(255,255,255,.12);border-radius:1mm;padding:.4mm 1.4mm;color:var(--teal)}
+  .fr .bd{padding:2.6mm 3mm;font-size:8.2pt;line-height:1.42}
+  .fr .bd .vo{color:#22263a;font-style:italic;margin-top:1mm}
+  .fr .bd b{font-family:'Plus Jakarta Sans';font-size:7.2pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .kpi td{padding:2mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.6pt}
+  .kpi th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.6mm 2.4mm;border-bottom:1.5px solid var(--ink)}
+  .letter p{font-size:10.4pt;line-height:1.65;margin-bottom:3.4mm}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin:5mm 0}
+  .num{font:800 19pt 'Plus Jakarta Sans';color:var(--teal-d);line-height:1}
+  .toc{position:absolute;left:20mm;right:20mm;bottom:44mm;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .toc div{border-top:1px solid rgba(255,255,255,.18);padding-top:3mm;font:600 8.4pt 'Plus Jakarta Sans';color:#c3c7d8}
+  .toc b{display:block;color:var(--teal);font-size:7.8pt;margin-bottom:.8mm}
+</style>
+<style>
+  .ry{color:#d99a00}
+  .cover.reach{background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(249,185,49,.25),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(20,214,192,.22),transparent 60%)}
+  .ppl{display:grid;grid-template-columns:repeat(2,1fr);gap:3.4mm}
+  .pp{border:1px solid var(--line);border-radius:3.4mm;padding:4mm}
+  .pp .r{font:800 7pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--teal-d)}
+  .pp b{display:block;font:800 11pt 'Plus Jakarta Sans';margin:.6mm 0 .4mm}
+  .pp i{font-style:normal;display:block;font-size:8.2pt;color:var(--muted);margin-bottom:1.6mm}
+  .pp p{font-size:8.5pt;margin:0;line-height:1.45}
+  .pp.main{border:2px solid var(--teal);background:#f6fffd}
+  .force{display:grid;grid-template-columns:12mm 1fr;gap:3.4mm;padding:3.6mm 0;border-bottom:1px solid var(--line)}
+  .force .n{width:11mm;height:11mm;border-radius:3mm;background:var(--ink);color:var(--teal);font:800 13pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .force p{font-size:9.2pt;margin:.6mm 0 0;color:#383d50}
+  .aud td{padding:1.7mm 2.2mm;border-bottom:1px solid var(--line);font-size:8.1pt;vertical-align:top}
+  .aud th{text-align:left;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:1.8mm 2.2mm}
+  .aud .x{color:var(--red);font-weight:700}
+  .tree{display:grid;grid-template-columns:repeat(2,1fr);gap:3mm}
+  .tn{border:1px solid var(--line);border-radius:3mm;padding:3mm}
+  .tn b{display:block;font:800 9pt 'Plus Jakarta Sans';margin-bottom:1.4mm}
+  .tn div{font-size:8.4pt;align-items:center;line-height:1.35;padding:1mm 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:2mm}
+  .tn span{font:800 6.4pt 'Plus Jakarta Sans';border-radius:100px;padding:.4mm 1.6mm;white-space:nowrap;align-self:flex-start}
+  .calc td{padding:2mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.8pt}
+  .calc th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.6mm 2.4mm;border-bottom:1.5px solid var(--ink)}
+  .calc .rr{text-align:right;font-family:'Plus Jakarta Sans';font-weight:800}
+  .calc tr.tot td{border-top:1.5px solid var(--ink);font-weight:800;background:#f6fffd}
+</style>
+</head>
+<body>
+<!-- 1 COVER -->
+<div class="page cover reach">
+  <div class="top"><span class="logo">RECHANNELD</span><span>Prepared for Reach plc · October 2026</span></div>
+  <div class="pfor" style="margin-top:36mm">Reader &amp; subscriber help · review, concept &amp; business case</div>
+  <h1>Every reader,<br>to the <em>right place</em>,<br>first time.</h1>
+  <p class="sub">How one reChanneld front door can serve Reach's growing subscriber base across reachplc.com and 19+ subscription brands, with no redesign, no new systems, and a measurable 8-week pilot.</p>
+  <div class="toc" style="grid-template-columns:repeat(4,1fr)">
+    <div><b>01</b>Summary</div>
+    <div><b>02</b>Reach today &amp; why now</div>
+    <div><b>03</b>Contact journey audit</div>
+    <div><b>04</b>reChanneld on your site</div>
+    <div><b>05</b>Topic map</div>
+    <div><b>06</b>Subscription rules 2027</div>
+    <div><b>07</b>Business case &amp; pilot</div>
+    <div><b>+</b>Concept on your site (separate PDF)</div>
+  </div>
+  <div class="bot">
+    <div><b>Touko Laakkonen</b><span>Service Channel Strategy · reChanneld</span></div>
+    <div class="tagl">Better choices.<br>Happier customers.</div>
+  </div>
+</div>
+
+<!-- 2 SUMMARY -->
+<div class="page letter">
+  <div class="kick">01 · Summary</div>
+  <h2>Dear George and the Reach Customer team,</h2>
+  <p>Reach has done something few publishers manage: more than 50,000 paying digital subscribers in under nine months, on top of 65,000+ print, e-edition and newsletter subscribers. With 25 brands selling subscriptions by October and a new Customer division bringing print and digital together, <b>readers are fast becoming customers</b>, and customers have questions.</p>
+  <p>We looked at where those questions go today. reachplc.com/contacts serves a dozen audiences with <b>eight phone numbers, six e-mail addresses and five other websites</b>. Its only form is for investors, and it has no route for digital subscribers at all. On the print side, Reachsubs scores 2.5/5 on Trustpilot, and the reviews describe missed papers, unexplained direct-debit increases and phones nobody answers.</p>
+  <p>reChanneld is channel-strategy software from Helsinki. Its plug-and-play widget asks visitors what they need and shows them the best channel for it, with self-service first and honest opening hours and waiting times. It sits on top of the pages and systems you already have.</p>
+  <p>This pack contains:</p>
+  <div class="three">
+    <div class="box bg"><div class="num">1</div><h4 style="margin-top:2mm">Audit</h4><p class="small muted" style="margin:0">Every contact route on reachplc.com mapped by audience, plus 8 findings.</p></div>
+    <div class="box bg"><div class="num">2</div><h4 style="margin-top:2mm">Concept</h4><p class="small muted" style="margin:0">The real reChanneld widget on your real pages, configured with Reach's own topics.</p></div>
+    <div class="box bg"><div class="num">3</div><h4 style="margin-top:2mm">Business case</h4><p class="small muted" style="margin:0">A cost model, readiness for the 2027 subscription rules, and an 8-week pilot.</p></div>
+  </div>
+  <p>We'd welcome 20 minutes with you or the subscriptions team to walk through it.</p>
+  <p style="margin-top:4mm">Kind regards,</p>
+  <div style="font:800 13pt 'Plus Jakarta Sans'">Touko Laakkonen</div>
+  <p class="muted small">Service Channel Strategy, reChanneld · [e-mail] · [phone]</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>2</span></div>
+</div>
+
+<!-- 3 REACH TODAY -->
+<div class="page">
+  <div class="kick">02 · Reach today</div>
+  <h2>From audience scale to paying customers</h2>
+  <p class="lead">The UK's largest commercial national and regional news publisher is moving its centre of gravity from page views to subscribers.</p>
+  <div class="facts" style="grid-template-columns:repeat(4,1fr);margin-bottom:3mm">
+    <div class="fact"><b>£232.9 M</b><span>H1 2026 revenue (−9%)</span></div>
+    <div class="fact"><b>76%</b><span>of revenue still from print (£178 M)</span></div>
+    <div class="fact"><b>−55%</b><span>Google referrals, H1 2026 vs H1 2025</span></div>
+    <div class="fact"><b>−10%</b><span>adjusted operating costs, H1 2026</span></div>
+  </div>
+  <div class="facts" style="grid-template-columns:repeat(4,1fr);margin-bottom:5mm">
+    <div class="fact"><b>50,000+</b><span>paid digital subscribers (Aug 2026), target 75,000 by year-end</span></div>
+    <div class="fact"><b>65,000+</b><span>print, e-edition and paid newsletter subscribers</span></div>
+    <div class="fact"><b>19 → 25</b><span>brands selling subscriptions, by October</span></div>
+    <div class="fact"><b>£1.99–6.99</b><span>a month, e.g. Mirror+ £3.99, MEN £4.99, Express £6.99</span></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>2026 so far</h3>
+      <div class="tl">
+        <div><b>Mar</b>FY 2025: revenue £518.4 M, adjusted operating profit up 2.4% to £104.7 M. Priorities: video, tech &amp; AI, and subscriptions.</div>
+        <div><b>Q2</b>Print volumes −23%, after another cover-price rise, against a usual 17–20% decline.</div>
+        <div><b>Jun</b>George Grist named Chief Customer Officer of a new Customer division covering print circulation, digital subscriptions, e-commerce and the US business.</div>
+        <div><b>Jul</b>H1 results: margin up to 18.5%; 40,000+ subscribers across 15 brands.</div>
+        <div><b>Aug</b>50,000 paid digital subscribers in under nine months. Bundles across national and local brands in development.</div>
+        <div><b>Sep</b>Editorial restructure. “Active engaged time” becomes the north-star metric instead of page views.</div>
+      </div>
+    </div>
+    <div>
+      <h3>What this means for reader help</h3>
+      <ul class="clean small">
+        <li><b>More customers, more questions.</b> Every new subscriber brings log-in, billing and plan questions. Contact volumes grow with success.</li>
+        <li><b>Two customer bases, one division.</b> Print customers (deliveries, vouchers, direct debits) and digital customers (log-in, ad-lite, plans) now sit under one Customer team.</li>
+        <li><b>Price rises create contacts.</b> Cover-price and subscription increases bring “why did my payment go up?” questions, and those affect churn.</li>
+        <li><b>Costs must keep falling.</b> Contacts need to be handled better without adding staff.</li>
+      </ul>
+      <div class="box dark" style="margin-top:3mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">The opportunity: <span style="color:var(--teal)">give every subscriber a clear front door now, while the subscriber base is still being built.</span></p></div>
+    </div>
+  </div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Sources: Reach plc FY 2025 and H1 2026 results and presentations; Reach and Reach Solutions (50,000 subscribers, Aug 2026); Press Gazette, HoldtheFrontPage, InPublishing, A Media Operator, Behind Local News. Figures as reported; please correct us where needed.</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>3</span></div>
+</div>
+
+<!-- 4 WHY NOW + PEOPLE -->
+<div class="page">
+  <div class="kick">02 · Why now, and for whom</div>
+  <h2>Four reasons to act this quarter</h2>
+  <div class="force"><div class="n">1</div><div><h4>Subscribers are becoming the business</h4><p>The goal is 75,000 digital subscribers by year-end and “more into 2027”, with bundles on the way. Keeping subscribers is now as important as winning them, and every frustrated contact is a churn risk.</p></div></div>
+  <div class="force"><div class="n">2</div><div><h4>A new Customer division is being built</h4><p>Print circulation, digital subscriptions and e-commerce have just come together under one Chief Customer Officer. This is the moment to design a single front door, before each brand and team builds its own.</p></div></div>
+  <div class="force"><div class="n">3</div><div><h4>New UK subscription rules from January 2027</h4><p>The DMCC Act's subscription regime requires straightforward cancellation, cooling-off periods and renewal reminders. Clear, honest help routes, including how to cancel, are becoming a compliance matter, not just good service.</p></div></div>
+  <div class="force" style="border:none"><div class="n">4</div><div><h4>Costs are falling, and the readers who remain matter more</h4><p>Operating costs are down 10% and print volumes are falling faster after price rises. Self-service has to carry more of the load, without leaving loyal, often older, print readers stranded.</p></div></div>
+  <h3 style="margin-top:4mm">Who this is for</h3>
+  <div class="ppl">
+    <div class="pp main"><span class="rr">Executive sponsor</span><b>George Grist</b><i>Chief Customer Officer, since June 2026</i><p>Owns print circulation and digital subscriptions together. reChanneld gives his new division one front door and one shared view of what readers need.</p></div>
+    <div class="pp"><span class="rr">Subscriptions growth</span><b>David Bartlett</b><i>Head of Growth (to confirm)</i><p>Is launching bundles and paid newsletters. reChanneld routes plan-change and upgrade questions to the right offer.</p></div>
+    <div class="pp"><span class="rr">Print customers</span><b>Circulation / Reachsubs lead</b><i>Find on LinkedIn</i><p>Missed papers, vouchers and direct debits. These are the highest-volume, most fixable contacts.</p></div>
+    <div class="pp"><span class="rr">Corporate site owner</span><b>Corporate communications</b><i>reachplc.com</i><p>The contacts page serves a dozen audiences. A single widget tidies it up without a redesign.</p></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>4</span></div>
+</div>
+
+<!-- 5 AUDIT TABLE -->
+<div class="page">
+  <div class="kick">03 · Contact journey audit</div>
+  <h2 style="font-size:20pt">reachplc.com/contacts, line by line</h2>
+  <p class="muted small" style="margin-bottom:3mm">Every contact route on the page on 2 October 2026, grouped by who it's for.</p>
+  <div style="display:grid;grid-template-columns:52mm 1fr;gap:5mm">
+    <div style="height:212mm;overflow:hidden;border-radius:3mm;border:1px solid var(--line)"><img src="img/reach-contacts.jpg" style="width:100%;display:block"></div>
+    <table class="aud">
+      <tr><th style="width:30mm">Audience</th><th>Route today</th><th style="width:34mm">What we noticed</th></tr>
+      <tr><td><b>Print subscriber (vouchers)</b></td><td>help@newspapersubs.co.uk · 0345 144 6464 · newspapersubs.co.uk</td><td>Three routes, and a different brand name</td></tr>
+      <tr><td><b>Print subscriber (home delivery)</b></td><td>0333 202 8000</td><td>Phone only, hours not shown</td></tr>
+      <tr><td><b>Digital subscriber</b></td><td class="x">No route on the page</td><td class="x">50,000+ customers with nowhere to go</td></tr>
+      <tr><td><b>Reader with a story or tip</b></td><td>“Contact the newspaper or title directly via their website”</td><td>Sends people away to 120+ brand sites</td></tr>
+      <tr><td><b>Reader with a complaint</b></td><td>reachplc.com/how-to-complain</td><td>Fine, but mixed in with other routes</td></tr>
+      <tr><td><b>Advertiser</b></td><td>Reachsolutions.co.uk (listed twice)</td><td>Clear, but repeated</td></tr>
+      <tr><td><b>Licensing buyer</b></td><td>mirrorpix.com · 01923 815 121</td><td>OK</td></tr>
+      <tr><td><b>Journalist / media</b></td><td>communications@reachplc.com</td><td>OK</td></tr>
+      <tr><td><b>Job seeker</b></td><td>talentacquisition@reachplc.com</td><td>OK</td></tr>
+      <tr><td><b>Book PR</b></td><td>mirrorbooks@reachplc.com</td><td>OK</td></tr>
+      <tr><td><b>Supplier</b></td><td>company.secretary@reachplc.com</td><td>Whistleblowing only</td></tr>
+      <tr><td><b>Investor</b></td><td>Online form (the only form on the page)</td><td>The best-served audience</td></tr>
+      <tr><td><b>Shareholder</b></td><td>Equiniti: 0371 384 2235 · +44 121 415 7047 · Textel 0371 384 2255</td><td>Three numbers</td></tr>
+      <tr><td><b>Pensioner</b></td><td>020 7293 2050 · pensions@reachplc.com</td><td>OK</td></tr>
+      <tr><td><b>Anyone else</b></td><td>Switchboard 020 7293 3000</td><td>The default for anyone unsure, which means the most expensive route</td></tr>
+    </table>
+  </div>
+  <div class="box dark" style="margin-top:4mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">8 phone numbers · 6 e-mail addresses · 5 other websites · 1 form · <span style="color:var(--teal)">0 routes for digital subscribers.</span> The visitor does all the routing.</p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>5</span></div>
+</div>
+
+<!-- 6 FINDINGS -->
+<div class="page">
+  <div class="kick">03 · Contact journey audit, continued</div>
+  <h2 style="font-size:20pt">8 findings</h2>
+  <div class="score" style="grid-template-columns:repeat(5,1fr)">
+    <div class="sc"><b style="color:var(--red)">2/10</b><span>Digital subscriber help</span></div>
+    <div class="sc"><b style="color:var(--red)">3/10</b><span>Clear routing</span></div>
+    <div class="sc"><b style="color:var(--amber)">4/10</b><span>Print subscriber help</span></div>
+    <div class="sc"><b style="color:var(--amber)">5/10</b><span>Opening hours shown</span></div>
+    <div class="sc"><b style="color:#0e8f6a">8/10</b><span>Investor &amp; B2B routes</span></div>
+  </div>
+  <div class="find"><div class="n">01</div><div><h4>No route for digital subscribers <span class="tag t-red">Critical</span></h4><p>The fastest-growing customer group, over 50,000 people paying £1.99–6.99 a month, isn't mentioned on the group contacts page.</p><div class="fix">A “My digital subscription” topic: log-in, billing, ad-lite and plan changes.</div></div></div>
+  <div class="find"><div class="n">02</div><div><h4>The visitor has to do the routing <span class="tag t-red">Critical</span></h4><p>Twenty routes for a dozen audiences on one long page. Anyone unsure calls the switchboard.</p><div class="fix">One question first: “What can we help with?”, then only the routes that apply.</div></div></div>
+  <div class="find"><div class="n">03</div><div><h4>Print subscribers report missed papers and unanswered phones <span class="tag t-red">High</span></h4><p>Reachsubs scores 2.5/5 on Trustpilot. Reviews mention papers missing two or three times a week, direct debits rising by about 10% without explanation, calls cut off, and e-mails unanswered for a month.</p><div class="fix">Route “paper didn't arrive” and “why did my payment change?” to instant self-service and clear explanations first.</div></div></div>
+  <div class="find"><div class="n">04</div><div><h4>Three subscription brands, one customer <span class="tag t-amb">High</span></h4><p>Reach, Newspapersubs and Reachsubs all appear. Readers don't know which one manages their subscription.</p><div class="fix">The widget asks about the reader's subscription, not about Reach's internal brands.</div></div></div>
+  <div class="find"><div class="n">05</div><div><h4>No opening hours or waiting times <span class="tag t-amb">Medium</span></h4><p>None of the subscriber phone lines show when they're open or how busy they are.</p><div class="fix">Show today's hours and the typical waiting time on every phone option.</div></div></div>
+  <div class="find"><div class="n">06</div><div><h4>Price-rise questions have no home <span class="tag t-amb">Medium</span></h4><p>Three cover-price rises in 2025 and more in 2026 mean many “why did I pay more?” contacts.</p><div class="fix">A “Direct debit or price” topic, with a clear explanation first and a person second.</div></div></div>
+  <div class="find"><div class="n">07</div><div><h4>Cancellation isn't signposted <span class="tag t-blue">Medium</span></h4><p>From January 2027, UK rules require subscriptions to be easy to cancel. There's no visible route on the page today.</p><div class="fix">“Cancel or change” as an equal choice, with pause and switch options next to it.</div></div></div>
+  <div class="find"><div class="n">08</div><div><h4>No insight into what readers need <span class="tag t-blue">Low</span></h4><p>With routes spread across phones, inboxes and other sites, nobody sees the full picture of contact reasons.</p><div class="fix">One analytics view: topics, channels and brands, in real time.</div></div></div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Sources: reachplc.com/contacts (2 Oct 2026); Trustpilot (Reachsubs); Reach results. Scores are our view.</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>6</span></div>
+</div>
+
+<!-- 7 CONCEPT -->
+<div class="page">
+  <div class="kick">04 · reChanneld on your site</div>
+  <div style="display:grid;grid-template-columns:58mm 1fr;gap:7mm">
+    <div style="height:250mm;overflow:hidden;border-radius:3mm;border:1px solid var(--line)"><img src="img/rcon-full.jpg" style="width:100%;display:block"></div>
+    <div>
+      <h2 style="font-size:19pt">Your pages, exactly as they are. Plus one front door.</h2>
+      <p class="muted small">Screenshots of reachplc.com as it is today, with the standard reChanneld widget added and configured with Reach's own topics. The full page is in <b>reChanneld-Reach-Concept.pdf</b>, and each yellow number matches a note below.</p>
+      <div class="notes" style="margin-top:3mm">
+        <div><span class="mkk">1</span><div><b>Today:</b> 8 phone numbers, 6 e-mail addresses, 5 other websites and 1 investor form, with no route for digital subscribers. Findings 01 and 02.</div></div>
+        <div><span class="mkk">2</span><div><b>First question: who are you?</b> Eight first-level topics cover every audience on the page: newspaper subscription, digital subscription, story or complaint, advertising, investors, pension, careers, press.</div></div>
+        <div><span class="mkk">3</span><div><b>Then: what do you need?</b> Sub-topics such as Paper didn't arrive, Vouchers, Direct debit or price, Holiday stop and Cancel or change. Findings 03, 04 and 06.</div></div>
+        <div><span class="mkk">4</span><div><b>“Most popular choice”.</b> Self-service is highlighted first, here “Report missed paper”, marked “Resolve immediately”.</div></div>
+        <div><span class="mkk">5</span><div><b>Phone, honestly.</b> The right number for that need, with today's opening hours and the typical waiting time. Finding 05.</div></div>
+        <div><span class="mkk">6</span><div><b>Digital subscribers get a home.</b> Can't log in, billing, ads still showing and change plan, valid for every Reach brand. Finding 01.</div></div>
+        <div><span class="mkk">7</span><div><b>Change plan, fairly.</b> Switch to annual, add a brand (bundles), or cancel online as an equal choice. Finding 07, ready for 2027.</div></div>
+        <div><span class="mkk">8</span><div><b>A “Reader &amp; subscriber help” button</b> on the reachplc.com homepage, which today speaks only to investors and partners.</div></div>
+        <div><span class="mkk">9</span><div><b>Every brand, one analytics view.</b> The same widget on the Mirror, Express, MEN and others, with sessions, topics and brands in one place. Finding 08.</div></div>
+        <div><span class="mkk">10</span><div><b>What changes:</b> no design changes, a plug-and-play widget, live in a few days, GDPR compliant with no cookies.</div></div>
+      </div>
+      <div class="box bg" style="margin-top:4mm"><h4>Why no redesign</h4><p class="small" style="margin:0">reachplc.com is a well-built corporate site for many audiences. reChanneld adds the missing customer path on top, so it can go live in days and expand brand by brand.</p></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>7</span></div>
+</div>
+
+<!-- 8 BEFORE/AFTER -->
+<div class="page">
+  <div class="kick">04 · Before and after</div>
+  <h2 style="font-size:20pt">The same page, two very different experiences</h2>
+  <div class="ba" style="grid-template-columns:1fr 1fr;margin-top:4mm">
+    <figure><div style="height:118mm;overflow:hidden;background:#fff"><img src="img/rcon-today.jpg"></div><figcaption>Today: twenty routes to read through</figcaption></figure>
+    <figure class="new"><div style="height:118mm;overflow:hidden"><img src="img/rcon-scene2.jpg"></div><figcaption>With reChanneld: two taps to the right route</figcaption></figure>
+  </div>
+  <figure style="margin-top:5mm;border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><img src="img/rcon-scene3.jpg" style="width:100%;display:block"><figcaption style="font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--ink);color:var(--teal)">Digital subscribers: log-in help, and plan changes with cancel as an equal choice</figcaption></figure>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>8</span></div>
+</div>
+
+<!-- 9 TOPIC MAP -->
+<div class="page">
+  <div class="kick">05 · Topic map</div>
+  <h2 style="font-size:20pt">Proposed starting configuration</h2>
+  <p class="muted small" style="margin-bottom:4mm">Eight first-level topics, each with sub-topics and a recommended channel. Built from public information; in a pilot, your own contact data decides the final structure and wording.</p>
+  <div class="tree">
+    <div class="tn"><b>📰 My newspaper subscription</b>
+      <div>Paper didn't arrive <span class="ch g">Self-service</span></div>
+      <div>Vouchers <span class="ch g">Self-service</span></div>
+      <div>Direct debit or price <span class="ch b">Article → phone</span></div>
+      <div>Holiday stop <span class="ch g">Self-service</span></div>
+      <div>Cancel or change <span class="ch y">Options, equal</span></div></div>
+    <div class="tn"><b>📱 My digital subscription</b>
+      <div>Can't log in <span class="ch g">Self-service</span></div>
+      <div>Billing <span class="ch g">My Account</span></div>
+      <div>Ads still showing <span class="ch b">Article</span></div>
+      <div>Change plan / bundle <span class="ch g">Self-service</span></div>
+      <div>Cancel <span class="ch y">Options, equal</span></div></div>
+    <div class="tn"><b>✍️ A story or complaint</b>
+      <div>I have a story or tip <span class="ch b">Brand newsdesk form</span></div>
+      <div>Correct an article <span class="ch b">Complaints form</span></div>
+      <div>Formal complaint <span class="ch b">How to complain</span></div>
+      <div>Remove my details <span class="ch y">Form → team</span></div></div>
+    <div class="tn"><b>📣 Advertising</b>
+      <div>Advertise nationally <span class="ch b">Reach Solutions</span></div>
+      <div>Local business ad <span class="ch b">Reach Solutions</span></div>
+      <div>Notices (family, legal) <span class="ch b">Brand page</span></div>
+      <div>Licensing &amp; photos <span class="ch b">Mirrorpix</span></div></div>
+    <div class="tn"><b>📈 Shares &amp; investors</b>
+      <div>My shareholding <span class="ch b">Equiniti</span></div>
+      <div>Results &amp; reports <span class="ch g">Investor pages</span></div>
+      <div>Investor relations <span class="ch b">IR form</span></div></div>
+    <div class="tn"><b>🏦 My pension</b>
+      <div>Scheme information <span class="ch g">Pension pages</span></div>
+      <div>Contact the pensions office <span class="ch b">E-mail → phone</span></div></div>
+    <div class="tn"><b>💼 Careers</b>
+      <div>Current vacancies <span class="ch g">Careers site</span></div>
+      <div>Application question <span class="ch b">E-mail</span></div></div>
+    <div class="tn"><b>🗞️ Press, books &amp; other</b>
+      <div>Media enquiry <span class="ch b">Press office</span></div>
+      <div>Mirror Books / Reach Sport <span class="ch b">E-mail</span></div>
+      <div>Supplier whistleblowing <span class="ch b">Company secretary</span></div>
+      <div>Something else <span class="ch y">Switchboard</span></div></div>
+  </div>
+  <div class="grid2" style="margin-top:5mm">
+    <div class="box bg"><h4>Several configurations</h4><p class="small" style="margin:0">One configuration for reachplc.com covers all audiences. Brand sites such as the Mirror, Express and MEN get a reader-only configuration with that brand's own subscription topics.</p></div>
+    <div class="box bg"><h4>Managed by the Customer team</h4><p class="small" style="margin:0">Topics, texts, buttons, hours and the “Most popular choice” are edited in reChanneld's cloud admin panel and change instantly, without IT tickets or releases.</p></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>9</span></div>
+</div>
+
+<!-- 10 DMCC -->
+<div class="page">
+  <div class="kick">06 · Subscription rules 2027</div>
+  <h2>Easy to cancel, still good at keeping</h2>
+  <p class="lead">From January 2027 the UK's new subscription contracts regime, under the Digital Markets, Competition and Consumers Act 2024, applies to subscriptions like Reach's.</p>
+  <div class="grid2" style="margin-bottom:5mm">
+    <div>
+      <h3>What the regime requires (in summary)</h3>
+      <ul class="clean small">
+        <li><b>Easy exit.</b> Consumers can end a contract with a clear statement, without unnecessary steps.</li>
+        <li><b>Cooling-off.</b> A 14-day cooling-off period at the start, and again after renewal.</li>
+        <li><b>Reminders.</b> Notices before renewals and before a free or discounted period ends.</li>
+        <li><b>Consequences.</b> Missing duties can give consumers the right to cancel and claim refunds.</li>
+      </ul>
+      <p class="small muted">A summary based on public guidance, not legal advice. Your legal team will have the details.</p>
+    </div>
+    <div>
+      <h3>How a front door helps</h3>
+      <ul class="clean small">
+        <li><b>Cancel is visible.</b> “Cancel or change” is a standard topic on every brand, never hidden.</li>
+        <li><b>Equal choices.</b> Pause, switch to annual or add a brand appear next to cancel, not in front of it, so retention stays fair.</li>
+        <li><b>Reminder follow-up.</b> Renewal e-mails link to the widget's “My renewal” topic, so questions land in self-service, not the phone queue.</li>
+        <li><b>Evidence.</b> Analytics show how many people chose each option, which helps the Customer team show the journey works.</li>
+      </ul>
+    </div>
+  </div>
+  <figure style="border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><div style="height:62mm;overflow:hidden"><img src="img/rcon-scene3.jpg" style="width:100%;display:block;margin-top:-2mm"></div></figure>
+  <div class="box dark" style="margin-top:5mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">Retention by service, not by friction: <span style="color:var(--teal)">readers who only wanted a break or a cheaper plan find it in one tap, and those who want to leave can.</span></p></div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Sources: Department for Business and Trade consultation response (Apr 2026) and law-firm summaries (CMS, DWF). Commencement January 2027 as reported.</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>10</span></div>
+</div>
+
+<!-- 11 BUSINESS CASE -->
+<div class="page">
+  <div class="kick">07 · Business case</div>
+  <h2>A simple cost model to fill in together</h2>
+  <p class="lead" style="margin-bottom:4mm">We don't know Reach's contact volumes, so this is a worked example with clearly stated assumptions. In the first call we'd replace them with your real figures.</p>
+  <div class="grid2">
+    <div>
+      <table class="calc" style="width:100%;border-collapse:collapse">
+        <tr><th>Assumption</th><th class="rr">Example</th></tr>
+        <tr><td>Subscribers (digital 75k target + 65k print, e-edition, newsletter)</td><td class="rr">140,000</td></tr>
+        <tr><td>Contacts per subscriber per year</td><td class="rr">0.4</td></tr>
+        <tr><td>Subscriber contacts per year</td><td class="rr">56,000</td></tr>
+        <tr><td>Share moved to self-service by nudging</td><td class="rr">30%</td></tr>
+        <tr><td>Contacts avoided per year</td><td class="rr">16,800</td></tr>
+        <tr><td>Cost per assisted contact (reChanneld's ROI basis: €5)</td><td class="rr">≈ £4.30</td></tr>
+        <tr class="tot"><td>Annual saving, subscriber contacts only</td><td class="rr" style="white-space:nowrap">≈ £72,000</td></tr>
+      </table>
+      <p class="small muted" style="margin-top:2mm">Excludes switchboard, advertiser and investor routing, retention effects and the value of agent time freed for complex cases.</p>
+    </div>
+    <div>
+      <h3>Where the value comes from</h3>
+      <ul class="clean small">
+        <li><b>Fewer assisted contacts.</b> Missed papers, log-in and billing questions move to self-service.</li>
+        <li><b>Faster help for those who call.</b> Shorter queues for complex cases and readers who need a person.</li>
+        <li><b>Lower avoidable churn.</b> Frustrated subscribers leave. A fixed problem keeps the subscription.</li>
+        <li><b>Insight.</b> Real-time data on what readers need, by brand, for the Customer and product teams.</li>
+      </ul>
+      <div class="box bg" style="margin-top:3mm"><h4>reChanneld's own benchmark</h4><p class="small" style="margin:0">On reChanneld's published plans, ROI is reached by nudging around 5% of traffic, assuming €5 per contact. Clients typically see 79% of channel selections go to self-service, automation and leads.</p></div>
+    </div>
+  </div>
+  <div class="box dark" style="margin-top:5mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">Retention matters more than savings: <span style="color:var(--teal)">at £4.99 a month, every 1,000 subscribers kept is worth about £60,000 a year.</span></p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>11</span></div>
+</div>
+
+<!-- 12 PILOT -->
+<div class="page">
+  <div class="kick">07 · 8-week pilot</div>
+  <h2>Prove it on two pages, with your own data</h2>
+  <p class="lead" style="margin-bottom:4mm">Suggested scope: <b>reachplc.com/contacts</b> (all audiences) and the <b>Manchester Evening News</b>, Reach's first Premium brand, for digital and print subscribers.</p>
+  <div class="steps" style="margin-bottom:6mm">
+    <div class="st"><span>Weeks 1–2</span><b>Map</b><p>Review three months of contact reasons from Reachsubs and digital support. Agree topics, channels and wording, and set the baseline. The widget can be live within days.</p></div>
+    <div class="st"><span>Weeks 3–8</span><b>Guide</b><p>Widget live on both pages, linked from subscriber e-mails. Wording and recommended channels adjusted weekly from the analytics.</p></div>
+    <div class="st"><span>Week 9</span><b>Decide</b><p>Review results together, then a brand-by-brand rollout plan for the remaining subscription brands.</p></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>What we'll measure</h3>
+      <table class="kpi" style="width:100%;border-collapse:collapse">
+        <tr><th>KPI</th><th>How</th></tr>
+        <tr><td>Calls and e-mails per 1,000 subscribers</td><td>Your data, before vs during</td></tr>
+        <tr><td>Switchboard calls</td><td>Your data, before vs during</td></tr>
+        <tr><td>Top channels chosen per topic</td><td>reChanneld analytics</td></tr>
+        <tr><td>Finished sessions</td><td>reChanneld analytics</td></tr>
+        <tr><td>Cancel-topic choices (pause, switch, cancel)</td><td>reChanneld analytics</td></tr>
+        <tr><td>Trustpilot themes</td><td>Review trend</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Who does what</h3>
+      <div class="box bg" style="margin-bottom:3mm"><h4>reChanneld</h4><ul class="clean small" style="margin:0"><li>Configuration, topics and copy</li><li>Analytics access and weekly check-ins</li><li>Final report and rollout plan</li></ul></div>
+      <div class="box bg"><h4>Reach</h4><ul class="clean small" style="margin:0"><li>One Customer-team contact, about 2 hours a week</li><li>Contact-reason data and current help links</li><li>Adding the widget to the two pages</li></ul></div>
+    </div>
+  </div>
+  <div class="box dark" style="margin-top:5mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">No redesign, no new chatbot and no change to subscription platforms. <span style="color:var(--teal)">If it doesn't show results in 8 weeks, you stop.</span></p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>12</span></div>
+</div>
+
+<!-- 13 VIDEO -->
+<div class="page">
+  <div class="kick">07 · Launch support</div>
+  <h2 style="font-size:20pt">“Welcome to Premium”: a 40-second onboarding video</h2>
+  <p class="muted small" style="margin-bottom:4mm">Most log-in and “ads still showing” contacts happen in a subscriber's first week. A short welcome video in the confirmation e-mail and app shows how to sign in on every device and where to get help, before the questions start. It's made once, with an end card for each brand.</p>
+  <div class="sb">
+    <div class="fr"><div class="scr"><span class="tc">0:00–0:06</span>🎉 “You're in!”<br>Brand logo + Premium badge</div><div class="bd"><b>Visual</b><br>A confirmation screen lights up.<div class="vo">“Welcome to Premium. Thanks for backing local journalism.”</div></div></div>
+    <div class="fr"><div class="scr"><span class="tc">0:06–0:16</span>📱💻 Sign in once<br>on each device</div><div class="bd"><b>Visual</b><br>Phone, laptop and tablet each show the sign-in.<div class="vo">“Sign in on each device you use, and the ad-lite experience follows you.”</div></div></div>
+    <div class="fr"><div class="scr" style="background:#0a3b3a"><span class="tc">0:16–0:24</span>✨ Ad-lite · exclusives<br>· newsletters</div><div class="bd"><b>Visual</b><br>A quick tour of the benefits.<div class="vo">“Fewer ads, exclusive stories, and newsletters made for you.”</div></div></div>
+    <div class="fr"><div class="scr"><span class="tc">0:24–0:32</span>👋 “Hey, how may we help you?”</div><div class="bd"><b>Visual</b><br>The reChanneld widget opens: Can't log in → Send log-in link.<div class="vo">“Any questions? Our help button gets you sorted in seconds.”</div></div></div>
+    <div class="fr"><div class="scr"><span class="tc">0:32–0:36</span>📅 Your plan, your choice</div><div class="bd"><b>Visual</b><br>Change plan: annual, bundle, or cancel.<div class="vo">“Change or cancel any time. It's all in one place.”</div></div></div>
+    <div class="fr"><div class="scr" style="background:linear-gradient(135deg,#0c0d12,#3b3b3b)"><span class="tc">0:36–0:40</span>[Brand] Premium<br>Help: one tap away</div><div class="bd"><b>Visual</b><br>End card in the brand's colours.<div class="vo">“Enjoy reading.”</div></div></div>
+  </div>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="box bg"><h4>Formats</h4><p class="small" style="margin:0">9:16 for the app and social, 16:9 for web, plus a GIF and a 15-second cut for e-mails. Captioned throughout.</p></div>
+    <div class="box bg"><h4>One master, 25 brands</h4><p class="small" style="margin:0">Voice-over and end cards adapt per brand: Mirror+, Express Premium, MEN Premium, Echo, Record and more.</p></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>13</span></div>
+</div>
+
+<!-- 14 ABOUT -->
+<div class="page">
+  <div class="kick">About reChanneld</div>
+  <h2>Better choices. Happier customers. Lower costs.</h2>
+  <div class="grid2" style="margin:3mm 0 5mm;grid-template-columns:1.15fr 1fr">
+    <div>
+      <div style="border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><img src="img/rech-widget.png" style="width:100%;display:block"></div>
+      <p class="small muted" style="margin-top:1.6mm">The reChanneld widget as it works today: topic, sub-topic, channel cards and the “Most popular choice”.</p>
+    </div>
+    <div>
+      <p class="small">reChanneld is a channel strategy platform from Helsinki, Finland. A plug-and-play widget uses behavioural economics and digital nudges to guide customers to the best service channel. Customer service teams manage it themselves in a cloud admin panel, and it works on top of their existing website and channels.</p>
+      <div class="facts" style="grid-template-columns:1fr 1fr;gap:2.4mm">
+        <div class="fact"><b>4M+</b><span>annual sessions</span></div>
+        <div class="fact"><b>79%</b><span>channel selections to self-service, automation and leads</span></div>
+        <div class="fact"><b>87%</b><span>of end users found reChanneld easy and clear</span></div>
+        <div class="fact"><b>Days</b><span>to define and implement a channel strategy</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-bottom:5mm">
+    <div class="box bg">
+      <p style="font:700 10pt/1.5 'Plus Jakarta Sans';margin-bottom:2mm">“Within just a few days we were able to nail our service channel strategy with reChanneld. Nudges work excellently, and we offer a far more intuitive experience to our customers than before!”</p>
+      <p class="small muted" style="margin:0">Teresa Alander, Head of Operations, Lippu.fi (part of CTS Eventim)</p>
+    </div>
+    <div class="box">
+      <h4>Used by</h4>
+      <p class="small" style="margin-bottom:2mm">S-Bank, Nets, Lippu.fi, PAM, Sportson, Laurea, Varha and Satakunta wellbeing services county. They cover banking, payments, ticketing, retail, education and the public sector.</p>
+      <h4>Enterprise-ready</h4>
+      <p class="small" style="margin:0">Audited for security and accessibility, GDPR compliant, no cookies. White-labelled for each brand. Enterprise plan with unlimited admin users and integrations.</p>
+    </div>
+  </div>
+  <div class="cta">
+    <div><h3>Shall we take 20 minutes?</h3><p>We'd love to hear how reader and subscriber help works today, and where it hurts most.</p></div>
+    <div class="c">Touko Laakkonen<span>reChanneld · [e-mail] · [phone]</span></div>
+  </div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Figures, quote, plans and customer names from rechanneld.com (October 2026).</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Reach plc</span><span>14</span></div>
+</div>
+
+</body>
+</html>
