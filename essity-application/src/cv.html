@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kira Krysanov — CV</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  .page{display:grid;grid-template-rows:auto minmax(0,1fr);}
+  header{background:var(--navy);color:#fff;padding:10mm 16mm 9mm;display:flex;gap:9mm;align-items:center;position:relative;overflow:hidden;}
+  header::after{content:"";position:absolute;right:-30mm;top:-38mm;width:105mm;height:105mm;border-radius:50%;border:14mm solid rgba(230,0,126,.18);}
+  header::before{content:"";position:absolute;right:28mm;bottom:-44mm;width:60mm;height:60mm;border-radius:50%;border:8mm solid rgba(255,255,255,.07);}
+  .photo{width:34mm;height:34mm;border-radius:50%;object-fit:cover;border:1.4mm solid var(--magenta);flex:none;position:relative;z-index:1;}
+  .who{position:relative;z-index:1;}
+  .who h1{color:#fff;font-size:30pt;font-weight:500;line-height:1;}
+  .who .role{font-size:12.5pt;margin-top:3mm;font-weight:400;opacity:.95;}
+  .who .role b{color:#ff7cc0;font-weight:600;}
+  .who .contact{display:flex;flex-wrap:wrap;gap:1.5mm 6mm;margin-top:5mm;font-size:8.6pt;opacity:.9;}
+  .who .contact span::before{content:"›";color:#ff7cc0;font-weight:700;margin-right:5px;}
+
+  .body{display:grid;grid-template-columns:60mm 1fr;}
+  aside{background:var(--grey);padding:8mm 6mm 8mm 14mm;font-size:8.2pt;line-height:1.4;}
+  main{padding:8mm 14mm 5mm 8mm;}
+  h2{font-size:12pt;font-weight:600;margin-bottom:3mm;display:flex;align-items:center;gap:3mm;}
+  h2::after{content:"";flex:1;height:1px;background:var(--line);}
+  aside h3{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);font-weight:600;margin:5mm 0 1.8mm;}
+  aside h3:first-child{margin-top:0;}
+  aside .item{margin-bottom:2.2mm;}
+  aside .item b{display:block;color:var(--navy);font-weight:600;}
+  aside .item span{color:var(--muted);}
+  .tags{display:flex;flex-wrap:wrap;gap:1.5mm;}
+  .tags span{background:#fff;border:1px solid var(--line);border-radius:20px;padding:.5mm 2.2mm;font-size:7.4pt;color:var(--navy);}
+
+  .profile{font-size:9.2pt;line-height:1.5;margin-bottom:4mm;}
+  .profile b{color:var(--navy);font-weight:600;}
+  .fit{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-bottom:5mm;}
+  .fit div{background:var(--sky);border-radius:3mm;padding:3.2mm 3.4mm;font-size:8pt;line-height:1.4;border-top:1mm solid var(--magenta);}
+  .fit b{display:block;color:var(--navy);font-size:9pt;margin-bottom:1mm;font-weight:600;}
+
+  .job{display:grid;grid-template-columns:25mm 1fr;gap:3mm;margin-bottom:3.4mm;}
+  .job .when{font-size:8pt;color:var(--magenta);font-weight:600;line-height:1.4;padding-top:.6mm;}
+  .job .when span{display:block;color:var(--muted);font-weight:400;}
+  .job h4{font-size:10.5pt;font-weight:600;}
+  .job .title{font-size:8.6pt;color:var(--muted);margin:.4mm 0 1.6mm;}
+  .job li{font-size:8.3pt;line-height:1.38;padding-left:4mm;position:relative;margin-bottom:.7mm;}
+  .job li::before{content:"›";position:absolute;left:0;color:var(--magenta);font-weight:700;}
+  .job p.d{font-size:8.3pt;line-height:1.38;}
+  footer{position:absolute;bottom:6mm;left:14mm;width:44mm;line-height:1.35;font-size:7pt;color:var(--muted);display:flex;align-items:center;gap:2.5mm;}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <img class="photo" src="photo.png" alt="">
+    <div class="who">
+      <h1>Kira Krysanov</h1>
+      <div class="role">Brand &amp; marketing · <b>brand building, activation and content</b></div>
+      <div class="contact">
+        <span>kira.krysanov@gmail.com</span>
+        <span>+358 45 8722655</span>
+        <span>linkedin.com/in/kirakrysanov</span>
+        <span>www.lumux.fi</span>
+        <span>Vantaa, Finland · open to Espoo hybrid &amp; Nordic travel</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="body">
+    <aside>
+      <h3>Education</h3>
+      <div class="item"><b>BBA, Marketing</b><span>Haaga-Helia University of Applied Sciences · 2010–2014</span></div>
+
+      <h3>Languages</h3>
+      <div class="item"><b>English</b><span>Native / bilingual</span></div>
+      <div class="item"><b>Russian</b><span>Native / bilingual</span></div>
+      <div class="item"><b>Finnish</b><span>Limited working proficiency</span></div>
+
+      <h3>Marketing &amp; management</h3>
+      <div class="tags">
+        <span>Brand strategy</span><span>Marketing activation</span><span>Campaign planning</span><span>Content strategy</span><span>Project management</span><span>Stakeholder alignment</span>
+      </div>
+
+      <h3>Creative &amp; brand</h3>
+      <div class="tags">
+        <span>Visual identity</span><span>Video production</span><span>Motion design</span><span>UI/UX</span><span>Website management</span>
+      </div>
+
+      <h3>Tools</h3>
+      <div class="tags">
+        <span>Microsoft Office</span><span>Figma</span><span>Adobe CC</span><span>Premiere Pro</span><span>After Effects</span><span>Illustrator</span><span>Asana</span><span>WordPress</span>
+      </div>
+
+    </aside>
+
+    <main>
+      <h2>Profile</h2>
+      <p class="profile">Marketing professional with <b>10+ years</b> turning brand direction into campaigns and content that people notice and act on. I have built and protected brand identities, supported brand visibility and lead generation across <b>11 countries</b>, and run my own marketing business since 2013. I like being the person who connects strategy, sales and the people doing the work.</p>
+
+      <div class="fit">
+        <div><b>Brand ownership</b>Led visual identity and brand consistency at two Finnish tech companies.</div>
+        <div><b>Multi-market activation</b>Supported lead generation and brand visibility in 11 countries.</div>
+        <div><b>Commercial mindset</b>Runs own business since 2013: clients, pricing, budgets and delivery.</div>
+      </div>
+
+      <h2>Experience</h2>
+      <div class="job">
+        <div class="when">May 2023 – Present<span>Helsinki, Finland</span></div>
+        <div>
+          <h4>Videobot</h4>
+          <div class="title">Visual Brand Manager · Content Strategist &amp; Producer</div>
+          <ul>
+            <li>Lead brand initiatives that keep a strong, consistent identity across every channel</li>
+            <li>Develop marketing strategies to grow brand visibility, and blend creative ideas with performance data</li>
+            <li>Plan and create content tailored to each target audience and buying stage</li>
+            <li>Own the company website and improve its UX/UI to support conversion</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Feb 2020 – Jan 2023<span>Helsinki, Finland</span></div>
+        <div>
+          <h4>Leadoo</h4>
+          <div class="title">Visual Brand Designer · UI/UX Designer · Video Producer</div>
+          <ul>
+            <li>Shaped the company's brand identity and visual design system</li>
+            <li>Managed end-to-end video production: strategy, scripting, filming, editing, publishing</li>
+            <li>Created marketing and sales materials and maintained brand asset libraries</li>
+            <li>Managed website content and UI, working closely with development to keep it current</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Sep 2015 – Feb 2020<span>Helsinki, Finland</span></div>
+        <div>
+          <h4>Management Events</h4>
+          <div class="title">Video Marketing Specialist</div>
+          <ul>
+            <li>Supported lead generation and sales targets through targeted video</li>
+            <li>Boosted brand visibility across operations in 11 countries</li>
+            <li>Built the company's YouTube presence and turned prospects into customers with content</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">May 2013 – Present<span>Helsinki, Finland</span></div>
+        <div>
+          <h4>Lumux</h4>
+          <div class="title">Private Entrepreneur · corporate video and content marketing</div>
+          <p class="d">Build video and content strategies that match each client's marketing goals: explainer videos, recruitment films and event coverage. Own pricing, budgets, client relationships and delivery.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer><span class="dots"><i></i><i></i><i></i><i></i></span><span>Application · Senior Brand Manager,<br>Libero Nordics · Essity265472</span></footer>
+</div>
+</body>
+</html>

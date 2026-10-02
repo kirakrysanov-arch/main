@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Libero Nordics — One brand, four markets</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  @page{size:297mm 210mm;margin:0;}
+  .page{width:297mm;height:210mm;padding:15mm 18mm 13mm;display:flex;flex-direction:column;}
+  .head{display:flex;justify-content:space-between;align-items:center;font-size:8pt;color:var(--muted);margin-bottom:7mm;}
+  .head .l{display:flex;gap:3mm;align-items:center;}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;font-size:7.4pt;color:var(--muted);padding-top:4mm;border-top:1px solid var(--line);}
+  .foot b{color:var(--navy);font-weight:600;}
+  h2{font-size:25pt;line-height:1.1;font-weight:500;margin:2mm 0 3mm;max-width:210mm;}
+  h2 em{font-style:normal;color:var(--magenta);}
+  .lead{font-size:10.5pt;line-height:1.55;color:var(--text);max-width:190mm;margin-bottom:7mm;}
+  .card{background:var(--grey);border-radius:3mm;padding:5mm;}
+  .card h3{font-size:12pt;font-weight:600;margin-bottom:2mm;}
+  .card p,.card li{font-size:8.9pt;line-height:1.5;}
+  .card li{padding-left:4mm;position:relative;margin-bottom:1mm;}
+  .card li::before{content:"›";position:absolute;left:0;color:var(--magenta);font-weight:700;}
+  .num{font-size:30pt;color:var(--magenta);font-weight:300;line-height:1;margin-bottom:2mm;}
+  .tag{display:inline-block;font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--magenta);background:var(--magenta-soft);padding:.8mm 2.4mm;border-radius:10mm;margin-bottom:2.5mm;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:5mm;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:4.5mm;}
+
+  /* cover */
+  .cover{background:var(--navy);color:#fff;padding:0;flex-direction:row;}
+  .cover .left{width:62%;padding:15mm 18mm 12mm;display:flex;flex-direction:column;position:relative;z-index:1;}
+  .cover h1{color:#fff;font-size:38pt;line-height:1.02;font-weight:500;margin-top:auto;}
+  .cover h1 em{font-style:normal;color:#ff6fb8;}
+  .cover .sub{font-size:12pt;line-height:1.5;margin-top:5mm;max-width:150mm;opacity:.92;font-weight:300;}
+  .cover .by{margin-top:auto;font-size:9pt;line-height:1.6;opacity:.85;}
+  .cover .by b{font-size:11pt;opacity:1;font-weight:600;}
+  .cover .right{flex:1;position:relative;}
+  .circ{position:absolute;border-radius:50%;}
+  .disc{font-size:7.2pt;opacity:.6;margin-top:5mm;max-width:150mm;line-height:1.5;}
+
+  /* role */
+  .jobs .card{background:#fff;border:1px solid var(--line);border-top:1.2mm solid var(--navy);}
+  .jobs .card .y{margin-top:3mm;padding-top:3mm;border-top:1px dashed var(--line);}
+  .jobs .card .y b{color:var(--magenta);font-size:7.6pt;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:1mm;}
+
+  /* markets */
+  .mkt .card{background:var(--sky);}
+  .mkt .code{font-size:26pt;font-weight:600;color:var(--navy);line-height:1;}
+  .mkt .name{font-size:8pt;color:var(--muted);margin-bottom:3mm;letter-spacing:.08em;text-transform:uppercase;}
+  .mkt dl{margin:0;font-size:8.5pt;line-height:1.45;}
+  .mkt dt{font-weight:600;color:var(--navy);margin-top:2mm;}
+  .mkt dd{margin:0;}
+  .strip{margin-top:5mm;background:var(--navy);color:#fff;border-radius:3mm;padding:4.5mm 6mm;display:flex;gap:8mm;align-items:center;font-size:9.2pt;line-height:1.5;}
+  .strip b{color:#ff6fb8;white-space:nowrap;font-weight:600;}
+
+  /* 90 days */
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+  .phase{padding:0 5mm 0 0;}
+  .phase .bar{height:3mm;background:var(--navy);margin-bottom:5mm;position:relative;}
+  .phase:nth-child(2) .bar{background:var(--navy-2);opacity:.85;}
+  .phase:nth-child(3) .bar{background:var(--magenta);}
+  .phase .bar::after{content:"";position:absolute;right:-1mm;top:-1.5mm;width:6mm;height:6mm;border-radius:50%;background:#fff;border:1.2mm solid currentColor;color:var(--navy);}
+  .phase:nth-child(3) .bar::after{color:var(--magenta);}
+  .phase .d{font-size:8pt;color:var(--magenta);font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+  .phase h3{font-size:17pt;font-weight:500;margin:1mm 0 3mm;}
+  .phase li{font-size:8.9pt;line-height:1.5;padding-left:4mm;position:relative;margin-bottom:1.3mm;}
+  .phase li::before{content:"›";position:absolute;left:0;color:var(--magenta);font-weight:700;}
+  .phase .out{margin-top:4mm;background:var(--grey);border-radius:2.5mm;padding:3mm 3.5mm;font-size:8.4pt;line-height:1.45;}
+  .phase .out b{color:var(--navy);font-weight:600;}
+
+  /* calendar */
+  .cal{display:grid;grid-template-columns:repeat(12,1fr);gap:1.2mm;margin-bottom:5mm;}
+  .cal .m{font-size:7.4pt;color:var(--muted);text-align:center;padding-bottom:1.5mm;text-transform:uppercase;letter-spacing:.06em;}
+  .lane{display:contents;}
+  .ev{border-radius:2mm;padding:2.2mm 2.6mm;font-size:7.8pt;line-height:1.3;color:#fff;background:var(--navy);}
+  .ev b{display:block;font-size:8.4pt;font-weight:600;}
+  .ev.pk{background:var(--magenta);}
+  .ev.lt{background:var(--sky);color:var(--navy);}
+  .ev.md{background:var(--navy-2);}
+  .lanelabel{grid-column:1/-1;font-size:7.4pt;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);margin-top:2mm;}
+
+  /* concept */
+  .concept{display:grid;grid-template-columns:96mm 1fr;gap:8mm;flex:1;min-height:0;}
+  .hero{background:var(--navy);border-radius:4mm;color:#fff;padding:9mm 8mm;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+  .hero .tag{background:rgba(255,255,255,.12);color:#ff9fd0;}
+  .hero h3{color:#fff;font-size:24pt;font-weight:500;line-height:1.08;margin-top:2mm;}
+  .hero h3 em{font-style:normal;color:#ff6fb8;}
+  .hero p{font-size:9.6pt;line-height:1.55;margin-top:5mm;opacity:.92;}
+  .hero .insight{margin-top:auto;border-left:1mm solid var(--magenta);padding-left:4mm;font-size:9pt;line-height:1.5;position:relative;z-index:1;}
+  .hero .insight b{display:block;font-size:7.4pt;letter-spacing:.12em;text-transform:uppercase;color:#ff9fd0;margin-bottom:1mm;}
+  .hero .c1{position:absolute;right:-22mm;top:-22mm;width:70mm;height:70mm;border-radius:50%;border:10mm solid rgba(230,0,126,.25);}
+  .touch{display:grid;grid-template-columns:1fr 1fr;gap:4mm;align-content:start;}
+  .touch .card{padding:4.2mm 4.5mm;}
+  .touch .card h3{font-size:10.5pt;display:flex;align-items:center;gap:2.5mm;}
+  .touch .card h3 span{width:6mm;height:6mm;border-radius:50%;background:var(--magenta);color:#fff;font-size:7.6pt;display:inline-flex;align-items:center;justify-content:center;flex:none;}
+  .touch .wide{grid-column:1/-1;background:var(--sky);display:flex;gap:7mm;}
+  .touch .wide div{flex:1;font-size:8.5pt;line-height:1.45;}
+  .touch .wide b{display:block;color:var(--navy);font-weight:600;font-size:8pt;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1mm;}
+
+  /* launch */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:6mm;}
+  .step{position:relative;padding:4mm 6mm 4mm 7mm;background:var(--sky);color:var(--navy);clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%,8% 50%);min-height:30mm;}
+  .step:first-child{clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%);padding-left:5mm;}
+  .step:nth-child(2){background:#dfe2f4;} .step:nth-child(3){background:#c9cdee;}
+  .step:nth-child(4){background:var(--navy);color:#fff;} .step:nth-child(5){background:var(--magenta);color:#fff;}
+  .step .w{font-size:7.4pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8;}
+  .step b{display:block;font-size:11pt;font-weight:600;margin:1mm 0;}
+  .step p{font-size:7.9pt;line-height:1.4;}
+  .step:nth-child(4) b,.step:nth-child(5) b{color:#fff;}
+
+  table.kpi{width:100%;border-collapse:collapse;font-size:8.6pt;}
+  table.kpi th{text-align:left;font-size:7.4pt;letter-spacing:.1em;text-transform:uppercase;color:var(--magenta);font-weight:600;padding:0 3mm 2mm 0;border-bottom:1.2mm solid var(--navy);}
+  table.kpi td{padding:2.3mm 3mm 2.3mm 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4;}
+  table.kpi td:first-child{font-weight:600;color:var(--navy);width:40mm;}
+  table.kpi td.q{color:var(--muted);}
+
+  /* close */
+  .close{background:var(--navy);color:#fff;}
+  .close h2{color:#fff;}
+  .close h2 em{color:#ff6fb8;}
+  .close .card{background:rgba(255,255,255,.07);color:#fff;}
+  .close .card h3{color:#fff;}
+  .close .card li::before{color:#ff6fb8;}
+  .close .foot{border-top-color:rgba(255,255,255,.2);color:rgba(255,255,255,.7);}
+  .close .foot b{color:#fff;}
+  .values{display:flex;gap:3mm;margin-top:6mm;}
+  .values span{border:1px solid rgba(255,255,255,.35);border-radius:10mm;padding:1.5mm 4mm;font-size:8.6pt;}
+  .values span::before{content:"›";color:#ff6fb8;font-weight:700;margin-right:5px;}
+  /* fill pages: larger reading sizes, grids stretch into free space */
+  h2{font-size:28pt;}
+  .lead{font-size:11.5pt;max-width:220mm;}
+  .card{padding:6mm;}
+  .card h3{font-size:13pt;}
+  .card p,.card li{font-size:10pt;}
+  .grow{flex:1;min-height:0;align-content:stretch;}
+  .grow > *{height:100%;}
+  .mkt dl{font-size:9.6pt;}
+  .phase li{font-size:10pt;margin-bottom:2mm;}
+  .phase .out{font-size:9.4pt;padding:4mm;}
+  .ev{font-size:8.6pt;padding:3mm;} .ev b{font-size:9.4pt;}
+  .touch{grid-template-rows:1fr 1fr auto;align-content:stretch;}
+  .touch .card p{font-size:9.8pt;}
+  .touch .wide div{font-size:9.4pt;}
+  .step{min-height:36mm;} .step p{font-size:8.8pt;} .step b{font-size:12.5pt;}
+  table.kpi{font-size:9.8pt;} table.kpi td{padding:3.6mm 3mm 3.6mm 0;}
+  .close .card li{margin-bottom:2mm;}
+  .bottomgap{margin-bottom:5mm;}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<div class="page cover">
+  <div class="left">
+    <div style="display:flex;align-items:center;gap:3mm;font-size:9pt;opacity:.85"><span class="dots light"><i></i><i></i><i></i><i></i></span>Candidate concept · Senior Brand Manager · Essity265472</div>
+    <h1>Libero Nordics:<br>one brand,<br><em>four markets.</em></h1>
+    <div class="sub">How I would approach the first 90 days, in-market activation, launches and assortment for Libero across Sweden, Norway, Denmark and Finland.</div>
+    <div class="by"><b>Kira Krysanov</b><br>kira.krysanov@gmail.com · +358 45 8722655 · October 2026</div>
+    <div class="disc">An independent point of view written for my application. It is not produced by or affiliated with Essity. Market notes are hypotheses I would validate with Nielsen, sales and internal data in my first weeks.</div>
+  </div>
+  <div class="right">
+    <div class="circ" style="width:150mm;height:150mm;right:-40mm;top:-30mm;border:22mm solid rgba(230,0,126,.85);"></div>
+    <div class="circ" style="width:95mm;height:95mm;right:40mm;bottom:-35mm;border:14mm solid rgba(255,255,255,.14);"></div>
+    <div class="circ" style="width:40mm;height:40mm;right:20mm;bottom:30mm;background:#fff;opacity:.95;"></div>
+    <div class="circ" style="width:18mm;height:18mm;right:72mm;top:70mm;background:var(--magenta);"></div>
+  </div>
+</div>
+
+<!-- 2 THE ROLE -->
+<div class="page">
+  <div class="head"><div class="l"><span class="dots"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>01 · How I read the role</div></div>
+  <div class="eyebrow">How I read the role</div>
+  <h2>The link between <em>brand direction</em> and <em>Nordic shelves.</em></h2>
+  <p class="lead">The brand team sets where Libero is going. Four local commercial teams decide what happens in store and online on Monday morning. The Senior Brand Manager makes those two meet, and is accountable for the numbers when they do.</p>
+  <div class="grid4 jobs grow bottomgap">
+    <div class="card"><div class="num">01</div><h3>Own performance</h3><p>Market share, brand activation, pricing and assortment in line with brand strategy.</p><div class="y"><b>Success looks like</b><p>One Nordic view of share, price and distribution, reviewed monthly with each market.</p></div></div>
+    <div class="card"><div class="num">02</div><h3>Plan &amp; activate</h3><p>Annual activation and business plans built with local markets and tracked against KPIs.</p><div class="y"><b>Success looks like</b><p>A shared activation calendar that sales can sell in, and that every market recognises as theirs.</p></div></div>
+    <div class="card"><div class="num">03</div><h3>Partner commercially</h3><p>Aligned priorities with Sales and Customer Marketing, and better sales and marketing productivity.</p><div class="y"><b>Success looks like</b><p>Fewer, bigger activations, with toolboxes that customer teams actually use with retailers.</p></div></div>
+    <div class="card"><div class="num">04</div><h3>Launch &amp; steer</h3><p>Innovation launches from trade story to results, plus phase-in, phase-out and new opportunities.</p><div class="y"><b>Success looks like</b><p>Every launch has a clear tracking plan and agreed corrective actions before it goes live.</p></div></div>
+  </div>
+  <div class="foot"><span><b>Kira Krysanov</b> · Senior Brand Manager application</span><span>2 / 8</span></div>
+</div>
+
+<!-- 3 MARKETS -->
+<div class="page">
+  <div class="head"><div class="l"><span class="dots"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>02 · Four markets</div></div>
+  <div class="eyebrow">One brand, four markets</div>
+  <h2>Same parents' needs. <em>Different routes to the shelf.</em></h2>
+  <p class="lead">Nordic families share a lot: long parental leave, daycare from around age one, an outdoor life in all weather. But grocery retail is concentrated differently in each country, so the activation that wins must be built with each market's key customers in mind.</p>
+  <div class="grid4 mkt grow">
+    <div class="card"><div class="code">SE</div><div class="name">Sweden</div><dl><dt>Key grocery groups</dt><dd>ICA, Axfood, Coop, Lidl</dd><dt>Also watch</dt><dd>Pharmacy chains and online pure players</dd><dt>Question to validate</dt><dd>Where is value share moving between baby-specialist and grocery channels?</dd></dl></div>
+    <div class="card"><div class="code">NO</div><div class="name">Norway</div><dl><dt>Key grocery groups</dt><dd>NorgesGruppen, Rema 1000, Coop</dd><dt>Also watch</dt><dd>Discount formats and Apotek 1 / Vitusapotek</dd><dt>Question to validate</dt><dd>How strong is price-led competition in discount, and how do we protect value?</dd></dl></div>
+    <div class="card"><div class="code">DK</div><div class="name">Denmark</div><dl><dt>Key grocery groups</dt><dd>Salling Group, Coop, Rema 1000, Lidl</dd><dt>Also watch</dt><dd>Online grocery and subscription models</dd><dt>Question to validate</dt><dd>What drives switching to private label, and at which size or stage?</dd></dl></div>
+    <div class="card"><div class="code">FI</div><div class="name">Finland</div><dl><dt>Key grocery groups</dt><dd>S Group, Kesko, Lidl</dd><dt>Also watch</dt><dd>Neuvola as a trusted source for new parents</dd><dt>Question to validate</dt><dd>Can two big customers carry a full Nordic launch, or do we phase it?</dd></dl></div>
+  </div>
+  <div class="strip"><b>My first ask</b>A Nielsen deep-dive per market: share by segment, price index vs. competitors and private label, weighted distribution and the top-10 SKU contribution. That gives us one shared fact base before we change anything.</div>
+  <div class="foot"><span><b>Kira Krysanov</b> · Senior Brand Manager application</span><span>3 / 8</span></div>
+</div>
+
+<!-- 4 FIRST 90 DAYS -->
+<div class="page">
+  <div class="head"><div class="l"><span class="dots"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>03 · First 90 days</div></div>
+  <div class="eyebrow">First 90 days</div>
+  <h2>Listen first. <em>Then plan together. Then deliver.</em></h2>
+  <p class="lead" style="margin-bottom:9mm">A brand manager who arrives with all the answers usually has the wrong ones. My plan is to earn trust in the four markets quickly, build one fact base, and show a first result within the quarter.</p>
+  <div class="phases grow" style="align-content:start">
+    <div class="phase"><div class="bar"></div><div class="d">Days 1–30</div><h3>Listen</h3>
+      <ul><li>Meet sales, customer marketing and the brand team in all four markets</li><li>Store and e-commerce visits in each country, with sales colleagues</li><li>Learn the P&amp;L, price ladder and SKU contribution per market</li><li>Get hands-on with Nielsen and our internal reporting</li></ul>
+      <div class="out"><b>Output:</b> a one-page view per market of what is working, what is not and what the teams need from brand.</div></div>
+    <div class="phase"><div class="bar"></div><div class="d">Days 31–60</div><h3>Learn</h3>
+      <ul><li>Review the last 12 months of activations: what moved share and what didn't</li><li>Map the innovation pipeline against each market's customer calendar</li><li>Find assortment quick wins: tail SKUs, gaps, pack-price architecture</li><li>Agree shared KPIs with Sales and Customer Marketing</li></ul>
+      <div class="out"><b>Output:</b> a Nordic scorecard and a shortlist of three priorities everyone has signed up to.</div></div>
+    <div class="phase"><div class="bar"></div><div class="d">Days 61–90</div><h3>Lead</h3>
+      <ul><li>Deliver one quick-win activation together with one market</li><li>Draft the annual activation and business plan with local teams</li><li>Prepare the trade story for the next launch</li><li>Set the monthly performance rhythm and corrective-action routine</li></ul>
+      <div class="out"><b>Output:</b> a first measurable result, and next year's plan built bottom-up with the markets.</div></div>
+  </div>
+  <div class="strip"><b>What I'll ask for</b>Access to Nielsen and sales data from day one, a store-visit buddy in each market, and 30 minutes a month with each country lead to review performance together.</div>
+  <div class="foot"><span><b>Kira Krysanov</b> · Senior Brand Manager application</span><span>4 / 8</span></div>
+</div>
+
+<!-- 5 ACTIVATION CALENDAR -->
+<div class="page">
+  <div class="head"><div class="l"><span class="dots"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>04 · Activation framework</div></div>
+  <div class="eyebrow">Activation framework</div>
+  <h2>Build the year around <em>family moments,</em> not just promotions.</h2>
+  <p class="lead" style="margin-bottom:5mm">Babies don't follow a retail calendar, but families do have shared Nordic moments. Anchoring a few big activations to them gives sales a strong story for customers, and gives the brand a reason to be talked about beyond price.</p>
+  <div class="cal">
+    <div class="m">Jan</div><div class="m">Feb</div><div class="m">Mar</div><div class="m">Apr</div><div class="m">May</div><div class="m">Jun</div><div class="m">Jul</div><div class="m">Aug</div><div class="m">Sep</div><div class="m">Oct</div><div class="m">Nov</div><div class="m">Dec</div>
+    <div class="lanelabel">Brand moments · Nordic</div>
+    <div class="ev" style="grid-column:1/4"><b>Winter outdoors</b>Dry and comfy through long winter days</div>
+    <div class="ev pk" style="grid-column:5/8"><b>Summer of firsts</b>Swim season, travel, first beach days</div>
+    <div class="ev pk" style="grid-column:8/10"><b>Ready for daycare</b>Hero concept, page 6</div>
+    <div class="ev" style="grid-column:10/13"><b>Welcome home</b>Newborn and new-parent support</div>
+    <div class="lanelabel">Customer &amp; shopper · per market</div>
+    <div class="ev md" style="grid-column:2/4"><b>Range reviews</b>Assortment and listings</div>
+    <div class="ev md" style="grid-column:4/6"><b>Launch window</b>Trade story, sell-in</div>
+    <div class="ev md" style="grid-column:7/10"><b>Back-to-routine</b>Joint business plans</div>
+    <div class="ev md" style="grid-column:11/13"><b>Planning</b>Next year's plan with retailers</div>
+    <div class="lanelabel">Always on</div>
+    <div class="ev lt" style="grid-column:1/13"><b>Libero content toolbox · search, social, retail media, CRM</b>One central toolbox, localised per market. Measured on reach, engagement and sales uplift where we can link them.</div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>Fewer, bigger, better</h3><p>Three or four Nordic moments a year, each with a clear target, rather than many small local pushes that compete for the same budget.</p></div>
+    <div class="card"><h3>Central core, local flex</h3><p>Brand team owns the idea and the assets. Each market chooses its customers, mechanics and timing within a clear frame.</p></div>
+    <div class="card"><h3>Sell-in ready</h3><p>Every moment comes with a customer deck, shopper materials and a results template, so customer teams can use it straight away.</p></div>
+  </div>
+  <div class="foot"><span><b>Kira Krysanov</b> · Senior Brand Manager application</span><span>5 / 8</span></div>
+</div>
+
+<!-- 6 HERO CONCEPT -->
+<div class="page">
+  <div class="head"><div class="l"><span class="dots"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>05 · Concept sketch</div></div>
+  <div class="concept">
+    <div class="hero">
+      <div class="c1"></div>
+      <span class="tag" style="align-self:flex-start">Concept sketch · August–September</span>
+      <h3>Ready for<br>daycare.<br><em>Ready to explore.</em></h3>
+      <p>Across the Nordics, many little ones start daycare in August. It is a big step for the child and an emotional one for parents. Libero can be the brand that makes the first weeks feel easier, with practical help and a smile.</p>
+      <div class="insight"><b>Insight to validate</b>"I'm not worried about the nappy. I'm worried about whether my child is comfortable and happy when I'm not there."</div>
+    </div>
+    <div class="touch">
+      <div class="card"><h3><span>1</span>In store</h3><p>A "daycare start" shelf moment with key customers: pants for active toddlers, multipacks and wipes together, with a simple checklist on pack or shelf.</p></div>
+      <div class="card"><h3><span>2</span>Daycare kit</h3><p>A printable and digital "first week" checklist and name labels, co-created with Nordic daycare staff for credibility.</p></div>
+      <div class="card"><h3><span>3</span>Social &amp; content</h3><p>Short, honest films of real first days in all four countries. Local voices, one shared look and feel.</p></div>
+      <div class="card"><h3><span>4</span>Retail media &amp; CRM</h3><p>Target parents of children around one year old through retailer loyalty data and Libero's own channels.</p></div>
+      <div class="wide card">
+        <div><b>Business goal</b>Grow share in the pants segment during the transition to daycare, when routines and brands are re-chosen.</div>
+        <div><b>How we measure</b>Value share in pants, sell-out uplift vs. baseline at participating customers, reach and engagement.</div>
+        <div><b>Pilot first</b>Test with one customer in one market, read results, then scale to the Nordics the next year.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span><b>Kira Krysanov</b> · Senior Brand Manager application</span><span>6 / 8</span></div>
+</div>
+
+<!-- 7 LAUNCH & ASSORTMENT -->
+<div class="page">
+  <div class="head"><div class="l"><span class="dots"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>06 · Launch &amp; assortment</div></div>
+  <div class="eyebrow">Launch &amp; assortment playbook</div>
+  <h2>Launches that land, and <em>a range that earns its space.</em></h2>
+  <div class="flow" style="margin-top:4mm">
+    <div class="step"><div class="w">−9 to −6 months</div><b>Prepare</b><p>Local business case, price point and listing ambition per market</p></div>
+    <div class="step"><div class="w">−6 to −3 months</div><b>Sell in</b><p>Trade presentation with a clear consumer story and shelf proposal</p></div>
+    <div class="step"><div class="w">−3 to 0 months</div><b>Get ready</b><p>Phase-out plan for old SKUs, shopper materials, content toolbox</p></div>
+    <div class="step"><div class="w">Launch</div><b>Activate</b><p>Joint activation with key customers, retail media and PR</p></div>
+    <div class="step"><div class="w">+1 to +6 months</div><b>Track &amp; fix</b><p>Weekly early signals, monthly review and agreed corrective actions</p></div>
+  </div>
+  <div class="grid2 grow bottomgap">
+    <div>
+      <table class="kpi">
+        <tr><th>Launch KPI</th><th>Why it matters</th></tr>
+        <tr><td>Weighted distribution</td><td>Are we where shoppers buy? The first thing to fix if it is low.</td></tr>
+        <tr><td>Rate of sale</td><td>Do shoppers pick it when it is there? Tells us if the proposition works.</td></tr>
+        <tr><td>Repeat &amp; incrementality</td><td>Are we growing the brand, or just moving sales between our own SKUs?</td></tr>
+        <tr><td>Value share &amp; price index</td><td>Are we holding our price position vs. competitors and private label?</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Assortment rules of thumb</h3>
+      <ul>
+        <li>Review the tail every year: SKUs that bring little profit and no strategic role make room for new ones</li>
+        <li>Plan phase-in and phase-out together, so we never leave a gap on shelf or a stock write-off</li>
+        <li>Keep a clear pack-price ladder per market, from trial packs to value packs</li>
+        <li>Use customer-specific ranges where they add sales, not complexity</li>
+        <li>Bring local insight back to the brand team for the next innovation and business case</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span><b>Kira Krysanov</b> · Senior Brand Manager application</span><span>7 / 8</span></div>
+</div>
+
+<!-- 8 CLOSE -->
+<div class="page close">
+  <div class="head" style="color:rgba(255,255,255,.7)"><div class="l"><span class="dots light"><i></i><i></i><i></i><i></i></span>Libero Nordics · candidate concept</div><div>07 · Why me</div></div>
+  <div class="eyebrow" style="color:#ff9fd0">Why me</div>
+  <h2>I'm ready to bring <em>brand, activation and partnership</em> together for Libero.</h2>
+  <div class="grid3" style="margin-top:8mm">
+    <div class="card"><h3>What I bring</h3><ul><li>10+ years turning brand direction into campaigns, content and sales materials</li><li>Brand ownership: visual identity and consistency at Videobot and Leadoo</li><li>Multi-market work across operations in 11 countries at Management Events</li><li>Commercial mindset from running my own business since 2013</li></ul></div>
+    <div class="card"><h3>How I work</h3><ul><li>Start from the consumer and the numbers, then decide</li><li>Make plans concrete: owners, dates, targets</li><li>Keep sales, brand and creative partners on one page</li><li>Follow up honestly and correct course early</li></ul></div>
+    <div class="card"><h3>Where I'll grow fastest</h3><ul><li>Nielsen and FMCG category data: my first 30 days include a deep-dive</li><li>Nordic retail customers: learning them side by side with the sales teams</li><li>Swedish, Norwegian and Danish: I speak Finnish, English and Russian, and I'm keen to learn</li></ul></div>
+  </div>
+  <div class="values" style="margin-top:8mm"><span>Innovate for Good</span><span>Excel Together</span><span>Be You with Us</span></div>
+  <p style="margin-top:auto;font-size:13pt;line-height:1.5;max-width:200mm;font-weight:300">Thank you for reading. I'd love to talk about how I could help Libero grow across the Nordics.<br><b style="font-weight:600">Kira Krysanov</b> · kira.krysanov@gmail.com · +358 45 8722655</p>
+  <div class="foot"><span>Independent candidate concept. Not produced by or affiliated with Essity.</span><span>8 / 8</span></div>
+</div>
+
+</body>
+</html>
