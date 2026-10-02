@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>reChanneld UK Sample Pitches</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--navy:#050a24;--navy2:#0a1240;--teal:#14d6c0;--teal-d:#0a9e8e;--blue:#2f6bff;--ink:#0b1033;--muted:#566080;--line:#e2e7f1;--bg:#f4f7fc;--red:#e5533d;--amber:#e99a1a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:9.6pt;line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:15mm 16mm 18mm;position:relative;overflow:hidden;page-break-after:always}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:16mm;right:16mm;bottom:8mm;display:flex;justify-content:space-between;font:600 7.3pt 'Plus Jakarta Sans';color:#9aa2bd;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink)}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:2.4mm}
+  h2{font-size:21pt;line-height:1.1;font-weight:800;margin-bottom:3mm}
+  h3{font-size:11.5pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:9.8pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.2mm}
+  .lead{font-size:11pt;color:var(--muted);line-height:1.5;margin-bottom:5mm}
+  .small{font-size:8.4pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .box{border:1px solid var(--line);border-radius:3.5mm;padding:4.4mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  .navy{background:var(--navy);color:#fff;border:none}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:4.6mm;position:relative;margin-bottom:1.5mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:1.9mm;width:1.9mm;height:1.9mm;border-radius:50%;background:var(--teal)}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-bottom:5mm}
+  .fact{background:var(--bg);border-radius:3mm;padding:3.4mm}
+  .fact b{display:block;font:800 15pt 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .fact span{font-size:7.9pt;color:var(--muted);line-height:1.35;display:block;margin-top:.8mm}
+  .tag{display:inline-block;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:1mm 2.4mm}
+  .src{font-size:7.2pt;color:#9aa2bd;line-height:1.4}
+
+  /* cover */
+  .cover{background:radial-gradient(130mm 110mm at 100% 0%,rgba(20,214,192,.28),transparent 60%),radial-gradient(140mm 120mm at 0% 100%,rgba(47,107,255,.32),transparent 60%),var(--navy);color:#fff;padding:22mm 20mm}
+  .cover .top{display:flex;justify-content:space-between;font:700 9pt 'Plus Jakarta Sans';color:#9aa3d6}
+  .rech{font:800 15pt 'Plus Jakarta Sans';letter-spacing:.02em;color:#fff}
+  .cover h1{font-size:38pt;line-height:1.04;font-weight:800;margin:46mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:12.5pt;color:#c4cbec;line-height:1.5;max-width:150mm}
+  .cards{position:absolute;left:20mm;right:20mm;bottom:44mm;display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .cards div{border:1px solid #2a3473;border-radius:4mm;padding:5mm;background:rgba(255,255,255,.03)}
+  .cards b{display:block;font:800 13pt 'Plus Jakarta Sans';margin-bottom:1mm}
+  .cards span{font-size:9pt;color:#aab2dd}
+  .cover .who{position:absolute;left:20mm;right:20mm;bottom:18mm;display:flex;justify-content:space-between;font-size:9pt;color:#9aa3d6}
+  .cover .who b{color:#fff;font:800 11pt 'Plus Jakarta Sans';display:block}
+
+  /* widget mock */
+  .mock{background:linear-gradient(180deg,#f7f9fd,#eaeff8);border-radius:4mm;padding:5mm;border:1px solid var(--line)}
+  .bbar{display:flex;gap:1.4mm;align-items:center;margin-bottom:3mm}
+  .bbar i{width:2.2mm;height:2.2mm;border-radius:50%;background:#d3d8e6;display:block}
+  .bbar .url{margin-left:2mm;flex:1;background:#fff;border-radius:1.5mm;font:600 7pt 'Plus Jakarta Sans';color:#8a91ad;padding:1mm 2.4mm}
+  .wdg{background:#fff;border-radius:3.5mm;box-shadow:0 4mm 10mm rgba(11,16,51,.12);padding:4mm}
+  .wq{font:800 11pt 'Plus Jakarta Sans'}
+  .ws{font-size:7.8pt;color:var(--muted);margin-bottom:2.6mm}
+  .opt{display:flex;align-items:center;gap:2.6mm;border:1.3px solid var(--line);border-radius:2.4mm;padding:2.1mm 2.6mm;margin-bottom:1.7mm}
+  .opt .ic{width:7mm;height:7mm;border-radius:1.8mm;display:flex;align-items:center;justify-content:center;font-size:10pt;flex:none}
+  .opt .t{font:700 8.4pt 'Plus Jakarta Sans';line-height:1.25}
+  .opt .d{font-size:7.2pt;color:var(--muted)}
+  .opt .tg{margin-left:auto;font:800 6.4pt 'Plus Jakarta Sans';border-radius:100px;padding:.8mm 2mm;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d9;color:#9a5d00}.r{background:#ffe5dc;color:#b0401a}
+  .pw{font-size:6.6pt;color:#9aa1bb;text-align:center;margin-top:1.4mm}
+  .cap{font-size:7.2pt;color:var(--muted);margin-top:2mm;text-align:center}
+
+  /* messages */
+  .msg{border:1px solid var(--line);border-radius:3.5mm;margin-bottom:3.6mm;overflow:hidden}
+  .msg .hd{background:var(--bg);padding:2.2mm 3.6mm;display:flex;justify-content:space-between;align-items:center;font:800 8pt 'Plus Jakarta Sans'}
+  .msg .hd span{font:600 7.3pt 'Lato';color:var(--muted)}
+  .msg .bd{padding:3.2mm 3.8mm;font-size:8.8pt;line-height:1.5;white-space:pre-line}
+  .msg .bd b{font-weight:900}
+  .who2 td{padding:1.8mm 2mm;border-bottom:1px solid var(--line);font-size:8.4pt;vertical-align:top}
+  .who2 th{text-align:left;font:800 7pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.4mm 2mm;border-bottom:1.4px solid var(--ink)}
+  table{width:100%;border-collapse:collapse}
+  .num{display:inline-flex;width:5mm;height:5mm;border-radius:50%;background:var(--navy);color:var(--teal);font:800 7.5pt 'Plus Jakarta Sans';align-items:center;justify-content:center;margin-right:1.6mm;vertical-align:middle}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="page cover">
+  <div class="top"><span class="rech">RECHANNELD</span><span>UK outreach · sample pitches · October 2026</span></div>
+  <h1>Two UK publishers.<br>Two pitches built <em>just for them</em>.</h1>
+  <p class="sub">Samples of personalised account-based outreach for reChanneld's UK entry. Each pitch has a short account brief, a channel-strategy mock-up made for that publisher, and a ready-to-send outreach sequence.</p>
+  <div class="cards">
+    <div><b>DC Thomson</b><span>Dundee · The Courier, The Press and Journal, The Sunday Post, The People's Friend, Beano, Stylist…</span></div>
+    <div><b>Iliffe Media Group</b><span>Cambridge · KentOnline, Cambridge Independent, and 30 former Tindle titles taken on in 2026</span></div>
+  </div>
+  <div class="who"><div><b>Prepared by Kira Krysanov</b>for Touko Laakkonen, reChanneld</div><span>Mock-ups are illustrative and use no publisher branding</span></div>
+</div>
+
+<!-- DCT 1 -->
+<div class="page">
+  <div class="kick">Account brief · 1 / 2</div>
+  <h2>DC Thomson</h2>
+  <p class="lead">A 120+ year-old Dundee publisher putting money into marketing, technology, data and AI to grow digital subscriptions. Its subscribers currently have to work out which of several phone lines to call.</p>
+  <div class="facts">
+    <div class="fact"><b>£41 M</b><span>subscription revenue (FY to Mar 2025, +1%)</span></div>
+    <div class="fact"><b>50,000+</b><span>paying subscribers to its regional news titles</span></div>
+    <div class="fact"><b>4+</b><span>separate phone lines for subscribers, by title and topic</span></div>
+    <div class="fact"><b>9–5</b><span>shop contact centre hours, Mon–Fri</span></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>What we noticed</h3>
+      <ul class="clean small">
+        <li><b>Many front doors.</b> The Courier digital (0800 029 4956), Press and Journal digital (0800 029 4955), home delivery (01382 575427) and DC Thomson Shop magazines (0800 904 7260) each have their own number. The customer has to choose the right one.</li>
+        <li><b>Contact reasons that repeat.</b> Even with a 4.8/5 Trustpilot score, the complaints are the same few topics: missing or late issues, billing frequency, refunds and early renewal reminders. These are ideal for self-service.</li>
+        <li><b>Evenings and weekends.</b> Shop subscribers are served 9–5 on weekdays. Readers who notice a missing Saturday paper have nowhere to go until Monday.</li>
+        <li><b>Self-service exists already.</b> Subscription management runs through Air Business (renewed on a 3-year contract) and DC Thomson's own help section. The tools are there, but customers aren't steered towards them.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>The opportunity</h3>
+      <div class="box navy" style="margin-bottom:3.5mm"><p style="margin:0;font:700 10pt/1.45 'Plus Jakarta Sans'">One “How can we help?” front door for every DC Thomson title. It steers missing issues, billing and delivery questions to self-service around the clock, and saves agents' time for cancellations and win-back calls, where a human conversation protects revenue.</p></div>
+      <h4>Why it fits their strategy</h4>
+      <ul class="clean small">
+        <li>Supports the stated investment in technology, data and AI with an affordable layer, not a replatforming project</li>
+        <li>Works with Air Business and the existing help pages; no rip-and-replace</li>
+        <li>Protects the £41 M subscription line: fewer frustrated calls about missing issues means less churn</li>
+        <li>One set of channel rules can be reused across news, magazines and Beano</li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="position:absolute;left:16mm;right:16mm;bottom:17mm">Sources: Press Gazette &amp; Scottish Financial News (FY to 31 Mar 2025 results), InPublishing / Air Business (subscriptions contract), DC Thomson and Press and Journal contact pages, Trustpilot (DC Thomson Shop). Facts to be re-checked before sending.</p>
+  <div class="pf"><span><b>reChanneld</b> × DC Thomson — sample by Kira Krysanov</span><span>2</span></div>
+</div>
+
+<!-- DCT 2 -->
+<div class="page">
+  <div class="kick">Mock-up + outreach · 2 / 2</div>
+  <div style="display:grid;grid-template-columns:78mm 1fr;gap:6mm">
+    <div>
+      <h3>What their subscribers would see</h3>
+      <div class="mock">
+        <div class="bbar"><i></i><i></i><i></i><div class="url">/subscriber-help</div></div>
+        <div class="wdg">
+          <div class="wq">Hi! What can we help with?</div>
+          <div class="ws">Pick a topic and we'll show you the quickest way to sort it.</div>
+          <div class="opt rec"><div class="ic" style="background:#dcfbf6">📰</div><div><div class="t">My paper or magazine didn't arrive</div><div class="d">Report it online, replacement sent</div></div><span class="tg g">2 min · 24/7</span></div>
+          <div class="opt"><div class="ic" style="background:#e9efff">💳</div><div><div class="t">Billing or payment dates</div><div class="d">See and change in My Account</div></div><span class="tg g">Self-service</span></div>
+          <div class="opt"><div class="ic" style="background:#fff1d9">🏖️</div><div><div class="t">Pause for holidays</div><div class="d">Set your dates in seconds</div></div><span class="tg g">1 min</span></div>
+          <div class="opt"><div class="ic" style="background:#ffe5dc">📞</div><div><div class="t">Change or cancel my subscription</div><div class="d">Talk to our subscriptions team</div></div><span class="tg y">Mon–Fri 9–5</span></div>
+          <div class="pw">one front door for every title · powered by <b>reChanneld</b></div>
+        </div>
+        <div class="cap">Illustrative mock-up, not a DC Thomson page</div>
+      </div>
+      <div class="box bg" style="margin-top:4mm">
+        <h4>Who to approach</h4>
+        <table class="who2"><tr><th>Role</th><th>Angle</th></tr>
+          <tr><td>Head of Customer Service / Contact Centre</td><td>Fewer repeat calls</td></tr>
+          <tr><td>Consumer Revenue / Subscriptions Director</td><td>Churn and retention</td></tr>
+          <tr><td>Digital / Product Director, News</td><td>AI and tech investment</td></tr>
+        </table>
+        <p class="small muted" style="margin:2mm 0 0">Find names on LinkedIn; message 2 people in parallel.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Outreach sequence</h3>
+      <div class="msg"><div class="hd">1 · LinkedIn connection note<span>174 characters</span></div><div class="bd">Hi [Name], DC Thomson subscribers can choose between 4+ phone lines. We help publishers guide readers to the fastest fix instead. Made a short idea for you, could I share it?</div></div>
+      <div class="msg"><div class="hd">2 · E-mail, day 2<span>Subject: One front door for DC Thomson subscribers</span></div><div class="bd">Hi [Name],
+
+Your subscribers can reach you on at least four different numbers, depending on the title and the problem. And the problems repeat: missing issues, billing dates, renewals.
+
+<b>reChanneld</b> puts one “How can we help?” front door on your help pages. It sends simple requests to self-service 24/7, with Air Business and your existing help pages, so your team keeps its time for cancellations and win-backs.
+
+Nordic banks such as S-Bank (3.3 M customers) use it today. Our clients typically guide 79% of contacts to their preferred channel.
+
+I've made a one-page mock-up of what it could look like for DC Thomson. Worth 20 minutes to walk through it?
+
+Touko Laakkonen, reChanneld</div></div>
+      <div class="msg"><div class="hd">3 · Follow-up, day 7<span>Reply on the same thread</span></div><div class="bd">Hi [Name], one detail: shop subscribers who notice a missing Saturday issue currently wait until Monday to reach someone. A 24/7 front door fixes that on day one. Mock-up attached in case it's useful. Touko</div></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>reChanneld</b> × DC Thomson — sample by Kira Krysanov</span><span>3</span></div>
+</div>
+
+<!-- ILIFFE 1 -->
+<div class="page">
+  <div class="kick">Account brief · 1 / 2</div>
+  <h2>Iliffe Media Group</h2>
+  <p class="lead">A family-owned regional publisher in the middle of a big integration. In 2026 it took on 30 Tindle titles through a joint venture with the Fowler family, and plans to make building digital subscriptions for those titles a priority.</p>
+  <div class="facts">
+    <div class="fact"><b>30</b><span>former Tindle titles added in 2026 (Wales, West Country, Surrey, Hampshire, Isle of Man)</span></div>
+    <div class="fact"><b>30,000+</b><span>digital subscribers before the Tindle deal</span></div>
+    <div class="fact"><b>11</b><span>counties served across England, plus the new regions</span></div>
+    <div class="fact"><b>3+</b><span>support paths: subscriptions site, title pages, PageSuite for e-editions</span></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>What we noticed</h3>
+      <ul class="clean small">
+        <li><b>Integration moment.</b> Readers of 30 titles are about to get new subscription offers, a new app and new support routes. Habits form in the first weeks, so this is the time to set them.</li>
+        <li><b>Many products, many questions.</b> Digital, app, print vouchers, e-mail editions and three group packages (Friends &amp; Family, Business Standard, Business Premium) all generate different questions.</li>
+        <li><b>Support is split.</b> Digital-edition problems go to PageSuite, subscriptions to Iliffe Media Subs, and print delivery to individual titles. Readers have to know which is which.</li>
+        <li><b>A digital-first push.</b> Growing digital subscriptions is the stated priority, and each subscriber who can't get help quickly is a churn risk.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>The opportunity</h3>
+      <div class="box navy" style="margin-bottom:3.5mm"><p style="margin:0;font:700 10pt/1.45 'Plus Jakarta Sans'">Give all 30 new titles one front door for reader help from day one, set up per title from a single console. Readers get the fastest route to app log-in, vouchers or delivery help, and the subscriptions team can absorb 30 titles without growing at the same rate.</p></div>
+      <h4>Why it fits their strategy</h4>
+      <ul class="clean small">
+        <li>Scales the integration: one set of rules, reused across 30+ local brands</li>
+        <li>Supports the digital-subscription push by steering readers to the app and self-service</li>
+        <li>Vendor-neutral: works next to PageSuite and the existing subscriptions platform</li>
+        <li>Live analytics show leadership how each title's readers behave from the first week</li>
+      </ul>
+    </div>
+  </div>
+  <p class="src" style="position:absolute;left:16mm;right:16mm;bottom:17mm">Sources: Press Gazette, Cambrian News, RadioToday (Tindle sale, Mar 2026), KentOnline, IPSO annual statement, Iliffe Media and Iliffe Media Subs pages. Facts to be re-checked before sending.</p>
+  <div class="pf"><span><b>reChanneld</b> × Iliffe Media — sample by Kira Krysanov</span><span>4</span></div>
+</div>
+
+<!-- ILIFFE 2 -->
+<div class="page">
+  <div class="kick">Mock-up + outreach · 2 / 2</div>
+  <div style="display:grid;grid-template-columns:78mm 1fr;gap:6mm">
+    <div>
+      <h3>What their readers would see</h3>
+      <div class="mock">
+        <div class="bbar"><i></i><i></i><i></i><div class="url">/help (any title)</div></div>
+        <div class="wdg">
+          <div class="wq">Welcome! How can we help?</div>
+          <div class="ws">New to our app or subscriptions? Start here.</div>
+          <div class="opt rec"><div class="ic" style="background:#dcfbf6">📱</div><div><div class="t">Get started with the app</div><div class="d">Log in, read all our titles in one place</div></div><span class="tg g">2 min guide</span></div>
+          <div class="opt"><div class="ic" style="background:#e9efff">🎟️</div><div><div class="t">Print vouchers</div><div class="d">Check, replace or reorder online</div></div><span class="tg g">Self-service</span></div>
+          <div class="opt"><div class="ic" style="background:#fff1d9">🏢</div><div><div class="t">Group or business subscription</div><div class="d">Compare packages, add colleagues</div></div><span class="tg g">1 min</span></div>
+          <div class="opt"><div class="ic" style="background:#ffe5dc">📞</div><div><div class="t">Something else</div><div class="d">Talk to the subscriptions team</div></div><span class="tg y">Office hours</span></div>
+          <div class="pw">same front door, set up per title · powered by <b>reChanneld</b></div>
+        </div>
+        <div class="cap">Illustrative mock-up, not an Iliffe Media page</div>
+      </div>
+      <div class="box bg" style="margin-top:4mm">
+        <h4>Who to approach</h4>
+        <table class="who2"><tr><th>Role</th><th>Angle</th></tr>
+          <tr><td>Integration / Operations lead for the Tindle titles</td><td>Scale without headcount</td></tr>
+          <tr><td>Head of Subscriptions / Audience Revenue</td><td>Digital-subscription growth</td></tr>
+          <tr><td>Customer Services Manager</td><td>Fewer repeat contacts</td></tr>
+        </table>
+        <p class="small muted" style="margin:2mm 0 0">Family-owned business: a warm intro to leadership may work better than cold outreach.</p>
+      </div>
+    </div>
+    <div>
+      <h3>Outreach sequence</h3>
+      <div class="msg"><div class="hd">1 · LinkedIn connection note<span>181 characters</span></div><div class="bd">Hi [Name], congrats on taking on the Tindle titles! Integrating 30 titles' readers is the perfect moment to set up their help channels right. Made a short idea for you, can I share?</div></div>
+      <div class="msg"><div class="hd">2 · E-mail, day 2<span>Subject: 30 new titles, one front door for reader help</span></div><div class="bd">Hi [Name],
+
+Congratulations on the Tindle deal. Bringing 30 titles' readers onto your app, vouchers and subscriptions is a big job, and the first weeks decide which habits they keep: calling, or self-service.
+
+<b>reChanneld</b> gives every title the same “How can we help?” front door, set up per title from one console. Readers get the fastest route to app log-in, vouchers or delivery help, and your team handles the integration without growing at the same rate.
+
+Nordic companies such as S-Bank use it today, and our clients typically guide 79% of contacts to their preferred channel. It works alongside PageSuite and your current subscriptions platform.
+
+I've sketched what it could look like for your titles. Worth 20 minutes?
+
+Touko Laakkonen, reChanneld</div></div>
+      <div class="msg"><div class="hd">3 · Follow-up, day 7<span>Reply on the same thread</span></div><div class="bd">Hi [Name], one thought: if each title's readers set up the app in their first week, the help channel follows. We can set a nudge per title in an afternoon, ready for when your offers go live. Mock-up attached. Touko</div></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>reChanneld</b> × Iliffe Media — sample by Kira Krysanov</span><span>5</span></div>
+</div>
+
+</body>
+</html>
