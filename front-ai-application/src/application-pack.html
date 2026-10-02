@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Open Application — Front AI</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--navy:#050a24;--navy2:#0a1240;--teal:#14d6c0;--teal-d:#0a9e8e;--cyan:#46e3f2;--blue:#2f6bff;--ink:#0b1033;--muted:#566080;--line:#e2e7f1;--bg:#f4f7fc;--y:#ffd84d;--red:#e5533d;--amber:#e99a1a;--green:#13a37f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:17mm 17mm 20mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.5pt 'Plus Jakarta Sans';color:#9aa2bd;border-top:1px solid var(--line);padding-top:3mm}
+  .pf b{color:var(--ink)}
+  .dark .pf{border-color:#1c2560;color:#6e78ad}.dark .pf b{color:#fff}
+  .kick{font:800 8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:3mm;display:flex;align-items:center;gap:8px}
+  .kick i{font-style:normal;background:var(--navy);color:var(--teal);border-radius:5px;padding:1px 6px;letter-spacing:0}
+  h2{font-size:24pt;line-height:1.1;font-weight:800;margin-bottom:4mm}
+  h3{font-size:13pt;font-weight:800;margin:0 0 2mm}
+  h4{font-size:10.5pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.6mm}
+  .lead{font-size:12pt;line-height:1.55;color:var(--muted);margin-bottom:6mm}
+  .muted{color:var(--muted)}
+  .small{font-size:8.5pt}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm;background:#fff}
+  .box.bg{background:var(--bg);border-color:var(--bg)}
+  .box.navy{background:var(--navy);color:#fff;border:none}
+  .tag{display:inline-block;font:800 7pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:1.2mm 2.6mm;vertical-align:middle}
+  .t-red{background:#fde6e2;color:#b2341f}.t-amb{background:#fff1d9;color:#9a5d00}.t-grn{background:#dcf7ef;color:#0b7a5d}.t-blue{background:#e5edff;color:#2347b3}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.6mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:2.1mm;width:2mm;height:2mm;border-radius:50%;background:var(--teal)}
+  table{width:100%;border-collapse:collapse}
+  .mk{display:inline-flex;width:5.4mm;height:5.4mm;border-radius:50%;background:var(--y);color:#1a1400;font:800 7.5pt 'Plus Jakarta Sans';align-items:center;justify-content:center;flex:none}
+
+  /* cover */
+  .cover{background:radial-gradient(130mm 110mm at 100% 0%,rgba(20,214,192,.30),transparent 60%),radial-gradient(140mm 120mm at 0% 100%,rgba(47,107,255,.35),transparent 60%),var(--navy);color:#fff;padding:22mm 20mm}
+  .cover .top{display:flex;justify-content:space-between;font:700 9pt 'Plus Jakarta Sans';color:#9aa3d6}
+  .cover h1{font-size:44pt;line-height:1.02;font-weight:800;margin:52mm 0 8mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:14pt;line-height:1.5;color:#c4cbec;max-width:150mm}
+  .toc{position:absolute;left:20mm;right:20mm;bottom:40mm;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .toc div{border-top:1px solid #2a3473;padding-top:3mm;font:600 8.5pt 'Plus Jakarta Sans';color:#c4cbec}
+  .toc b{display:block;color:var(--teal);font-size:8pt;margin-bottom:1mm}
+  .cover .who{position:absolute;left:20mm;bottom:18mm;right:20mm;display:flex;justify-content:space-between;align-items:flex-end}
+  .cover .who b{font:800 13pt 'Plus Jakarta Sans';display:block}
+  .cover .who span{color:#9aa3d6;font-size:9.5pt}
+  .logo{font:800 15pt 'Plus Jakarta Sans';letter-spacing:-.04em;color:#fff}.logo i{color:var(--teal);font-style:normal}
+
+  /* letter */
+  .letter p{font-size:10.6pt;line-height:1.65;margin-bottom:3.6mm}
+  .sig{font:800 13pt 'Plus Jakarta Sans';margin-top:2mm}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin:5mm 0}
+  .three .box h4{margin:2mm 0 1mm}
+  .num{font:800 20pt 'Plus Jakarta Sans';color:var(--teal-d);line-height:1}
+
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-bottom:6mm}
+  .fact{background:var(--bg);border-radius:3.5mm;padding:4mm}
+  .fact b{display:block;font:800 17pt 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .fact span{font-size:8.3pt;color:var(--muted);line-height:1.35;display:block;margin-top:1mm}
+  .tl{position:relative;margin:2mm 0 5mm;padding-left:6mm;border-left:2px solid var(--line)}
+  .tl div{position:relative;margin-bottom:2.6mm;font-size:9.5pt}
+  .tl div:before{content:"";position:absolute;left:-7.6mm;top:1.3mm;width:3mm;height:3mm;border-radius:50%;background:#fff;border:2px solid var(--teal)}
+  .tl b{font-family:'Plus Jakarta Sans';margin-right:2mm}
+  .bars{margin-top:2mm}
+  .bar{display:flex;align-items:center;gap:3mm;margin-bottom:2mm;font:700 8.5pt 'Plus Jakarta Sans'}
+  .bar span:first-child{width:10mm;color:var(--muted)}
+  .bar i{display:block;height:5mm;border-radius:1.5mm;background:linear-gradient(90deg,var(--teal),var(--blue))}
+
+  /* findings */
+  .find{display:grid;grid-template-columns:7mm 1fr;gap:3mm;padding:3.4mm 0;border-bottom:1px solid var(--line)}
+  .find:last-child{border-bottom:none}
+  .find .n{font:800 13pt 'Plus Jakarta Sans';color:#c3c9db}
+  .find h4{display:flex;align-items:center;gap:2.5mm;flex-wrap:wrap}
+  .find p{margin:1mm 0 0;font-size:9.3pt;color:#3c4566}
+  .find .fix{font-size:9.1pt;color:var(--teal-d);font-weight:700;margin-top:1mm}
+  .find .fix:before{content:"→ ";}
+  .score{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5mm;margin-bottom:5mm}
+  .sc{background:var(--bg);border-radius:3mm;padding:3mm;text-align:center}
+  .sc b{display:block;font:800 16pt 'Plus Jakarta Sans'}
+  .sc span{font:700 7.2pt 'Plus Jakarta Sans';color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:4mm}
+  .ba figure{border-radius:3mm;overflow:hidden;border:1px solid var(--line)}
+  .ba img{width:100%;display:block}
+  .ba figcaption{font:800 7.5pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--bg);color:var(--muted)}
+  .ba figure.new figcaption{background:var(--navy);color:var(--teal)}
+
+  .chg{display:grid;grid-template-columns:1fr 1fr;gap:2.2mm 6mm}
+  .chg div{display:flex;gap:2.5mm;font-size:8.9pt;line-height:1.45}
+  .chg b{font-family:'Plus Jakarta Sans'}
+
+  /* linkedin */
+  .eng td{padding:1.7mm 2mm;border-bottom:1px solid var(--line);font-size:8.6pt;vertical-align:middle}
+  .eng th{text-align:left;font:800 7.2pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.5mm 2mm;border-bottom:1.5px solid var(--ink)}
+  .eng .r{text-align:right;font-family:'Plus Jakarta Sans';font-weight:800}
+  .meter{display:inline-block;height:2.4mm;border-radius:1mm;background:var(--teal);vertical-align:middle}
+  .meter.old{background:#c9cfe0}
+
+  /* posts */
+  .post{border:1px solid var(--line);border-radius:4mm;padding:4.2mm 4.6mm;margin-bottom:4mm;break-inside:avoid}
+  .post .ph{display:flex;align-items:center;gap:2.6mm;margin-bottom:2.4mm}
+  .post .av{width:8mm;height:8mm;border-radius:1.8mm;background:#000;color:var(--teal);font:800 9pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .post .ph b{font:800 9pt 'Plus Jakarta Sans';display:block;line-height:1.2}
+  .post .ph span{font-size:7.6pt;color:var(--muted)}
+  .post .ph .tag{margin-left:auto}
+  .post .tx{font-size:8.8pt;line-height:1.48;white-space:pre-line;color:#1d2444}
+  .post .tx b{font-weight:900}
+  .post .vis{margin-top:2.4mm;font-size:8.2pt;background:var(--bg);border-radius:2.4mm;padding:2.2mm 3mm;color:var(--muted)}
+  .post .vis b{color:var(--ink);font-family:'Plus Jakarta Sans'}
+  .cols{column-count:2;column-gap:5mm}
+
+  /* calendar */
+  .cal{font-size:7.9pt;line-height:1.38}
+  .cal th{background:var(--navy);color:#fff;font:800 7pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;text-align:left;padding:2mm}
+  .cal th:first-child{border-radius:2mm 0 0 0}.cal th:last-child{border-radius:0 2mm 0 0}
+  .cal td{padding:2mm;border-bottom:1px solid var(--line);vertical-align:top}
+  .cal tr:nth-child(even) td{background:#fafbfe}
+  .cal .wk{font:800 8.5pt 'Plus Jakarta Sans';white-space:nowrap}
+  .cal .wk span{display:block;font:600 7pt 'Lato';color:var(--muted)}
+  .cal .th{font:800 8pt 'Plus Jakarta Sans';color:var(--teal-d)}
+  .cal .fm{display:inline-block;margin-bottom:.6mm;font:800 6.2pt 'Plus Jakarta Sans';text-transform:uppercase;letter-spacing:.05em;border-radius:1mm;padding:.3mm 1.2mm;margin-right:1mm;vertical-align:.3mm}
+  .f-car{background:#e5edff;color:#2347b3}.f-vid{background:#dcf7ef;color:#0b7a5d}.f-txt{background:#eef0f6;color:#4b5375}.f-poll{background:#fff1d9;color:#9a5d00}.f-ev{background:#fde6e2;color:#b2341f}.f-doc{background:#efe5ff;color:#5a2bb3}
+  .month{font:800 10pt 'Plus Jakarta Sans';margin:4mm 0 2mm;display:flex;align-items:center;gap:3mm}
+  .month:after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* video */
+  .vrow{display:grid;grid-template-columns:30mm 1fr;gap:4mm;padding:3.4mm 0;border-bottom:1px solid var(--line)}
+  .vthumb{height:20mm;border-radius:2.5mm;background:linear-gradient(135deg,var(--navy2),var(--blue));position:relative;display:flex;align-items:flex-end;padding:2mm;color:#fff;font:800 7.5pt 'Plus Jakarta Sans'}
+  .vthumb:after{content:"";position:absolute;right:3mm;top:3mm;border-left:3.4mm solid var(--teal);border-top:2.2mm solid transparent;border-bottom:2.2mm solid transparent}
+  .vrow h4{display:flex;gap:2mm;align-items:center;flex-wrap:wrap}
+  .vrow p{font-size:9pt;margin:1mm 0 0;color:#3c4566}
+  .meta{font:700 7.6pt 'Plus Jakarta Sans';color:var(--muted);margin-top:1.2mm}
+  .sb{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .fr{border:1px solid var(--line);border-radius:3mm;overflow:hidden}
+  .fr .scr{height:30mm;background:var(--navy);position:relative;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font:800 9pt 'Plus Jakarta Sans';padding:3mm}
+  .fr .tc{position:absolute;left:2mm;top:2mm;font:800 6.5pt 'Plus Jakarta Sans';background:rgba(255,255,255,.12);border-radius:1mm;padding:.4mm 1.4mm;color:var(--teal)}
+  .fr .b{padding:2.6mm 3mm;font-size:8.2pt;line-height:1.42}
+  .fr .b .vo{color:#1d2444;font-style:italic;margin-top:1mm}
+  .fr .b b{font-family:'Plus Jakarta Sans';font-size:7.4pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+
+  /* offer */
+  .offer{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-bottom:6mm}
+  .offer .box h3{font-size:12pt}
+  .offer .box.navy p{color:#c4cbec}
+  .phase{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .phase .box{border-top:4px solid var(--teal)}
+  .phase h4 span{display:block;font:800 7.5pt 'Plus Jakarta Sans';color:var(--teal-d);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1mm}
+  .cta{margin-top:6mm;background:var(--navy);color:#fff;border-radius:5mm;padding:7mm;display:flex;justify-content:space-between;align-items:center;background-image:radial-gradient(80mm 60mm at 100% 0%,rgba(20,214,192,.3),transparent 60%)}
+  .cta h3{font-size:16pt;color:#fff}
+  .cta p{color:#c4cbec;margin:0}
+  .cta .mail{font:800 12pt 'Plus Jakarta Sans';color:var(--teal);text-align:right}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<div class="page cover dark">
+  <div class="top"><span class="logo">front<i>.</i>ai</span><span>Open application · October 2026</span></div>
+  <h1>Let's make every customer pick the <em>right channel</em>.</h1>
+  <p class="sub">An open application from Kira Krysanov, with a company review, a homepage redesign, a LinkedIn audit, ready-to-post content, a Q4 content calendar and explainer video concepts for reChanneld.</p>
+  <div class="toc">
+    <div><b>01</b>Why I'm writing</div>
+    <div><b>02</b>Front AI today</div>
+    <div><b>03</b>Homepage review &amp; redesign</div>
+    <div><b>04</b>LinkedIn audit &amp; better posts</div>
+    <div><b>05</b>Q4 content calendar</div>
+    <div><b>06</b>Explainer videos</div>
+    <div><b>07</b>How I can help</div>
+    <div><b>+</b>Homepage concept (separate PDF)</div>
+  </div>
+  <div class="who"><div><b>Kira Krysanov</b><span>Ex-Leadoo · Ex-Videobot · Content, conversion &amp; explainer video</span></div><span>kira.krysanov@gmail.com</span></div>
+</div>
+
+<!-- 2 LETTER -->
+<div class="page letter">
+  <div class="kick"><i>01</i>Why I'm writing</div>
+  <h2>Hi Jari and the Front AI team,</h2>
+  <p>On 1 July you completed the sale of your AI agent business to Digital Workforce and became a pure-play SaaS company built around reChanneld. That's a bold, focused move. It also means the story you tell has to change, and from the outside it hasn't changed yet.</p>
+  <p>Today front.ai still opens with <i>“AI chatbots”</i>, and its biggest numbers (3.5 million automated conversations, 300 FTEs saved) come from the business you just sold. Meanwhile most of your recent LinkedIn posts are about voicebots, which are now Digital Workforce's. A buyer landing on your site this week can't tell what Front AI sells.</p>
+  <p>I worked at <b>Leadoo</b> and <b>Videobot</b>, two Finnish SaaS companies that sell the same thing reChanneld does at heart: <b>the moment when a visitor lands on a website with a need, and the page has a few seconds to guide them to the right next step.</b> At Leadoo that meant conversational bots. At Videobot it meant interactive video. I know how this category is bought in the Nordics, how to explain an invisible product, and how to turn an explainer into pipeline.</p>
+  <p>Instead of only telling you, I've done some of the work. This pack has:</p>
+  <div class="three">
+    <div class="box bg"><div class="num">1</div><h4>A new homepage</h4><p class="small muted" style="margin:0">A full redesign concept that leads with reChanneld, with 12 annotated changes. It's in a separate PDF.</p></div>
+    <div class="box bg"><div class="num">2</div><h4>A content engine</h4><p class="small muted" style="margin:0">A LinkedIn audit, seven ready-to-post drafts and a 12-week Q4 calendar starting with Customer Service Week.</p></div>
+    <div class="box bg"><div class="num">3</div><h4>Explainer videos</h4><p class="small muted" style="margin:0">Six video concepts and a full storyboard for a 60-second reChanneld explainer that I can produce.</p></div>
+  </div>
+  <p>I'd love to help write reChanneld's next chapter, whether that's a full-time marketing and content role, working alongside your new GTM lead, or a first project to prove it. Twenty minutes over coffee at POOL would be a great start.</p>
+  <p style="margin-top:6mm">Warm regards,</p>
+  <div class="sig">Kira Krysanov</div>
+  <p class="muted small">kira.krysanov@gmail.com</p>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>2</span></div>
+</div>
+
+<!-- 3 RESEARCH -->
+<div class="page">
+  <div class="kick"><i>02</i>Company research</div>
+  <h2>Front AI today: a new company in an old suit</h2>
+  <p class="lead">A growing Helsinki SaaS company that has just reinvented itself, while its website and social channels still describe the old one.</p>
+  <div class="facts">
+    <div class="fact"><b>2019</b><span>Founded in Helsinki · CEO Jari Annala</span></div>
+    <div class="fact"><b>€3.2 M</b><span>Revenue 2025 (up from €1.9 M in 2022)</span></div>
+    <div class="fact"><b>€3 M</b><span>+ up to €0.6 M earn-out: AI agent business sold to Digital Workforce</span></div>
+    <div class="fact"><b>2,727</b><span>LinkedIn followers · 3 offices listed (FI, SE, NO)</span></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>Timeline</h3>
+      <div class="tl">
+        <div><b>2019</b>Front AI founded. It deploys chat and voice bots (boost.ai partner) for Nordic banks, insurers and payments companies.</div>
+        <div><b>2023–24</b>reChanneld launched: a channel-strategy tool built on behavioural nudges. S-Bank goes live in spring 2024.</div>
+        <div><b>2025</b>Revenue €3.2 M, 14 employees. “Year of Voice Automation” events with boost.ai in Helsinki and Stockholm.</div>
+        <div><b>1 Jul 2026</b>The AI agent business moves to Digital Workforce: 8 employees and ~30 customer contracts.</div>
+        <div><b>Now</b>Pure-play B2B SaaS: reChanneld plus international growth. Hiring a GTM lead for Finland.</div>
+      </div>
+      <h3>Revenue (€ M)</h3>
+      <div class="bars">
+        <div class="bar"><span>2022</span><i style="width:38%"></i>1.9</div>
+        <div class="bar"><span>2023</span><i style="width:48%"></i>2.4</div>
+        <div class="bar"><span>2024</span><i style="width:52%"></i>2.6</div>
+        <div class="bar"><span>2025</span><i style="width:64%"></i>3.2</div>
+      </div>
+      <p class="small muted">Includes the divested agent business. reChanneld's own share isn't public.</p>
+    </div>
+    <div>
+      <h3>reChanneld in one sentence</h3>
+      <div class="box navy" style="margin-bottom:4mm"><p style="font:700 11pt/1.45 'Plus Jakarta Sans';margin:0">A layer on the client's website and app that uses behavioural nudges (defaults, honest wait times, framing) to guide each customer request to the best channel. It comes with real-time analytics.</p></div>
+      <h4>Proof points available today</h4>
+      <ul class="clean small" style="margin-bottom:4mm">
+        <li><b>79%</b> of contacts typically nudged to the client's preferred channel</li>
+        <li><b>S-Bank</b>: 3.3 M customers, ~1 M interactions a year; reChanneld works next to the Aulis chatbot (60k chats a month, 90%+ resolved)</li>
+        <li>“Made in Finland” and “Design from Finland” badges; tagline <i>Better choices, happier customers</i></li>
+      </ul>
+      <h4>What this means for marketing</h4>
+      <ul class="clean small">
+        <li><b>One brand story.</b> front.ai and rechanneld.com overlap. Pick one primary story: the product.</li>
+        <li><b>Vendor-neutral is now a superpower.</b> Front AI no longer sells bots, so it can partner with every bot vendor, Digital Workforce included.</li>
+        <li><b>The category needs explaining.</b> “Channel strategy software” isn't a budget line yet. Education content creates demand.</li>
+        <li><b>International growth needs English and Swedish</b> content that works without a sales call.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="small muted" style="position:absolute;bottom:17mm;left:17mm;right:17mm">Sources: Front AI and Digital Workforce releases (1 Jul 2026), Inderes, Vainu/Finder company data, front.ai and LinkedIn as of 2 Oct 2026.</p>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>3</span></div>
+</div>
+
+<!-- 4 HOMEPAGE AUDIT 1 -->
+<div class="page">
+  <div class="kick"><i>03</i>Homepage review</div>
+  <h2>front.ai homepage: 12 findings</h2>
+  <p class="lead" style="margin-bottom:4mm">Reviewed as a Head of Customer Service at a Nordic bank would see it, on 2 October 2026.</p>
+  <div class="score">
+    <div class="sc"><b style="color:var(--red)">2/10</b><span>Message clarity</span></div>
+    <div class="sc"><b style="color:var(--amber)">4/10</b><span>Proof</span></div>
+    <div class="sc"><b style="color:var(--amber)">5/10</b><span>Conversion path</span></div>
+    <div class="sc"><b style="color:var(--green)">7/10</b><span>Visual polish</span></div>
+    <div class="sc"><b style="color:var(--amber)">4/10</b><span>Accessibility</span></div>
+    <div class="sc"><b style="color:var(--amber)">5/10</b><span>Consistency</span></div>
+  </div>
+  <div class="find"><div class="n">01</div><div><h4>The page sells a product Front AI no longer offers <span class="tag t-red">Critical</span></h4><p>The hero promises “AI chatbots”, the middle section is “Conversational AI”, and the services menu links to bot pages. Right below that, a news banner says the chatbot business was sold.</p><div class="fix">Lead with reChanneld everywhere. Retire or redirect the bot pages to Digital Workforce.</div></div></div>
+  <div class="find"><div class="n">02</div><div><h4>“Customer service reimagined” says nothing <span class="tag t-red">Critical</span></h4><p>The headline could belong to any of 500 CX vendors. A visitor has to scroll to the second section to see the product's name.</p><div class="fix">Name the outcome: “Guide every customer to the right channel before they pick up the phone.”</div></div></div>
+  <div class="find"><div class="n">03</div><div><h4>The big numbers belong to the sold business <span class="tag t-red">Critical</span></h4><p>3.5 M conversations, 300 FTEs, NPS 87, and 80% / 40% / 90% are chatbot results. Some now arguably belong to Digital Workforce, and none of them prove reChanneld.</p><div class="fix">Replace them with reChanneld proof: 79% of contacts nudged, plus the S-Bank case.</div></div></div>
+  <div class="find"><div class="n">04</div><div><h4>The product is never shown <span class="tag t-amb">High</span></h4><p>reChanneld is a visual widget, the easiest kind of product to demo. The page shows a blurry mock-up, a stock photo of a woman with coffee and an owl, but never the real UI.</p><div class="fix">Make the product the hero image: a real nudge widget on a bank site, with live wait times.</div></div></div>
+  <div class="find"><div class="n">05</div><div><h4>Seven different calls to action <span class="tag t-amb">High</span></h4><p>“Book a demo”, “Contact us”, “Get demo!”, “Learn more”, “Learn about Gen AI”, “Get started now” and a newsletter form all compete. None of them offers anything low-commitment.</p><div class="fix">One primary CTA (“See it on your own website”) and one secondary (“Book a demo”).</div></div></div>
+  <div class="find"><div class="n">06</div><div><h4>The explainer video is buried and sends people to YouTube <span class="tag t-amb">High</span></h4><p>The animated reChanneld video sits halfway down the page, with YouTube branding and “Watch on YouTube”, which takes visitors off the site.</p><div class="fix">A new 60-second explainer, hosted natively with EN, FI and SV captions, placed right after the proof.</div></div></div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>4</span></div>
+</div>
+
+<!-- 5 HOMEPAGE AUDIT 2 -->
+<div class="page">
+  <div class="kick"><i>03</i>Homepage review, continued</div>
+  <div class="find"><div class="n">07</div><div><h4>Unsupported superlatives <span class="tag t-amb">Medium</span></h4><p>“Undisputed leader”, “Best Conversational AI service provider” and “Most project deliveries in the Nordics” have no source. Nordic buyers are sceptical of hype, and after the divestiture these claims aren't accurate either.</p><div class="fix">Swap the claims for specifics: named customers, a third-party quote, “Made in Finland”.</div></div></div>
+  <div class="find"><div class="n">08</div><div><h4>Facts that contradict each other <span class="tag t-amb">Medium</span></h4><p>One line says “Front AI operates in Finland, Sweden and Denmark”, but the footer lists offices in Finland, Sweden and Norway. The footer still describes Front AI as “Conversational AI”. The product name is written reChanneld, RECHANNELD and Rechanneld.</p><div class="fix">A one-page messaging and style guide, applied across the site and LinkedIn.</div></div></div>
+  <div class="find"><div class="n">09</div><div><h4>The logo wall has no context <span class="tag t-amb">Medium</span></h4><p>Eight logos with no story, and it's unclear which of them use reChanneld and which were bot customers who moved to Digital Workforce.</p><div class="fix">Show only reChanneld customers, and link each logo to a story or quote.</div></div></div>
+  <div class="find"><div class="n">10</div><div><h4>Low contrast and small, thin text <span class="tag t-amb">Medium</span></h4><p>Light-grey, thin text on navy (the feature descriptions, the footer) likely fails WCAG AA. That matters to banks and the public sector, who must meet the European Accessibility Act.</p><div class="fix">Body text at least 16 px, contrast of at least 4.5:1, heavier font weights.</div></div></div>
+  <div class="find"><div class="n">11</div><div><h4>Mixed languages, no language switcher <span class="tag t-blue">Low</span></h4><p>A Finnish-language event card sits on the English homepage, and Swedish buyers get no Swedish content, even though Sweden is a growth market.</p><div class="fix">An EN/FI/SV switcher, with the hero, video captions and case study in all three.</div></div></div>
+  <div class="find"><div class="n">12</div><div><h4>Nothing for the visitor who isn't ready yet <span class="tag t-blue">Low</span></h4><p>The only options are a demo or the newsletter. There's nothing for a CX lead who is building a business case: no playbook, no ROI calculator, no template.</p><div class="fix">A “Channel Strategy Playbook” and a personalised preview as lead magnets.</div></div></div>
+
+  <h3 style="margin-top:6mm">Before → after: the first screen</h3>
+  <div class="ba">
+    <figure><img src="img/current-hero.jpg"><figcaption>Now: generic headline, stock photo, sold product</figcaption></figure>
+    <figure class="new"><img src="img/concept-hero.jpg"><figcaption>Concept: product, outcome and one clear CTA</figcaption></figure>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>5</span></div>
+</div>
+
+<!-- 6 CONCEPT -->
+<div class="page">
+  <div class="kick"><i>03</i>Homepage redesign concept</div>
+  <div style="display:grid;grid-template-columns:62mm 1fr;gap:7mm">
+    <div style="height:248mm;overflow:hidden;border-radius:3mm;border:1px solid var(--line)"><img src="img/concept-full.jpg" style="width:100%;display:block"></div>
+    <div>
+      <h2 style="font-size:21pt">One product, one story, one next step</h2>
+      <p class="muted">The full page is in <b>Front-AI-Homepage-Concept.pdf</b> (1440 px, high resolution). Each yellow number on the page matches one of these notes.</p>
+      <div style="display:flex;flex-direction:column;gap:2.6mm;margin-top:4mm;font-size:9pt;line-height:1.45">
+        <div style="display:flex;gap:2.5mm"><span class="mk">1</span><div><b class="jk">Outcome headline.</b> Names the job, the product and the benefit in the first five seconds. Fixes findings 01 and 02.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">2</span><div><b class="jk">One primary CTA: “See it on your own website”.</b> Lower commitment than a demo, and it creates a natural sales follow-up. Fixes 05.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">3</span><div><b class="jk">The product is the hero.</b> A realistic nudge widget showing smart defaults and honest wait times, with a live-analytics card next to it. Fixes 04.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">4</span><div><b class="jk">Logo wall</b> limited to reChanneld customers (to be verified with the team). Fixes 09.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">5</span><div><b class="jk">The problem, in the buyer's words.</b> “You invested in automation. Your customers still call.”</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">6</span><div><b class="jk">Map. Nudge. Learn.</b> Three steps with UI snippets, so the product is understood without a call.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">7</span><div><b class="jk">The behavioural science, made concrete.</b> Five nudges with real UI copy. This is the moat, so it gets its own section.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">8</span><div><b class="jk">reChanneld proof only.</b> The S-Bank case and the 79% figure replace the chatbot statistics. Fixes 03 and 07.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">9</span><div><b class="jk">Vendor-neutral positioning.</b> “Works with any chatbot, including boost.ai and Digital Workforce” turns the divestiture into a selling point.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">10</span><div><b class="jk">Native explainer</b> with industry chips that work as an interactive video (my Videobot background). Fixes 06.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">11</span><div><b class="jk">Resources for the visitor who isn't ready yet:</b> a case study, a playbook and the Nudge Lab series. Fixes 12.</div></div>
+        <div style="display:flex;gap:2.5mm"><span class="mk">12</span><div><b class="jk">Personalised preview form.</b> The visitor enters their URL and gets a mock-up of reChanneld on their own site. Also: an EN/FI/SV switcher, larger type and WCAG-level contrast. Fixes 10 and 11.</div></div>
+      </div>
+      <div class="box bg" style="margin-top:5mm"><h4>Kept on purpose</h4><p class="small" style="margin:0">The navy and teal palette, the front.ai wordmark and the overall dark/light rhythm. This is an evolution, not a rebrand, so it can ship in weeks on the current site.</p></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>6</span></div>
+</div>
+
+<!-- 7 LINKEDIN AUDIT -->
+<div class="page">
+  <div class="kick"><i>04</i>LinkedIn audit</div>
+  <h2>People and events work. Product is missing.</h2>
+  <p class="lead" style="margin-bottom:4mm">The 18 most visible posts on the company page, reviewed on 2 October 2026 (2,727 followers).</p>
+  <table class="eng">
+    <tr><th>Post</th><th>Topic</th><th class="r">Reactions</th><th style="width:34mm"></th></tr>
+    <tr><td>Year of Voice Automation, full house at Helsinki Hub</td><td>Event · voice</td><td class="r">68</td><td><span class="meter old" style="width:30mm"></span></td></tr>
+    <tr><td>“A big day for us”: divestiture to Digital Workforce</td><td>Company news</td><td class="r">68</td><td><span class="meter" style="width:30mm"></span></td></tr>
+    <tr><td>Interview video: “top 3 reasons companies…”</td><td>Video · voice</td><td class="r">40</td><td><span class="meter old" style="width:17.6mm"></span></td></tr>
+    <tr><td>“World's happiest country”, reChanneld visual</td><td>Culture · product</td><td class="r">28</td><td><span class="meter" style="width:12.3mm"></span></td></tr>
+    <tr><td>Interview video: “too late to catch up?”</td><td>Video · voice</td><td class="r">27</td><td><span class="meter old" style="width:11.9mm"></span></td></tr>
+    <tr><td>Interview video: “where are companies losing money?”</td><td>Video · voice</td><td class="r">26</td><td><span class="meter old" style="width:11.4mm"></span></td></tr>
+    <tr><td>Schibsted VoiceBot, “35% of calls. One issue. One fix.”</td><td>Video case · voice</td><td class="r">24</td><td><span class="meter old" style="width:10.6mm"></span></td></tr>
+    <tr><td>Traficom repost (Finnish)</td><td>Repost · voice</td><td class="r">20</td><td><span class="meter old" style="width:8.8mm"></span></td></tr>
+    <tr><td>Fintech Landscape of Finland repost</td><td>Repost</td><td class="r">18</td><td><span class="meter" style="width:7.9mm"></span></td></tr>
+    <tr><td>Nudging event in Stockholm</td><td>Event · reChanneld</td><td class="r">13</td><td><span class="meter" style="width:5.7mm"></span></td></tr>
+    <tr><td>Hiring: GTM Finland for reChanneld</td><td>Hiring</td><td class="r">12</td><td><span class="meter" style="width:5.3mm"></span></td></tr>
+    <tr><td>Digital Workforce acquisition repost</td><td>Repost</td><td class="r">8</td><td><span class="meter" style="width:3.5mm"></span></td></tr>
+  </table>
+  <p class="small muted" style="margin-top:1.5mm"><span class="meter old" style="width:6mm"></span> about the divested agent / voice business &nbsp; <span class="meter" style="width:6mm"></span> about Front AI now or reChanneld</p>
+  <div class="grid2" style="margin-top:4mm">
+    <div class="box" style="border-color:#bfeee5">
+      <h3 style="color:var(--teal-d)">What works</h3>
+      <ul class="clean small">
+        <li><b>Real people and full rooms.</b> Event recaps and people moments get 2–5 times the median.</li>
+        <li><b>Short vertical interview clips</b> with burned-in captions are consistent performers (24–40).</li>
+        <li><b>Sharp hooks</b> like “35% of all calls. One issue. One fix.” are exactly the right style.</li>
+        <li><b>Honest company news</b> lands well (68 on the divestiture post).</li>
+      </ul>
+    </div>
+    <div class="box" style="border-color:#f6d2cb">
+      <h3 style="color:var(--red)">What's missing</h3>
+      <ul class="clean small">
+        <li><b>About 70% of the content is about voicebots and bots</b>, which now belong to Digital Workforce.</li>
+        <li><b>reChanneld barely appears.</b> No post explains what it does or shows the UI.</li>
+        <li><b>Reposts with one-line captions</b> (“Thank you boost.ai and congratulations…”) give away reach.</li>
+        <li><b>No formats built for reach:</b> no carousels, polls, newsletter or recurring series.</li>
+        <li><b>No posting rhythm.</b> There are gaps of several weeks since July.</li>
+        <li><b>The page category</b> is still “IT Services and Consulting” instead of Software Development.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box navy" style="margin-top:4mm"><p style="margin:0;font:700 10pt/1.5 'Plus Jakarta Sans'">Strategy in one line: <span style="color:var(--teal)">keep the people-first, event-led energy, and point all of it at one product and one idea: customers choose better channels when you nudge them.</span></p></div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>7</span></div>
+</div>
+
+<!-- 8 POSTS 1 -->
+<div class="page">
+  <div class="kick"><i>04</i>Better posts, ready to publish</div>
+  <h2 style="font-size:20pt">Seven drafts in Front AI's voice</h2>
+  <p class="muted small" style="margin-bottom:4mm">Hook in the first two lines (before “…more”), a single idea, links in the first comment, and a native visual. All drafts can be adapted to Jari's own voice for his personal profile.</p>
+  <div class="cols">
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 41 · Tue · Carousel, 7 slides</span></div><span class="tag t-blue">Positioning</span></div>
+      <div class="tx"><b>In July we sold our chatbot business. People keep asking why.</b>
+
+Here's the honest answer:
+
+Nordic companies don't lack chatbots. Most banks, insurers and retailers already have one, and many of them are very good.
+
+What they lack is customers using them.
+
+People still call about things the app could solve in 30 seconds. Not because they're stubborn, but because nobody showed them the faster way at the moment they needed it.
+
+That moment is what reChanneld is built for. Now it's all we do.
+
+Our former agent team has a great new home at Digital Workforce, and we're cheering them on 💚
+
+👉 Swipe to see reChanneld in 7 slides.</div>
+      <div class="vis"><b>Visual:</b> carousel. 1 “We sold our chatbot business.” → 2 “Here's why.” → 3–6 problem, nudge, analytics, S-Bank → 7 “See it on your own site” CTA.</div></div>
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 41 · Thu · Photo</span></div><span class="tag t-grn">Customer Service Week</span></div>
+      <div class="tx"><b>It's Customer Service Week, so here's a thank-you and a promise.</b>
+
+Thank you to every agent who picked up the phone this year.
+
+And the promise: channel strategy is not about keeping customers away from people.
+
+It's about keeping your people for the conversations only humans can have. The fraud victim. The widower closing an account. The first-time home buyer at 7 pm.
+
+Everything else can be done in 30 seconds in the app, if someone shows the way.
+
+Tag a service team that deserves a coffee today ☕</div>
+      <div class="vis"><b>Visual:</b> a real photo of a client's service team (with permission) or of the Front AI team holding coffee cups. No stock photos.</div></div>
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 42 · Tue · Poll</span></div><span class="tag t-amb">Engagement</span></div>
+      <div class="tx"><b>Quick question for customer service leaders 👇</b>
+
+Your app can do it. Your chatbot can do it. Your website has the answer.
+
+So why do customers still call?
+
+○ They don't know it exists
+○ Calling is just the habit
+○ They don't trust the bot
+○ Self-service can't solve it
+
+We'll share the results, and what we see in the data, next week.</div>
+      <div class="vis"><b>Follow-up:</b> a results post on Thursday of week 43 that explains which nudge fixes each answer. It's a natural sales conversation starter in the comments.</div></div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>8</span></div>
+</div>
+
+<!-- 9 POSTS 2 -->
+<div class="page">
+  <div class="kick"><i>04</i>Better posts, continued</div>
+  <div class="cols">
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 43 · Tue · Vertical video, 45 s</span></div><span class="tag t-grn">Nudge Lab #1</span></div>
+      <div class="tx"><b>The most powerful sentence in customer service is five words long:</b>
+
+“Current wait time: 14 minutes.”
+
+It isn't a barrier. It's information. When customers see the queue next to “Do it in the app, 30 seconds”, many of them happily choose the faster path, and they feel good about it because it was their choice.
+
+That's a nudge: you don't close channels, you make the better option obvious.
+
+Nudge Lab, episode 1 of 5. Which principle should we cover next? 👇</div>
+      <div class="vis"><b>Visual:</b> a presenter on camera plus a screen recording of the reChanneld widget, burned-in captions in the Front AI style seen in your current videos.</div></div>
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 48 · Tue · Carousel</span></div><span class="tag t-red">Black Friday</span></div>
+      <div class="tx"><b>On Friday your phone queue will tell you exactly where your channel strategy breaks.</b>
+
+Peak days don't create new problems. They make the existing ones louder.
+
+Three things you can still do this week:
+
+1️⃣ List your top 10 contact reasons from last November
+2️⃣ For each one, write down the fastest channel that can actually solve it
+3️⃣ Put that option first on your contact page, with a real wait time next to the phone number
+
+That's a channel strategy. Ours just does it automatically, in real time 😉
+
+Want the template? Comment “PEAK” and we'll send it.</div>
+      <div class="vis"><b>Visual:</b> a 5-slide checklist carousel. Comment-to-get drives reach and gives sales warm leads.</div></div>
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 44 · Tue · Document post</span></div><span class="tag t-blue">Proof</span></div>
+      <div class="tx"><b>3.3 million customers. About a million contacts a year. One question: where should each one go?</b>
+
+S-Bank already had a strong chatbot: Aulis handles 60,000 conversations a month and resolves over 90% of them.
+
+The challenge was getting the right customers to Aulis, and the right ones to a human.
+
+Since spring 2024, reChanneld has guided S-Bank's customers to the best channel for their need, 24/7.
+
+How they set it up, in 6 slides 👉
+
+(Full case in the comments.)</div>
+      <div class="vis"><b>Visual:</b> a PDF carousel in S-Bank green with Front AI navy. If possible, add a short quote from S-Bank's CX lead, with their approval.</div></div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>9</span></div>
+</div>
+
+<!-- 9b POSTS 3 -->
+<div class="page">
+  <div class="kick"><i>04</i>Better posts, continued</div>
+  <div class="cols">
+    <div class="post"><div class="ph"><div class="av">.ai</div><div><b>Front AI</b><span>Week 47 · Thu · Text + image · FI</span></div><span class="tag t-grn">Finnish market</span></div>
+      <div class="tx"><b>Asiakaspalvelun jono ei ole resurssiongelma. Se on ohjausongelma.</b>
+
+Suurin osa soitoista koskee asioita, jotka asiakas hoitaisi sovelluksessa puolessa minuutissa, jos joku näyttäisi tien oikealla hetkellä.
+
+Lisää agentteja ei korjaa tätä. Parempi ohjaus korjaa.
+
+reChanneld näyttää asiakkaalle nopeimman tavan hoitaa asia ja kertoo rehellisesti puhelinjonon pituuden. Valinta jää asiakkaalle, ja useimmiten hän valitsee nopeamman tien.
+
+Paljonko teidän soitoistanne voisi hoitua digitaalisesti? Kerro kommenteissa 👇</div>
+      <div class="vis"><b>Visual:</b> a split image: “14 min” queue vs “30 s” app. Publish an SV version for Sweden in the same week.</div></div>
+    <div class="box bg" style="break-inside:avoid;margin-bottom:4mm">
+      <h3>Before → after: two real posts</h3>
+      <p class="small" style="margin-bottom:1mm"><b>Before:</b> <span class="muted">“Thank you, boost.ai and congratulations, Digital Workforce Services Plc, and the whole ex-front team!” (repost, 13 reactions)</span></p>
+      <p class="small"><b>After:</b> “Our former team is nominated for Innovation Partner of the Year at BoostCamp 🎉 Proud of you. Also proof that Nordic customer service AI is world-class. Next up for us: making sure customers actually find those great bots. That's reChanneld.” <span class="muted">It celebrates the team and bridges to the product.</span></p>
+      <p class="small" style="margin-bottom:1mm"><b>Before:</b> <span class="muted">“Happy Holidays! As the year ends, it's time to say a big thank you…” (generic image)</span></p>
+      <p class="small" style="margin:0"><b>After:</b> “While you're off over the holidays, reChanneld works the night shift 🦉 It guides customers to the right channel 24/7, so your team comes back in January to a shorter queue. Thank you for an amazing 2026.” <span class="muted">Same owl, now with a product point.</span></p>
+    </div>
+    <div class="box navy" style="break-inside:avoid">
+      <h3 style="color:#fff">House rules for every post</h3>
+      <ul class="clean small" style="color:#c4cbec">
+        <li>Hook in the first two lines, one idea per post</li>
+        <li>Links go in the first comment, never in the body</li>
+        <li>Every 3rd post shows the product UI</li>
+        <li>Real people over stock photos, always</li>
+        <li>Spell it reChanneld, every time</li>
+        <li>Team members re-share with their own comment within 1 hour</li>
+      </ul>
+    </div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>10</span></div>
+</div>
+
+<!-- 10 CALENDAR 1 -->
+<div class="page">
+  <div class="kick"><i>05</i>Content calendar · Q4 2026</div>
+  <h2 style="font-size:20pt">12 weeks: reposition, educate, convert</h2>
+  <p class="muted small" style="margin-bottom:2mm">Rhythm: 2 company posts a week (Tue + Thu, 8:30 EET) · 1–2 posts from team members · Nudge Lab episode every other week · monthly newsletter · 1 webinar.<br>
+  <span class="fm f-car">Carousel</span><span class="fm f-vid">Video</span><span class="fm f-txt">Text/image</span><span class="fm f-poll">Poll</span><span class="fm f-doc">Doc/lead magnet</span><span class="fm f-ev">Event</span></p>
+  <div class="month">October · “The new Front AI”</div>
+  <table class="cal">
+    <tr><th style="width:17mm">Week</th><th style="width:27mm">Theme</th><th>Tuesday</th><th>Thursday</th><th style="width:33mm">Team / founder</th><th style="width:33mm">Web, video &amp; other</th></tr>
+    <tr><td class="wk">W41<span>5–9 Oct</span></td><td class="th">Customer Service Week + repositioning</td><td><span class="fm f-car">Car</span>“We sold our chatbot business. Here's why.”</td><td><span class="fm f-txt">Img</span>Customer Service Week thank-you to agents</td><td>Jari: personal story of why we focused</td><td>New hero and messaging live; LinkedIn page category and About updated</td></tr>
+    <tr><td class="wk">W42<span>12–16 Oct</span></td><td class="th">Why customers still call</td><td><span class="fm f-poll">Poll</span>“Why do your customers still call?”</td><td><span class="fm f-txt">Txt</span>“Phone is a habit, not a preference”</td><td>GTM lead: hello post (“what I'll fix first”)</td><td>Hero explainer: script and storyboard approved</td></tr>
+    <tr><td class="wk">W43<span>19–23 Oct</span></td><td class="th">Nudge Lab #1</td><td><span class="fm f-vid">Vid</span>Nudge Lab ep. 1: honest wait times</td><td><span class="fm f-car">Car</span>Poll results + which nudge fixes each</td><td>Designer: “how we design a nudge”</td><td>Newsletter #1 “Channel Strategy Notes”</td></tr>
+    <tr><td class="wk">W44<span>26–30 Oct</span></td><td class="th">Proof: S-Bank</td><td><span class="fm f-doc">Doc</span>S-Bank case in 6 slides</td><td><span class="fm f-vid">Vid</span>30-s clip: the widget on a bank site</td><td>CS lead: 3 lessons from going live</td><td>S-Bank case landing page; retargeting ad to site visitors</td></tr>
+  </table>
+  <div class="month">November · “Educate the category”</div>
+  <table class="cal">
+    <tr><th style="width:17mm">Week</th><th style="width:27mm">Theme</th><th>Tuesday</th><th>Thursday</th><th style="width:33mm">Team / founder</th><th style="width:33mm">Web, video &amp; other</th></tr>
+    <tr><td class="wk">W45<span>2–6 Nov</span></td><td class="th">Explainer launch</td><td><span class="fm f-vid">Vid</span>Premiere: “Why your customers still call” (60 s)</td><td><span class="fm f-car">Car</span>Map → Nudge → Learn in 3 slides</td><td>Jari: “What 5 years of chatbots taught us”</td><td>Video on homepage, EN/FI/SV captions; sales e-mail version</td></tr>
+    <tr><td class="wk">W46<span>9–13 Nov</span></td><td class="th">Nudge Lab #2 + webinar invite</td><td><span class="fm f-vid">Vid</span>Nudge Lab ep. 2: smart defaults</td><td><span class="fm f-ev">Event</span>Webinar invite: “Peak season without the queue”</td><td>Everyone: personal invite + 1 line on why</td><td>Swedish post + SV landing page</td></tr>
+    <tr><td class="wk">W47<span>16–20 Nov</span></td><td class="th">Peak-season prep</td><td><span class="fm f-car">Car</span>“Before Black Friday: 5 nudges”</td><td><span class="fm f-txt">FI</span>“Jono ei ole resurssiongelma…”</td><td>Stockholm lead: Swedish market view</td><td><b>Webinar</b> (avoid Slush days); recording edited into 3 clips</td></tr>
+    <tr><td class="wk">W48<span>23–27 Nov</span></td><td class="th">Black Friday</td><td><span class="fm f-car">Car</span>“Your queue will tell you…” (comment PEAK)</td><td><span class="fm f-vid">Vid</span>Webinar highlights, 60 s</td><td>CS lead: “what we watch on peak day”</td><td>Newsletter #2; PEAK template sent to commenters</td></tr>
+  </table>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>11</span></div>
+</div>
+
+<!-- 11 CALENDAR 2 + KPIs -->
+<div class="page">
+  <div class="kick"><i>05</i>Content calendar, continued</div>
+  <div class="month" style="margin-top:0">December · “Plan 2027 with us”</div>
+  <table class="cal">
+    <tr><th style="width:17mm">Week</th><th style="width:27mm">Theme</th><th>Tuesday</th><th>Thursday</th><th style="width:33mm">Team / founder</th><th style="width:33mm">Web, video &amp; other</th></tr>
+    <tr><td class="wk">W49<span>30 Nov–4 Dec</span></td><td class="th">Myth-busting</td><td><span class="fm f-car">Car</span>“5 myths about call deflection”</td><td><span class="fm f-vid">Vid</span>Nudge Lab ep. 3: social proof</td><td>Product: what's new in reChanneld</td><td>Myths turned into a blog post (SEO: “call deflection”)</td></tr>
+    <tr><td class="wk">W50<span>7–11 Dec</span></td><td class="th">2027 budgets</td><td><span class="fm f-doc">Doc</span>Channel Strategy Playbook + template</td><td><span class="fm f-txt">Img</span>Customer quote card (micro-case)</td><td>Jari: “3 questions to ask before 2027 CX budgets”</td><td>Playbook gated on the site; LinkedIn lead-gen ad</td></tr>
+    <tr><td class="wk">W51<span>14–18 Dec</span></td><td class="th">Year in review</td><td><span class="fm f-car">Car</span>“Our 2026 in 6 numbers” (real figures)</td><td><span class="fm f-txt">Img</span>Team photo, people-first thank-you</td><td>Everyone: 1 lesson from 2026</td><td>Newsletter #3: year in review</td></tr>
+    <tr><td class="wk">W52<span>21–23 Dec</span></td><td class="th">Holidays</td><td><span class="fm f-vid">Vid</span>“reChanneld works the night shift 🦉” (10-s loop)</td><td style="color:var(--muted)">Off</td><td style="color:var(--muted)">Off</td><td>Q1 plan: Nudge Lab eps. 4–5, Swedish case</td></tr>
+  </table>
+
+  <div class="grid2" style="margin-top:7mm">
+    <div>
+      <h3>Q4 targets (proposed)</h3>
+      <table class="eng">
+        <tr><th>Metric</th><th class="r">Now</th><th class="r">31 Dec</th></tr>
+        <tr><td>LinkedIn followers</td><td class="r">2,727</td><td class="r" style="color:var(--teal-d)">3,300</td></tr>
+        <tr><td>Avg. engagement rate per post</td><td class="r">~0.7%</td><td class="r" style="color:var(--teal-d)">2%+</td></tr>
+        <tr><td>Posts about reChanneld</td><td class="r">~10%</td><td class="r" style="color:var(--teal-d)">80%+</td></tr>
+        <tr><td>Explainer video completion</td><td class="r">—</td><td class="r" style="color:var(--teal-d)">40%+</td></tr>
+        <tr><td>Webinar sign-ups</td><td class="r">—</td><td class="r" style="color:var(--teal-d)">80</td></tr>
+        <tr><td>Demo / preview requests from content</td><td class="r">?</td><td class="r" style="color:var(--teal-d)">4 / month</td></tr>
+      </table>
+      <p class="small muted" style="margin-top:2mm">“Now” is estimated from public reaction counts. The baseline would be confirmed from page analytics in week 1.</p>
+    </div>
+    <div>
+      <h3>Four recurring formats</h3>
+      <div class="box bg" style="margin-bottom:3mm"><h4>🧪 Nudge Lab</h4><p class="small" style="margin:0">A 45-second vertical video every other week, one behavioural principle per episode. It builds the category and the brand at the same time.</p></div>
+      <div class="box bg" style="margin-bottom:3mm"><h4>📊 Channel Strategy Notes</h4><p class="small" style="margin:0">A monthly LinkedIn newsletter, which notifies all followers. One insight, one customer story, one tip.</p></div>
+      <div class="box bg" style="margin-bottom:3mm"><h4>🎤 Floor interviews</h4><p class="small" style="margin:0">Keep the interview clips that already work, now asking CX leaders about channel choice instead of voicebots.</p></div>
+      <div class="box bg"><h4>🧩 Teardown Tuesday (Q1)</h4><p class="small" style="margin:0">A friendly look at one public “contact us” page (with permission) and how a nudge would improve it.</p></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>12</span></div>
+</div>
+
+<!-- 12 VIDEO CONCEPTS -->
+<div class="page">
+  <div class="kick"><i>06</i>Explainer videos</div>
+  <h2>Six videos that sell reChanneld while the team sleeps</h2>
+  <p class="lead" style="margin-bottom:2mm">reChanneld is a product people get the moment they see it. Video is the shortest path from “what is this?” to “I want this on our site.”</p>
+  <div class="vrow"><div class="vthumb">Hero explainer</div><div><h4>1 · “Why your customers still call” <span class="tag t-red">Priority 1</span></h4><p>A 60-second 2D motion explainer: the problem, the nudge moment, the result, the console. It's the anchor asset for the homepage, sales e-mails, events and LinkedIn. It replaces the current YouTube cartoon with something shorter, sharper and captioned.</p><div class="meta">60 s · 16:9 + 1:1 + 9:16 · EN voice-over · EN/FI/SV captions · storyboard on the next page</div></div></div>
+  <div class="vrow"><div class="vthumb" style="background:linear-gradient(135deg,#0a1240,#14d6c0)">UI loop</div><div><h4>2 · “Map. Nudge. Learn.” product loop <span class="tag t-amb">Priority 1</span></h4><p>A silent, captioned 30-second screen-motion piece of the real console and widget. It loops in the homepage hero and runs as a LinkedIn video ad, with no voice-over needed.</p><div class="meta">30 s · silent · loopable · MP4/WebM</div></div></div>
+  <div class="vrow"><div class="vthumb" style="background:linear-gradient(135deg,#050a24,#46e3f2)">Nudge Lab</div><div><h4>3 · Nudge Lab series (5 episodes) <span class="tag t-amb">Priority 2</span></h4><p>A presenter-led vertical series, one behavioural principle per episode: wait-time transparency, defaults, social proof, choice overload and framing. It builds on the interview-clip style that already performs on your page.</p><div class="meta">5 × 45 s · 9:16 · filmed in one shoot day</div></div></div>
+  <div class="vrow"><div class="vthumb" style="background:linear-gradient(135deg,#2f6bff,#14d6c0)">Interactive</div><div><h4>4 · Interactive guided demo <span class="tag t-blue">My Videobot speciality</span></h4><p>A branching video on the homepage. The visitor picks “banking / insurance / payments / public sector” and gets a tailored 40-second path with relevant nudges, ending in the right CTA. The format demonstrates the product's own idea: guide people with smart choices.</p><div class="meta">1 intro + 4 branches · works with Videobot or a similar player</div></div></div>
+  <div class="vrow"><div class="vthumb" style="background:linear-gradient(135deg,#0d6b3c,#14d6c0)">Customer story</div><div><h4>5 · S-Bank customer story <span class="tag t-blue">Priority 2</span></h4><p>A 90-second documentary-style case with S-Bank's CX lead (subject to their approval), plus 3 social cut-downs. Peer proof is the strongest asset for Nordic banks and insurers.</p><div class="meta">90 s + 3 × 20 s · on location in Helsinki</div></div></div>
+  <div class="vrow" style="border:none"><div class="vthumb" style="background:linear-gradient(135deg,#5a2bb3,#2f6bff)">Your site</div><div><h4>6 · Personalised prospect previews <span class="tag t-grn">Pipeline</span></h4><p>A 30-second template video showing a prospect's own website with reChanneld on top. It powers the “See it on your own website” CTA and outbound. About 20 minutes per prospect once the template exists, and it's how Leadoo- and Videobot-style teams book meetings.</p><div class="meta">Template + per-prospect screen capture · for sales</div></div></div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>13</span></div>
+</div>
+
+<!-- 13 STORYBOARD -->
+<div class="page">
+  <div class="kick"><i>06</i>Storyboard · Hero explainer, 60 s</div>
+  <h2 style="font-size:20pt">“Why your customers still call”</h2>
+  <p class="muted small" style="margin-bottom:4mm">Style: flat 2D motion in Front AI navy, teal and white, with real reChanneld UI in a browser frame. The owl appears once as a wink. Calm, confident voice-over; Nordic, not American hype.</p>
+  <div class="sb">
+    <div class="fr"><div class="scr"><span class="tc">0:00–0:07</span>📞 Phones ringing<br>Queue counter: 9 → 14 → 22</div><div class="b"><b>Visual</b><br>A contact center floor seen from above, with the queue number climbing.<div class="vo">“Your customers have an app. A chatbot. A website full of answers. So why are they still calling?”</div></div></div>
+    <div class="fr"><div class="scr"><span class="tc">0:07–0:15</span>Anna, 23:40<br>💳 card missing → “Contact us” → 📞</div><div class="b"><b>Visual</b><br>Anna can't find her card. She opens the bank site, sees a big phone number and taps it.<div class="vo">“Because when something goes wrong, people do what they've always done.”</div></div></div>
+    <div class="fr"><div class="scr"><span class="tc">0:15–0:25</span>⏪ Rewind<br>Widget: “⭐ Block in app · 30 s” vs “📞 14 min”</div><div class="b"><b>Visual</b><br>Rewind. The same moment, now with the reChanneld widget. The fastest option glows.<div class="vo">“reChanneld meets customers at that exact moment and shows them the fastest way to get it done, with honest wait times.”</div></div></div>
+    <div class="fr"><div class="scr" style="background:#0a3b3a"><span class="tc">0:25–0:35</span>✅ Card blocked · 0:28<br>🧑‍💼 Agent helping an elderly fraud victim</div><div class="b"><b>Visual</b><br>Anna's card is blocked in 28 seconds. Split screen: an agent calmly helps someone who really needs it.<div class="vo">“Simple things get solved in seconds. Your team gets time for the conversations that need a human.”</div></div></div>
+    <div class="fr"><div class="scr" style="background:#0a1240"><span class="tc">0:35–0:48</span>Console: topics → channels<br>📈 self-service share rising</div><div class="b"><b>Visual</b><br>The no-code console: drag a topic to a channel. The live dashboard shows the channel mix shifting.<div class="vo">“Your team decides which topics go where, without IT. Real-time analytics show what's working.”</div></div></div>
+    <div class="fr"><div class="scr" style="background:linear-gradient(135deg,#050a24,#0b5e57)"><span class="tc">0:48–1:00</span>reChanneld 🦉<br>Better choices. Happier customers.</div><div class="b"><b>Visual</b><br>Logo resolve with your existing tagline, and the URL field “See it on your own website”.<div class="vo">“reChanneld by Front AI. Better choices. Happier customers.”</div></div></div>
+  </div>
+  <div class="grid3" style="margin-top:6mm">
+    <div class="box bg"><h4>Deliverables</h4><p class="small" style="margin:0">16:9 master, 1:1 and 9:16 cut-downs, a 6-second bumper, EN/FI/SV captions (SRT), thumbnail, and a GIF for e-mail.</p></div>
+    <div class="box bg"><h4>Process</h4><p class="small" style="margin:0">Script → style frames → animatic → animation → sound and voice-over → captions. Two feedback rounds at each stage.</p></div>
+    <div class="box bg"><h4>Timeline</h4><p class="small" style="margin:0">About 3–4 weeks from approved script. That fits the week-45 premiere in the calendar if we start in mid-October.</p></div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>14</span></div>
+</div>
+
+<!-- 14 OFFER -->
+<div class="page">
+  <div class="kick"><i>07</i>How I can help</div>
+  <h2>Three ways to work together</h2>
+  <p class="lead">You're building an international SaaS story with a small team. I can be the person who makes reChanneld easy to understand, easy to want and easy to buy.</p>
+  <div class="offer">
+    <div class="box navy"><span class="tag t-grn" style="margin-bottom:3mm">Preferred</span><h3 style="color:#fff">Join the team</h3><p class="small">Marketing, content and video for reChanneld, in-house in Helsinki. I'd own the website, LinkedIn, video and demand-gen content, working hand in hand with the new GTM lead and sales.</p></div>
+    <div class="box"><h3>Start with a sprint</h3><p class="small" style="margin:0">A 30-day relaunch: new homepage copy and layout, the 60-second hero explainer, and the first 4 weeks of the content calendar. A clear scope, so you can judge the work before deciding more.</p></div>
+    <div class="box"><h3>Ongoing support</h3><p class="small" style="margin:0">A monthly retainer for video and content: Nudge Lab episodes, customer stories, prospect previews and LinkedIn management, scaling up or down with your growth.</p></div>
+  </div>
+  <h3>My first 90 days</h3>
+  <div class="phase">
+    <div class="box"><h4><span>Days 1–30</span>Fix the story</h4><ul class="clean small"><li>One-page messaging and style guide</li><li>Homepage relaunch (hero, proof, CTA)</li><li>Bot pages retired or redirected</li><li>LinkedIn page refresh + repositioning post</li></ul></div>
+    <div class="box"><h4><span>Days 31–60</span>Show the product</h4><ul class="clean small"><li>60-second hero explainer + UI loop</li><li>S-Bank case page and carousel</li><li>Nudge Lab episodes 1–3</li><li>Monthly newsletter launched</li></ul></div>
+    <div class="box"><h4><span>Days 61–90</span>Build pipeline</h4><ul class="clean small"><li>Webinar + Channel Strategy Playbook</li><li>Personalised prospect-preview videos</li><li>Swedish landing page and content</li><li>Monthly content report to leadership</li></ul></div>
+  </div>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="box bg"><h4>Why me</h4><p class="small" style="margin:0"><b>Leadoo</b> taught me how website visitors turn into conversations. <b>Videobot</b> taught me how video guides people to the right next step. reChanneld sits exactly where those two meet. I already speak the language of your buyers, your partners and your category.</p></div>
+    <div class="box bg"><h4>What I bring</h4><p class="small" style="margin:0">Explainer video scripting, storyboarding and production · B2B SaaS copywriting · LinkedIn content and social video · landing pages and CRO · Nordic market understanding.</p></div>
+  </div>
+  <div class="cta">
+    <div><h3>Coffee at POOL next week?</h3><p>I'd love to walk you through the concept page and hear where reChanneld is going.</p></div>
+    <div class="mail">kira.krysanov@gmail.com<br><span style="font:600 9pt 'Lato';color:#9aa3d6">Kira Krysanov</span></div>
+  </div>
+  <div class="pf"><span><b>Kira Krysanov</b> × Front AI — Open application</span><span>15</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>front.ai — Homepage Concept</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  :root{
+    --navy:#050a24; --navy2:#0a1240; --navy3:#121c55;
+    --teal:#14d6c0; --teal-d:#0bb3a1; --cyan:#46e3f2; --blue:#2f6bff;
+    --ink:#0b1033; --muted:#5b6385; --line:#e3e8f2; --bg:#f4f7fc; --white:#fff;
+    --warn:#ff8a5b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--white)}
+  body{width:1440px;font-family:'Lato',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .wrap{width:1200px;margin:0 auto;position:relative}
+  a{color:inherit;text-decoration:none}
+
+  /* concept strip */
+  .concept{background:#fff4c2;color:#5a4500;font:600 13px 'Plus Jakarta Sans';text-align:center;padding:9px 0;letter-spacing:.01em}
+  .concept b{font-weight:800}
+
+  /* markers */
+  .mk{position:absolute;width:30px;height:30px;border-radius:50%;background:#ffd84d;color:#1a1400;font:800 14px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px rgba(255,216,77,.28);z-index:5}
+
+  /* nav */
+  .nav{background:var(--navy);color:#fff}
+  .nav .wrap{display:flex;align-items:center;height:84px}
+  .logo{font:800 30px 'Plus Jakarta Sans';letter-spacing:-.04em;color:#fff}
+  .logo i{color:var(--teal);font-style:normal}
+  .nav ul{display:flex;gap:34px;list-style:none;margin-left:64px;font:600 15px 'Plus Jakarta Sans';color:#c9d0f0}
+  .nav ul li:first-child{color:#fff}
+  .nav .right{margin-left:auto;display:flex;align-items:center;gap:22px;font:600 14px 'Plus Jakarta Sans';color:#c9d0f0}
+  .lang{border:1px solid #2a3470;border-radius:8px;padding:6px 10px;font-size:13px}
+  .btn{display:inline-flex;align-items:center;gap:10px;border-radius:12px;font:700 16px 'Plus Jakarta Sans';padding:16px 26px}
+  .btn.p{background:var(--teal);color:#03221f}
+  .btn.s{border:1.5px solid rgba(255,255,255,.35);color:#fff}
+  .btn.sm{padding:11px 18px;font-size:14px;border-radius:10px}
+  .arr{font-size:18px}
+
+  /* hero */
+  .hero{background:radial-gradient(1100px 600px at 85% 20%,rgba(20,214,192,.20),transparent 60%),radial-gradient(900px 600px at 10% 110%,rgba(47,107,255,.28),transparent 60%),var(--navy);color:#fff;padding:70px 0 0;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:560px 1fr;gap:40px;align-items:start}
+  .pill{display:inline-flex;align-items:center;gap:10px;background:rgba(20,214,192,.12);border:1px solid rgba(20,214,192,.35);color:var(--teal);border-radius:100px;padding:8px 16px;font:700 13px 'Plus Jakarta Sans';letter-spacing:.02em}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(20,214,192,.25)}
+  .hero h1{font-size:62px;line-height:1.04;font-weight:800;margin:26px 0 24px}
+  .hero h1 em{font-style:normal;color:var(--teal)}
+  .hero p.lead{font-size:20px;line-height:1.55;color:#c4cbec;max-width:520px}
+  .hero .ctas{display:flex;gap:16px;margin:36px 0 22px}
+  .micro{font-size:14px;color:#8d96c4;display:flex;gap:22px}
+  .micro span:before{content:"✓ ";color:var(--teal);font-weight:900}
+
+  /* browser mock */
+  .mock{position:relative;height:700px}
+  .browser{position:absolute;right:0;top:6px;width:600px;background:#fff;border-radius:18px;box-shadow:0 40px 90px rgba(0,0,0,.45);overflow:hidden;color:var(--ink)}
+  .bbar{height:40px;background:#eef1f8;display:flex;align-items:center;gap:7px;padding:0 16px}
+  .bbar i{width:11px;height:11px;border-radius:50%;background:#d3d8e6;display:block}
+  .bbar .url{margin-left:18px;flex:1;height:24px;border-radius:7px;background:#fff;font:500 12px 'Plus Jakarta Sans';color:#8a91ad;display:flex;align-items:center;padding-left:12px}
+  .site{height:540px;background:linear-gradient(180deg,#f7f9fd,#eef2fa);padding:26px 30px;position:relative}
+  .site .sn{display:flex;justify-content:space-between;align-items:center}
+  .site .bank{font:800 18px 'Plus Jakarta Sans';color:#123}
+  .site .bank b{color:#1a8f4a}
+  .site .lines i{display:block;height:9px;border-radius:5px;background:#dde3ef;margin-bottom:9px}
+  .widget{position:absolute;left:44px;right:44px;top:92px;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(11,16,51,.18);padding:22px 22px 18px}
+  .wq{font:800 19px 'Plus Jakarta Sans';margin-bottom:4px}
+  .ws{font-size:13px;color:var(--muted);margin-bottom:16px}
+  .opt{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+  .opt .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+  .opt .t{font:700 14.5px 'Plus Jakarta Sans'}
+  .opt .d{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .opt .tag{margin-left:auto;font:700 11px 'Plus Jakarta Sans';border-radius:100px;padding:5px 10px;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc;box-shadow:0 0 0 4px rgba(20,214,192,.12)}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d6;color:#9a5a00}.r{background:#ffe5dc;color:#b0401a}
+  .wf{font-size:11.5px;color:#9aa1bb;text-align:center;margin-top:8px}
+  .wf b{color:var(--ink)}
+  .float{position:absolute;background:#0f1850;border:1px solid #2b3780;border-radius:16px;padding:16px 18px;color:#fff;box-shadow:0 24px 50px rgba(0,0,0,.4)}
+  .f1{left:-30px;top:540px;width:250px}
+  .f1 .k{font:600 12px 'Plus Jakarta Sans';color:#9aa3d6;text-transform:uppercase;letter-spacing:.08em}
+  .f1 .v{font:800 34px 'Plus Jakarta Sans';margin:6px 0 2px}
+  .f1 .v small{font-size:15px;color:var(--teal)}
+  .bars{display:flex;gap:6px;align-items:flex-end;height:44px;margin-top:10px}
+  .bars i{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--teal),rgba(20,214,192,.3))}
+  .f2{right:-20px;top:600px;width:300px;display:flex;gap:12px;align-items:center}
+  .f2 .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--blue));flex:none}
+  .f2 p{font-size:13px;line-height:1.45;color:#cfd5f5}
+  .demo-note{position:absolute;right:4px;top:-18px;font-size:11px;color:#6670a6}
+
+  /* logos */
+  .logos{background:var(--navy);padding:46px 0 54px;border-top:1px solid #141d55}
+  .logos .cap{font:700 13px 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#7f88bd;text-align:center;margin-bottom:26px}
+  .logos .row{display:flex;justify-content:space-between;align-items:center;color:#c2c8ea;font:800 26px 'Plus Jakarta Sans';opacity:.85}
+  .logos .row span{letter-spacing:-.02em}
+
+  /* sections */
+  section{position:relative}
+  .sec{padding:110px 0}
+  .eyebrow{font:800 13px 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d)}
+  .h2{font-size:48px;line-height:1.08;font-weight:800;margin:14px 0 18px}
+  .sub{font-size:19px;line-height:1.6;color:var(--muted);max-width:720px}
+  .center{text-align:center}.center .sub{margin:0 auto}
+
+  /* problem */
+  .prob{background:var(--bg)}
+  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px}
+  .card .num{font:800 46px 'Plus Jakarta Sans';color:var(--ink);letter-spacing:-.03em}
+  .card h3{font-size:22px;margin:14px 0 10px}
+  .card p{font-size:16px;line-height:1.6;color:var(--muted)}
+  .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:#e8fbf8}
+
+  /* how */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px;position:relative}
+  .steps:before{content:"";position:absolute;left:60px;right:60px;top:34px;border-top:2px dashed #cfd7ea}
+  .step{position:relative}
+  .sn2{width:68px;height:68px;border-radius:20px;background:var(--navy);color:var(--teal);font:800 26px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+  .step h3{font-size:26px;margin:26px 0 10px}
+  .step p{font-size:16.5px;line-height:1.6;color:var(--muted)}
+  .shot{margin-top:22px;border:1px solid var(--line);border-radius:16px;background:var(--bg);padding:18px;height:190px}
+  .rule{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:600 13px 'Plus Jakarta Sans';margin-bottom:8px}
+  .rule .ch{margin-left:auto;font-size:11px;border-radius:100px;padding:4px 9px}
+  .mini-opt{background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font:700 13px 'Plus Jakarta Sans';margin-bottom:8px;display:flex;justify-content:space-between}
+  .mini-opt.rec{border-color:var(--teal);background:#f0fffc}
+  .chart{display:flex;align-items:flex-end;gap:10px;height:120px;padding:0 6px;border-bottom:1px solid var(--line)}
+  .chart div{flex:1;height:100%;display:flex;flex-direction:column-reverse;border-radius:6px 6px 0 0;overflow:hidden}
+  .chart b{display:block}
+  .legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:10px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+  /* science */
+  .sci{background:var(--navy);color:#fff;overflow:hidden}
+  .sci .sub{color:#aab2dd}
+  .sci .eyebrow{color:var(--teal)}
+  .nudges{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:54px}
+  .ng{background:rgba(255,255,255,.04);border:1px solid #232d72;border-radius:18px;padding:26px 22px;min-height:250px}
+  .ng .e{font-size:30px}
+  .ng h4{font-size:19px;margin:16px 0 8px}
+  .ng p{font-size:14.5px;line-height:1.55;color:#aab2dd}
+  .ng .ex{margin-top:14px;font:600 12.5px 'Plus Jakarta Sans';color:var(--teal);background:rgba(20,214,192,.08);border-radius:8px;padding:8px 10px}
+  .badges{display:flex;gap:16px;margin-top:44px;align-items:center;color:#8d96c4;font-size:14px}
+  .bdg{border:1px solid #2b3780;border-radius:10px;padding:10px 14px;font:700 13px 'Plus Jakarta Sans';color:#dfe4ff}
+
+  /* proof */
+  .proof .wrap{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+  .case{background:linear-gradient(140deg,#0d6b3c,#0a4a2c);color:#fff;border-radius:24px;padding:44px;position:relative;overflow:hidden}
+  .case:after{content:"";position:absolute;right:-80px;bottom:-80px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.06)}
+  .case .lg{font:800 26px 'Plus Jakarta Sans'}
+  .case blockquote{font:600 24px/1.4 'Plus Jakarta Sans';margin:28px 0;letter-spacing:-.01em}
+  .case .who{font-size:14px;color:#bfe9d1}
+  .case .facts{display:flex;gap:34px;margin-top:34px;border-top:1px solid rgba(255,255,255,.18);padding-top:24px}
+  .case .facts b{display:block;font:800 30px 'Plus Jakarta Sans'}
+  .case .facts span{font-size:13px;color:#bfe9d1}
+  .big{display:grid;grid-template-rows:1fr 1fr;gap:28px}
+  .stat{border:1px solid var(--line);border-radius:24px;padding:40px;background:var(--bg)}
+  .stat .n{font:800 84px 'Plus Jakarta Sans';letter-spacing:-.04em;color:var(--teal-d);line-height:1}
+  .stat p{font-size:18px;line-height:1.5;color:var(--muted);margin-top:12px;max-width:420px}
+  .stat p b{color:var(--ink)}
+
+  /* stack */
+  .stack{background:var(--bg)}
+  .stack .wrap{display:grid;grid-template-columns:480px 1fr;gap:70px;align-items:center}
+  .hub{position:relative;height:420px}
+  .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:180px;height:180px;border-radius:44px;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 30px 60px rgba(5,10,36,.35);z-index:2}
+  .core b{font:800 22px 'Plus Jakarta Sans'}.core span{font-size:12px;color:var(--teal);margin-top:4px;font-weight:700}
+  .sat{position:absolute;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 18px;font:700 15px 'Plus Jakarta Sans';box-shadow:0 10px 30px rgba(11,16,51,.08);display:flex;gap:10px;align-items:center}
+  .sat small{display:block;font:500 12px 'Lato';color:var(--muted)}
+  .ring{position:absolute;left:50%;top:50%;width:520px;height:340px;transform:translate(-50%,-50%);border:2px dashed #cdd5e8;border-radius:50%}
+  .ticks{list-style:none;margin-top:30px}
+  .ticks li{font-size:17.5px;line-height:1.5;padding:12px 0 12px 40px;position:relative;border-bottom:1px solid var(--line)}
+  .ticks li:before{content:"✓";position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:8px;background:#dcfbf6;color:#067a6c;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center}
+
+  /* video */
+  .vid .frame{margin-top:50px;height:560px;border-radius:28px;overflow:hidden;position:relative;background:radial-gradient(700px 400px at 30% 30%,rgba(20,214,192,.35),transparent 60%),radial-gradient(800px 500px at 80% 80%,rgba(47,107,255,.45),transparent 60%),var(--navy2)}
+  .vid .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 18px rgba(20,214,192,.18)}
+  .vid .play:after{content:"";border-left:34px solid #03221f;border-top:21px solid transparent;border-bottom:21px solid transparent;margin-left:8px}
+  .vid .scene{position:absolute;color:#fff}
+  .phone{left:120px;top:110px;width:200px;height:340px;border-radius:32px;border:6px solid #1d2766;background:#0b1240;padding:22px 16px}
+  .phone .q{background:#1a2466;border-radius:12px;padding:10px;font-size:12px;color:#c9d0f0;margin-bottom:10px}
+  .phone .q.t{background:var(--teal);color:#03221f;font-weight:700}
+  .queue{right:130px;top:140px;font:800 64px 'Plus Jakarta Sans';text-align:right;line-height:1}
+  .queue small{display:block;font:600 16px 'Plus Jakarta Sans';color:#aab2dd;margin-top:10px}
+  .queue s{color:#ff8a5b;text-decoration-thickness:4px}
+  .vcap{position:absolute;left:0;right:0;bottom:0;padding:26px 36px;background:linear-gradient(0deg,rgba(5,10,36,.9),transparent);display:flex;justify-content:space-between;color:#fff;font:700 18px 'Plus Jakarta Sans'}
+  .vcap span{color:#aab2dd;font-weight:600;font-size:15px}
+  .chips{display:flex;gap:12px;justify-content:center;margin-top:22px}
+  .chip{border:1px solid var(--line);border-radius:100px;padding:10px 18px;font:700 14px 'Plus Jakarta Sans';color:var(--muted)}
+  .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  /* industries */
+  .ind{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:50px}
+  .in{border:1px solid var(--line);border-radius:18px;padding:26px}
+  .in .e{font-size:28px}
+  .in h4{font-size:19px;margin:14px 0 6px}
+  .in p{font-size:14.5px;line-height:1.5;color:var(--muted)}
+
+  /* resources */
+  .res{background:var(--bg)}
+  .rgrid{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:24px;margin-top:46px}
+  .rc{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .rc .img{height:190px;position:relative}
+  .rc .b{padding:24px}
+  .rc .k{font:800 12px 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--teal-d)}
+  .rc h4{font-size:21px;line-height:1.3;margin:10px 0 8px}
+  .rc p{font-size:15px;color:var(--muted);line-height:1.5}
+  .rc .lk{margin-top:16px;font:700 14px 'Plus Jakarta Sans';color:var(--ink)}
+
+  /* final cta */
+  .final{background:radial-gradient(800px 500px at 20% 0%,rgba(20,214,192,.25),transparent 60%),radial-gradient(800px 500px at 100% 100%,rgba(47,107,255,.35),transparent 60%),var(--navy);color:#fff;text-align:center}
+  .final .h2{font-size:56px}
+  .final .sub{color:#c4cbec;margin:0 auto}
+  .form{display:flex;gap:12px;max-width:760px;margin:40px auto 18px;background:#fff;border-radius:16px;padding:8px}
+  .form .in2{flex:1;display:flex;align-items:center;padding:0 18px;font-size:17px;color:#8a91ad;text-align:left}
+  .form .in2+.in2{border-left:1px solid var(--line)}
+  .final .micro{justify-content:center}
+
+  footer{background:#03061a;color:#8d96c4;padding:70px 0 40px;font-size:14.5px}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:40px}
+  footer h5{font:700 15px 'Plus Jakarta Sans';color:#fff;margin-bottom:14px}
+  footer li{list-style:none;line-height:2}
+  footer .bt{grid-column:1/-1;border-top:1px solid #151c4a;padding-top:26px;display:flex;justify-content:space-between;font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="concept"><b>Concept redesign</b> — an unsolicited proposal by Kira Krysanov for Front AI · October 2026 · Not an official Front AI page · Yellow numbers match the notes in the application pack</div>
+
+<!-- NAV -->
+<div class="nav"><div class="wrap">
+  <div class="logo">front<i>.</i>ai</div>
+  <ul><li>reChanneld ▾</li><li>How it works</li><li>Customers</li><li>Resources</li><li>Company</li></ul>
+  <div class="right"><span class="lang">EN · FI · SV</span><span>Log in</span><a class="btn p sm">Book a demo <span class="arr">→</span></a></div>
+</div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="mk" style="left:-46px;top:4px">1</div>
+    <div>
+      <div class="pill"><span class="dot"></span>reChanneld — channel strategy software</div>
+      <h1>Guide every customer to the <em>right channel</em> before they pick up the phone.</h1>
+      <p class="lead">reChanneld sits on your website and app and uses behavioural nudges to steer each request to self-service, chat or the right team. Your automation finally gets used, and the phone queue gets shorter.</p>
+      <div class="ctas" style="position:relative">
+        <div class="mk" style="left:-46px;top:12px">2</div>
+        <a class="btn p">See it on your own website <span class="arr">→</span></a>
+        <a class="btn s">Book a 20-min demo</a>
+      </div>
+      <div class="micro"><span>No-code console</span><span>Works with any chatbot</span><span>Made in Finland</span></div>
+    </div>
+    <div class="mock">
+      <div class="mk" style="right:610px;top:-10px">3</div>
+      <div class="browser">
+        <div class="bbar"><i></i><i></i><i></i><div class="url">yourbank.fi/customer-service</div></div>
+        <div class="site">
+          <div class="sn"><div class="bank">your<b>bank</b></div><div class="lines" style="width:200px;display:flex;gap:10px"><i style="width:50px"></i><i style="width:50px"></i><i style="width:50px"></i></div></div>
+          <div class="widget">
+            <div class="wq">Hi! What can we help you with?</div>
+            <div class="ws">Choose a topic and we'll show you the fastest way to get it done.</div>
+            <div class="opt rec"><div class="ic" style="background:#dcfbf6">💳</div><div><div class="t">Block or replace my card</div><div class="d">Done in the app in about 30 seconds</div></div><span class="tag g">Fastest · 30 s</span></div>
+            <div class="opt"><div class="ic" style="background:#e9efff">💬</div><div><div class="t">Question about my loan</div><div class="d">Chat with our assistant, then an expert if needed</div></div><span class="tag g">No wait</span></div>
+            <div class="opt"><div class="ic" style="background:#fff1d6">📄</div><div><div class="t">Send documents</div><div class="d">Secure upload, we reply within 1 working day</div></div><span class="tag y">1 day</span></div>
+            <div class="opt"><div class="ic" style="background:#ffe5dc">📞</div><div><div class="t">Something else: call us</div><div class="d">Mon–Fri 8–18</div></div><span class="tag r">Queue 14 min</span></div>
+            <div class="wf">powered by <b>reChanneld</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="float f1"><div class="k">Phone share this week</div><div class="v">23% <small>▼ 11 pts</small></div><div class="bars"><i style="height:100%"></i><i style="height:88%"></i><i style="height:80%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:55%"></i><i style="height:48%"></i></div></div>
+      <div class="float f2"><div class="av"></div><p><b style="color:#fff">Live insight:</b> 82% of “card blocking” visitors chose the app today.</p></div>
+      <div class="demo-note">Illustrative UI with demo data</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">4</div>
+  <div class="cap">Trusted by Nordic banks, insurers and payment companies</div>
+  <div class="row"><span>S-Bank</span><span>elo</span><span>nets</span><span>Edenred</span><span>walley</span><span>Norion Bank</span><span>sejfa</span><span>LAUREA</span></div>
+</div></div>
+
+<!-- PROBLEM -->
+<section class="sec prob"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">5</div>
+  <div class="eyebrow">The problem</div>
+  <h2 class="h2">You invested in automation.<br>Your customers still call.</h2>
+  <p class="sub">Phone and e-mail are habits. Without a nudge, customers go to the channel they know, even when an app or a bot could solve it in seconds.</p>
+  <div class="pgrid">
+    <div class="card"><div class="ico">⏳</div><h3>Queues cost twice</h3><p>Every avoidable call costs agent time and customer patience. The callers who really need a human wait longer too.</p></div>
+    <div class="card"><div class="ico">🤖</div><h3>Self-service sits unused</h3><p>Your chatbot, app and forms are good at their jobs. They just aren't where customers look first.</p></div>
+    <div class="card"><div class="ico">🔍</div><h3>No one sees the full picture</h3><p>Channel data lives in five tools. Nobody can say which topics should go where, or whether they actually do.</p></div>
+  </div>
+</div></section>
+
+<!-- HOW -->
+<section class="sec"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">6</div>
+  <div class="center"><div class="eyebrow">How reChanneld works</div>
+  <h2 class="h2">Map. Nudge. Learn.</h2>
+  <p class="sub">A no-code console your customer service team owns. Your IT team doesn't need to build anything.</p></div>
+  <div class="steps">
+    <div class="step"><div class="sn2">1</div><h3>Map your channel strategy</h3><p>Decide topic by topic where each request should go: app, bot, form, chat or phone. Set different rules by time of day or queue length.</p>
+      <div class="shot"><div class="rule">💳 Card blocking<span class="ch g">→ App</span></div><div class="rule">🏠 Mortgage questions<span class="ch y">→ Chat → Expert</span></div><div class="rule">⚠️ Fraud<span class="ch r">→ Phone, priority</span></div></div></div>
+    <div class="step"><div class="sn2">2</div><h3>Nudge, don't block</h3><p>Customers see the best option first, with honest wait times and smart defaults. Every channel stays open. The easy path just becomes the obvious one.</p>
+      <div class="shot"><div class="mini-opt rec">Do it in the app <span style="color:#067a6c">30 s ✓</span></div><div class="mini-opt">Chat with us <span style="color:var(--muted)">No wait</span></div><div class="mini-opt">Call <span style="color:#b0401a">14 min</span></div></div></div>
+    <div class="step"><div class="sn2">3</div><h3>Learn in real time</h3><p>See where every topic ends up across channels. A/B test your nudges and show leadership what changed.</p>
+      <div class="shot"><div class="chart">
+        <div><b style="height:30%;background:#ff8a5b"></b><b style="height:30%;background:#2f6bff"></b><b style="height:40%;background:#14d6c0"></b></div>
+        <div><b style="height:26%;background:#ff8a5b"></b><b style="height:30%;background:#2f6bff"></b><b style="height:44%;background:#14d6c0"></b></div>
+        <div><b style="height:21%;background:#ff8a5b"></b><b style="height:31%;background:#2f6bff"></b><b style="height:48%;background:#14d6c0"></b></div>
+        <div><b style="height:17%;background:#ff8a5b"></b><b style="height:30%;background:#2f6bff"></b><b style="height:53%;background:#14d6c0"></b></div>
+        <div><b style="height:14%;background:#ff8a5b"></b><b style="height:29%;background:#2f6bff"></b><b style="height:57%;background:#14d6c0"></b></div>
+        <div><b style="height:12%;background:#ff8a5b"></b><b style="height:28%;background:#2f6bff"></b><b style="height:60%;background:#14d6c0"></b></div>
+      </div><div class="legend"><span><i style="background:#14d6c0"></i>Self-service</span><span><i style="background:#2f6bff"></i>Chat</span><span><i style="background:#ff8a5b"></i>Phone</span></div></div></div>
+  </div>
+</div></section>
+
+<!-- SCIENCE -->
+<section class="sec sci"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">7</div>
+  <div class="eyebrow">Built on behavioural economics</div>
+  <h2 class="h2">Five nudges that change channel habits.</h2>
+  <p class="sub">reChanneld puts proven behavioural science into every customer contact. Here's what's in the toolbox.</p>
+  <div class="nudges">
+    <div class="ng"><div class="e">⭐</div><h4>Smart defaults</h4><p>The recommended option is pre-highlighted, so the best path takes zero thinking.</p><div class="ex">“Fastest: do it in the app”</div></div>
+    <div class="ng"><div class="e">⏱️</div><h4>Honest wait times</h4><p>Showing live queue length lets customers choose for themselves.</p><div class="ex">“Phone queue: 14 min”</div></div>
+    <div class="ng"><div class="e">👥</div><h4>Social proof</h4><p>People follow people. Show which path most customers take for the same topic.</p><div class="ex">“8 in 10 customers solve this online”</div></div>
+    <div class="ng"><div class="e">🧭</div><h4>Fewer, clearer choices</h4><p>Showing four relevant options instead of twenty removes choice overload.</p><div class="ex">Topic-based menus</div></div>
+    <div class="ng"><div class="e">🎯</div><h4>Positive framing</h4><p>Talk about the time customers save, not the channels they can't use.</p><div class="ex">“Done in 30 seconds”</div></div>
+  </div>
+  <div class="badges"><span class="bdg">🇫🇮 Made in Finland</span><span class="bdg">Design from Finland</span><span>Developed in Helsinki with Nordic banks and insurers</span></div>
+</div></section>
+
+<!-- PROOF -->
+<section class="sec proof"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">8</div>
+  <div class="case">
+    <div class="lg">S-Bank</div>
+    <blockquote>S-Bank uses reChanneld next to its Aulis chatbot to guide customers to the best channel for their need, 24/7.</blockquote>
+    <div class="who">Case study · Banking · Finland</div>
+    <div class="facts"><div><b>3.3 M</b><span>customers</span></div><div><b>~1 M</b><span>interactions a year</span></div><div><b>90%+</b><span>chatbot resolution rate</span></div></div>
+    <a class="btn" style="background:#fff;color:#0a4a2c;margin-top:30px;position:relative;z-index:1">Read the S-Bank story →</a>
+  </div>
+  <div class="big">
+    <div class="stat"><div class="n">79%</div><p>of customer contacts are typically <b>nudged to the client's preferred channel</b> with reChanneld.</p></div>
+    <div class="stat"><div class="n">24/7</div><p>guidance on <b>every visit</b>, including evenings and weekends when your service team is offline.</p></div>
+  </div>
+</div></section>
+
+<!-- STACK -->
+<section class="sec stack"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">9</div>
+  <div class="hub">
+    <div class="ring"></div>
+    <div class="core"><b>reChanneld</b><span>channel layer</span></div>
+    <div class="sat" style="left:0;top:20px">🤖 Any chatbot<small>boost.ai, Digital Workforce…</small></div>
+    <div class="sat" style="right:0;top:40px">📱 Your app<small>deep links</small></div>
+    <div class="sat" style="left:-10px;bottom:40px">📞 Contact center<small>live queue data</small></div>
+    <div class="sat" style="right:-10px;bottom:20px">📝 Forms &amp; portal<small>secure upload</small></div>
+  </div>
+  <div>
+    <div class="eyebrow">Vendor-neutral</div>
+    <h2 class="h2">Works with the tools you already have.</h2>
+    <p class="sub">reChanneld isn't another chatbot. It's the layer that decides which of your channels each customer should use, and gets them there.</p>
+    <ul class="ticks">
+      <li>Plugs into any chatbot, app, form or contact center platform</li>
+      <li>Added to your site once, then configured by your own team</li>
+      <li>Live queue and opening-hours data built into each nudge</li>
+      <li>Analytics you can share with the CFO, not just the CX team</li>
+    </ul>
+  </div>
+</div></section>
+
+<!-- VIDEO -->
+<section class="sec vid"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">10</div>
+  <div class="center"><div class="eyebrow">See it in 60 seconds</div><h2 class="h2">Why your customers still call, and how to change it.</h2></div>
+  <div class="frame">
+    <div class="scene phone"><div class="q">How do I block my card?</div><div class="q t">⭐ Fastest: in the app · 30 s</div><div class="q">💬 Chat · no wait</div><div class="q">📞 Call · 14 min</div></div>
+    <div class="scene queue"><s>14 min</s><br>0 min<small>for the customers who really need a human</small></div>
+    <div class="play"></div>
+    <div class="vcap">reChanneld explainer · 1:00 <span>Captions EN · FI · SV — self-hosted, no YouTube detour</span></div>
+  </div>
+  <div class="chips"><span class="chip on">I work in banking</span><span class="chip">Insurance</span><span class="chip">Payments</span><span class="chip">Public sector</span><span class="chip">Show me the console</span></div>
+</div></section>
+
+<!-- INDUSTRIES -->
+<section class="sec" style="padding-top:20px"><div class="wrap">
+  <div class="eyebrow">Built for high-volume service</div>
+  <h2 class="h2">Where reChanneld pays off fastest</h2>
+  <div class="ind">
+    <div class="in"><div class="e">🏦</div><h4>Banking</h4><p>Card, loan and account tasks routed to the app and digital services.</p></div>
+    <div class="in"><div class="e">🛡️</div><h4>Insurance</h4><p>Claims to e-forms, complex cases to experts.</p></div>
+    <div class="in"><div class="e">💳</div><h4>Payments &amp; fintech</h4><p>Scale customer volume without scaling the service team.</p></div>
+    <div class="in"><div class="e">🏛️</div><h4>Public sector</h4><p>Help citizens find the right service the first time.</p></div>
+    <div class="in"><div class="e">⚡</div><h4>Utilities &amp; telco</h4><p>Get through outage and billing peaks without the queue.</p></div>
+  </div>
+</div></section>
+
+<!-- RESOURCES -->
+<section class="sec res"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">11</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="eyebrow">Learn</div><h2 class="h2" style="margin-bottom:0">Channel strategy, explained</h2></div><a class="lk jk" style="font-weight:700">All resources →</a></div>
+  <div class="rgrid">
+    <div class="rc"><div class="img" style="background:linear-gradient(135deg,#0d6b3c,#14d6c0)"><div style="position:absolute;left:24px;bottom:20px;color:#fff;font:800 30px 'Plus Jakarta Sans'">S-Bank × reChanneld</div></div><div class="b"><div class="k">Case study</div><h4>How S-Bank guides 3.3 M customers to the right channel, 24/7</h4><p>The setup, the nudges and what changed.</p><div class="lk">Read the case →</div></div></div>
+    <div class="rc"><div class="img" style="background:linear-gradient(135deg,#0a1240,#2f6bff)"><div style="position:absolute;left:24px;bottom:20px;color:#fff;font:800 24px 'Plus Jakarta Sans'">The Channel Strategy<br>Playbook</div></div><div class="b"><div class="k">Guide</div><h4>Build a service channel strategy in 5 steps</h4><p>Includes a free topic-to-channel template.</p><div class="lk">Download →</div></div></div>
+    <div class="rc"><div class="img" style="background:linear-gradient(135deg,#050a24,#46e3f2)"><div style="position:absolute;left:24px;bottom:20px;color:#fff;font:800 24px 'Plus Jakarta Sans'">Nudge Lab<br>video series</div></div><div class="b"><div class="k">Video</div><h4>One behavioural principle, 45 seconds</h4><p>Short lessons for CX leaders.</p><div class="lk">Watch →</div></div></div>
+  </div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="sec final"><div class="wrap">
+  <div class="mk" style="left:-46px;top:-6px">12</div>
+  <h2 class="h2">See reChanneld on your own website.</h2>
+  <p class="sub">Send us your URL. Within two working days we'll send you a personalised preview of reChanneld on your own site, with your own topics.</p>
+  <div class="form"><div class="in2">yourcompany.com</div><div class="in2">work e-mail</div><a class="btn p">Get my preview →</a></div>
+  <div class="micro"><span>Free, no commitment</span><span>Reply from a human in Helsinki</span><span>Or <u>book a demo</u></span></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div><div class="logo" style="font-size:26px">front<i>.</i>ai</div><p style="margin-top:14px;line-height:1.6;max-width:280px">Front AI builds reChanneld, the channel strategy layer for customer service. Helsinki · Stockholm.</p></div>
+  <div><h5>Product</h5><li>reChanneld</li><li>How it works</li><li>Integrations</li><li>Security</li></div>
+  <div><h5>Customers</h5><li>S-Bank case</li><li>Banking</li><li>Insurance</li><li>Public sector</li></div>
+  <div><h5>Resources</h5><li>Playbook</li><li>Nudge Lab</li><li>Events</li><li>Newsletter</li></div>
+  <div><h5>Company</h5><li>About</li><li>Careers</li><li>News</li><li>info@front.ai</li></div>
+  <div class="bt"><span>© 2026 Front AI Oy</span><span>Privacy · Cookies · LinkedIn</span></div>
+</div></footer>
+
+</body>
+</html>
