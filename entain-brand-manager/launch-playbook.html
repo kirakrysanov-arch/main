@@ -1,0 +1,428 @@
+<title>Peli on sinun — 1.7.2027</title>
+<meta name="description" content="A Brand Manager candidate's launch playbook for Finland's licensed gambling market, opening 1 July 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+  /* Layout: a stadium match-programme — scoreboard display type, a pitch-line grid, one countdown as the hero. */
+  :root{
+    --bg:#f1f4f1;          /* birch white */
+    --surface:#ffffff;
+    --surface-2:#e5ebe6;
+    --ink:#10231c;         /* spruce */
+    --ink-soft:#44564e;
+    --accent:#c9701c;      /* cloudberry */
+    --accent-ink:#ffffff;
+    --lake:#2c5a86;
+    --line:rgba(16,35,28,.14);
+    --ok:#2f7d4f;
+    --stop:#b23a3a;
+    --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+    --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0c1814; --surface:#13241e; --surface-2:#1a2f27; --ink:#e6eee9; --ink-soft:#a5b7ae;
+      --accent:#f0a052; --accent-ink:#1a120a; --lake:#7fb0dc; --line:rgba(230,238,233,.14);
+      --ok:#6cc58f; --stop:#ef8080; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c1814; --surface:#13241e; --surface-2:#1a2f27; --ink:#e6eee9; --ink-soft:#a5b7ae;
+    --accent:#f0a052; --accent-ink:#1a120a; --lake:#7fb0dc; --line:rgba(230,238,233,.14);
+    --ok:#6cc58f; --stop:#ef8080; color-scheme:dark;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+  h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1;margin:0;text-wrap:balance;letter-spacing:.01em;text-transform:uppercase}
+  h2{font-size:clamp(2rem,5vw,3.1rem)}
+  h3{font-size:1.5rem}
+  p{margin:0}
+  .label{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .lede{font-size:1.125rem;max-width:62ch;color:var(--ink-soft)}
+  section{padding-block:clamp(56px,8vw,96px);border-top:1px solid var(--line)}
+  .sec-head{display:grid;gap:14px;margin-bottom:36px}
+  a{color:var(--lake)}
+  :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+  /* ---------- Hero ---------- */
+  .hero{padding-block:clamp(40px,7vw,80px) clamp(48px,7vw,80px);position:relative;overflow:hidden}
+  .hero .wrap{display:grid;gap:28px}
+  .topline{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+  .hero h1{font-size:clamp(3.4rem,13vw,9.5rem);font-weight:900;line-height:.86}
+  .hero h1 span{color:var(--accent);display:block}
+  .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;max-width:760px}
+  .board div{background:var(--surface);padding:18px 20px;display:grid;gap:4px}
+  .board b{font-family:var(--display);font-size:clamp(2.4rem,6vw,3.6rem);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+  .board .hot b{color:var(--accent)}
+  .pitch{position:absolute;inset:auto -10% -40% auto;width:min(620px,80vw);aspect-ratio:1;border:2px solid var(--line);border-radius:50%;pointer-events:none}
+  .pitch::after{content:"";position:absolute;inset:30%;border:2px solid var(--line);border-radius:50%}
+
+  /* ---------- Toggle: today vs 1.7.2027 ---------- */
+  .switch{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px;background:var(--surface);gap:4px;flex-wrap:wrap}
+  .switch button{border:0;background:transparent;color:var(--ink);font:600 .9rem var(--body);padding:10px 18px;border-radius:999px;cursor:pointer}
+  .switch button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+  .duties{display:grid;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:28px}
+  .duty{background:var(--surface);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;padding:22px 24px;align-items:start}
+  .duty .ad{font-weight:600}
+  .duty .ad small{display:block;font-weight:400;color:var(--ink-soft);margin-top:4px;font-size:.85rem}
+  .duty .now, .duty .then{color:var(--ink-soft);min-width:0}
+  .duty .then{display:none}
+  .is-2027 .duty .now{display:none}
+  .is-2027 .duty .then{display:block}
+  .chip{display:inline-block;font:600 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:4px;margin-bottom:6px}
+  .chip.go{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+  .chip.shift{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+  .chip.stop{background:color-mix(in srgb,var(--stop) 16%,transparent);color:var(--stop)}
+
+  /* ---------- Concepts ---------- */
+  .concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+  .concept{background:var(--surface);border:1px solid var(--line);border-radius:6px;display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+  .poster{background:var(--ink);color:var(--bg);padding:28px 24px;min-height:230px;display:grid;align-content:space-between;gap:24px;position:relative}
+  .poster.p2{background:var(--lake);color:#fff}
+  .poster.p3{background:var(--accent);color:var(--accent-ink)}
+  .poster .fi{font-family:var(--display);font-weight:900;font-size:2.3rem;line-height:.92;text-transform:uppercase}
+  .poster .mark{font:600 .7rem var(--mono);letter-spacing:.12em;text-transform:uppercase;opacity:.8;display:flex;justify-content:space-between;gap:8px}
+  .concept .body{padding:22px 24px 26px;display:grid;gap:12px;align-content:start}
+  .concept .en{font-style:italic;color:var(--ink-soft)}
+  .concept ul{margin:0;padding-left:1.1em;display:grid;gap:6px;color:var(--ink-soft);font-size:.95rem}
+
+  /* ---------- Budget ---------- */
+  .budget{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:start}
+  .rows{display:grid;gap:14px}
+  .row{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr) 4.2rem;gap:14px;align-items:center}
+  .row label{font-weight:600;font-size:.95rem}
+  .row output{font:600 .9rem var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+  .row input[type=range]{width:100%;accent-color:var(--accent)}
+  .row.locked label{color:var(--stop);text-decoration:line-through}
+  .row.locked input{opacity:.35}
+  .summary{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px;display:grid;gap:18px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+  .stack{display:flex;height:22px;border-radius:4px;overflow:hidden;background:var(--surface-2)}
+  .stack span{display:block;height:100%;transition:width .25s ease}
+  .legend{display:grid;gap:6px;font-size:.85rem}
+  .legend div{display:flex;justify-content:space-between;gap:12px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;vertical-align:baseline}
+  .legend span:last-child{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .note{font-size:.85rem;color:var(--ink-soft)}
+  .warn{color:var(--stop);font-weight:600}
+
+  /* ---------- Plan ---------- */
+  .plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .phase{background:var(--surface);padding:24px;display:grid;gap:12px;align-content:start}
+  .phase .when{font-family:var(--display);font-size:2.6rem;font-weight:900;color:var(--accent);line-height:1}
+  .phase ul{margin:0;padding-left:1.1em;display:grid;gap:6px;color:var(--ink-soft);font-size:.95rem}
+
+  /* ---------- KPIs ---------- */
+  table{width:100%;border-collapse:collapse;font-size:.95rem}
+  .tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+  th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font:600 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  tr:last-child td{border-bottom:0}
+  td:first-child{font-weight:600}
+
+  footer{padding-block:48px 64px;border-top:1px solid var(--line)}
+  footer .wrap{display:grid;gap:14px}
+  footer ol{margin:0;padding-left:1.2em;color:var(--ink-soft);font-size:.85rem;display:grid;gap:4px}
+
+  @media (max-width:720px){
+    .duty{grid-template-columns:1fr;gap:10px}
+    .budget{grid-template-columns:1fr}
+    .summary{position:static}
+    .row{grid-template-columns:minmax(0,1fr) 4.2rem}
+    .row input{grid-column:1 / -1;grid-row:2}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="hero">
+  <div class="pitch" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="topline">
+      <span class="label">Brand Manager · Entain NCE · Espoo</span>
+      <span class="label">Application concept · <span id="author">[Your Name]</span></span>
+    </div>
+    <h1>Peli on sinun.<span>1.7.2027</span></h1>
+    <p class="lede">On 1 July 2027 Finland's online gambling market opens to licensed operators. Two tools the job ad lists, affiliates and influencers, will be banned on that day. This is how I would build the brand anyway.</p>
+    <div class="board" role="group" aria-label="Countdown to market opening">
+      <div class="hot"><b id="days">272</b><span class="label">Days to launch</span></div>
+      <div><b>40+</b><span class="label">Expected licensees</span></div>
+      <div><b>22%</b><span class="label">Tax on GGR</span></div>
+      <div><b>0</b><span class="label">Affiliates allowed</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="shift">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">The job, before and after the Act</span>
+        <h2>Same job ad. Different rulebook.</h2>
+        <p class="lede">Each line on the left is from the posting. Flip the switch to see how I'd run it once the new Gambling Act applies.</p>
+      </div>
+      <div class="switch" role="group" aria-label="Choose period">
+        <button id="btn-now" type="button" aria-pressed="false">Today</button>
+        <button id="btn-2027" type="button" aria-pressed="true">From 1.7.2027</button>
+      </div>
+      <div class="duties is-2027" id="duties">
+        <div class="duty">
+          <div class="ad">Plan, budget and implement the ATL plan<small>Responsibility 1</small></div>
+          <p class="now"><span class="chip go">Works today</span><br>TV, BVOD, OOH and radio, supported by affiliate traffic and bonus-led offers.</p>
+          <p class="then"><span class="chip shift">Becomes the main engine</span><br>ATL now has to build demand on its own, with no affiliates behind it. Fewer, longer-running flights in a consistent brand platform, kept "moderate" in volume and repetition as the law requires.</p>
+        </div>
+        <div class="duty">
+          <div class="ad">Website reflects identity and tone of voice<small>Responsibility 2</small></div>
+          <p class="now"><span class="chip go">Works today</span><br>Conversion page that affiliates send people to.</p>
+          <p class="then"><span class="chip shift">Becomes the media channel</span><br>Owned website and verified social profiles are where digital marketing is allowed to happen. The site needs editorial sports content, plain-Finnish explanations of odds and limits, and a Swedish version.</p>
+        </div>
+        <div class="duty">
+          <div class="ad">Influencers, streamers, partners, sponsorships<small>Responsibility 7</small></div>
+          <p class="now"><span class="chip go">Works today</span><br>Streamer deals and creator codes.</p>
+          <p class="then"><span class="chip stop">Influencers out</span> <span class="chip go">Sponsorship stays</span><br>Influencer marketing through third-party accounts ends. Sponsorships stay possible if they don't promote gambling directly and don't reach under-18s. I'd move the budget into adult sports properties and brand-owned content on our own channels, cleared with legal first.</p>
+        </div>
+        <div class="duty">
+          <div class="ad">Affiliate and acquisition channels<small>Responsibility 9</small></div>
+          <p class="now"><span class="chip go">Works today</span><br>Commission-based comparison sites drive a large share of sign-ups.</p>
+          <p class="then"><span class="chip stop">Banned</span><br>Affiliate marketing aimed at Finnish players is prohibited. Acquisition has to come from brand: search demand, direct traffic and word of mouth. That shift is what the KPIs below track.</p>
+        </div>
+        <div class="duty">
+          <div class="ad">Meetings with inspectors and regulators<small>Responsibility 11</small></div>
+          <p class="now"><span class="chip go">Today</span><br>National Police Board handles licensing.</p>
+          <p class="then"><span class="chip shift">New authority</span><br>A new national supervisory authority takes over. I'd keep a running file of every campaign's approval trail, so any audit question can be answered the same day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="concepts">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Campaign territories · Finnish copy, English notes</span>
+        <h2>Three ideas for the first summer</h2>
+        <p class="lede">All three are built for the new rules: no bonus headlines, nothing aimed at minors, social posts that broadcast and don't invite replies.</p>
+      </div>
+      <div class="concepts">
+        <article class="concept">
+          <div class="poster">
+            <span class="mark"><span>Platform</span><span>ATL · Web</span></span>
+            <p class="fi">Nyt sinulla on valinta.</p>
+          </div>
+          <div class="body">
+            <h3>Valinta</h3>
+            <p class="en">"Now you have a choice."</p>
+            <p>For decades Finns had one option. The launch line takes the one thing that's actually new, choice, and links it to control: limits, time-outs and clear odds, shown up front.</p>
+            <ul>
+              <li>TV and BVOD 20" spots built around a player setting their own limit</li>
+              <li>OOH in Helsinki, Tampere and Turku during launch week</li>
+              <li>"Luvallinen Suomessa" (licensed in Finland) as the trust mark everywhere</li>
+            </ul>
+          </div>
+        </article>
+        <article class="concept">
+          <div class="poster p2">
+            <span class="mark"><span>Sponsorship</span><span>Adult sport</span></span>
+            <p class="fi">Kotikenttä.</p>
+          </div>
+          <div class="body">
+            <h3>Kotikenttä</h3>
+            <p class="en">"Home ground."</p>
+            <p>Partnerships with adult clubs in hockey and pesäpallo towns, using the brand name only, with no gambling message. They pay for local things fans notice, like rink lighting or away-day buses, and give the brand a local presence that affiliates never could.</p>
+            <ul>
+              <li>Each property checked for under-18 audience share before signing</li>
+              <li>Brand name only, no odds or offers in the venue</li>
+              <li>Success measured by regional awareness change, not clicks</li>
+            </ul>
+          </div>
+        </article>
+        <article class="concept">
+          <div class="poster p3">
+            <span class="mark"><span>Owned content</span><span>Web · Social</span></span>
+            <p class="fi">Selvää suomea.</p>
+          </div>
+          <div class="body">
+            <h3>Selvää suomea</h3>
+            <p class="en">"In plain Finnish."</p>
+            <p>A tone of voice that explains instead of hypes. What a 2.10 price means, what RTP is, how to set a limit in ten seconds. It replaces the education affiliates used to do and it builds trust while doing it.</p>
+            <ul>
+              <li>Weekly match previews on our own site, written in-house</li>
+              <li>Non-interactive explainer series on verified social accounts</li>
+              <li>Swedish-language version (<i>På ren svenska</i>) for Finland's Swedish speakers</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="budget">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Interactive · illustrative €1.0M annual budget</span>
+        <h2>Move the money before the law does</h2>
+        <p class="lede">Drag to set a channel mix. Switch to 1.7.2027 and the banned channels lock to zero. Their share goes back into the remaining channels, in proportion to how you'd set them.</p>
+      </div>
+      <div class="switch" role="group" aria-label="Choose budget period">
+        <button id="bud-now" type="button" aria-pressed="false">Today</button>
+        <button id="bud-2027" type="button" aria-pressed="true">From 1.7.2027</button>
+      </div>
+      <div class="budget" style="margin-top:28px">
+        <div class="rows" id="rows"></div>
+        <aside class="summary" aria-live="polite">
+          <span class="label">Resulting mix</span>
+          <div class="stack" id="stack"></div>
+          <div class="legend" id="legend"></div>
+          <p class="note" id="bnote"></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">First 90 days</span>
+        <h2>The order I'd work in</h2>
+      </div>
+      <div class="plan">
+        <div class="phase">
+          <span class="when">0–30</span>
+          <h3>Listen</h3>
+          <ul>
+            <li>Audit every live asset against the new Act with legal and compliance</li>
+            <li>Map what share of acquisition comes from affiliates and influencers today</li>
+            <li>Set up a brand health tracker: awareness, consideration, trust</li>
+            <li>Meet the CRM, VIP, product and social teams</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <span class="when">31–60</span>
+          <h3>Decide</h3>
+          <ul>
+            <li>Brand platform and tone of voice in Finnish and Swedish</li>
+            <li>Agency brief and pitch for the launch campaign</li>
+            <li>Shortlist sponsorship properties and check audience age data</li>
+            <li>Budget for H1 2027 approved with the Director of Marketing</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <span class="when">61–90</span>
+          <h3>Build</h3>
+          <ul>
+            <li>Website content plan and editorial calendar</li>
+            <li>Sign the first sponsorship and production partners</li>
+            <li>Pre-test launch creative with Finnish adults</li>
+            <li>Approval file ready for the new supervisory authority</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kpi">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">How success gets measured</span>
+        <h2>Scoreboard</h2>
+        <p class="lede">If the brand can't rely on affiliates for acquisition, the brand has to do the acquiring. These numbers show whether it's working.</p>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Metric</th><th>Why it matters after 1.7.2027</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>Aided and unaided awareness</td><td>With 40-odd licensed brands launching together, being remembered is most of the battle.</td><td>Quarterly brand tracker</td></tr>
+            <tr><td>Share of branded search</td><td>Shows demand the brand created itself, replacing affiliate traffic.</td><td>Search console, Google Trends</td></tr>
+            <tr><td>Direct and organic share of sign-ups</td><td>The clearest sign that acquisition no longer depends on paid partners.</td><td>Web analytics</td></tr>
+            <tr><td>Trust score ("licensed and fair")</td><td>Players are choosing their first private operator. Trust decides who they pick.</td><td>Tracker, NPS</td></tr>
+            <tr><td>Limit-tool adoption</td><td>Puts the "control" promise into numbers and supports the licence.</td><td>Product data</td></tr>
+            <tr><td>Regulatory remarks</td><td>The target is zero.</td><td>Compliance log</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">Independent concept by a job applicant. Not affiliated with or endorsed by Entain. Figures are illustrative; legal readings to be confirmed with Entain's compliance team.</span>
+    <ol>
+      <li><a href="https://www.waselius.fi/news/2025/12/finland-adopts-new-gambling-act/">Waselius: Finland adopts new Gambling Act</a></li>
+      <li><a href="https://gambling.helsinkitimes.fi/blog/2025/12/23/finlands-new-gambling-law-signals-the-end-of-influencer-led-casino-marketing/">Helsinki Times: End of influencer-led casino marketing</a></li>
+      <li><a href="https://gambling.helsinkitimes.fi/blog/2025/09/15/new-finnish-gambling-regulation-affiliate-marketing-ban-explained/">Helsinki Times: Affiliate marketing ban explained</a></li>
+      <li><a href="https://igamingbusiness.com/legal-compliance/licensing/finland-gambling-licensing-market-liberalisation/">iGaming Business: Finland licensing window opens</a></li>
+      <li><a href="https://brightsideofnews.com/gambling/news/finland-igaming-license-applications-2026/">Finland iGaming licence applications pass 24</a></li>
+    </ol>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Countdown
+  var launch = new Date(2027,6,1);
+  var d = Math.ceil((launch - new Date()) / 86400000);
+  document.getElementById('days').textContent = d > 0 ? d : 'Live';
+
+  // Duty toggle
+  var duties = document.getElementById('duties');
+  var bn = document.getElementById('btn-now'), b27 = document.getElementById('btn-2027');
+  function setDuty(is27){
+    duties.classList.toggle('is-2027', is27);
+    b27.setAttribute('aria-pressed', is27); bn.setAttribute('aria-pressed', !is27);
+  }
+  bn.onclick = function(){ setDuty(false); };
+  b27.onclick = function(){ setDuty(true); };
+
+  // Budget allocator
+  var TOTAL = 1000; // €k
+  var ch = [
+    {id:'tv',   name:'TV & BVOD',          v:30, c:'var(--ink)'},
+    {id:'ooh',  name:'Outdoor',            v:12, c:'var(--lake)'},
+    {id:'audio',name:'Radio & audio',      v:6,  c:'color-mix(in srgb,var(--lake) 55%,var(--bg))'},
+    {id:'spon', name:'Sponsorship',        v:10, c:'var(--accent)'},
+    {id:'own',  name:'Owned content & web',v:8,  c:'color-mix(in srgb,var(--accent) 55%,var(--bg))'},
+    {id:'search',name:'Paid search & display',v:10,c:'var(--ok)'},
+    {id:'aff',  name:'Affiliates',         v:16, c:'var(--stop)', banned:true},
+    {id:'inf',  name:'Influencers',        v:8,  c:'color-mix(in srgb,var(--stop) 55%,var(--bg))', banned:true}
+  ];
+  var is27 = true;
+  var rows = document.getElementById('rows');
+  ch.forEach(function(x){
+    var r = document.createElement('div'); r.className='row'; r.id='row-'+x.id;
+    r.innerHTML = '<label for="r-'+x.id+'">'+x.name+'</label><input type="range" id="r-'+x.id+'" min="0" max="50" step="1" value="'+x.v+'"><output id="o-'+x.id+'"></output>';
+    rows.appendChild(r);
+    r.querySelector('input').addEventListener('input', function(e){ x.v = +e.target.value; render(); });
+  });
+  function render(){
+    var active = ch.filter(function(x){ return !(is27 && x.banned); });
+    var sum = active.reduce(function(a,x){ return a + x.v; }, 0) || 1;
+    var bannedShare = is27 ? ch.filter(function(x){return x.banned;}).reduce(function(a,x){return a+x.v;},0) : 0;
+    var stack = '', legend = '';
+    ch.forEach(function(x){
+      var locked = is27 && x.banned;
+      var pct = locked ? 0 : x.v / sum * 100;
+      var row = document.getElementById('row-'+x.id);
+      row.classList.toggle('locked', locked);
+      row.querySelector('input').disabled = locked;
+      document.getElementById('o-'+x.id).textContent = locked ? '€0k' : '€' + Math.round(pct/100*TOTAL) + 'k';
+      if (pct > 0){
+        stack += '<span style="width:'+pct+'%;background:'+x.c+'" title="'+x.name+'"></span>';
+        legend += '<div><span><i style="background:'+x.c+'"></i>'+x.name+'</span><span>'+pct.toFixed(0)+'%</span></div>';
+      }
+    });
+    document.getElementById('stack').innerHTML = stack;
+    document.getElementById('legend').innerHTML = legend;
+    var allSum = ch.reduce(function(a,x){return a+x.v;},0) || 1;
+    document.getElementById('bnote').innerHTML = is27
+      ? (bannedShare ? '<span class="warn">'+Math.round(bannedShare/allSum*100)+'% of today’s mix</span> sat in channels that end on 1.7.2027. It has been spread across the channels still allowed.' : 'No spend in banned channels. This mix carries over unchanged.')
+      : 'Today’s mix. Switch to 1.7.2027 to see what the Act removes.';
+  }
+  var bud0 = document.getElementById('bud-now'), bud27 = document.getElementById('bud-2027');
+  function setBud(v){ is27 = v; bud27.setAttribute('aria-pressed', v); bud0.setAttribute('aria-pressed', !v); render(); }
+  bud0.onclick = function(){ setBud(false); };
+  bud27.onclick = function(){ setBud(true); };
+  render();
+})();
+</script>
