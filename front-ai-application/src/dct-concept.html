@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DC Thomson Help Concept</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  :root{--navy:#0a1a4f;--blue:#0b4fd0;--blue-l:#e8efff;--sky:#cfe0ff;--ink:#0a1a4f;--muted:#55608a;--line:#e3e8f3;--bg:#f6f8fc;--teal:#14d6c0;--teal-d:#0a9e8e;--green:#0e8f6a;--amber:#b97300;--red:#c8432c}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#fff}
+  body{width:1440px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{width:1080px;margin:0 auto;position:relative}
+  .concept{background:#fff4c2;color:#5a4500;font:600 13px 'Plus Jakarta Sans';text-align:center;padding:9px 0}
+  .concept b{font-weight:800}
+  .mk{position:absolute;width:30px;height:30px;border-radius:50%;background:#ffd84d;color:#1a1400;font:800 14px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 5px rgba(255,216,77,.3);z-index:5}
+  section{position:relative}
+
+  /* nav like theirs: white rounded bar */
+  .navw{padding:22px 0 0}
+  .nav{display:flex;align-items:center;background:#fff;border-radius:22px;box-shadow:0 6px 24px rgba(10,26,79,.08);height:68px;padding:0 26px}
+  .wm{font:800 17px 'Plus Jakarta Sans';letter-spacing:.02em;color:var(--navy);display:flex;align-items:center;gap:8px}
+  .wm i{width:22px;height:14px;border-top:3px solid var(--blue);border-radius:50% 50% 0 0;display:block;transform:rotate(-12deg)}
+  .nav ul{display:flex;gap:22px;list-style:none;margin-left:44px;font:500 14px 'Plus Jakarta Sans';color:var(--navy)}
+  .nav .help{background:var(--blue-l);color:var(--blue);font-weight:800;border-radius:100px;padding:7px 14px;margin:-7px 0}
+  .nav .adv{margin-left:auto;background:var(--blue);color:#fff;font:800 12px 'Plus Jakarta Sans';border-radius:100px;padding:9px 16px;letter-spacing:.04em}
+
+  /* hero */
+  .hero{padding:26px 0 0}
+  .hcard{border-radius:28px;background:linear-gradient(135deg,#0a1a4f 0%,#0b2f8a 55%,#0b4fd0 100%);color:#fff;padding:56px 56px 50px;position:relative;overflow:hidden}
+  .hcard:after{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;border:60px solid rgba(255,255,255,.05)}
+  .eb{display:inline-block;background:rgba(255,255,255,.14);border-radius:100px;padding:7px 14px;font:800 12px 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase}
+  .hcard h1{font-size:54px;line-height:1.05;letter-spacing:-.03em;margin:20px 0 14px;font-weight:800}
+  .hcard p.l{font:500 19px/1.5 'Lato';color:#d6e2ff;max-width:640px}
+  .titles{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;position:relative;z-index:2}
+  .ttl{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.22);border-radius:100px;padding:10px 18px;font:700 14px 'Plus Jakarta Sans'}
+  .ttl.on{background:#fff;color:var(--navy);border-color:#fff}
+  .ttl small{font-weight:600;opacity:.7;margin-left:6px}
+
+  /* widget block */
+  .wblock{display:grid;grid-template-columns:1.25fr 1fr;gap:26px;margin-top:-30px;position:relative;z-index:3;padding:0 30px}
+  .widget{background:#fff;border-radius:22px;box-shadow:0 24px 60px rgba(10,26,79,.18);padding:28px}
+  .wq{font:800 24px 'Plus Jakarta Sans';letter-spacing:-.02em}
+  .ws{font:500 15px 'Lato';color:var(--muted);margin:4px 0 18px}
+  .opt{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;margin-bottom:10px}
+  .opt .ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+  .opt .t{font:700 15.5px 'Plus Jakarta Sans'}
+  .opt .d{font:500 13px 'Lato';color:var(--muted);margin-top:1px}
+  .opt .tg{margin-left:auto;font:800 11.5px 'Plus Jakarta Sans';border-radius:100px;padding:6px 11px;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc;box-shadow:0 0 0 4px rgba(20,214,192,.12)}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d6;color:#8f5a00}.r{background:#ffe5dc;color:#b0401a}.b{background:var(--blue-l);color:var(--blue)}
+  .pw{font:500 11.5px 'Lato';color:#9aa1bb;text-align:center;margin-top:8px}
+  .pw b{color:var(--navy)}
+  .side{display:flex;flex-direction:column;gap:18px;padding-top:58px}
+  .status{background:#fff;border-radius:20px;box-shadow:0 14px 40px rgba(10,26,79,.12);padding:22px}
+  .status h4{font:800 13px 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .srow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font:700 14.5px 'Plus Jakarta Sans'}
+  .srow:last-child{border:none}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px}
+  .srow span{font:700 12.5px 'Plus Jakarta Sans'}
+  .acct{background:var(--bg);border-radius:20px;padding:22px;display:flex;gap:16px;align-items:center}
+  .acct .av{width:52px;height:52px;border-radius:16px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none}
+  .acct b{font:800 16px 'Plus Jakarta Sans';display:block}
+  .acct p{font:500 13.5px 'Lato';color:var(--muted)}
+  .acct .go{margin-left:auto;background:var(--navy);color:#fff;border-radius:12px;padding:11px 16px;font:800 13px 'Plus Jakarta Sans';white-space:nowrap}
+
+  .sec{padding:96px 0 0}
+  .h2{font-size:38px;letter-spacing:-.03em;font-weight:800;line-height:1.1}
+  .sub{font:500 17px/1.6 'Lato';color:var(--muted);margin-top:10px;max-width:700px}
+  .row{display:flex;justify-content:space-between;align-items:flex-end}
+  .lk{font:800 14px 'Plus Jakarta Sans';color:var(--blue)}
+
+  /* tasks */
+  .tasks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+  .task{border:1.5px solid var(--line);border-radius:22px;padding:26px;background:#fff;position:relative}
+  .task .ic{width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px}
+  .task h4{font:800 19px 'Plus Jakarta Sans';margin-bottom:6px}
+  .task p{font:500 14.5px/1.5 'Lato';color:var(--muted)}
+  .task .meta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font:800 13px 'Plus Jakarta Sans';color:var(--blue)}
+  .task .meta span{font:700 12px 'Plus Jakarta Sans';color:var(--green);background:#e3f7ef;border-radius:100px;padding:4px 10px}
+
+  /* brands */
+  .brands{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:30px}
+  .br{border-radius:20px;height:190px;padding:18px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+  .br b{font:800 18px 'Plus Jakarta Sans';line-height:1.15}
+  .br span{font:600 12.5px 'Lato';opacity:.85;margin-top:4px}
+  .br em{font-style:normal;position:absolute;top:16px;left:18px;background:rgba(255,255,255,.18);border-radius:100px;padding:4px 10px;font:800 11px 'Plus Jakarta Sans'}
+
+  /* cancel */
+  .cancel{background:var(--bg);border-radius:28px;padding:50px;display:grid;grid-template-columns:1fr 1.15fr;gap:46px;align-items:center}
+  .copts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .co{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:20px}
+  .co .e{font-size:24px}
+  .co b{display:block;font:800 16px 'Plus Jakarta Sans';margin:10px 0 4px}
+  .co p{font:500 13.5px/1.45 'Lato';color:var(--muted)}
+  .co .a{margin-top:12px;font:800 13px 'Plus Jakarta Sans';color:var(--blue)}
+  .co.cx{border-color:#cdd5ea}
+  .co.cx .a{color:var(--navy)}
+  .rule{margin-top:18px;font:600 13px 'Lato';color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+
+  /* contact */
+  .contact{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+  .cc{border:1.5px solid var(--line);border-radius:20px;padding:22px}
+  .cc .e{font-size:24px}
+  .cc b{display:block;font:800 17px 'Plus Jakarta Sans';margin:12px 0 4px}
+  .cc p{font:500 13.5px/1.5 'Lato';color:var(--muted)}
+  .cc .st{margin-top:14px;font:800 12px 'Plus Jakarta Sans';border-radius:100px;padding:5px 11px;display:inline-block}
+  .cc.best{border-color:var(--teal);background:#f6fffd}
+  .numbox{margin-top:18px;background:var(--navy);color:#fff;border-radius:20px;padding:22px 28px;display:flex;align-items:center;gap:22px}
+  .numbox b{font:800 18px 'Plus Jakarta Sans'}
+  .numbox p{font:500 14px 'Lato';color:#c9d5ff}
+  .numbox .n{margin-left:auto;background:#fff;color:var(--navy);border-radius:14px;padding:12px 18px;font:800 18px 'Plus Jakarta Sans';white-space:nowrap}
+  .numbox .n small{display:block;font:600 11.5px 'Lato';color:var(--muted)}
+
+  /* faq */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px;margin-top:28px}
+  .q{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid var(--line);padding:16px 2px;font:700 16px 'Plus Jakarta Sans'}
+  .q span{color:var(--blue);font-size:20px}
+  .q small{font:600 12px 'Lato';color:var(--muted);margin-left:10px}
+
+  /* footer like theirs + help column */
+  footer{margin-top:100px;background:var(--bg);padding:60px 0 40px}
+  footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr 1.3fr 1.4fr;gap:30px}
+  footer h5{font:800 12px 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  footer li{list-style:none;font:500 14px/2.05 'Plus Jakarta Sans';color:var(--navy)}
+  footer .hl li{font-weight:700}
+  footer .hl{background:#fff;border-radius:18px;padding:18px 20px;box-shadow:0 0 0 2px var(--teal)}
+  .fbox{border:1.5px solid var(--sky);border-radius:20px;padding:20px;background:#fff}
+  .fbox .t{display:inline-block;background:var(--blue);color:#fff;font:800 11px 'Plus Jakarta Sans';border-radius:6px;padding:5px 9px;margin-bottom:12px}
+  .fbox p{font:700 14.5px 'Plus Jakarta Sans';margin-bottom:10px}
+  .fbox a{display:block;font:600 13.5px 'Lato';color:var(--blue);line-height:1.9}
+  .copy{grid-column:1/-1;border-top:1px solid var(--line);padding-top:20px;margin-top:10px;font:500 13px 'Plus Jakarta Sans';color:var(--muted);display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<div class="concept"><b>Concept</b> — prepared by reChanneld for DC Thomson · October 2026 · Not an official DC Thomson page · Yellow numbers match the notes in the proposal</div>
+
+<div class="navw"><div class="wrap">
+  <div class="mk" style="left:-50px;top:19px">1</div>
+  <div class="nav">
+    <div class="wm"><i></i>DC THOMSON</div>
+    <ul><li>About</li><li>Brands ▾</li><li class="help">Help &amp; subscriptions</li><li>Careers</li><li>News</li><li>Sustainability</li><li>Events</li><li>Contact</li></ul>
+    <div class="adv">ADVERTISE</div>
+  </div>
+</div></div>
+
+<section class="hero"><div class="wrap">
+  <div class="mk" style="left:-50px;top:330px">2</div>
+  <div class="hcard">
+    <span class="eb">Subscriber help</span>
+    <h1>Hi! What can we<br>help you with today?</h1>
+    <p class="l">Missing paper, billing, a holiday pause or app log-in: tell us your title and topic, and we'll show you the quickest way to sort it, day or night.</p>
+    <div class="titles">
+      <span class="ttl on">The Courier</span><span class="ttl">The Press and Journal</span><span class="ttl">The Sunday Post</span><span class="ttl">Evening Telegraph</span><span class="ttl">Evening Express</span><span class="ttl">The People's Friend</span><span class="ttl">Beano</span><span class="ttl">Puzzler</span><span class="ttl">The Scots Magazine</span><span class="ttl">More titles <small>▾</small></span>
+    </div>
+  </div>
+  <div class="wblock">
+    <div class="widget" style="position:relative">
+      <div class="mk" style="left:-50px;top:24px">3</div>
+      <div class="wq">The Courier: what do you need?</div>
+      <div class="ws">Pick a topic. The fastest option is shown first.</div>
+      <div class="opt rec"><div class="ic" style="background:#dcfbf6">📰</div><div><div class="t">My paper didn't arrive</div><div class="d">Report it now and we'll credit or replace it</div></div><span class="tg g">2 min · 24/7</span></div>
+      <div class="opt"><div class="ic" style="background:var(--blue-l)">💳</div><div><div class="t">Billing or payment dates</div><div class="d">See your schedule and switch monthly ↔ quarterly</div></div><span class="tg g">Self-service</span></div>
+      <div class="opt"><div class="ic" style="background:#fff1d6">🏖️</div><div><div class="t">Going away? Pause your delivery</div><div class="d">Pick your dates, restart automatically</div></div><span class="tg g">1 min</span></div>
+      <div class="opt"><div class="ic" style="background:#efe5ff">📱</div><div><div class="t">App, e-edition or log-in</div><div class="d">Step-by-step for your device</div></div><span class="tg g">3 min guide</span></div>
+      <div class="opt"><div class="ic" style="background:#ffe5dc">💬</div><div><div class="t">Something else</div><div class="d">Talk to our subscriptions team</div></div><span class="tg y">~4 min wait</span></div>
+      <div class="pw">guidance powered by <b>reChanneld</b></div>
+    </div>
+    <div class="side">
+      <div class="status" style="position:relative">
+        <div class="mk" style="right:-50px;top:18px">4</div>
+        <h4>Live right now</h4>
+        <div class="srow"><div><i class="dot" style="background:#0e8f6a"></i>Self-service &amp; guides</div><span style="color:var(--green)">Always open</span></div>
+        <div class="srow"><div><i class="dot" style="background:#0e8f6a"></i>News subscriptions team</div><span style="color:var(--green)">Open until 18:00</span></div>
+        <div class="srow"><div><i class="dot" style="background:#b97300"></i>Phone wait time</div><span style="color:var(--amber)">~4 minutes</span></div>
+        <div class="srow"><div><i class="dot" style="background:#c8432c"></i>Magazine team</div><span style="color:var(--red)">Back Mon 9:00</span></div>
+      </div>
+      <div class="acct">
+        <div class="av">👤</div>
+        <div><b>My Account</b><p>Deliveries, payments, renewals: all in one place</p></div>
+        <div class="go">Log in →</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- TASKS -->
+<section class="sec"><div class="wrap">
+  <div class="mk" style="left:-50px;top:96px">5</div>
+  <div class="row"><div><div class="h2">Sort it yourself in minutes</div><div class="sub">The six things subscribers ask about most, each a few taps away and open 24/7.</div></div><span class="lk">All help topics →</span></div>
+  <div class="tasks">
+    <div class="task"><div class="ic" style="background:#dcfbf6">📰</div><h4>Report a missing or late issue</h4><p>Tell us which issue. We'll credit your account or send a replacement.</p><div class="meta">Report now →<span>2 min</span></div></div>
+    <div class="task"><div class="ic" style="background:var(--blue-l)">💳</div><h4>Billing &amp; payment dates</h4><p>See exactly when you'll be charged, and switch between monthly and quarterly.</p><div class="meta">View schedule →<span>1 min</span></div></div>
+    <div class="task"><div class="ic" style="background:#fff1d6">🏖️</div><h4>Holiday pause</h4><p>Pause print delivery while you're away. Your digital access continues as normal.</p><div class="meta">Set dates →<span>1 min</span></div></div>
+    <div class="task"><div class="ic" style="background:#efe5ff">📱</div><h4>App &amp; e-edition help</h4><p>Log-in, downloads and reading offline: guides for iPhone, Android and desktop.</p><div class="meta">Open guide →<span>3 min</span></div></div>
+    <div class="task"><div class="ic" style="background:#e3f7ef">🏠</div><h4>Change address or delivery</h4><p>Moving house or changing newsagent? Update it once, for every title.</p><div class="meta">Update →<span>2 min</span></div></div>
+    <div class="task"><div class="ic" style="background:#ffe5dc">🔁</div><h4>Renewal &amp; reminders</h4><p>See your renewal date and choose how and when we remind you.</p><div class="meta">Manage →<span>1 min</span></div></div>
+  </div>
+</div></section>
+
+<!-- BRANDS -->
+<section class="sec"><div class="wrap">
+  <div class="mk" style="left:-50px;top:96px">6</div>
+  <div class="row"><div><div class="h2">Help for every title</div><div class="sub">Each title keeps its own voice. The help journey works the same way everywhere.</div></div><span class="lk">All titles →</span></div>
+  <div class="brands">
+    <div class="br" style="background:linear-gradient(160deg,#1d3a7a,#0a1a4f)"><em>News</em><b>The Courier</b><span>Help &amp; subscriptions →</span></div>
+    <div class="br" style="background:linear-gradient(160deg,#173f8f,#0b2f6a)"><em>News</em><b>The Press and Journal</b><span>Help &amp; subscriptions →</span></div>
+    <div class="br" style="background:linear-gradient(160deg,#2a2f3e,#0d1020)"><em>News</em><b>The Sunday Post</b><span>Help &amp; subscriptions →</span></div>
+    <div class="br" style="background:linear-gradient(160deg,#c56b4b,#7d3420)"><em>Magazines</em><b>The People's Friend</b><span>Help &amp; subscriptions →</span></div>
+    <div class="br" style="background:linear-gradient(160deg,#e23a3a,#8f1414)"><em>Kids</em><b>Beano</b><span>Help for parents →</span></div>
+    <div class="br" style="background:linear-gradient(160deg,#3b6fe0,#1b3c99)"><em>Puzzles</em><b>Puzzler</b><span>Help &amp; subscriptions →</span></div>
+  </div>
+</div></section>
+
+<!-- CANCEL -->
+<section class="sec"><div class="wrap">
+  <div class="mk" style="left:-50px;top:126px">7</div>
+  <div class="cancel">
+    <div>
+      <div class="h2" style="font-size:34px">Thinking of leaving?<br>Here are your options.</div>
+      <div class="sub">You can cancel in a couple of clicks, as easily as you subscribed. But if you only need a break or a cheaper option, these might suit you better.</div>
+      <div class="rule">✓ <span>Cancelling always stays one click away and is never hidden. Alternatives sit next to it, not in front of it.</span></div>
+    </div>
+    <div class="copts">
+      <div class="co"><div class="e">⏸️</div><b>Pause instead</b><p>Take a few weeks off. We'll restart automatically.</p><div class="a">Pause →</div></div>
+      <div class="co"><div class="e">📱</div><b>Switch to digital</b><p>Keep reading for less, on the app and e-edition.</p><div class="a">See price →</div></div>
+      <div class="co"><div class="e">💬</div><b>Talk to us</b><p>Something wrong? Our team may be able to fix it today.</p><div class="a">Call back →</div></div>
+      <div class="co cx"><div class="e">✖️</div><b>Cancel subscription</b><p>Cancel online now. You'll get a confirmation e-mail.</p><div class="a">Cancel now →</div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section class="sec"><div class="wrap">
+  <div class="mk" style="left:-50px;top:96px">8</div>
+  <div class="h2">Still need us? Here's the best way.</div>
+  <div class="sub">Based on your title and topic, we'll point you to the right team, with honest opening hours and wait times.</div>
+  <div class="contact">
+    <div class="cc best"><div class="e">⚡</div><b>Self-service</b><p>Missing issues, billing, pauses, address changes and app help.</p><span class="st g">Open 24/7 · instant</span></div>
+    <div class="cc"><div class="e">✉️</div><b>Online form</b><p>Refunds and complaints. Everything we need, in one go.</p><span class="st b">Reply in 1 working day</span></div>
+    <div class="cc"><div class="e">🗓️</div><b>Call-back</b><p>Pick a time that suits you, and the right team calls you.</p><span class="st b">Next slot: today 15:30</span></div>
+    <div class="cc"><div class="e">📞</div><b>Phone</b><p>Complex changes, and readers who'd rather talk.</p><span class="st y">~4 min wait now</span></div>
+  </div>
+  <div class="numbox" style="position:relative">
+    <div class="mk" style="left:-80px;top:22px">9</div>
+    <div style="font-size:30px">📞</div>
+    <div><b>The right number, first time</b><p>You told us: The Courier · billing. Call this team directly, so there's no transfer.</p></div>
+    <div class="n">0800 029 4956<small>Courier digital subscriptions · open now</small></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="sec"><div class="wrap">
+  <div class="mk" style="left:-50px;top:96px">10</div>
+  <div class="row"><div class="h2">Popular questions this week</div><span class="lk">Search help →</span></div>
+  <div class="faq">
+    <div class="q"><div>Why was I charged monthly instead of quarterly?<small>Billing</small></div><span>+</span></div>
+    <div class="q"><div>My Saturday paper didn't arrive. What now?<small>Delivery</small></div><span>+</span></div>
+    <div class="q"><div>How do I read the e-edition offline?<small>App</small></div><span>+</span></div>
+    <div class="q"><div>When will my subscription renew?<small>Renewals</small></div><span>+</span></div>
+    <div class="q"><div>Can I give a subscription as a gift?<small>Gifts</small></div><span>+</span></div>
+    <div class="q"><div>How do I get a refund for a missed issue?<small>Refunds</small></div><span>+</span></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="mk" style="left:-50px;top:-4px">11</div>
+  <div><div class="wm"><i></i>DC THOMSON</div></div>
+  <div><h5>Sitemap</h5><li>About</li><li>Brands</li><li>Careers</li><li>News</li><li>Sustainability</li><li>Events</li><li>Advertise</li></div>
+  <div class="hl"><h5>Subscribers</h5><li>Help centre</li><li>My Account</li><li>Report missing issue</li><li>Pause delivery</li><li>Manage or cancel</li></div>
+  <div><h5>Legal</h5><li>Privacy Policy</li><li>Cookie Policy</li><li>Subscription T&amp;Cs</li><li>Website T&amp;Cs</li><li>Modern Slavery Act</li></div>
+  <div class="fbox"><span class="t">CONTACT US</span><p>How can we help?</p><a>→ I'm a subscriber</a><a>→ I want to advertise</a><a>→ Press &amp; media</a><a>→ Careers</a></div>
+  <div class="copy"><span>© D.C. Thomson &amp; Co. Ltd. 2026 · concept</span><span>Subscriber guidance powered by reChanneld</span></div>
+</div></footer>
+
+</body>
+</html>
