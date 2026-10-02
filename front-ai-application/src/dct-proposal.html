@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>reChanneld for DC Thomson</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#0c0d12;--ink2:#1b1d26;--teal:#14d6c0;--teal-d:#0a9e8e;--muted:#5a6075;--line:#e4e6ee;--bg:#f5f6f9;--dc:#0b4fd0;--red:#d9472f;--amber:#c98100}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.52;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9a9fb2;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:2.6mm}
+  h2{font-size:23pt;line-height:1.08;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.6pt;line-height:1.5;color:var(--muted);margin-bottom:6mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  .dark{background:var(--ink);color:#fff;border:none}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.7mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:2mm;width:2mm;height:2mm;border-radius:50%;background:var(--teal)}
+  .logo{font:800 13pt 'Plus Jakarta Sans';letter-spacing:.08em}
+  .src{font-size:7.2pt;color:#9a9fb2;line-height:1.4}
+
+  /* cover */
+  .cover{background:var(--ink);color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(20,214,192,.22),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(11,79,208,.30),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font:700 9pt 'Plus Jakarta Sans';color:#a3a8bf}
+  .pfor{display:inline-block;margin-top:50mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:42pt;line-height:1.03;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:13pt;line-height:1.5;color:#c3c7d8;max-width:150mm}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:20mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a3a8bf}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--teal);text-align:right}
+
+  /* findings */
+  .fd{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin-bottom:5mm}
+  .fd .n{width:8mm;height:8mm;border-radius:2.4mm;background:var(--ink);color:var(--teal);font:800 10pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .fd p{font-size:9.4pt;color:#33384a;margin-bottom:1.6mm}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;position:relative;background:#fff}
+  .shot img{display:block;width:100%}
+  .hl{position:absolute;border:2.4px solid var(--red);border-radius:2mm;box-shadow:0 0 0 4px rgba(217,71,47,.15)}
+  .note{position:absolute;background:var(--red);color:#fff;font:800 7.4pt 'Plus Jakarta Sans';border-radius:1.6mm;padding:1mm 2mm;white-space:nowrap}
+  .lines{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4mm;margin-top:2mm}
+  .ln{border:1.3px solid #f2d0c9;background:#fff8f6;border-radius:2.6mm;padding:2.4mm 2.6mm;font-size:7.8pt;line-height:1.35}
+  .ln b{display:block;font:800 8.2pt 'Plus Jakarta Sans'}
+  .ln i{font-style:normal;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:2mm;margin-top:2mm}
+  .chip{font:700 7.8pt 'Plus Jakarta Sans';background:var(--bg);border-radius:100px;padding:1.2mm 3mm}
+
+  /* mock */
+  .mock{background:linear-gradient(180deg,#f7f8fb,#eceff5);border-radius:4mm;padding:5mm;border:1px solid var(--line)}
+  .bbar{display:flex;gap:1.4mm;align-items:center;margin-bottom:3mm}
+  .bbar i{width:2.2mm;height:2.2mm;border-radius:50%;background:#d3d6e2;display:block}
+  .bbar .url{margin-left:2mm;flex:1;background:#fff;border-radius:1.5mm;font:600 7pt 'Plus Jakarta Sans';color:#8a8fa6;padding:1mm 2.4mm}
+  .wdg{background:#fff;border-radius:3.5mm;box-shadow:0 4mm 10mm rgba(12,13,18,.12);padding:4.2mm}
+  .wq{font:800 11.4pt 'Plus Jakarta Sans'}
+  .ws{font-size:7.9pt;color:var(--muted);margin-bottom:2.8mm}
+  .opt{display:flex;align-items:center;gap:2.6mm;border:1.3px solid var(--line);border-radius:2.4mm;padding:2.2mm 2.6mm;margin-bottom:1.8mm}
+  .opt .ic{width:7mm;height:7mm;border-radius:1.8mm;display:flex;align-items:center;justify-content:center;font-size:10pt;flex:none}
+  .opt .t{font:700 8.5pt 'Plus Jakarta Sans';line-height:1.25}
+  .opt .d{font-size:7.3pt;color:var(--muted)}
+  .opt .tg{margin-left:auto;font:800 6.5pt 'Plus Jakarta Sans';border-radius:100px;padding:.8mm 2mm;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d9;color:#8f5a00}.r{background:#ffe5dc;color:#b0401a}.b{background:#e6eeff;color:#0b4fd0}
+  .pw{font-size:6.6pt;color:#9a9fb2;text-align:center;margin-top:1.4mm}
+  .cap{font-size:7.2pt;color:var(--muted);margin-top:2mm;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .st{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .st span{font:800 7pt 'Plus Jakarta Sans';color:var(--teal-d);letter-spacing:.12em;text-transform:uppercase}
+  .st b{display:block;font:800 10pt 'Plus Jakarta Sans';margin:.6mm 0 1mm}
+  .st p{font-size:8.3pt;margin:0;line-height:1.45}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .fact{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .fact b{display:block;font:800 17pt 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .fact span{font-size:8pt;color:var(--muted);display:block;line-height:1.35}
+  .cta{background:var(--ink);color:#fff;border-radius:5mm;padding:7mm;display:flex;justify-content:space-between;align-items:center;background-image:radial-gradient(80mm 60mm at 100% 0%,rgba(20,214,192,.28),transparent 60%)}
+  .cta h3{font-size:15pt;color:#fff;margin-bottom:1mm}
+  .cta p{color:#c3c7d8;margin:0;font-size:9.4pt}
+  .cta .c{text-align:right;font:800 10.5pt 'Plus Jakarta Sans'}
+  .cta .c span{display:block;font:600 8.6pt 'Lato';color:var(--teal)}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<div class="page cover">
+  <div class="top"><span class="logo">RECHANNELD</span><span>October 2026</span></div>
+  <div class="pfor">Prepared for DC Thomson</div>
+  <h1>Every subscriber,<br>to the <em>right place</em>,<br>first time.</h1>
+  <p class="sub">A short proposal for one front door across DC Thomson's titles. It helps readers sort out simple things in seconds, day or night, and gives your team more time for the conversations that keep subscribers.</p>
+  <div class="bot">
+    <div><b>Touko Laakkonen</b><span>Service Channel Strategy · reChanneld</span></div>
+    <div class="tagl">Better choices.<br>Happier customers.</div>
+  </div>
+</div>
+
+<!-- 2 WHAT WE NOTICED -->
+<div class="page">
+  <div class="kick">What we noticed</div>
+  <h2>Three things we noticed as a subscriber</h2>
+  <p class="lead">We looked at DC Thomson the way a reader does: someone whose paper didn't arrive, or who wants to change how they pay.</p>
+
+  <div class="fd"><div class="n">1</div><div>
+    <h4>On dcthomson.co.uk, the subscriber action that's easiest to find is “Cancel”</h4>
+    <p>There's no “Help” or “Manage my subscription” link in the main navigation, and the Contact box invites people to “discuss your requirements”, which is written for business enquiries. In the footer, the one subscriber action is a <b>Cancellation Form</b>.</p>
+    <div class="shot" style="width:132mm;margin-top:2mm"><img src="img/dct-footer.png">
+      <div class="hl" style="left:27.6%;top:29.6%;width:20%;height:6.6%"></div>
+      <div class="note" style="left:49%;top:28.6%">The only subscriber action in the footer</div>
+    </div>
+  </div></div>
+
+  <div class="fd"><div class="n">2</div><div>
+    <h4>Subscribers choose between four phone lines, with different hours</h4>
+    <p>The right number depends on the title and the problem. When in doubt, people phone whichever number they find first.</p>
+    <div class="lines">
+      <div class="ln"><b>The Courier digital</b>0800 029 4956<br><i>Mon–Fri 8–18, Sat 9–17</i></div>
+      <div class="ln"><b>P&amp;J digital</b>0800 029 4955<br><i>Mon–Fri 8–18, Sat 9–17</i></div>
+      <div class="ln"><b>Home delivery</b>01382 575427<br><i>Circulation team</i></div>
+      <div class="ln"><b>Magazines (Shop)</b>0800 904 7260<br><i>Mon–Fri 9–17</i></div>
+    </div>
+  </div></div>
+
+  <div class="fd"><div class="n">3</div><div>
+    <h4>Subscribers love you, and contact you about the same few things</h4>
+    <p>The DC Thomson Shop scores <b>4.8/5</b> on Trustpilot. The negative reviews keep coming back to the same few topics, and most could be sorted in minutes with the right signpost:</p>
+    <div class="chips"><span class="chip">📰 Late or missing issues</span><span class="chip">💳 Monthly vs quarterly billing</span><span class="chip">↩️ Refunds</span><span class="chip">🔁 Early renewal reminders</span></div>
+  </div></div>
+
+  <div class="box dark" style="margin-top:2mm"><p style="margin:0;font:700 10.4pt/1.5 'Plus Jakarta Sans'">None of this is about effort. Your team clearly cares. It's about signposting: <span style="color:var(--teal)">the help exists, but subscribers aren't guided to it at the moment they need it.</span></p></div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Sources: dcthomson.co.uk (2 Oct 2026), The Courier and Press and Journal subscription contact details, DC Thomson Shop, Trustpilot. Please tell us if anything has changed.</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for DC Thomson</span><span>2</span></div>
+</div>
+
+<!-- 3 WHAT IT COULD LOOK LIKE -->
+<div class="page">
+  <div class="kick">What it could look like</div>
+  <h2>One front door for every title</h2>
+  <div style="display:grid;grid-template-columns:84mm 1fr;gap:7mm;margin-top:4mm">
+    <div>
+      <div class="mock">
+        <div class="bbar"><i></i><i></i><i></i><div class="url">Subscriber help · Sunday 21:40</div></div>
+        <div class="wdg">
+          <div class="wq">Hi! What can we help with?</div>
+          <div class="ws">Pick a topic and we'll show you the quickest way to sort it.</div>
+          <div class="opt rec"><div class="ic" style="background:#dcfbf6">📰</div><div><div class="t">My paper or magazine didn't arrive</div><div class="d">Report it now, replacement on its way</div></div><span class="tg g">2 min · 24/7</span></div>
+          <div class="opt"><div class="ic" style="background:#e6eeff">💳</div><div><div class="t">Billing or payment dates</div><div class="d">See your schedule in My Account</div></div><span class="tg g">Self-service</span></div>
+          <div class="opt"><div class="ic" style="background:#fff1d9">🏖️</div><div><div class="t">Going away? Pause your delivery</div><div class="d">Set your dates in seconds</div></div><span class="tg g">1 min</span></div>
+          <div class="opt"><div class="ic" style="background:#efe5ff">📱</div><div><div class="t">App or log-in help</div><div class="d">Step-by-step for your device</div></div><span class="tg g">3 min</span></div>
+          <div class="opt"><div class="ic" style="background:#ffe5dc">📞</div><div><div class="t">Change or cancel</div><div class="d">Our team is back Monday 8:00</div></div><span class="tg y">Opens Mon 8:00</span></div>
+          <div class="pw">the same on every title · powered by <b>reChanneld</b></div>
+        </div>
+        <div class="cap">Illustrative concept, for discussion</div>
+      </div>
+    </div>
+    <div>
+      <h3>How it works</h3>
+      <ul class="clean small" style="margin-bottom:4mm">
+        <li><b>One front door</b> on each title's help page, app and e-mails. Readers pick their topic instead of guessing a number.</li>
+        <li><b>The fastest route goes first</b>: self-service, help article, form or the right team, with honest opening hours and wait times.</li>
+        <li><b>Every channel stays open.</b> We guide; we never block.</li>
+        <li><b>Rules set by your CX team</b> in a simple console, by title, topic, time of day and queue length.</li>
+        <li><b>Live insight</b> into which topics reach which channel, title by title.</li>
+      </ul>
+      <div class="box" style="border-color:#bfeee5;background:#f6fffd">
+        <h4>A thought on cancellations</h4>
+        <p class="small" style="margin:0">Cancelling should stay as easy as subscribing, and UK subscription rules point the same way. A front door can still offer the reader <b>a pause, a switch to digital, or a quick chat</b> next to the cancel option. Many readers who “cancel” only wanted a break.</p>
+      </div>
+      <div class="box bg" style="margin-top:3.4mm">
+        <h4>Nothing to replace</h4>
+        <p class="small" style="margin:0">It sits on top of your existing help centre, My Account and subscription management with Air Business. No new chatbot, CRM or IT project.</p>
+      </div>
+    </div>
+  </div>
+  <h3 style="margin-top:6mm">What changes</h3>
+  <div class="steps">
+    <div class="st"><span>For subscribers</span><b>Sorted, any time</b><p>Missing issues and billing questions solved in minutes, including on evenings and Sundays.</p></div>
+    <div class="st"><span>For your team</span><b>Calls that matter</b><p>Fewer repeat calls, so more time for retention, complex cases and readers who need a person.</p></div>
+    <div class="st"><span>For the business</span><b>Fewer lost subscribers</b><p>Fewer frustrated subscribers means less avoidable churn on the subscription line.</p></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for DC Thomson</span><span>3</span></div>
+</div>
+
+<!-- 4 PILOT + ABOUT -->
+<div class="page">
+  <div class="kick">A low-risk way to try it</div>
+  <h2>An 8-week pilot on one title</h2>
+  <p class="lead">Start small, measure everything, and decide with your own data.</p>
+  <div class="steps" style="margin-bottom:6mm">
+    <div class="st"><span>Weeks 1–2</span><b>Map</b><p>We look at three months of contact reasons for one title, e.g. The Courier, and agree the routing rules with your CX team.</p></div>
+    <div class="st"><span>Weeks 3–8</span><b>Guide</b><p>The front door goes live on that title's help pages. We test the wording on the top five topics.</p></div>
+    <div class="st"><span>Week 9</span><b>Decide</b><p>We compare call volumes, self-service use and out-of-hours help against the baseline, then you decide on other titles.</p></div>
+  </div>
+  <h3>About reChanneld</h3>
+  <div class="grid2" style="margin-bottom:5mm">
+    <div>
+      <p class="small">reChanneld is channel-strategy software from Helsinki, Finland. It uses behavioural science, such as clear defaults, honest wait times and positive framing, to help customers choose the best channel for their need. Customer service teams set it up themselves, and it works alongside the systems they already use.</p>
+      <p class="small" style="margin:0"><b>S-Bank</b> in Finland (3.3 million customers, around a million interactions a year) uses reChanneld alongside its chatbot to guide customers to the right channel, 24/7.</p>
+    </div>
+    <div class="facts" style="grid-template-columns:1fr 1fr">
+      <div class="fact"><b>79%</b><span>of contacts typically guided to the client's preferred channel</span></div>
+      <div class="fact"><b>24/7</b><span>guidance, also when the team is offline</span></div>
+      <div class="fact"><b>0</b><span>systems to replace</span></div>
+      <div class="fact"><b>🇫🇮</b><span>Made in Finland, built with Nordic banks and insurers</span></div>
+    </div>
+  </div>
+  <div class="box bg" style="margin-bottom:6mm">
+    <h4>Next step</h4>
+    <p class="small" style="margin:0">A 20-minute call to go through this with your customer experience or subscriptions lead. We'll bring a live demo and a draft set of routing rules for one of your titles.</p>
+  </div>
+  <div class="cta">
+    <div><h3>Shall we take 20 minutes?</h3><p>We'd love to hear how subscriber help works today, and where it hurts most.</p></div>
+    <div class="c">Touko Laakkonen<span>reChanneld · [e-mail] · [phone]</span></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for DC Thomson</span><span>4</span></div>
+</div>
+
+</body>
+</html>
