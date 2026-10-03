@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>reChanneld on The Mirror</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  :root{--ink:#0c0d12;--teal:#14d6c0;--teal-d:#0a9e8e;--muted:#5a6075;--line:#e4e6ee;--bg:#f5f6f9;--navy:#0a1a4f;--blue:#0b4fd0;--green:#0e8f6a;--amber:#b97300;--red:#c8432c}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#fff}
+  body{width:1440px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{width:1200px;margin:0 auto;position:relative}
+  .concept{background:#fff4c2;color:#5a4500;font:600 13px 'Plus Jakarta Sans';text-align:center;padding:9px 0}
+  .concept b{font-weight:800}
+  .mk{position:absolute;width:32px;height:32px;border-radius:50%;background:#ffd84d;color:#1a1400;font:800 15px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(255,216,77,.35),0 4px 10px rgba(0,0,0,.2);z-index:20}
+  .top{background:var(--ink);color:#fff;padding:64px 0 70px;background-image:radial-gradient(700px 400px at 90% 0%,rgba(20,214,192,.22),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(11,79,208,.3),transparent 60%)}
+  .logo{font:800 16px 'Plus Jakarta Sans';letter-spacing:.1em;color:#a3a8bf}
+  .top h1{font-size:56px;line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:22px 0 16px}
+  .top h1 em{font-style:normal;color:var(--teal)}
+  .top p{font:500 20px/1.55 'Lato';color:#c3c7d8;max-width:760px}
+  .pills{display:flex;gap:12px;margin-top:30px}
+  .pill{border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:10px 18px;font:700 14px 'Plus Jakarta Sans';color:#dfe2ee}
+  .pill b{color:var(--teal)}
+  .scene{padding:80px 0 0}
+  .sh{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sn{font:800 13px 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:var(--teal-d)}
+  .h2{font-size:36px;letter-spacing:-.03em;font-weight:800;line-height:1.12}
+  .sub{font:500 17px/1.6 'Lato';color:var(--muted);margin:10px 0 26px;max-width:820px}
+
+  /* browser */
+  .browser{border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(12,13,18,.18);border:1px solid var(--line);position:relative;background:#fff}
+  .bbar{height:44px;background:#eef0f5;display:flex;align-items:center;gap:8px;padding:0 18px}
+  .bbar i{width:12px;height:12px;border-radius:50%;background:#d3d6e2;display:block}
+  .bbar .url{margin-left:18px;flex:1;max-width:520px;height:26px;border-radius:8px;background:#fff;font:600 13px 'Plus Jakarta Sans';color:#7a809a;display:flex;align-items:center;padding-left:14px}
+  .shot{position:relative}
+  .shot img{display:block;width:100%}
+  .dim{position:absolute;inset:0;background:rgba(10,15,40,.38)}
+
+  /* reChanneld launcher */
+  .launch{position:absolute;display:flex;align-items:center;gap:12px;background:var(--ink);color:#fff;border-radius:100px;padding:10px 20px 10px 10px;box-shadow:0 14px 34px rgba(12,13,18,.35);font:800 15px 'Plus Jakarta Sans';z-index:10}
+  .launch .ic{width:40px;height:40px;border-radius:50%;background:var(--teal);color:#03221f;display:flex;align-items:center;justify-content:center;font-size:19px}
+  .launch small{display:block;font:600 12px 'Lato';color:#aeb3c8}
+  .peek{position:absolute;background:#fff;border-radius:16px;box-shadow:0 14px 34px rgba(12,13,18,.25);padding:14px 18px;font:600 14px/1.45 'Lato';color:var(--ink);width:300px;z-index:10}
+  .peek b{font-family:'Plus Jakarta Sans'}
+  .peek:after{content:"";position:absolute;right:46px;bottom:-8px;width:16px;height:16px;background:#fff;transform:rotate(45deg)}
+
+  /* panel */
+  .panel{position:absolute;background:#fff;border-radius:20px;box-shadow:0 30px 70px rgba(12,13,18,.4);width:430px;padding:22px;z-index:12}
+  .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .ph .t{font:800 21px 'Plus Jakarta Sans';letter-spacing:-.02em}
+  .ph .x{font-size:18px;color:#9aa0b8}
+  .ps{font:500 13.5px 'Lato';color:var(--muted);margin-bottom:14px}
+  .tchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tc{border:1.4px solid var(--line);border-radius:100px;padding:6px 11px;font:700 12px 'Plus Jakarta Sans'}
+  .tc.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .opt{display:flex;align-items:center;gap:12px;border:1.4px solid var(--line);border-radius:13px;padding:10px 12px;margin-bottom:8px}
+  .opt .ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none}
+  .opt .t{font:700 14px 'Plus Jakarta Sans'}
+  .opt .d{font:500 12px 'Lato';color:var(--muted)}
+  .opt .tg{margin-left:auto;font:800 10.5px 'Plus Jakarta Sans';border-radius:100px;padding:5px 9px;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc;box-shadow:0 0 0 4px rgba(20,214,192,.12)}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d6;color:#8f5a00}.r{background:#ffe5dc;color:#b0401a}.b{background:#e6eeff;color:var(--blue)}
+  .live{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:10px;padding-top:10px;font:700 11.5px 'Plus Jakarta Sans';color:var(--muted)}
+  .live i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+  .pw{font:500 11px 'Lato';color:#9aa0b8;text-align:center;margin-top:8px}
+  .pw b{color:var(--ink)}
+
+  /* footer scene */
+  .fwrap{display:grid;grid-template-columns:1fr 430px;gap:30px;align-items:start}
+  .hl{position:absolute;border:3px solid var(--red);border-radius:8px;box-shadow:0 0 0 5px rgba(200,67,44,.15);z-index:8}
+  .cursor{position:absolute;font-size:30px;z-index:9;transform:rotate(-8deg)}
+  .co{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .cobox{border:1.4px solid var(--line);border-radius:14px;padding:13px}
+  .cobox .e{font-size:20px}
+  .cobox b{display:block;font:800 14px 'Plus Jakarta Sans';margin:6px 0 2px}
+  .cobox p{font:500 12px/1.4 'Lato';color:var(--muted)}
+  .cobox .a{margin-top:8px;font:800 12px 'Plus Jakarta Sans';color:var(--blue)}
+  .cobox.cx .a{color:var(--ink)}
+  .rule{margin-top:12px;background:#f0fffc;border-radius:10px;padding:10px 12px;font:600 12px 'Lato';color:#0b6b5f}
+
+  /* contact intercept */
+  .who{display:flex;flex-direction:column;gap:8px}
+  .wb{border:1.4px solid var(--line);border-radius:12px;padding:11px 14px;font:700 14px 'Plus Jakarta Sans';display:flex;justify-content:space-between}
+  .wb span{color:var(--muted);font:600 12px 'Lato'}
+  .wb.on{border-color:var(--teal);background:#f0fffc}
+
+  /* titles + analytics */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .card{border:1px solid var(--line);border-radius:22px;padding:26px;position:relative;background:#fff}
+  .phone{width:250px;height:470px;border-radius:38px;border:9px solid #14151c;background:#f5f6f9;margin:0 auto;position:relative;overflow:hidden}
+  .phone .nb{height:46px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;font:800 13px 'Plus Jakarta Sans';color:#555}
+  .phone .ct{padding:10px}
+  .phone .ln{height:8px;border-radius:4px;background:#dfe2ea;margin:8px 0}
+  .phone .sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.18);padding:16px 12px 12px}
+  .phone .sheet .t{font:800 15px 'Plus Jakarta Sans';margin-bottom:8px}
+  .mini{display:flex;justify-content:space-between;align-items:center;border:1.3px solid var(--line);border-radius:10px;padding:8px 10px;margin-bottom:6px;font:700 11.5px 'Plus Jakarta Sans'}
+  .mini.rec{border-color:var(--teal);background:#f0fffc}
+  .mini span{font:800 9.5px 'Plus Jakarta Sans';border-radius:100px;padding:3px 7px}
+  .dash h4{font:800 18px 'Plus Jakarta Sans';margin-bottom:4px}
+  .dash p{font:500 13.5px 'Lato';color:var(--muted);margin-bottom:16px}
+  .bar{display:flex;align-items:center;gap:12px;margin-bottom:12px;font:700 13px 'Plus Jakarta Sans'}
+  .bar .l{width:150px}
+  .bar .tr{flex:1;height:22px;border-radius:6px;overflow:hidden;display:flex}
+  .bar .tr i{display:block;height:100%}
+  .leg{display:flex;gap:16px;font:600 12px 'Lato';color:var(--muted);margin-top:8px}
+  .leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+  .kp div{background:var(--bg);border-radius:12px;padding:12px}
+  .kp b{display:block;font:800 22px 'Plus Jakarta Sans'}
+  .kp span{font:600 11.5px 'Lato';color:var(--muted)}
+
+  /* what changes */
+  .chg{margin-top:80px;background:var(--bg);padding:70px 0 80px}
+  .ctab{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}
+  .ct2{background:#fff;border-radius:20px;padding:24px}
+  .ct2 .k{font:800 12px 'Plus Jakarta Sans';letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .ct2 b{display:block;font:800 26px 'Plus Jakarta Sans';margin:8px 0 6px;letter-spacing:-.02em}
+  .ct2 p{font:500 14px/1.5 'Lato';color:var(--muted)}
+  .ct2.add b{color:var(--teal-d)}
+  .foot{padding:30px 0;text-align:center;font:600 13px 'Plus Jakarta Sans';color:#9aa0b8}
+  /* real reChanneld widget style */
+  .rw{background:#fff;border-radius:18px;font-family:'Lato',sans-serif;color:#111;text-align:center}
+  .rw .hd{font:800 26px 'Plus Jakarta Sans';letter-spacing:-.01em}
+  .rw .sb{font:500 13px 'Lato';color:#555;margin:6px 0 20px}
+  .rw .crumb{display:flex;justify-content:center;gap:8px;margin-bottom:14px}
+  .rw .cb{border:1.4px solid #cfcfcf;border-radius:100px;padding:6px 14px;font:700 12.5px 'Lato';color:#555}
+  .rw .cb.on{background:#6f6f6f;border-color:#6f6f6f;color:#fff}
+  .rw .subs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .rw .sp{border:1.4px solid #cfcfcf;border-radius:100px;padding:7px 15px;font:600 12.5px 'Lato';color:#444}
+  .rw .sp.on{background:#6f6f6f;border-color:#6f6f6f;color:#fff}
+  .rw .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+  .rw .cd{border:1.4px solid #e1e1e1;border-radius:12px;padding:26px 16px 14px;position:relative;display:flex;flex-direction:column;align-items:center}
+  .rw .badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#fff;border:1.4px solid #e1e1e1;border-radius:8px;padding:3px 9px;font:800 10.5px 'Lato';white-space:nowrap}
+  .rw .badge i{display:inline-block;width:12px;height:12px;border-radius:50%;background:#14c3a6;color:#fff;font-style:normal;font-size:8px;line-height:12px;margin-right:4px;vertical-align:-1px}
+  .rw .ico{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;margin-bottom:12px}
+  .rw .ico.k{background:#111}.rw .ico.m{background:#777}.rw .ico.l{background:#bdbdbd}
+  .rw .ct{font:700 17px 'Lato';margin-bottom:8px}
+  .rw .cx{font:500 12px/1.5 'Lato';color:#444;min-height:54px}
+  .rw .oh{font:500 11.5px 'Lato';color:#444;margin:10px 0 0}
+  .rw .btn{margin-top:auto;width:100%;border-radius:9px;padding:9px 8px;font:700 12.5px 'Lato';margin-top:14px}
+  .rw .btn.k{background:#111;color:#fff;box-shadow:0 0 0 2px #14c3a6}
+  .rw .btn.m{background:#6f6f6f;color:#fff}
+  .rw .btn.l{background:#d6d6d6;color:#fff}
+  .rw .ft{font:700 11.5px 'Lato';color:#333;margin-top:7px}
+
+  .tg2{position:absolute;left:176px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font:800 11px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25);z-index:9}
+  .note2{position:absolute;color:#fff;font:800 13px 'Plus Jakarta Sans';border-radius:8px;padding:6px 12px;z-index:9;white-space:nowrap}
+  .stat{position:absolute;width:390px;background:#fff;border-radius:18px;box-shadow:0 20px 50px rgba(12,13,18,.22);padding:22px 24px;z-index:9;border:1px solid var(--line)}
+  .stat .k{font:800 12px 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .row2{display:flex;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .row2 b{font:800 30px 'Plus Jakarta Sans';width:44px}
+  .row2 span{font:600 15px 'Lato';color:var(--ink)}
+  .tb{display:flex;align-items:center;gap:8px;margin-bottom:8px;font:600 11px 'Lato';color:#444}
+  .tb span{width:130px;flex:none}
+  .tb em{flex:1;display:block}.tb i{display:block;height:12px;background:#14c3a6}
+</style>
+</head>
+<body>
+<div class="concept"><b>Concept</b>: reChanneld on the existing mirror.co.uk, prepared for Reach plc · October 2026 · Screenshots taken 3 Oct 2026 · Yellow numbers match the notes in the proposal</div>
+<section class="top" style="background-image:radial-gradient(700px 400px at 90% 0%,rgba(200,16,46,.30),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(20,214,192,.22),transparent 60%)"><div class="wrap"><div class="logo">RECHANNELD × THE MIRROR</div><h1>The Mirror, exactly as it is.<br><em>Plus one front door</em> for Mirror+ readers.</h1><p>No redesign. These are mirror.co.uk pages as they are today, with the standard reChanneld widget added and configured with the Mirror's own topics: Mirror+, print delivery and vouchers, and the tablet edition.</p><div class="pills"><span class="pill"><b>0</b> design changes</span><span class="pill"><b>Plug-and-play</b> widget</span><span class="pill">Live in <b>a few days</b></span><span class="pill">GDPR · <b>no cookies</b></span></div></div></section>
+<section class="scene"><div class="wrap"><div class="sh"><span class="sn">Scene 1 · Homepage</span></div><div class="h2">A Mirror+ subscriber has a question. Today, where do they go?</div><div class="sub">The homepage and top bar link to InYourArea, funeral notices, the shop, competitions, offers and newsletters. There's no “Help”. reChanneld adds one small button for subscribers. Nothing else moves.</div><div class="browser" ><div class="bbar"><i></i><i></i><i></i><div class="url">mirror.co.uk</div></div><div class="shot" style="height:820px;overflow:hidden;"><img src="img/b/mirror-home.jpg"><div class="mk" style="right:300px;bottom:34px">1</div><div class="launch" style="right:24px;bottom:26px"><div class="ic">💬</div><div>Mirror+ &amp; subscriber help<small>Sorted in 2 taps</small></div></div></div></div></div></section>
+<section class="scene"><div class="wrap"><div class="sh"><span class="sn">Scene 2 · Mirror+ subscribe page</span></div><div class="h2">From “Already a Mirror+ member? Login” to real help.</div><div class="sub">Today the subscribe page offers existing members only a login button, and its FAQ starts “Not a Digital Subscriber yet?”. With reChanneld, members pick their product and need, and get the fastest fix first.</div><div class="browser" ><div class="bbar"><i></i><i></i><i></i><div class="url">mirror.co.uk/subscribe</div></div><div class="shot" style="height:880px;overflow:hidden;"><img src="img/b/mirror-sub.jpg"><div class="dim"></div><div class="rw" style="position:absolute;left:50%;top:50px;transform:translateX(-50%);width:880px;padding:30px 34px 26px;box-shadow:0 30px 80px rgba(0,0,0,.45)"><div class="hd" style="">👋 Hey, how may we help you?</div><div class="sb">Select the option that best describes your need, and we'll assist you to the best service channel.</div><div class="subs" style="margin-bottom:16px"><span class="sp on">📱 Mirror+</span><span class="sp">📰 Newspaper delivery or vouchers</span><span class="sp">📲 Tablet edition</span><span class="sp">❓ Something else</span></div><div style="border-top:1px solid #eee;padding-top:16px"><div class="crumb"><span class="cb">‹ Back</span><span class="cb on">↺ Mirror+</span></div><div class="subs" style="margin-bottom:22px"><span class="sp on">Can't log in</span><span class="sp">Still seeing ads</span><span class="sp">Billing</span><span class="sp">Renewal &amp; price</span><span class="sp">Cancel</span></div><div class="cards"><div class="cd"><span class="badge"><i>✓</i>Most popular choice</span><div class="ico k">🔑</div><div class="ct" style="font-size:17px">Reset password</div><div class="cx" style="font-size:12px">Get a log-in link by e-mail. Works on the app and website.</div><div class="btn k" style="font-size:12.5px">Send log-in link</div><div class="ft" style="font-size:11.5px">Resolve immediately</div></div><div class="cd"><div class="ico m">i</div><div class="ct" style="font-size:17px">Learn more</div><div class="cx" style="font-size:12px">Signing in to Mirror+ on each device, step by step.</div><div class="btn m" style="font-size:12.5px">Read log-in help ↗</div><div class="ft" style="font-size:11.5px">Login not required</div></div><div class="cd"><div class="ico l">✉️</div><div class="ct" style="font-size:17px">E-mail support</div><div class="cx" style="font-size:12px">Still stuck? Our subscriptions team will help.</div><div class="btn l" style="font-size:12.5px">Send a message</div><div class="ft" style="font-size:11.5px">Reply within 1 working day</div></div></div></div></div><div class="mk" style="left:110px;top:120px">2</div><div class="mk" style="left:110px;top:330px">3</div><div class="mk" style="right:110px;top:560px">4</div></div></div></div></section>
+<section class="scene"><div class="wrap"><div class="sh"><span class="sn">Scene 3 · Footer &amp; renewals</span></div><div class="h2">June 2027: the first annual Mirror+ renewals double in price.</div><div class="sub">Annual Mirror+ is £19.99 for the first year, then £39.99. The first renewals arrive in June 2027, just after new UK subscription rules start. A “Renewal &amp; price” topic answers the question before it becomes a call, or a cancellation.</div><div id="s3" style="display:grid;grid-template-columns:600px 1fr;gap:26px;align-items:start"><div class="browser" style="position:relative"><div class="bbar"><i></i><i></i><i></i><div class="url">mirror.co.uk · footer</div></div><div style="padding:16px;background:#262641;position:relative"><div style="position:relative;width:568px"><img src="img/b/mirror-footer.png" style="width:568px;display:block"><div class="hl" style="left:323px;top:55px;width:50px;height:15px;"></div><div class="hl" style="left:8px;top:114px;width:260px;height:17px;border-color:var(--blue);box-shadow:0 0 0 5px rgba(11,79,208,.2)"></div><div class="hl" style="left:275px;top:114px;width:130px;height:17px;border-color:var(--blue);box-shadow:0 0 0 5px rgba(11,79,208,.2)"></div></div></div><div class="mk" style="left:-50px;top:110px">5</div><div style="padding:18px 22px;font:600 14px/1.5 Lato"><div style="display:flex;gap:10px;margin-bottom:8px"><span style="width:12px;height:12px;border:3px solid var(--red);border-radius:3px;flex:none;margin-top:4px"></span><span><b>“Contact Us”</b> is link 19 of 38 in the footer, between “About Us” and “Work for us”. There is no “Help” or “Manage my subscription”.</span></div><div style="display:flex;gap:10px"><span style="width:12px;height:12px;border:3px solid var(--blue);border-radius:3px;flex:none;margin-top:4px"></span><span>Print and tablet subscriptions each have their own route, separate from Mirror+.</span></div></div></div><div class="card" style="padding:24px 20px;position:relative"><div class="mk" style="right:-56px;top:20px">6</div><div class="rw" style=""><div class="hd" style="font-size:20px">👋 Hey, how may we help you?</div><div class="sb">Select the option that best describes your need, and we'll assist you to the best service channel.</div><div class="crumb"><span class="cb">‹ Back</span><span class="cb on">↺ Mirror+</span></div><div class="subs" style="margin-bottom:22px"><span class="sp">Can't log in</span><span class="sp">Still seeing ads</span><span class="sp">Billing</span><span class="sp on">Renewal &amp; price</span><span class="sp">Cancel</span></div><div class="cards"><div class="cd" style="padding:24px 10px 12px"><span class="badge"><i>✓</i>Most popular choice</span><div class="ico k">📅</div><div class="ct" style="font-size:15px">Check my renewal</div><div class="cx" style="font-size:11px">See your renewal date and price in My Account, and set a reminder.</div><div class="btn k" style="font-size:11.5px">Open My Account</div><div class="ft" style="font-size:10.5px">Resolve immediately</div></div><div class="cd" style="padding:24px 10px 12px"><div class="ico m">i</div><div class="ct" style="font-size:15px">Learn more</div><div class="cx" style="font-size:11px">Your first year is £19.99. From year two Mirror+ is £39.99 a year, still under £1 a week.</div><div class="btn m" style="font-size:11.5px">Read about renewals ↗</div><div class="ft" style="font-size:10.5px">Login not required</div></div><div class="cd" style="padding:24px 10px 12px"><div class="ico m">✕</div><div class="ct" style="font-size:15px">Cancel online</div><div class="cx" style="font-size:11px">Turn off auto-renew in a few clicks. You keep access until the end of your year.</div><div class="btn m" style="font-size:11.5px">Manage auto-renew</div><div class="ft" style="font-size:10.5px">Takes about 1 minute</div></div></div></div><div class="rule">✓ Cancel online is always an equal, visible choice. Alternatives sit next to it, never in front of it.</div></div></div></div></section>
+<section class="scene"><div class="wrap"><div class="sh"><span class="sn">Scene 4 · Mobile and analytics</span></div><div class="h2">Same help in the app. Live insight for the Customer team.</div><div class="sub">On the Mirror app the widget opens as a stacked view. In the admin panel the Customer team sees widget loads, sessions, top topics and channels for the Mirror in real time.</div><div style="display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start"><div class="card" style="padding:20px;position:relative"><div class="mk" style="left:-56px;top:20px">7</div><div class="phone" style="height:560px;width:270px"><div class="rw" style="padding:14px 10px;border-radius:0;height:100%;overflow:hidden"><div style="font:800 11px 'Plus Jakarta Sans';color:#999;margin-bottom:6px">The Mirror · app</div><div class="hd" style="font-size:15px">👋 Hey, how may we help you?</div><div class="sb" style="font-size:9.5px;margin:4px 0 10px">Select the option that best describes your need, and we'll assist you to the best service channel.</div><div class="crumb" style="gap:5px;margin-bottom:8px"><span class="cb" style="font-size:9.5px;padding:4px 9px">‹ Back</span><span class="cb on" style="font-size:9.5px;padding:4px 9px">↺ Mirror+</span></div><div class="subs" style="gap:5px;margin-bottom:14px"><span class="sp on" style="font-size:9.5px;padding:4px 9px">Still seeing ads</span><span class="sp" style="font-size:9.5px;padding:4px 9px">Can't log in</span><span class="sp" style="font-size:9.5px;padding:4px 9px">Billing</span></div><div class="cd" style="padding:16px 12px 10px;margin-bottom:12px"><span class="badge" style="font-size:8.5px"><i>✓</i>Most popular choice</span><div class="ct" style="font-size:13px;margin-bottom:4px">Sign in again</div><div class="cx" style="font-size:9.5px;min-height:0">The ad-lite experience works when you're signed in on this device.</div><div class="btn k" style="font-size:10px;padding:7px;margin-top:8px">Sign in</div><div class="ft" style="font-size:9px">Resolve immediately</div></div><div class="cd" style="padding:16px 12px 10px;margin-bottom:12px"><div class="ct" style="font-size:13px;margin-bottom:4px">Learn more</div><div class="cx" style="font-size:9.5px;min-height:0">How the Mirror+ ad-lite experience works.</div><div class="btn m" style="font-size:10px;padding:7px;margin-top:8px">Read help ↗</div><div class="ft" style="font-size:9px">Login not required</div></div></div></div></div><div class="card" style="padding:0;position:relative"><div class="mk" style="right:-56px;top:20px">8</div><div style="display:grid;grid-template-columns:150px 1fr;border-radius:22px;overflow:hidden"><div style="background:#1e2128;color:#c9ccd4;padding:22px 16px;font:600 13px 'Lato';line-height:2.4"><div>⌂ Overview</div><div>☰ Topics</div><div style="background:#2c313b;border-radius:6px;padding:0 8px;color:#fff">▤ Analytics</div><div>⚙ Settings</div></div><div style="padding:22px 24px;background:#fff"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 20px 'Plus Jakarta Sans'">Analytics</span><span style="font:700 10.5px 'Lato';color:#777;letter-spacing:.06em">THE MIRROR · <b style="color:#111;background:#eee;padding:3px 6px;border-radius:4px">LAST MONTH</b></span></div><div style="font:600 11px 'Lato';color:#777;margin:6px 0 14px">Illustrative data</div><div style="display:grid;grid-template-columns:repeat(3,1fr) 1.1fr;gap:10px;margin-bottom:16px"><div style="border:1px solid #eee;border-radius:8px;padding:10px"><div style="font:600 10.5px 'Lato';color:#777">Widget loads</div><b style="font:800 20px 'Plus Jakarta Sans'">64,300</b></div><div style="border:1px solid #eee;border-radius:8px;padding:10px"><div style="font:600 10.5px 'Lato';color:#777">Sessions</div><b style="font:800 20px 'Plus Jakarta Sans'">14,820</b></div><div style="border:1px solid #eee;border-radius:8px;padding:10px"><div style="font:600 10.5px 'Lato';color:#777">Finished sessions</div><b style="font:800 20px 'Plus Jakarta Sans'">12,450</b></div><div style="border:1px solid #eee;border-radius:8px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:38px;height:38px;border-radius:50%;background:conic-gradient(#14c3a6 0 84%,#f39a3d 84% 100%);-webkit-mask:radial-gradient(circle,transparent 11px,#000 12px)"></div><div style="font:600 10px 'Lato';color:#777">● Finished<br>● Unfinished</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div style="border:1px solid #eee;border-radius:8px;padding:12px 14px"><div style="font:700 12px 'Lato';margin-bottom:10px">Top topics</div><div class="tb"><span>Can't log in</span><em><i style="width:90%"></i></em></div><div class="tb"><span>Still seeing ads</span><em><i style="width:72%"></i></em></div><div class="tb"><span>Renewal &amp; price</span><em><i style="width:58%"></i></em></div><div class="tb"><span>Paper didn't arrive</span><em><i style="width:44%"></i></em></div><div class="tb"><span>Vouchers</span><em><i style="width:30%"></i></em></div></div><div style="border:1px solid #eee;border-radius:8px;padding:12px 14px"><div style="font:700 12px 'Lato';margin-bottom:10px">Top channels</div><div class="tb"><span>My Account</span><em><i style="width:88%"></i></em></div><div class="tb"><span>Help articles</span><em><i style="width:64%"></i></em></div><div class="tb"><span>E-mail</span><em><i style="width:26%"></i></em></div><div class="tb"><span>Phone</span><em><i style="width:18%"></i></em></div></div></div></div></div></div></div></div></section>
+<section class="chg"><div class="wrap"><div class="mk" style="left:-50px;top:-6px">9</div><div class="h2">What changes on mirror.co.uk</div><div class="ctab"><div class="ct2"><span class="k">Design</span><b>Nothing</b><p>Your pages stay exactly as they are. The widget adapts to the site's design and typography.</p></div><div class="ct2"><span class="k">Set-up</span><b>Plug-and-play</b><p>An easy-to-install widget for the website and app, with its own configuration for this brand.</p></div><div class="ct2"><span class="k">Time to live</span><b>A few days</b><p>Topics and channels managed in the cloud admin panel by the Customer team, not IT.</p></div><div class="ct2 add"><span class="k">Compliance</span><b>GDPR, no cookies</b><p>Audited for security and accessibility. Nothing to replace in your systems.</p></div></div></div></section>
+<div class="foot">reChanneld · Better choices. Happier customers. · Concept for discussion: topics, wording, hours, waiting times and analytics figures are illustrative.</div>
+</body>
+</html>

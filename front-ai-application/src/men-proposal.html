@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>reChanneld for Manchester Evening News</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#0c0d12;--ink2:#1b1d26;--teal:#14d6c0;--teal-d:#0a9e8e;--muted:#5a6075;--line:#e4e6ee;--bg:#f5f6f9;--dc:#0b4fd0;--red:#d9472f;--amber:#c98100}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.52;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9a9fb2;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:2.6mm}
+  h2{font-size:23pt;line-height:1.08;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.6pt;line-height:1.5;color:var(--muted);margin-bottom:6mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  .dark{background:var(--ink);color:#fff;border:none}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.7mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:2mm;width:2mm;height:2mm;border-radius:50%;background:var(--teal)}
+  .logo{font:800 13pt 'Plus Jakarta Sans';letter-spacing:.08em}
+  .src{font-size:7.2pt;color:#9a9fb2;line-height:1.4}
+
+  /* cover */
+  .cover{background:var(--ink);color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(20,214,192,.22),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(11,79,208,.30),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font:700 9pt 'Plus Jakarta Sans';color:#a3a8bf}
+  .pfor{display:inline-block;margin-top:50mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:42pt;line-height:1.03;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:13pt;line-height:1.5;color:#c3c7d8;max-width:150mm}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:20mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a3a8bf}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--teal);text-align:right}
+
+  /* findings */
+  .fd{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin-bottom:5mm}
+  .fd .n{width:8mm;height:8mm;border-radius:2.4mm;background:var(--ink);color:var(--teal);font:800 10pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .fd p{font-size:9.4pt;color:#33384a;margin-bottom:1.6mm}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;position:relative;background:#fff}
+  .shot img{display:block;width:100%}
+  .hl{position:absolute;border:2.4px solid var(--red);border-radius:2mm;box-shadow:0 0 0 4px rgba(217,71,47,.15)}
+  .note{position:absolute;background:var(--red);color:#fff;font:800 7.4pt 'Plus Jakarta Sans';border-radius:1.6mm;padding:1mm 2mm;white-space:nowrap}
+  .lines{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4mm;margin-top:2mm}
+  .ln{border:1.3px solid #f2d0c9;background:#fff8f6;border-radius:2.6mm;padding:2.4mm 2.6mm;font-size:7.8pt;line-height:1.35}
+  .ln b{display:block;font:800 8.2pt 'Plus Jakarta Sans'}
+  .ln i{font-style:normal;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:2mm;margin-top:2mm}
+  .chip{font:700 7.8pt 'Plus Jakarta Sans';background:var(--bg);border-radius:100px;padding:1.2mm 3mm}
+
+  /* mock */
+  .mock{background:linear-gradient(180deg,#f7f8fb,#eceff5);border-radius:4mm;padding:5mm;border:1px solid var(--line)}
+  .bbar{display:flex;gap:1.4mm;align-items:center;margin-bottom:3mm}
+  .bbar i{width:2.2mm;height:2.2mm;border-radius:50%;background:#d3d6e2;display:block}
+  .bbar .url{margin-left:2mm;flex:1;background:#fff;border-radius:1.5mm;font:600 7pt 'Plus Jakarta Sans';color:#8a8fa6;padding:1mm 2.4mm}
+  .wdg{background:#fff;border-radius:3.5mm;box-shadow:0 4mm 10mm rgba(12,13,18,.12);padding:4.2mm}
+  .wq{font:800 11.4pt 'Plus Jakarta Sans'}
+  .ws{font-size:7.9pt;color:var(--muted);margin-bottom:2.8mm}
+  .opt{display:flex;align-items:center;gap:2.6mm;border:1.3px solid var(--line);border-radius:2.4mm;padding:2.2mm 2.6mm;margin-bottom:1.8mm}
+  .opt .ic{width:7mm;height:7mm;border-radius:1.8mm;display:flex;align-items:center;justify-content:center;font-size:10pt;flex:none}
+  .opt .t{font:700 8.5pt 'Plus Jakarta Sans';line-height:1.25}
+  .opt .d{font-size:7.3pt;color:var(--muted)}
+  .opt .tg{margin-left:auto;font:800 6.5pt 'Plus Jakarta Sans';border-radius:100px;padding:.8mm 2mm;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d9;color:#8f5a00}.r{background:#ffe5dc;color:#b0401a}.b{background:#e6eeff;color:#0b4fd0}
+  .pw{font-size:6.6pt;color:#9a9fb2;text-align:center;margin-top:1.4mm}
+  .cap{font-size:7.2pt;color:var(--muted);margin-top:2mm;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .st{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .st span{font:800 7pt 'Plus Jakarta Sans';color:var(--teal-d);letter-spacing:.12em;text-transform:uppercase}
+  .st b{display:block;font:800 10pt 'Plus Jakarta Sans';margin:.6mm 0 1mm}
+  .st p{font-size:8.3pt;margin:0;line-height:1.45}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .fact{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .fact b{display:block;font:800 17pt 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .fact span{font-size:8pt;color:var(--muted);display:block;line-height:1.35}
+  .cta{background:var(--ink);color:#fff;border-radius:5mm;padding:7mm;display:flex;justify-content:space-between;align-items:center;background-image:radial-gradient(80mm 60mm at 100% 0%,rgba(20,214,192,.28),transparent 60%)}
+  .cta h3{font-size:15pt;color:#fff;margin-bottom:1mm}
+  .cta p{color:#c3c7d8;margin:0;font-size:9.4pt}
+  .cta .c{text-align:right;font:800 10.5pt 'Plus Jakarta Sans'}
+  .cta .c span{display:block;font:600 8.6pt 'Lato';color:var(--teal)}
+
+  .score{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5mm;margin-bottom:4mm}
+  .sc{background:var(--bg);border-radius:3mm;padding:3mm 2mm;text-align:center}
+  .sc b{display:block;font:800 15pt 'Plus Jakarta Sans'}
+  .sc span{font:700 6.8pt 'Plus Jakarta Sans';color:var(--muted);text-transform:uppercase;letter-spacing:.04em;line-height:1.25;display:block;margin-top:.6mm}
+  .find{display:grid;grid-template-columns:8mm 1fr;gap:3mm;padding:3mm 0;border-bottom:1px solid var(--line)}
+  .find:last-child{border-bottom:none}
+  .find .n{font:800 12pt 'Plus Jakarta Sans';color:#c3c7d6}
+  .find h4{display:flex;align-items:center;gap:2.4mm;flex-wrap:wrap}
+  .find p{margin:.8mm 0 0;font-size:9pt;color:#383d50}
+  .find .fix{font-size:8.8pt;color:var(--teal-d);font-weight:700;margin-top:.8mm}
+  .find .fix:before{content:"→ "}
+  .tag{display:inline-block;font:800 6.6pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:1mm 2.4mm}
+  .t-red{background:#fde6e2;color:#b2341f}.t-amb{background:#fff1d9;color:#8f5a00}.t-blue{background:#e6eeff;color:#0b4fd0}.t-grn{background:#dcf7ef;color:#0b7a5d}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .ba figure{border-radius:3mm;overflow:hidden;border:1px solid var(--line)}
+  .ba img{width:100%;display:block}
+  .ba figcaption{font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--bg);color:var(--muted)}
+  .ba figure.new figcaption{background:var(--ink);color:var(--teal)}
+  .mkk{display:inline-flex;width:5.4mm;height:5.4mm;border-radius:50%;background:#ffd84d;color:#1a1400;font:800 7.4pt 'Plus Jakarta Sans';align-items:center;justify-content:center;flex:none}
+  .notes{display:flex;flex-direction:column;gap:2.4mm;font-size:8.9pt;line-height:1.45}
+  .notes>div{display:flex;gap:2.5mm}.notes>div>div{display:block}
+  .notes b{font-family:'Plus Jakarta Sans'}
+  .tl{position:relative;margin:1mm 0 4mm;padding-left:6mm;border-left:2px solid var(--line)}
+  .tl div{position:relative;margin-bottom:2.4mm;font-size:9.1pt}
+  .tl div:before{content:"";position:absolute;left:-7.6mm;top:1.3mm;width:3mm;height:3mm;border-radius:50%;background:#fff;border:2px solid var(--teal)}
+  .tl b{font-family:'Plus Jakarta Sans';margin-right:2mm}
+  .rt{width:100%;border-collapse:collapse}
+  .rt td{padding:2.1mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.5pt;vertical-align:top}
+  .rt th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:2mm 2.4mm}
+  .ch{display:inline-block;font:800 6.7pt 'Plus Jakarta Sans';border-radius:100px;padding:.7mm 2.2mm;white-space:nowrap}
+  .sb{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .fr{border:1px solid var(--line);border-radius:3mm;overflow:hidden}
+  .fr .scr{height:30mm;background:var(--ink);position:relative;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font:800 9pt 'Plus Jakarta Sans';padding:3mm;line-height:1.4}
+  .fr .tc{position:absolute;left:2mm;top:2mm;font:800 6.5pt 'Plus Jakarta Sans';background:rgba(255,255,255,.12);border-radius:1mm;padding:.4mm 1.4mm;color:var(--teal)}
+  .fr .bd{padding:2.6mm 3mm;font-size:8.2pt;line-height:1.42}
+  .fr .bd .vo{color:#22263a;font-style:italic;margin-top:1mm}
+  .fr .bd b{font-family:'Plus Jakarta Sans';font-size:7.2pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .kpi td{padding:2mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.6pt}
+  .kpi th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.6mm 2.4mm;border-bottom:1.5px solid var(--ink)}
+  .letter p{font-size:10.4pt;line-height:1.65;margin-bottom:3.4mm}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin:5mm 0}
+  .num{font:800 19pt 'Plus Jakarta Sans';color:var(--teal-d);line-height:1}
+  .toc{position:absolute;left:20mm;right:20mm;bottom:44mm;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .toc div{border-top:1px solid rgba(255,255,255,.18);padding-top:3mm;font:600 8.4pt 'Plus Jakarta Sans';color:#c3c7d8}
+  .toc b{display:block;color:var(--teal);font-size:7.8pt;margin-bottom:.8mm}
+</style><style>
+  .ry{color:#d99a00}
+  .cover.reach{background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(249,185,49,.25),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(20,214,192,.22),transparent 60%)}
+  .ppl{display:grid;grid-template-columns:repeat(2,1fr);gap:3.4mm}
+  .pp{border:1px solid var(--line);border-radius:3.4mm;padding:4mm}
+  .pp .r{font:800 7pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--teal-d)}
+  .pp b{display:block;font:800 11pt 'Plus Jakarta Sans';margin:.6mm 0 .4mm}
+  .pp i{font-style:normal;display:block;font-size:8.2pt;color:var(--muted);margin-bottom:1.6mm}
+  .pp p{font-size:8.5pt;margin:0;line-height:1.45}
+  .pp.main{border:2px solid var(--teal);background:#f6fffd}
+  .force{display:grid;grid-template-columns:12mm 1fr;gap:3.4mm;padding:3.6mm 0;border-bottom:1px solid var(--line)}
+  .force .n{width:11mm;height:11mm;border-radius:3mm;background:var(--ink);color:var(--teal);font:800 13pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .force p{font-size:9.2pt;margin:.6mm 0 0;color:#383d50}
+  .aud td{padding:1.7mm 2.2mm;border-bottom:1px solid var(--line);font-size:8.1pt;vertical-align:top}
+  .aud th{text-align:left;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:1.8mm 2.2mm}
+  .aud .x{color:var(--red);font-weight:700}
+  .tree{display:grid;grid-template-columns:repeat(2,1fr);gap:3mm}
+  .tn{border:1px solid var(--line);border-radius:3mm;padding:3mm}
+  .tn b{display:block;font:800 9pt 'Plus Jakarta Sans';margin-bottom:1.4mm}
+  .tn div{font-size:8.4pt;align-items:center;line-height:1.35;padding:1mm 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:2mm}
+  .tn span{font:800 6.4pt 'Plus Jakarta Sans';border-radius:100px;padding:.4mm 1.6mm;white-space:nowrap;align-self:flex-start}
+  .calc td{padding:2mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.8pt}
+  .calc th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.6mm 2.4mm;border-bottom:1.5px solid var(--ink)}
+  .calc .rr{text-align:right;font-family:'Plus Jakarta Sans';font-weight:800}
+  .calc tr.tot td{border-top:1.5px solid var(--ink);font-weight:800;background:#f6fffd}
+</style>
+</head>
+<body>
+<div class="page cover reach" style="background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(240,184,0,.30),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(20,214,192,.22),transparent 60%)">
+  <div class="top"><span class="logo">RECHANNELD</span><span>Prepared for Manchester Evening News · Reach plc · October 2026</span></div>
+  <div class="pfor" style="margin-top:34mm">M.E.N Premium &amp; subscriber help · review, concept &amp; business case</div>
+  <h1>Every M.E.N<br>reader, to the <em>right place</em>,<br>first time.</h1>
+  <p class="sub">How one reChanneld front door can connect M.E.N Premium and Reachsubs print subscribers, clear up print offers across two sites, and support the first annual Premium renewals from November 2026.</p>
+  <div class="toc" style="grid-template-columns:repeat(4,1fr)">
+    <div><b>01</b>Summary</div><div><b>02</b>Manchester Evening News today</div><div><b>03</b>Subscriber journey audit</div><div><b>04</b>reChanneld on manchestereveningnews.co.uk</div>
+    <div><b>05</b>Topic map</div><div><b>06</b>Renewals &amp; 2027 rules</div><div><b>07</b>Business case &amp; pilot</div><div><b>+</b>Concept on your site (separate PDF)</div>
+  </div>
+  <div class="bot"><div><b>Touko Laakkonen</b><span>Service Channel Strategy · reChanneld</span></div><div class="tagl">Better choices.<br>Happier customers.</div></div>
+</div>
+
+<div class="page letter">
+  <div class="kick">01 · Summary</div>
+  <h2>Dear George and the Reach Customer team,</h2>
+  <p>The Manchester Evening News is where Reach's subscription story began: the first Reach brand behind a paywall, in November 2025, and the UK's largest local newsbrand with 12.6 million monthly readers. Its Premium product is clear and well made, with the Daily Briefing, Unmissable and expert Man Utd and Man City coverage.</p>
+  <p>We looked at the M.E.N as a subscriber would. The top bar offers “Buy a paper”, funeral notices, jobs and public notices, but no Help. Premium lives on the M.E.N site; print lives on Reachsubs, a separate site with a different look. The M.E.N page advertises print at <b>£31.85 a month, “save 50%”</b>; the first voucher checkout we reached on Reachsubs offered <b>£57.33 a month, “10% off”</b>.</p>
+  <p>And the first annual Premium members, who joined in November 2025, <b>renew next month</b>.</p>
+  <p>reChanneld is a channel-strategy platform from Helsinki. Its plug-and-play widget asks readers what they need and shows the best channel: self-service first, with honest opening hours and waiting times. It sits on top of the sites and systems you already have.</p>
+  <p>This pack contains:</p>
+  <div class="three">
+    <div class="box bg"><div class="num">1</div><h4 style="margin-top:2mm">Audit</h4><p class="small muted" style="margin:0">The M.E.N and Reachsubs reviewed as a subscriber: 8 findings and a scorecard.</p></div>
+    <div class="box bg"><div class="num">2</div><h4 style="margin-top:2mm">Concept</h4><p class="small muted" style="margin:0">The real reChanneld widget on manchestereveningnews.co.uk, configured with Manchester Evening News's own topics. Nothing redesigned.</p></div>
+    <div class="box bg"><div class="num">3</div><h4 style="margin-top:2mm">Business case</h4><p class="small muted" style="margin:0">First renewals, the 2027 rules, a value model and an 8-week pilot on the M.E.N.</p></div>
+  </div>
+  <p>We'd welcome 20 minutes with you or the subscriptions team to walk through it.</p>
+  <p style="margin-top:4mm">Kind regards,</p>
+  <div style="font:800 13pt 'Plus Jakarta Sans'">Touko Laakkonen</div>
+  <p class="muted small">Service Channel Strategy, reChanneld · [e-mail] · [phone]</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>2</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">02 · Manchester Evening News today</div>
+  <h2>Reach's first paywall, and its template</h2>
+  <p class="lead">What works at the M.E.N is copied across Reach. That makes it the natural place to design subscriber help for every brand.</p>
+  <div class="facts" style="grid-template-columns:repeat(4,1fr);margin-bottom:5mm"><div class="fact"><b>12.6 M</b><span>monthly audience: the UK's largest local newsbrand (+14.6%)</span></div><div class="fact"><b>Nov 2025</b><span>M.E.N Premium launched: Reach's first paywall</span></div><div class="fact"><b>£4.99</b><span>a month after a £1 first month, or £39.99 a year</span></div><div class="fact"><b>£31.85</b><span>a month for print, as advertised on the M.E.N page</span></div></div>
+  <div class="grid2">
+    <div><h3>Timeline</h3><div class="tl"><div><b>Nov 2025</b>M.E.N Premium launches with an editor's letter from Sarah Lester; thousands sign up.</div><div><b>Early 2026</b>Liverpool Echo, Wales Online, Chronicle Live and others follow the M.E.N model.</div><div><b>Aug 2026</b>Reach passes 50,000 digital subscribers. Mirror North opens in Manchester.</div><div><b>Sep 2026</b>“Active engaged time” becomes Reach's north-star metric.</div><div><b>Nov 2026</b>First annual M.E.N Premium members renew at £39.99.</div><div><b>Jan 2027</b>UK subscription rules (DMCC Act) start: easy exit, cooling-off, reminders.</div></div></div>
+    <div><h3>What this means for subscriber help</h3><ul class="clean small"><li><b>Two customer bases, two sites.</b> Premium on manchestereveningnews.co.uk, print on Reachsubs. Readers don't know which to contact.</li><li><b>Consistent offers matter.</b> Different print prices on two sites create questions, and distrust.</li><li><b>Renewals start now.</b> The first annual members renew in November 2026.</li><li><b>The template for Reach.</b> A help journey designed here can be copied to 25 brands.</li></ul>
+      <div class="box dark" style="margin-top:3mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">The opportunity: <span style="color:var(--teal)">design subscriber help on the M.E.N first, and copy it to every Reach brand.</span></p></div></div>
+  </div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Sources: Press Gazette (local audience 2026), InPublishing and journalism.co.uk (M.E.N Premium launch), Reach results; manchestereveningnews.co.uk and reachsubs.co.uk (3 Oct 2026).</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>3</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">03 · Subscriber journey audit</div>
+  <h2 style="font-size:20pt">manchestereveningnews.co.uk and Reachsubs, seen by a subscriber</h2>
+  <p class="muted small" style="margin-bottom:4mm">Screenshots taken on 3 October 2026, following the print subscription journey from the M.E.N site to checkout.</p>
+  <div class="grid2" style="grid-template-columns:1fr 1fr;gap:5mm">
+    <figure style="border:1px solid var(--line);border-radius:3mm;overflow:hidden"><img src="img/b/men-price.png" style="width:100%;display:block"><figcaption class="small" style="padding:2mm 3mm;background:var(--bg)"><b>1 · M.E.N subscribe page.</b> Premium £1 then £4.99, or £39.99 a year. Print: <b>£31.85 a month, “save 50%”</b>.</figcaption></figure>
+    <div style="display:grid;gap:4mm">
+      <figure style="border:1px solid var(--line);border-radius:3mm;overflow:hidden"><img src="img/b/rs-type.jpg" style="width:100%;display:block"><figcaption class="small" style="padding:2mm 3mm;background:var(--bg)"><b>2 · Reachsubs, a separate site.</b> Vouchers from £13.23 a week, delivery £14.73, postal £22.80 (“save 10%”).</figcaption></figure>
+      <figure style="border:1px solid var(--line);border-radius:3mm;overflow:hidden"><img src="img/b/rs-offer.png" style="width:100%;display:block"><figcaption class="small" style="padding:2mm 3mm;background:var(--bg)"><b>3 · Checkout.</b> Vouchers: <b>£57.33 a month, “10% off”</b>; 3 months £171.99; 12 months £687.96.</figcaption></figure>
+    </div>
+  </div>
+  <div class="box dark" style="margin-top:5mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">£31.85 and “save 50%” on the M.E.N page; £57.33 and “10% off” at the first checkout we reached. <span style="color:var(--teal)">The packages may differ, but the reader can't tell, and that's when they call, or leave.</span></p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>4</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">03 · Subscriber journey audit, continued</div>
+  <h2 style="font-size:20pt">8 findings</h2>
+  <div class="score" style="grid-template-columns:repeat(5,1fr)"><div class="sc"><b style="color:var(--red)">2/10</b><span>Finding help</span></div><div class="sc"><b style="color:var(--red)">3/10</b><span>One journey across sites</span></div><div class="sc"><b style="color:var(--amber)">3/10</b><span>Print offer clarity</span></div><div class="sc"><b style="color:var(--amber)">6/10</b><span>Premium clarity</span></div><div class="sc"><b style="color:#0e8f6a">8/10</b><span>Premium value story</span></div></div>
+  <div class="find"><div class="n">01</div><div><h4>No Help in the M.E.N navigation <span class="tag t-red">Critical</span></h4><p>The top bar offers Buy a paper, funeral notices, jobs, advertising, newsletters, public notices and offers. Subscribers have no route.</p><div class="fix">A “Premium &amp; subscriber help” button on every page, opening the widget.</div></div></div><div class="find"><div class="n">02</div><div><h4>Print and Premium live on two different sites <span class="tag t-red">Critical</span></h4><p>Premium is on the M.E.N site; print is on Reachsubs, with a different look and “Reach Publishing Services Ltd” in the footer.</p><div class="fix">One first question: “Which subscription do you have?”, then the right site.</div></div></div><div class="find"><div class="n">03</div><div><h4>Print prices don't match across the journey <span class="tag t-red">High</span></h4><p>£31.85 a month “save 50%” on the M.E.N page; £57.33 a month “10% off” at the first voucher checkout we reached.</p><div class="fix">A “Get the paper” topic that explains packages and prices in one place.</div></div></div><div class="find"><div class="n">04</div><div><h4>First annual Premium renewals arrive in November 2026 <span class="tag t-amb">High</span></h4><p>Members who joined at launch renew at £39.99. Price questions and cancellations peak now.</p><div class="fix">A “Renewal &amp; price” topic linked from reminder e-mails.</div></div></div><div class="find"><div class="n">05</div><div><h4>The FAQ is for non-subscribers <span class="tag t-amb">Medium</span></h4><p>“Not a subscriber yet? … take a look below.” Member questions aren't covered.</p><div class="fix">Member questions answered by the widget, with the FAQ kept for prospects.</div></div></div><div class="find"><div class="n">06</div><div><h4>Existing members get only a login button <span class="tag t-amb">Medium</span></h4><p>“Already a Premium member? Login” is the only route on the subscribe page.</p><div class="fix">A members' topic list: log-in, Daily Briefing, billing, renewal, cancel.</div></div></div><div class="find"><div class="n">07</div><div><h4>Print readers need an honest phone route <span class="tag t-blue">Medium</span></h4><p>Reachsubs shows Home, FAQ and Contact links, but the M.E.N site gives no number or hours.</p><div class="fix">Phone support card with today's hours and typical waiting time.</div></div></div><div class="find"><div class="n">08</div><div><h4>No shared view of subscriber needs <span class="tag t-blue">Low</span></h4><p>Premium and print contacts are handled in different places.</p><div class="fix">reChanneld analytics across both journeys.</div></div></div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Reviewed on manchestereveningnews.co.uk on 3 October 2026. Scores are our view.</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>5</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">04 · reChanneld on manchestereveningnews.co.uk</div>
+  <div style="display:grid;grid-template-columns:58mm 1fr;gap:7mm">
+    <div style="height:250mm;overflow:hidden;border-radius:3mm;border:1px solid var(--line)"><img src="img/b/men-cfull.jpg" style="width:100%;display:block"></div>
+    <div>
+      <h2 style="font-size:19pt">Your pages, exactly as they are. Plus one front door.</h2>
+      <p class="muted small">Screenshots of manchestereveningnews.co.uk as it is today, with the standard reChanneld widget added and configured with Manchester Evening News's own topics. The full page is in <b>reChanneld-MEN-Concept.pdf</b>, and each yellow number matches a note below.</p>
+      <div class="notes" style="margin-top:3mm"><div><span class="mkk">1</span><div><b>“Premium &amp; subscriber help” button</b> on manchestereveningnews.co.uk. The site stays as it is. Finding 01.</div></div><div><span class="mkk">2</span><div><b>First question: which subscription?</b> M.E.N Premium, newspaper delivery or vouchers, or something else. Finding 02.</div></div><div><span class="mkk">3</span><div><b>Print topics.</b> Paper didn't arrive, vouchers, payment, holiday stop, cancel or change.</div></div><div><span class="mkk">4</span><div><b>Honest phone option.</b> Today's hours and typical waiting time on the phone card. Finding 07.</div></div><div><span class="mkk">5</span><div><b>Evidence across two sites.</b> M.E.N page vs Reachsubs checkout prices. Finding 03.</div></div><div><span class="mkk">6</span><div><b>“Get the paper”.</b> Vouchers, delivery, postal or print + digital, explained in one place, with a person on hand.</div></div><div><span class="mkk">7</span><div><b>In the app.</b> Premium log-in help. Findings 05 and 06.</div></div><div><span class="mkk">8</span><div><b>Analytics.</b> Widget loads, sessions, top topics and channels for the M.E.N. Finding 08.</div></div><div><span class="mkk">9</span><div><b>What changes:</b> no design changes, plug-and-play, live in a few days, GDPR compliant with no cookies.</div></div></div>
+      <div class="box bg" style="margin-top:4mm"><h4>Why no redesign</h4><p class="small" style="margin:0">The M.E.N site and Reachsubs both work. reChanneld doesn't replace either: it adds one front door on top and sends each reader to the right one, so it can go live in days.</p></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>6</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">04 · Before and after</div>
+  <h2 style="font-size:20pt">The same pages, a very different experience</h2>
+  <figure style="margin-top:4mm;border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><div style="height:120mm;overflow:hidden"><img src="img/b/men-scene2.jpg" style="width:100%;display:block"></div><figcaption style="font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--ink);color:var(--teal)">Premium page with the widget open: Newspaper delivery → Paper didn't arrive → Report missed paper</figcaption></figure>
+  <figure style="margin-top:5mm;border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><div style="height:98mm;overflow:hidden"><img src="img/b/men-scene3.jpg" style="width:100%;display:block"></div><figcaption style="font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--ink);color:var(--teal)">Print offers across two sites, and a Get the paper topic that explains them in one place</figcaption></figure>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>7</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">05 · Topic map</div>
+  <h2 style="font-size:20pt">Proposed starting configuration for Manchester Evening News</h2>
+  <p class="muted small" style="margin-bottom:4mm">First-level topics, sub-topics and the recommended channel for each. Built from public information; in a pilot, your own contact data decides the final structure and wording.</p>
+  <div class="tree"><div class="tn"><b>🐝 M.E.N Premium</b><div>Can't log in <span class="ch g">Self-service</span></div><div>Daily Briefing &amp; app <span class="ch b">Guide</span></div><div>Billing <span class="ch g">My Account</span></div><div>Renewal &amp; price <span class="ch g">My Account</span></div><div>Cancel <span class="ch y">Equal choice</span></div></div><div class="tn"><b>📰 Newspaper delivery or vouchers</b><div>Paper didn't arrive <span class="ch g">Reachsubs account</span></div><div>Vouchers <span class="ch g">Reachsubs account</span></div><div>Payment or price <span class="ch b">Article → phone</span></div><div>Holiday stop <span class="ch g">Self-service</span></div><div>Cancel or change <span class="ch y">Equal choice</span></div></div><div class="tn"><b>🛒 Get the paper</b><div>Vouchers <span class="ch g">Reachsubs</span></div><div>Home delivery <span class="ch g">Reachsubs</span></div><div>Postal <span class="ch g">Reachsubs</span></div><div>Print + digital <span class="ch y">Talk to us</span></div></div><div class="tn"><b>❓ Something else</b><div>A story or tip <span class="ch b">Newsdesk form</span></div><div>Funeral &amp; public notices <span class="ch b">Notices pages</span></div><div>Advertising <span class="ch b">Book an ad</span></div><div>Complaint <span class="ch b">How to complain</span></div></div></div>
+  <div class="grid2" style="margin-top:5mm">
+    <div class="box bg"><h4>Managed by the Customer team</h4><p class="small" style="margin:0">Topics, texts, buttons, hours and the “Most popular choice” are edited in reChanneld's cloud admin panel and change instantly, without IT tickets or releases.</p></div>
+    <div class="box bg"><h4>One template, every Reach brand</h4><p class="small" style="margin:0">The M.E.N was Reach's first paywall. Its configuration can be copied to the Liverpool Echo, Wales Online, Chronicle Live and every Reach brand.</p></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>8</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">06 · Renewals &amp; 2027 rules</div>
+  <h2>November 2026: the first M.E.N renewals</h2>
+  <p class="lead">Annual members who joined at launch in November 2025 renew next month. Monthly members already moved from £1 to £4.99. How these moments are handled sets churn for the year ahead.</p>
+  <table class="calc" style="width:100%;border-collapse:collapse"><tr><th>Plan</th><th>Offer</th><th>Then</th><th>Renewal moment</th></tr>
+    <tr><td>Premium monthly</td><td>£1 first month</td><td><b>£4.99</b> a month</td><td>After month one</td></tr>
+    <tr><td>Premium annual</td><td>£39.99 a year</td><td>£39.99 a year</td><td><b>From November 2026</b></td></tr>
+    <tr><td>Print (vouchers)</td><td>£31.85 a month on M.E.N</td><td>£57.33 a month at checkout</td><td>Monthly</td></tr></table>
+  <div class="grid2" style="margin-top:5mm">
+    <div>
+      <h3>UK subscription rules, from January 2027</h3>
+      <ul class="clean small">
+        <li><b>Easy exit.</b> Consumers can end a contract with a clear statement, without unnecessary steps.</li>
+        <li><b>Cooling-off.</b> A 14-day cooling-off period at the start, and again after renewal.</li>
+        <li><b>Reminders.</b> Notices before renewals and before a free or discounted period ends.</li>
+      </ul>
+      <p class="small muted">Summary of the DMCC Act 2024 subscription regime from public guidance, not legal advice.</p>
+    </div>
+    <div>
+      <h3>How the widget helps</h3>
+      <ul class="clean small">
+        <li><b>Reminder e-mails link to a “Renewal &amp; price” topic,</b> so questions land in self-service, not in the inbox.</li>
+        <li><b>Honest options side by side:</b> switch to annual, check what's included, and cancel online, all as equal choices.</li>
+        <li><b>Evidence:</b> analytics show how many readers chose each option, useful for the Customer team and for compliance.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box dark" style="margin-top:4mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">Retention by service, not by friction: <span style="color:var(--teal)">members who see what Premium gives them renew, and those who want to leave can do so in a minute.</span></p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>9</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">07 · Business case</div>
+  <h2>A simple model to fill in together</h2>
+  <p class="lead" style="margin-bottom:4mm">We don't know Manchester Evening News's subscriber or contact volumes, so this is a worked example per 10,000 subscribers, with clearly stated assumptions. In the first call we'd replace them with real figures.</p>
+  <div class="grid2">
+    <div>
+      <table class="calc" style="width:100%;border-collapse:collapse">
+        <tr><th>Per 10,000 subscribers</th><th class="rr">Example</th></tr>
+        <tr><td>Contacts per subscriber per year</td><td class="rr">0.4</td></tr>
+        <tr><td>Subscriber contacts per year</td><td class="rr">4,000</td></tr>
+        <tr><td>Share moved to self-service by nudging</td><td class="rr">30%</td></tr>
+        <tr><td>Contacts avoided per year</td><td class="rr">1,200</td></tr>
+        <tr><td>Cost per assisted contact (reChanneld's ROI basis: €5)</td><td class="rr">≈ £4.30</td></tr>
+        <tr class="tot"><td>Service saving per year</td><td class="rr" style="white-space:nowrap">≈ £5,200</td></tr>
+        <tr><td>Subscribers kept at renewal (+2 percentage points)</td><td class="rr">200</td></tr>
+        <tr><td>Value of a kept subscriber per year (annual plan)</td><td class="rr">£39.99</td></tr>
+        <tr class="tot"><td>Retained revenue per year</td><td class="rr" style="white-space:nowrap">≈ £8,000</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Where the value comes from</h3>
+      <ul class="clean small">
+        <li><b>Retention first.</b> At Manchester Evening News's prices, keeping subscribers at renewal is worth more than service savings.</li>
+        <li><b>Fewer assisted contacts.</b> Log-in, billing and delivery questions move to self-service.</li>
+        <li><b>Faster help for those who call.</b> Shorter queues for complex cases.</li>
+        <li><b>Insight.</b> Real-time data on what readers need, for the Customer and product teams.</li>
+      </ul>
+      <div class="box bg" style="margin-top:3mm"><h4>reChanneld's own benchmark</h4><p class="small" style="margin:0">On reChanneld's published plans, ROI is reached by nudging around 5% of traffic, assuming €5 per contact. Clients typically see 79% of channel selections go to self-service, automation and leads.</p></div>
+    </div>
+  </div>
+  <div class="box dark" style="margin-top:5mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">Scale: <span style="color:var(--teal)">the same configuration can be copied to every Reach subscription brand (25 by October), so the value multiplies across a base heading for 75,000 digital subscribers.</span></p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>10</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">07 · 8-week pilot</div>
+  <h2>Prove it on Manchester Evening News, with your own data</h2>
+  <p class="lead" style="margin-bottom:4mm">Suggested scope: the M.E.N site and app plus the Reachsubs M.E.N pages, starting with the November 2026 renewals. The M.E.N then becomes the template for every Reach brand.</p>
+  <div class="steps" style="margin-bottom:6mm">
+    <div class="st"><span>Weeks 1–2</span><b>Map</b><p>Review three months of Manchester Evening News contact reasons, agree topics, channels and wording, and set the baseline. The widget itself can be live within days.</p></div>
+    <div class="st"><span>Weeks 3–8</span><b>Guide</b><p>Widget live on manchestereveningnews.co.uk, the M.E.N app and the Reachsubs M.E.N pages. Wording and recommended channels adjusted weekly from the analytics.</p></div>
+    <div class="st"><span>Week 9</span><b>Decide</b><p>Review results together, then copy the configuration to the next Reach brands.</p></div>
+  </div>
+  <div class="grid2">
+    <div><h3>What we'll measure</h3><table class="kpi" style="width:100%;border-collapse:collapse"><tr><th>KPI</th><th>How</th></tr><tr><td>Subscriber contacts per 1,000 subscribers</td><td>Your data, before vs during</td></tr><tr><td>Top topics and channels</td><td>reChanneld analytics</td></tr><tr><td>Finished sessions</td><td>reChanneld analytics</td></tr><tr><td>Missed-paper contacts by phone</td><td>Your data, before vs during</td></tr><tr><td>Renewal-topic choices</td><td>reChanneld analytics</td></tr><tr><td>Annual renewal rate</td><td>Your data</td></tr></table></div>
+    <div><h3>Who does what</h3>
+      <div class="box bg" style="margin-bottom:3mm"><h4>reChanneld</h4><ul class="clean small" style="margin:0"><li>Configuration, topics and copy</li><li>Analytics access and weekly check-ins</li><li>Final report and rollout plan</li></ul></div>
+      <div class="box bg"><h4>Reach</h4><ul class="clean small" style="margin:0"><li>One Customer-team contact, about 2 hours a week</li><li>Contact-reason data and current help links</li><li>Adding the widget to the agreed pages</li></ul></div>
+    </div>
+  </div>
+  <div class="box dark" style="margin-top:5mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">No redesign, no new chatbot and no change to subscription platforms. <span style="color:var(--teal)">If it doesn't show results in 8 weeks, you stop.</span></p></div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>11</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">07 · Launch support</div>
+  <h2 style="font-size:20pt">“Welcome to M.E.N Premium”: a 40-second onboarding video</h2>
+  <p class="muted small" style="margin-bottom:4mm">Most log-in and “where do I find…?” questions come in a member's first week. A short welcome video in the confirmation e-mail and app shows how to sign in, where the Daily Briefing lives, and where to find help.</p>
+  <div class="sb"><div class="fr"><div class="scr" style=""><span class="tc">0:00–0:06</span>🐝 “Welcome to<br>M.E.N Premium”</div><div class="bd"><b>Visual</b><br>The M.E.N bee on a phone.<div class="vo">“Welcome to M.E.N Premium. Thanks for backing Manchester journalism.”</div></div></div><div class="fr"><div class="scr" style=""><span class="tc">0:06–0:16</span>📱💻 Sign in once<br>on each device</div><div class="bd"><b>Visual</b><br>Phone, laptop and tablet each show the sign-in.<div class="vo">“Sign in on each device, and fewer ads follow you.”</div></div></div><div class="fr"><div class="scr" style="background:#0a3b3a"><span class="tc">0:16–0:24</span>☕ Daily Briefing<br>· Unmissable</div><div class="bd"><b>Visual</b><br>Morning briefing in the app.<div class="vo">“Your Daily Briefing, Unmissable and expert United and City insight.”</div></div></div><div class="fr"><div class="scr" style=""><span class="tc">0:24–0:32</span>👋 “Hey, how may<br>we help you?”</div><div class="bd"><b>Visual</b><br>The reChanneld widget: Can't log in → Send log-in link.<div class="vo">“Any question? The help button sorts it in seconds.”</div></div></div><div class="fr"><div class="scr" style=""><span class="tc">0:32–0:36</span>📅 Your plan,<br>your choice</div><div class="bd"><b>Visual</b><br>Renewal &amp; price topic.<div class="vo">“Check your renewal or change your plan, any time.”</div></div></div><div class="fr"><div class="scr" style="background:linear-gradient(135deg,#0c0d12,#3b3b3b)"><span class="tc">0:36–0:40</span>M.E.N Premium<br>Help: one tap away</div><div class="bd"><b>Visual</b><br>End card in M.E.N yellow.<div class="vo">“Enjoy your M.E.N.”</div></div></div></div>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="box bg"><h4>Formats</h4><p class="small" style="margin:0">9:16 for the app and social, 16:9 for web, plus a GIF and a 15-second cut for e-mails. Captioned throughout.</p></div>
+    <div class="box bg"><h4>Where it lives</h4><p class="small" style="margin:0">The Premium confirmation e-mail, the M.E.N app's first launch, and the help page. A 15-second cut can run with the November renewal reminders.</p></div>
+  </div>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>12</span></div>
+</div>
+
+<div class="page">
+  <div class="kick">About reChanneld</div>
+  <h2>Better choices. Happier customers. Lower costs.</h2>
+  <div class="grid2" style="margin:3mm 0 5mm;grid-template-columns:1.15fr 1fr">
+    <div><div style="border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><img src="img/rech-widget.png" style="width:100%;display:block"></div>
+      <p class="small muted" style="margin-top:1.6mm">The reChanneld widget as it works today: topic, sub-topic, channel cards and the “Most popular choice”.</p></div>
+    <div>
+      <p class="small">reChanneld is a channel strategy platform from Helsinki, Finland. A plug-and-play widget uses behavioural economics and digital nudges to guide customers to the best service channel. Customer service teams manage it themselves in a cloud admin panel, and it works on top of their existing website and channels.</p>
+      <div class="facts" style="grid-template-columns:1fr 1fr;gap:2.4mm">
+        <div class="fact"><b>4M+</b><span>annual sessions</span></div><div class="fact"><b>79%</b><span>channel selections to self-service, automation and leads</span></div>
+        <div class="fact"><b>87%</b><span>of end users found reChanneld easy and clear</span></div><div class="fact"><b>Days</b><span>to define and implement a channel strategy</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-bottom:5mm">
+    <div class="box bg"><p style="font:700 10pt/1.5 'Plus Jakarta Sans';margin-bottom:2mm">“Within just a few days we were able to nail our service channel strategy with reChanneld. Nudges work excellently, and we offer a far more intuitive experience to our customers than before!”</p><p class="small muted" style="margin:0">Teresa Alander, Head of Operations, Lippu.fi (part of CTS Eventim)</p></div>
+    <div class="box"><h4>Used by</h4><p class="small" style="margin-bottom:2mm">S-Bank, Nets, Lippu.fi, PAM, Sportson, Laurea, Varha and Satakunta wellbeing services county. They cover banking, payments, ticketing, retail, education and the public sector.</p>
+      <h4>Enterprise-ready</h4><p class="small" style="margin:0">Audited for security and accessibility, GDPR compliant, no cookies. White-labelled per brand. Enterprise plan with unlimited admin users and integrations.</p></div>
+  </div>
+  <div class="cta"><div><h3>Shall we take 20 minutes?</h3><p>We'd love to hear how Manchester Evening News subscriber help works today, and where it hurts most.</p></div><div class="c">Touko Laakkonen<span>reChanneld · [e-mail] · [phone]</span></div></div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Figures, quote, plans and customer names from rechanneld.com (October 2026).</p>
+  <div class="pf"><span><b>RECHANNELD</b> · for Manchester Evening News (Reach plc)</span><span>13</span></div>
+</div>
+</body>
+</html>
