@@ -56,6 +56,24 @@ Commit the files to `front-ai-application/<company-name>/` and send them to me h
 
 ---
 
+## Automatic prospect finding (step 0)
+
+Add this to the prompt when you don't know the targets yet:
+
+> **Find prospects for me first.** Before building anything:
+> 1. Find who [company] sells to today (customer logos, case studies, press releases, partner and event pages). Summarise their ideal customer: industry, size and country.
+> 2. List 8–10 look-alike prospects in the market they're targeting, with sources.
+> 3. For each, check for a visible problem the product fixes (contact or help page, footer, reviews, pricing) and a "why now" (news, leadership change, launch, price change, regulation).
+> 4. Score each on: fit, a problem I can screenshot, why now, a named buyer. Show the top 3 in a table with the reason and the person to contact (title, plus name if public).
+> 5. Stop and let me pick one. If the sites are reachable, run `tools/capture.js` on the chosen prospect to take the screenshots. If not, tell me exactly which pages to screenshot.
+
+## Taking screenshots automatically
+
+`tools/capture.js` saves full-page screenshots of a site's homepage, its contact, help and subscribe/pricing pages, and the footer. It also writes `links.json`, a list of every navigation and footer link, which is how findings like "no Contact Us in 100 footer links" are spotted.
+
+- **In this cloud session:** it only works once the sites are allowed in the environment's network settings (Network access → a broader level, or Custom with the domains added).
+- **On your own computer:** install Node, run `npm i playwright` and `npx playwright install chromium`, then `node capture.js https://www.example.com`. Upload the `captures/` folder here.
+
 ## Short version (when I'm in a hurry)
 
 > New outreach. Company: [name, website]. Contact: [name, title]. Their likely targets: [names or "pick for me"]. Screenshots attached. Do the full pack like Reach/Mirror: research, sharp finding, proposal PDF + concept on the real site, LinkedIn note (≤200 chars) and a short casual email from me. Mark everything unverified.
