@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Smilee Dealer Pack</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#0c0d12;--ink2:#1b1d26;--teal:#14d6c0;--teal-d:#0a9e8e;--muted:#5a6075;--line:#e4e6ee;--bg:#f5f6f9;--dc:#0b4fd0;--red:#d9472f;--amber:#c98100}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.52;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9a9fb2;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:2.6mm}
+  h2{font-size:23pt;line-height:1.08;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.6pt;line-height:1.5;color:var(--muted);margin-bottom:6mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  .dark{background:var(--ink);color:#fff;border:none}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.7mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:2mm;width:2mm;height:2mm;border-radius:50%;background:var(--teal)}
+  .logo{font:800 13pt 'Plus Jakarta Sans';letter-spacing:.08em}
+  .src{font-size:7.2pt;color:#9a9fb2;line-height:1.4}
+
+  /* cover */
+  .cover{background:var(--ink);color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(20,214,192,.22),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(11,79,208,.30),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font:700 9pt 'Plus Jakarta Sans';color:#a3a8bf}
+  .pfor{display:inline-block;margin-top:50mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:42pt;line-height:1.03;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:13pt;line-height:1.5;color:#c3c7d8;max-width:150mm}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:20mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a3a8bf}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--teal);text-align:right}
+
+  /* findings */
+  .fd{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin-bottom:5mm}
+  .fd .n{width:8mm;height:8mm;border-radius:2.4mm;background:var(--ink);color:var(--teal);font:800 10pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .fd p{font-size:9.4pt;color:#33384a;margin-bottom:1.6mm}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;position:relative;background:#fff}
+  .shot img{display:block;width:100%}
+  .hl{position:absolute;border:2.4px solid var(--red);border-radius:2mm;box-shadow:0 0 0 4px rgba(217,71,47,.15)}
+  .note{position:absolute;background:var(--red);color:#fff;font:800 7.4pt 'Plus Jakarta Sans';border-radius:1.6mm;padding:1mm 2mm;white-space:nowrap}
+  .lines{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4mm;margin-top:2mm}
+  .ln{border:1.3px solid #f2d0c9;background:#fff8f6;border-radius:2.6mm;padding:2.4mm 2.6mm;font-size:7.8pt;line-height:1.35}
+  .ln b{display:block;font:800 8.2pt 'Plus Jakarta Sans'}
+  .ln i{font-style:normal;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:2mm;margin-top:2mm}
+  .chip{font:700 7.8pt 'Plus Jakarta Sans';background:var(--bg);border-radius:100px;padding:1.2mm 3mm}
+
+  /* mock */
+  .mock{background:linear-gradient(180deg,#f7f8fb,#eceff5);border-radius:4mm;padding:5mm;border:1px solid var(--line)}
+  .bbar{display:flex;gap:1.4mm;align-items:center;margin-bottom:3mm}
+  .bbar i{width:2.2mm;height:2.2mm;border-radius:50%;background:#d3d6e2;display:block}
+  .bbar .url{margin-left:2mm;flex:1;background:#fff;border-radius:1.5mm;font:600 7pt 'Plus Jakarta Sans';color:#8a8fa6;padding:1mm 2.4mm}
+  .wdg{background:#fff;border-radius:3.5mm;box-shadow:0 4mm 10mm rgba(12,13,18,.12);padding:4.2mm}
+  .wq{font:800 11.4pt 'Plus Jakarta Sans'}
+  .ws{font-size:7.9pt;color:var(--muted);margin-bottom:2.8mm}
+  .opt{display:flex;align-items:center;gap:2.6mm;border:1.3px solid var(--line);border-radius:2.4mm;padding:2.2mm 2.6mm;margin-bottom:1.8mm}
+  .opt .ic{width:7mm;height:7mm;border-radius:1.8mm;display:flex;align-items:center;justify-content:center;font-size:10pt;flex:none}
+  .opt .t{font:700 8.5pt 'Plus Jakarta Sans';line-height:1.25}
+  .opt .d{font-size:7.3pt;color:var(--muted)}
+  .opt .tg{margin-left:auto;font:800 6.5pt 'Plus Jakarta Sans';border-radius:100px;padding:.8mm 2mm;white-space:nowrap}
+  .opt.rec{border-color:var(--teal);background:#f0fffc}
+  .g{background:#dcfbf6;color:#067a6c}.y{background:#fff1d9;color:#8f5a00}.r{background:#ffe5dc;color:#b0401a}.b{background:#e6eeff;color:#0b4fd0}
+  .pw{font-size:6.6pt;color:#9a9fb2;text-align:center;margin-top:1.4mm}
+  .cap{font-size:7.2pt;color:var(--muted);margin-top:2mm;text-align:center}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .st{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .st span{font:800 7pt 'Plus Jakarta Sans';color:var(--teal-d);letter-spacing:.12em;text-transform:uppercase}
+  .st b{display:block;font:800 10pt 'Plus Jakarta Sans';margin:.6mm 0 1mm}
+  .st p{font-size:8.3pt;margin:0;line-height:1.45}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+  .fact{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .fact b{display:block;font:800 17pt 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .fact span{font-size:8pt;color:var(--muted);display:block;line-height:1.35}
+  .cta{background:var(--ink);color:#fff;border-radius:5mm;padding:7mm;display:flex;justify-content:space-between;align-items:center;background-image:radial-gradient(80mm 60mm at 100% 0%,rgba(20,214,192,.28),transparent 60%)}
+  .cta h3{font-size:15pt;color:#fff;margin-bottom:1mm}
+  .cta p{color:#c3c7d8;margin:0;font-size:9.4pt}
+  .cta .c{text-align:right;font:800 10.5pt 'Plus Jakarta Sans'}
+  .cta .c span{display:block;font:600 8.6pt 'Lato';color:var(--teal)}
+
+  .score{display:grid;grid-template-columns:repeat(6,1fr);gap:2.5mm;margin-bottom:4mm}
+  .sc{background:var(--bg);border-radius:3mm;padding:3mm 2mm;text-align:center}
+  .sc b{display:block;font:800 15pt 'Plus Jakarta Sans'}
+  .sc span{font:700 6.8pt 'Plus Jakarta Sans';color:var(--muted);text-transform:uppercase;letter-spacing:.04em;line-height:1.25;display:block;margin-top:.6mm}
+  .find{display:grid;grid-template-columns:8mm 1fr;gap:3mm;padding:3mm 0;border-bottom:1px solid var(--line)}
+  .find:last-child{border-bottom:none}
+  .find .n{font:800 12pt 'Plus Jakarta Sans';color:#c3c7d6}
+  .find h4{display:flex;align-items:center;gap:2.4mm;flex-wrap:wrap}
+  .find p{margin:.8mm 0 0;font-size:9pt;color:#383d50}
+  .find .fix{font-size:8.8pt;color:var(--teal-d);font-weight:700;margin-top:.8mm}
+  .find .fix:before{content:"→ "}
+  .tag{display:inline-block;font:800 6.6pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:1mm 2.4mm}
+  .t-red{background:#fde6e2;color:#b2341f}.t-amb{background:#fff1d9;color:#8f5a00}.t-blue{background:#e6eeff;color:#0b4fd0}.t-grn{background:#dcf7ef;color:#0b7a5d}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .ba figure{border-radius:3mm;overflow:hidden;border:1px solid var(--line)}
+  .ba img{width:100%;display:block}
+  .ba figcaption{font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--bg);color:var(--muted)}
+  .ba figure.new figcaption{background:var(--ink);color:var(--teal)}
+  .mkk{display:inline-flex;width:5.4mm;height:5.4mm;border-radius:50%;background:#ffd84d;color:#1a1400;font:800 7.4pt 'Plus Jakarta Sans';align-items:center;justify-content:center;flex:none}
+  .notes{display:flex;flex-direction:column;gap:2.4mm;font-size:8.9pt;line-height:1.45}
+  .notes>div{display:flex;gap:2.5mm}.notes>div>div{display:block}
+  .notes b{font-family:'Plus Jakarta Sans'}
+  .tl{position:relative;margin:1mm 0 4mm;padding-left:6mm;border-left:2px solid var(--line)}
+  .tl div{position:relative;margin-bottom:2.4mm;font-size:9.1pt}
+  .tl div:before{content:"";position:absolute;left:-7.6mm;top:1.3mm;width:3mm;height:3mm;border-radius:50%;background:#fff;border:2px solid var(--teal)}
+  .tl b{font-family:'Plus Jakarta Sans';margin-right:2mm}
+  .rt{width:100%;border-collapse:collapse}
+  .rt td{padding:2.1mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.5pt;vertical-align:top}
+  .rt th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:2mm 2.4mm}
+  .ch{display:inline-block;font:800 6.7pt 'Plus Jakarta Sans';border-radius:100px;padding:.7mm 2.2mm;white-space:nowrap}
+  .sb{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .fr{border:1px solid var(--line);border-radius:3mm;overflow:hidden}
+  .fr .scr{height:30mm;background:var(--ink);position:relative;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font:800 9pt 'Plus Jakarta Sans';padding:3mm;line-height:1.4}
+  .fr .tc{position:absolute;left:2mm;top:2mm;font:800 6.5pt 'Plus Jakarta Sans';background:rgba(255,255,255,.12);border-radius:1mm;padding:.4mm 1.4mm;color:var(--teal)}
+  .fr .bd{padding:2.6mm 3mm;font-size:8.2pt;line-height:1.42}
+  .fr .b .vo{color:#22263a;font-style:italic;margin-top:1mm}
+  .fr .b b{font-family:'Plus Jakarta Sans';font-size:7.2pt;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  .kpi td{padding:2mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.6pt}
+  .kpi th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.6mm 2.4mm;border-bottom:1.5px solid var(--ink)}
+  .letter p{font-size:10.4pt;line-height:1.65;margin-bottom:3.4mm}
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin:5mm 0}
+  .num{font:800 19pt 'Plus Jakarta Sans';color:var(--teal-d);line-height:1}
+  .toc{position:absolute;left:20mm;right:20mm;bottom:44mm;display:grid;grid-template-columns:repeat(4,1fr);gap:4mm}
+  .toc div{border-top:1px solid rgba(255,255,255,.18);padding-top:3mm;font:600 8.4pt 'Plus Jakarta Sans';color:#c3c7d8}
+  .toc b{display:block;color:var(--teal);font-size:7.8pt;margin-bottom:.8mm}
+</style>
+<style>
+  .ry{color:#d99a00}
+  .cover.reach{background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(249,185,49,.25),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(20,214,192,.22),transparent 60%)}
+  .ppl{display:grid;grid-template-columns:repeat(2,1fr);gap:3.4mm}
+  .pp{border:1px solid var(--line);border-radius:3.4mm;padding:4mm}
+  .pp .r{font:800 7pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--teal-d)}
+  .pp b{display:block;font:800 11pt 'Plus Jakarta Sans';margin:.6mm 0 .4mm}
+  .pp i{font-style:normal;display:block;font-size:8.2pt;color:var(--muted);margin-bottom:1.6mm}
+  .pp p{font-size:8.5pt;margin:0;line-height:1.45}
+  .pp.main{border:2px solid var(--teal);background:#f6fffd}
+  .force{display:grid;grid-template-columns:12mm 1fr;gap:3.4mm;padding:3.6mm 0;border-bottom:1px solid var(--line)}
+  .force .n{width:11mm;height:11mm;border-radius:3mm;background:var(--ink);color:var(--teal);font:800 13pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .force p{font-size:9.2pt;margin:.6mm 0 0;color:#383d50}
+  .aud td{padding:1.7mm 2.2mm;border-bottom:1px solid var(--line);font-size:8.1pt;vertical-align:top}
+  .aud th{text-align:left;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);padding:1.8mm 2.2mm}
+  .aud .x{color:var(--red);font-weight:700}
+  .tree{display:grid;grid-template-columns:repeat(2,1fr);gap:3mm}
+  .tn{border:1px solid var(--line);border-radius:3mm;padding:3mm}
+  .tn b{display:block;font:800 9pt 'Plus Jakarta Sans';margin-bottom:1.4mm}
+  .tn div{font-size:8.4pt;align-items:center;line-height:1.35;padding:1mm 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:2mm}
+  .tn span{font:800 6.4pt 'Plus Jakarta Sans';border-radius:100px;padding:.4mm 1.6mm;white-space:nowrap;align-self:flex-start}
+  .calc td{padding:2mm 2.4mm;border-bottom:1px solid var(--line);font-size:8.8pt}
+  .calc th{text-align:left;font:800 6.9pt 'Plus Jakarta Sans';letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:1.6mm 2.4mm;border-bottom:1.5px solid var(--ink)}
+  .calc .rr{text-align:right;font-family:'Plus Jakarta Sans';font-weight:800}
+  .calc tr.tot td{border-top:1.5px solid var(--ink);font-weight:800;background:#f6fffd}
+</style><style>
+.msg{border:1px solid var(--line);border-radius:3.5mm;margin-bottom:3.6mm;overflow:hidden}
+.msg .hd{background:var(--bg);padding:2.2mm 3.6mm;display:flex;justify-content:space-between;align-items:center;font:800 8pt 'Plus Jakarta Sans'}
+.msg .hd span{font:600 7.3pt 'Lato';color:var(--muted)}
+.msg .bd{padding:3.2mm 3.8mm;font-size:8.8pt;line-height:1.5;white-space:pre-line}
+.msg .bd b{font-weight:900}
+.calc .rr{text-align:right;font-family:'Plus Jakarta Sans';font-weight:800}
+</style></head>
+<body>
+<!-- 1 COVER -->
+<div class="page cover" style="background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(255,196,0,.28),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(0,140,214,.28),transparent 60%)">
+  <div class="top"><span class="logo">KNOCK × SMILEE</span><span>Sample dealer pack · October 2026</span></div>
+  <div class="pfor" style="margin-top:36mm">Prepared for Smilee · Swedish market</div>
+  <h1>Börjessons' chat<br>closes at 17:00.<br><em>Smilee doesn't.</em></h1>
+  <p class="sub">A ready-to-use sales pack for one Swedish dealer group: research, five findings from their own website, CarWebshop shown on their real pages, and the messages your team can send this week.</p>
+  <div class="toc" style="grid-template-columns:repeat(4,1fr)">
+    <div><b>01</b>Why this pack</div><div><b>02</b>Börjessons Bil</div><div><b>03</b>Five findings</div><div><b>04</b>CarWebshop on their site</div>
+    <div><b>05</b>Value for the dealer</div><div><b>06</b>Outreach in Swedish</div><div><b>07</b>Ten more like this</div><div><b>+</b>Concept page (separate PDF)</div>
+  </div>
+  <div class="bot"><div><b>Kira Krysanov</b><span>Knock · ex-Leadoo · ex-Videobot</span></div><div class="tagl">knock.fi<br>kira.krysanov@gmail.com</div></div>
+</div>
+
+<!-- 2 LETTER -->
+<div class="page letter">
+  <div class="kick">01 · Why this pack</div>
+  <h2>Hi Smilee team,</h2>
+  <p>Congratulations on the TGC Capital Partners investment and the push into new markets. Your demos already have a <b>“SWE DEMO”</b> button, so I assume Sweden is next.</p>
+  <p>Getting into Swedish dealers is the hard part. TGC can open the door to a dealer network, but each dealer still needs a reason to say yes. So I picked one real Swedish dealer group, <b>Börjessons Bil</b> (7 sites, 491 cars in stock, VW Group brands), and did the homework a seller rarely has time for.</p>
+  <p>The finding is simple and checkable: <b>Börjessons' chat is staffed weekdays 09:00–17:00</b>. That's 40 of the week's 168 hours. Their own buying guide sends buyers to a person for trade-in and financing, and their contact form promises a reply “within 24 hours”. CarWebshop covers exactly that gap.</p>
+  <p>Inside: the dealer brief, the five findings with screenshots, CarWebshop on Börjessons' real pages, a simple value model, and a Swedish outreach sequence your team could send this week.</p>
+  <div class="three">
+    <div class="box bg"><div class="num">1</div><h4 style="margin-top:2mm">Research</h4><p class="small muted" style="margin:0">Dealer facts, findings and who to contact.</p></div>
+    <div class="box bg"><div class="num">2</div><h4 style="margin-top:2mm">Concept</h4><p class="small muted" style="margin:0">CarWebshop on their real pages, in Swedish.</p></div>
+    <div class="box bg"><div class="num">3</div><h4 style="margin-top:2mm">Outreach</h4><p class="small muted" style="margin:0">LinkedIn note, e-mail and follow-up, ready to send.</p></div>
+  </div>
+  <p>I can make packs like this for the 10–20 dealers you want to win first. Shall we take 20 minutes?</p>
+  <p style="margin-top:4mm">Best regards,</p>
+  <div style="font:800 13pt 'Plus Jakarta Sans'">Kira Krysanov</div>
+  <p class="muted small">Knock · knock.fi · kira.krysanov@gmail.com · [phone]</p>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>2</span></div>
+</div>
+
+<!-- 3 DEALER -->
+<div class="page">
+  <div class="kick">02 · The dealer</div>
+  <h2>Börjessons Bil: a family dealer group in southern Sweden</h2>
+  <p class="lead">Mid-sized, multi-site, VW Group brands, and already investing in digital customer contact. The kind of dealer who sees the value quickly.</p>
+  <div class="facts" style="grid-template-columns:repeat(4,1fr);margin-bottom:5mm">
+    <div class="fact"><b>1955</b><span>founded, family-owned group</span></div>
+    <div class="fact"><b>7</b><span>sites: Alingsås, Ängelholm, Helsingborg, Karlshamn, Karlskrona, Klippan, Ronneby</span></div>
+    <div class="fact"><b>491</b><span>cars in stock (homepage, 6 Oct 2026)</span></div>
+    <div class="fact"><b>≈ SEK 2.9 bn</b><span>revenue 2023 (nybil.nu)</span></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>What we know</h3>
+      <ul class="clean small">
+        <li><b>Brands:</b> Volkswagen, Audi, Skoda, SEAT, CUPRA, VW Transport. New, used, private leasing, workshop and tyres.</li>
+        <li><b>Group:</b> also Börjessons Lastbilar, Börjessons ATV and Däckcentrum.</li>
+        <li><b>Digital today:</b> stock search, a five-step buying guide, online workshop booking, and a chat staffed by human “digital hosts”.</li>
+        <li><b>Recent news on their site:</b> a CUPRA dealership partnership in Helsingborg (Sept 2026) and the “Upplev Lights in Alingsås” event.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Who to contact</h3>
+      <div class="box" style="margin-bottom:3mm"><h4>Sales director / försäljningschef</h4><p class="small" style="margin:0">Owns used-car sales and the buying journey. Main contact.</p></div>
+      <div class="box" style="margin-bottom:3mm"><h4>Marketing or digital manager</h4><p class="small" style="margin:0">Owns the website and the chat. Approach in parallel.</p></div>
+      <div class="box bg"><h4>CEO / owner family</h4><p class="small" style="margin:0">For later, with a result or a referral via TGC/AutoFacets.</p></div>
+      <p class="small muted">Find names on LinkedIn (“Börjessons Bil”) before sending.</p>
+    </div>
+  </div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Sources: borjessonsbil.se (6 Oct 2026); nybil.nu “Vilka är Sveriges största bilhandlare?”. Re-check before use.</p>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>3</span></div>
+</div>
+
+<!-- 4 FINDINGS -->
+<div class="page">
+  <div class="kick">03 · Five findings from borjessonsbil.se</div>
+  <h2 style="font-size:20pt">A good chat, with office hours</h2>
+  <div class="find"><div class="n">01</div><div><h4>The chat is staffed weekdays 09:00–17:00 only <span class="tag t-red">Key finding</span></h4><p>“Chatten … är tillgänglig alla vardagar 09:00–17:00.” That's 40 of the week's 168 hours. Evenings and weekends, when many people browse cars, have no answer.</p>
+    <div style="border:1px solid var(--line);border-radius:3mm;overflow:hidden;margin-top:2mm;width:120mm"><img src="img/bb-chatcard.png" style="width:100%;display:block"></div>
+    <div class="fix">Smilee answers the other 128 hours, in Swedish.</div></div></div>
+  <div class="find"><div class="n">02</div><div><h4>The chat closes an hour before customer service <span class="tag t-amb">High</span></h4><p>Customer service is open weekdays 09:00–18:00, the chat 09:00–17:00. The busy after-work hour has no chat.</p><div class="fix">Smilee covers 17:00–09:00 and weekends, with hand-over to the hosts in the morning.</div></div></div>
+  <div class="find"><div class="n">03</div><div><h4>Trade-in and financing require a person <span class="tag t-amb">High</span></h4><p>Step 4 of their buying guide: “Kontakta oss när du hittat rätt – vi hjälper dig med inbyte, finansiering och det praktiska.”</p><div class="fix">CarWebshop's trade-in valuation and financing calculator, inside the chat.</div></div></div>
+  <div class="find"><div class="n">04</div><div><h4>The contact form promises a reply within 24 hours <span class="tag t-amb">Medium</span></h4><p>“…kontakta oss så återkopplar vi till dig inom 24 timmar.” A buyer writing on Friday evening may hear back on Monday, and may have bought elsewhere by then.</p>
+    <div style="border:1px solid var(--line);border-radius:3mm;overflow:hidden;margin-top:2mm;width:90mm"><img src="img/bb-form24.png" style="width:100%;display:block"></div>
+    <div class="fix">Instant answers, and a test drive booked in the same conversation.</div></div></div>
+  <div class="find"><div class="n">05</div><div><h4>Seven sites, one chat <span class="tag t-blue">Medium</span></h4><p>Buyers must pick the right site in forms (“Välj anläggning”). The chat example on the site ends in “boka ett möte med en säljare”.</p><div class="fix">Smilee routes each lead to the right site's sales team, with car, trade-in and slot attached.</div></div></div>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>4</span></div>
+</div>
+
+<!-- 5 CONCEPT -->
+<div class="page">
+  <div class="kick">04 · CarWebshop on their site</div>
+  <div style="display:grid;grid-template-columns:58mm 1fr;gap:7mm">
+    <div style="height:250mm;overflow:hidden;border-radius:3mm;border:1px solid var(--line)"><img src="img/concept-full.jpg" style="width:100%;display:block"></div>
+    <div>
+      <h2 style="font-size:19pt">Their pages, exactly as they are. Plus a sales agent that never closes.</h2>
+      <p class="muted small">Screenshots of borjessonsbil.se taken on 6 Oct 2026, with CarWebshop added in Smilee's chat style and in Swedish. The full page is in <b>Smilee-x-Borjessons-Concept.pdf</b>.</p>
+      <div class="notes" style="margin-top:3mm">
+        <div><span class="mkk">1</span><div><b>Evidence:</b> the chat is staffed weekdays 09:00–17:00. Finding 01.</div></div>
+        <div><span class="mkk">2</span><div><b>Hours on the site:</b> chat 09–17, customer service 09–18, form reply within 24 h. Findings 02 and 04.</div></div>
+        <div><span class="mkk">3</span><div><b>The live widget</b> (“Beatrice”), with no one behind it after hours.</div></div>
+        <div><span class="mkk">4</span><div><b>40 of 168 hours</b> covered, shown as a week chart.</div></div>
+        <div><span class="mkk">5</span><div><b>Saturday 21:40:</b> CarBot answers in Swedish and checks stock at the Helsingborg site.</div></div>
+        <div><span class="mkk">6</span><div><b>Trade-in</b> valued in the chat. Finding 03.</div></div>
+        <div><span class="mkk">7</span><div><b>Test drive booked,</b> and the seller calls on Monday morning.</div></div>
+        <div><span class="mkk">8</span><div><b>Buying guide step 4</b> (“inbyte, finansiering och det praktiska”) as three self-service flows.</div></div>
+        <div><span class="mkk">9</span><div><b>Monday 08:30:</b> the weekend's leads in the pipeline, sorted by site. Finding 05.</div></div>
+        <div><span class="mkk">10</span><div><b>What changes:</b> no redesign, hosts kept, live in 48 hours, 10 free leads to start.</div></div>
+      </div>
+      <div class="box bg" style="margin-top:4mm"><h4>Why not “replace your chat”</h4><p class="small" style="margin:0">Börjessons clearly values personal contact. The pitch is <b>“keep your hosts, add the hours they can't cover”</b>, which is an easier yes than a switch.</p></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>5</span></div>
+</div>
+
+<!-- 6 SCENES -->
+<div class="page">
+  <div class="kick">04 · Scenes</div>
+  <h2 style="font-size:20pt">Saturday evening, and Monday morning</h2>
+  <figure style="margin-top:4mm;border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><div style="height:128mm;overflow:hidden"><img src="img/scene2.jpg" style="width:100%;display:block"></div><figcaption style="font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--ink);color:var(--teal)">Saturday 21:40: stock check, trade-in value and a test drive booked in Swedish</figcaption></figure>
+  <figure style="margin-top:5mm;border-radius:3mm;overflow:hidden;border:1px solid var(--line)"><div style="height:82mm;overflow:hidden"><img src="img/scene4.jpg" style="width:100%;display:block"></div><figcaption style="font:800 7.3pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;padding:2mm 3mm;background:var(--ink);color:var(--teal)">Monday 08:30: the weekend's buyers in the pipeline, routed to the right site</figcaption></figure>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>6</span></div>
+</div>
+
+<!-- 7 VALUE -->
+<div class="page">
+  <div class="kick">05 · Value for the dealer</div>
+  <h2>A simple model to fill in with Börjessons</h2>
+  <p class="lead" style="margin-bottom:4mm">We don't know Börjessons' traffic or conversion, so this is a worked example with stated assumptions, for Smilee's seller to complete with the dealer.</p>
+  <div class="grid2">
+    <div>
+      <table class="calc" style="width:100%;border-collapse:collapse">
+        <tr><th>Assumption (illustrative)</th><th class="rr">Example</th></tr>
+        <tr><td>Buyer enquiries per month, all channels</td><td class="rr">400</td></tr>
+        <tr><td>Share arriving outside chat hours</td><td class="rr">50%</td></tr>
+        <tr><td>Out-of-hours enquiries per month</td><td class="rr">200</td></tr>
+        <tr><td>Extra leads captured with 24/7 answers (+20%)</td><td class="rr">40</td></tr>
+        <tr><td>Lead-to-sale conversion</td><td class="rr">8%</td></tr>
+        <tr><td>Extra cars sold per month</td><td class="rr">≈ 3</td></tr>
+        <tr><td>Gross profit per used car</td><td class="rr">SEK 15,000</td></tr>
+        <tr class="tot"><td>Extra gross profit per month</td><td class="rr" style="white-space:nowrap">≈ SEK 45,000</td></tr>
+      </table>
+      <p class="small muted" style="margin-top:2mm">Every number above is an example to replace with Börjessons' own data. Smilee publishes “+45% more leads”; this model deliberately assumes less.</p>
+    </div>
+    <div>
+      <h3>What the dealer gets</h3>
+      <ul class="clean small">
+        <li><b>Answers 24/7, in Swedish,</b> without extra staff.</li>
+        <li><b>Trade-in, financing and test drives</b> handled before the seller calls.</li>
+        <li><b>Leads routed to the right site,</b> with the car and the slot attached.</li>
+        <li><b>Hosts kept</b> for the daytime personal touch.</li>
+        <li><b>Low-risk start:</b> Smilee's “10 free leads every month” offer.</li>
+      </ul>
+      <div class="box dark" style="margin-top:4mm"><p style="margin:0;font:700 9.8pt/1.45 'Plus Jakarta Sans'">The pitch in one line: <span style="color:var(--teal)">“Keep Hanna and Beatrice. Add the 128 hours they can't cover.”</span></p></div>
+    </div>
+  </div>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>7</span></div>
+</div>
+
+<!-- 8 OUTREACH -->
+<div class="page">
+  <div class="kick">06 · Outreach in Swedish, ready to send</div>
+  <h2 style="font-size:19pt">From Smilee's seller to Börjessons</h2>
+  <div class="grid2" style="margin-top:3mm">
+    <div>
+      <div class="msg"><div class="hd">1 · LinkedIn-förfrågan<span>Dag 1 · 173 tecken</span></div><div class="bd">Hej [Namn]! Er chatt är bemannad vardagar 9–17, men bilköpare surfar även kvällar och helger. Vi har gjort en idé för hur Börjessons kan svara dygnet runt. Får jag dela den?</div></div>
+      <div class="msg"><div class="hd">3 · Uppföljning<span>Dag 6 · samma tråd</span></div><div class="bd">Hej [Namn], en sak till: i er köpguide hänvisas inbyte och finansiering till en säljare. I vår idé görs båda direkt i chatten, även på lördagskvällen, och säljaren får leaden på måndag morgon. Bifogar en sida.
+
+[Säljare], Smilee</div></div>
+    </div>
+    <div>
+      <div class="msg"><div class="hd">2 · E-post<span>Dag 2 · Ämne: Börjessons chatt efter kl. 17</span></div><div class="bd">Hej [Namn],
+
+Er chatt med digitala hallvärdar är personlig och bra, men den är bemannad vardagar 9–17. Det är 40 av veckans 168 timmar. Kvällar och helger, när många letar bil, får köparen vänta, och formuläret lovar svar inom 24 timmar.
+
+<b>Smilee CarWebshop</b> tar över när hallvärdarna går hem: svarar på svenska, värderar inbytet, räknar på finansiering och bokar provkörning på rätt anläggning. Säljaren får en färdig lead på morgonen.
+
+Vi har gjort en kort idé på er egen sajt. Ni kan börja med 10 kostnadsfria leads.
+
+Har du 20 minuter nästa vecka?
+
+[Säljare]
+Smilee</div></div>
+    </div>
+  </div>
+  <div class="box bg" style="margin-top:3mm"><p class="small" style="margin:0"><b>Send rules:</b> Tue–Thu morning. Attach only the concept page or page 5. Stop the sequence at the first reply. A native Swedish speaker should check the copy before sending.</p></div>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>8</span></div>
+</div>
+
+<!-- 9 OFFER -->
+<div class="page">
+  <div class="kick">07 · Ten more like this</div>
+  <h2>Your first Swedish dealers, prepared one by one</h2>
+  <p class="lead">This pack took the homework off one dealer. I can do the same for the 10–20 dealers you want to win first, in Sweden or Finland.</p>
+  <div class="grid2" style="margin-bottom:5mm">
+    <div class="box"><h3>Per dealer you get</h3><ul class="clean small" style="margin:0"><li>Dealer brief and who to contact</li><li>Findings from their own website, with screenshots</li><li>CarWebshop concept on their real pages, in their language</li><li>A value model to fill in together</li><li>LinkedIn note, e-mail and follow-up</li></ul></div>
+    <div class="box"><h3>How it works</h3><ul class="clean small" style="margin:0"><li>You name the dealers, or I propose them</li><li>I build the packs: semi-automated research, checked by hand</li><li>Your sellers send them from their own accounts</li><li>I adjust from the replies</li></ul></div>
+  </div>
+  <table class="calc" style="width:100%;border-collapse:collapse;margin-bottom:5mm">
+    <tr><th>Option</th><th>What</th><th class="rr">Price</th></tr>
+    <tr><td><b>This sample</b></td><td>Börjessons Bil pack + concept</td><td class="rr">Free</td></tr>
+    <tr><td><b>Pilot</b></td><td>5 dealer packs in 2 weeks</td><td class="rr">€1,500</td></tr>
+    <tr><td><b>Batch</b></td><td>10 dealer packs, one market</td><td class="rr">€2,500</td></tr>
+    <tr><td><b>Add-on</b></td><td>30-s personal video per dealer, on their own site</td><td class="rr">quote</td></tr>
+  </table>
+  <div class="cta"><div><h3>Shall we take 20 minutes?</h3><p>I'd love to hear which dealers you want first, and show how this pack was made.</p></div><div class="c">Kira Krysanov<span>knock.fi · kira.krysanov@gmail.com</span></div></div>
+  <p class="src" style="position:absolute;left:17mm;right:17mm;bottom:15mm">Smilee product claims as published on smilee.ai (6 Oct 2026). Concept values and leads are illustrative. Not affiliated with Börjessons Bil.</p>
+  <div class="pf"><span><b>KNOCK</b> · for Smilee</span><span>9</span></div>
+</div>
+
+</body>
+</html>

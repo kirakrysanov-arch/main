@@ -1,0 +1,28 @@
+/* Smilee CarWebshop widget, styled after smilee.ai demos (navy bubbles, "Powered by Smilee") */
+.sw{background:#fff;border-radius:18px;box-shadow:0 26px 60px rgba(10,16,40,.35);overflow:hidden;font-family:'Lato',sans-serif;color:#111;width:360px}
+.sw .sh{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #eee}
+.sw .av{width:34px;height:34px;border-radius:50%;background:#FFC400;display:flex;align-items:center;justify-content:center;font-size:17px}
+.sw .nm{font:800 14px 'Plus Jakarta Sans'}
+.sw .st{font:600 11px 'Lato';color:#15a05a}
+.sw .st:before{content:"● "}
+.sw .dots{margin-left:auto;color:#999;font-weight:800}
+.sw .body{padding:14px 14px 6px;display:flex;flex-direction:column;gap:7px;background:#f7f5f0}
+.sw .b{max-width:82%;padding:9px 13px;border-radius:16px;font:600 13px/1.38 'Lato';background:#1B3A78;color:#fff}
+.sw .b.bot{align-self:flex-start;border-bottom-left-radius:5px}
+.sw .b.me{align-self:flex-end;border-bottom-right-radius:5px;background:#fff;color:#1B3A78;border:1.5px solid #1B3A78}
+.sw .qr{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.sw .qr span{border:1.5px solid #1B3A78;color:#1B3A78;background:#fff;border-radius:999px;padding:6px 11px;font:700 12px 'Lato'}
+.sw .card{align-self:flex-start;background:#fff;border-radius:14px;padding:12px 14px;width:86%;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.sw .card .t{font:800 12px 'Plus Jakarta Sans';color:#555;text-transform:uppercase;letter-spacing:.06em}
+.sw .card .v{font:800 22px 'Plus Jakarta Sans';color:#1B3A78;margin:4px 0}
+.sw .card .s{font:600 11.5px 'Lato';color:#777}
+.sw .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.sw .slots span{border:1.5px solid #ddd;border-radius:8px;padding:6px 0;text-align:center;font:700 11.5px 'Lato'}
+.sw .slots span.on{background:#FFC400;border-color:#FFC400}
+.sw .in{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid #eee}
+.sw .in div{flex:1;border:1px solid #e3e3e3;border-radius:999px;padding:8px 12px;font:600 12px 'Lato';color:#aaa}
+.sw .in i{width:30px;height:30px;border-radius:50%;background:#FFC400;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:800}
+.sw .pw{text-align:center;font:600 10px 'Lato';color:#999;padding:0 0 8px;background:#fff}
+.sw .pw b{color:#111}
+.time{display:inline-flex;align-items:center;gap:8px;background:#0c0d12;color:#fff;border-radius:999px;padding:8px 14px;font:800 13px 'Plus Jakarta Sans'}
+.time i{font-style:normal;color:#FFC400}
