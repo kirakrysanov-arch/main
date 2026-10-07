@@ -34,6 +34,7 @@ SAADOT = {
     "131717": {"scale": 0.9, "dx": -14, "dy": 40},   # Atria tryffelikassler
     "128394": {"scale": 0.88, "dx": -16, "dy": 30},  # Eesti Pagar porkkanakakku
     "103821": {"scale": 0.78, "dx": -12, "dy": 10},            # Sauvon maustekurkkukuutio
+    "145141": {"scale": 0.86, "dx": -22, "dy": 8, "rotate": -15},  # Miyata pankojauho, kallistus vastapäivään
 }
 
 # Asettelu kummallekin pohjalle (pt, sivun yläreunasta).
@@ -140,7 +141,7 @@ def overlay_html(layout, items, week):
         img = find("kuvat", it["code"])
         if img:
             a = SAADOT.get(it["code"], {})
-            tf = f'translate({a.get("dx", 0)}pt,{a.get("dy", 0)}pt) scale({a.get("scale", 1)})'
+            tf = f'translate({a.get("dx", 0)}pt,{a.get("dy", 0)}pt) scale({a.get("scale", 1)}) rotate({a.get("rotate", 0)}deg)'
             out.append(f'<div class="ph-img" style="left:{cx-100}pt;top:{y0}pt;height:{y1-y0}pt">'
                        f'<img src="{data_uri(img)}" style="transform:{tf}"></div>')
         else:
