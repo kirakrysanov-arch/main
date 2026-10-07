@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Serviceform Prospect Pack</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#16171d;--muted:#5d6273;--line:#e4e5ec;--bg:#f4f4f7;--g1:#e2b07d;--g2:#c07e40;--gp:#b06f32;--gl:#e9b98a;--mt:#d6000f;--mk:#ffc400;--ok:#0f7a52}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.52;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9a9fb2;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--gp);margin-bottom:2.6mm}
+  h2{font-size:22pt;line-height:1.1;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.4pt;line-height:1.5;color:var(--muted);margin-bottom:6mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.7mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:1.9mm;width:2mm;height:2mm;border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .src{font-size:7.2pt;color:#9a9fb2;line-height:1.4}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;position:relative;background:#fff}
+  .shot img{display:block;width:100%}
+  .cap{font-size:7.4pt;color:var(--muted);margin-top:1.6mm}
+
+  /* cover */
+  .cover{background:#26231f;color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(211,154,98,.45),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(211,154,98,.18),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font:700 9pt 'Plus Jakarta Sans';color:#a7a9b8}
+  .pfor{display:inline-block;margin-top:46mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:40pt;line-height:1.04;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--gl)}
+  .cover .sub{font-size:12.6pt;line-height:1.5;color:#c9cad6;max-width:150mm}
+  .cover .thumb{margin-top:12mm;border-radius:3mm;overflow:hidden;height:62mm;border:1px solid rgba(255,255,255,.15)}
+  .cover .thumb img{width:100%;display:block}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:18mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a7a9b8}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--gl);text-align:right}
+
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-bottom:6mm}
+  .facts div{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .facts b{display:block;font:800 16pt 'Plus Jakarta Sans';color:var(--mt);line-height:1.1}
+  .facts span{font-size:8pt;color:var(--muted);line-height:1.3;display:block;margin-top:1mm}
+  table.t{width:100%;border-collapse:collapse;font-size:8.8pt}
+  table.t th{text-align:left;font:800 7.4pt 'Plus Jakarta Sans';text-transform:uppercase;letter-spacing:.06em;color:#7c8094;padding:2mm 2.4mm;border-bottom:1.4px solid var(--ink)}
+  table.t td{padding:2.1mm 2.4mm;border-bottom:1px solid var(--line);vertical-align:top}
+  .pill{display:inline-block;font:800 7pt 'Plus Jakarta Sans';border-radius:100px;padding:.6mm 2.4mm;white-space:nowrap}
+  .no{background:#ffe7e3;color:#c0331b}.pa{background:#fff2d6;color:#956000}.ye{background:#dcf6ea;color:var(--ok)}.gw{background:#f6e9dc;color:#9a5d22}
+  .fd{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin-bottom:4.4mm}
+  .fd .n{width:8mm;height:8mm;border-radius:50%;background:var(--mk);color:#111;font:800 10pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .fd h4{margin-bottom:.6mm}
+  .fd p{font-size:9pt;color:#33384a;margin-bottom:0}
+  .score{display:grid;grid-template-columns:1fr auto;gap:1.6mm 4mm;font-size:9pt;align-items:center}
+  .score .bars{display:flex;gap:1mm}
+  .score .bars i{width:5mm;height:2.4mm;border-radius:1mm;background:#e3e4ea;display:block}
+  .score .bars i.on{background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .callout{background:#26231f;color:#fff;border-radius:4mm;padding:6mm 7mm}
+  .callout .big{font:800 15pt/1.25 'Plus Jakarta Sans';margin-bottom:2mm}
+  .callout .big em{font-style:normal;color:var(--gl)}
+  .callout p{color:#c9cad6;font-size:9.4pt;margin:0}
+  .msg{background:var(--bg);border-radius:4mm;padding:6mm 7mm;font-size:9.6pt;line-height:1.6}
+  .msg .h{font:800 8pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--gp);margin-bottom:2mm}
+  .calc{display:grid;grid-template-columns:1fr auto;gap:0;font-size:9.4pt}
+  .calc div{padding:2.4mm 0;border-bottom:1px solid var(--line)}
+  .calc .v{text-align:right;font:800 10pt 'Plus Jakarta Sans'}
+  .calc .tot{font:800 11pt 'Plus Jakarta Sans';border-bottom:none;padding-top:3.4mm}
+  .calc .tot.v{color:var(--gp);font-size:14pt}
+  .wk{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .wk>div{border:1px solid var(--line);border-radius:3.4mm;padding:4mm}
+  .wk b{font:800 7.6pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--gp)}
+  .wk h4{margin:1mm 0 1.6mm}
+  .wk ul{font-size:8.6pt}
+  .ill{display:inline-block;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;background:#ffc400;color:#111;border-radius:100px;padding:.6mm 2.4mm;vertical-align:middle;margin-left:2mm}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<div class="page cover">
+  <div class="top"><span>KNOCK · knock.fi</span><span>Sample · October 2026</span></div>
+  <div class="pfor">Prepared for Serviceform · Sales</div>
+  <h1>Your free analysis,<br><em>done before the first call.</em></h1>
+  <div class="sub">A ready-made "maksuton analyysi" for one prospect, Bo LKV. It covers what their site is missing, what Mira would add on their own pages, and a message you can send this week.</div>
+  <div class="thumb"><img src="img/cover-concept.jpg"></div>
+  <div class="bot">
+    <div><b>Serviceform Mira × Bo LKV</b><span>Prospect pack and concept page · 9 pages</span></div>
+    <div class="tagl">knock.fi</div>
+  </div>
+</div>
+
+<!-- 2 LETTER -->
+<div class="page">
+  <div class="kick">Summary</div>
+  <h2>You already sell with analyses.<br>This one is ready before they ask.</h2>
+  <p class="lead">Serviceform's main calls to action invite visitors to book a free analysis: "we go through your website, social and automation, and show where you're leaving money on the table." That works well for people who come to you. This pack does the same work in advance, for a company you would like to reach.</p>
+  <p>The sample prospect is <b>Bo LKV</b>, one of Finland's fastest-growing real estate agencies:</p>
+  <ul class="clean small">
+    <li>3,600+ properties sold in 2024</li>
+    <li>200+ professionals and 16 offices, including Lapland and Marbella</li>
+    <li>2,426 properties for sale on bo.fi</li>
+  </ul>
+  <p>Real estate is one of your five industry pages, and your RE/MAX story ("a chatbot on every property page, 2× leads") shows exactly what Mira can do here.</p>
+  <p>The finding is easy to check. Bo markets "English-speaking professionals", yet <b>the listing pages on bo.fi/en are in Finnish</b>: the description, the costs and the price breakdown. Bo even says that its Property Watch is "currently only available in Finnish". There is no chat. Every question goes to one agent's phone, email or form. Mira solves all three at once: it answers in the buyer's language around the clock and books the viewing straight into the agent's calendar.</p>
+  <div class="box bg" style="margin:5mm 0">
+    <h3>What's inside</h3>
+    <ul class="clean small">
+      <li><b>Bo today</b>: the facts, and why they're a good prospect now</li>
+      <li><b>The audit</b>: three findings, a scorecard and a map of buyer questions</li>
+      <li><b>Concept page</b>, as a separate long PDF: bo.fi exactly as it looks today, with Mira on a real listing</li>
+      <li><b>Value model</b> (illustrative) and a 30-day pilot</li>
+      <li><b>A message ready to send</b>, in Finnish</li>
+    </ul>
+  </div>
+  <p>I make packs like this at Knock. The process is semi-automated: I set the strategy and check every detail by hand. I've worked in this market before, so I know how these first conversations go. If this is useful, I'd like to show you in 20 minutes how it would work across a list of your target accounts.</p>
+  <p style="margin-top:5mm"><b>Kira</b><br><span class="muted">Knock · knock.fi</span></p>
+  <div class="pf"><b>KNOCK</b><span>Serviceform Mira × Bo LKV</span><span>2</span></div>
+</div>
+
+<!-- 3 BO TODAY -->
+<div class="page">
+  <div class="kick">The prospect</div>
+  <h2>Bo LKV today</h2>
+  <p class="lead">A growing Finnish real estate agency that positions itself as a design-led, premium brand, selling in Finland, Lapland and on the Costa del Sol.</p>
+  <div class="facts">
+    <div><b>3,600+</b><span>properties sold in 2024</span></div>
+    <div><b>2,426</b><span>properties for sale on bo.fi (7 Oct 2026)</span></div>
+    <div><b>16</b><span>offices, from Espoo to Ylläs and Marbella</span></div>
+    <div><b>+17.7%</b><span>revenue growth in 2025, to €25.4M</span></div>
+  </div>
+  <div class="shot" style="margin-bottom:2mm;height:58mm"><img src="img/bo-home-top.jpg"></div>
+  <p class="cap">bo.fi/en homepage, 7 Oct 2026: "We are Bo. Every year we make thousands of housing dreams come true."</p>
+  <table class="t" style="margin-top:4mm">
+    <tr><th>Why Bo, why now</th><th>What it means for Mira</th></tr>
+    <tr><td><b>Growing fast</b> (+17.7% revenue, about 205 employees in 2025)</td><td>More listings and more agents, but the same number of hours in a day</td></tr>
+    <tr><td><b>International by design</b>: English site, Lapland, Marbella, "English-speaking professionals"</td><td>Answers in 95+ languages, while listing data stays in Finnish</td></tr>
+    <tr><td><b>Premium service promise</b> ("95% recommend us")</td><td>Instant answers at 21:40 fit the brand, while the agent stays the face</td></tr>
+    <tr><td><b>Calendar booking already exists</b> ("Book a time from my calendar")</td><td>Mira books into the same calendars, so there's no new process</td></tr>
+    <tr><td><b>Competitor RE/MAX</b> already uses Serviceform</td><td>A proven case in their own industry</td></tr>
+  </table>
+  <div class="pf"><b>KNOCK</b><span>Sources: bo.fi/en (home, buying, realties, a listing), 7 Oct 2026; Asiakastieto (Bo LKV Oy, 2025)</span><span>3</span></div>
+</div>
+
+<!-- 4 AUDIT -->
+<div class="page">
+  <div class="kick">The audit</div>
+  <h2>Three findings, each checkable in a minute</h2>
+  <div class="fd"><div class="n">1</div><div><h4>English pages, Finnish content</h4><p>On bo.fi/en/realty/bk4324506 the description, "Huoneisto", "Asumiskustannukset" and "Hinta" are all in Finnish. An English-speaking buyer can see the price, but not the maintenance charge or what's included.</p></div></div>
+  <div class="grid2" style="margin:0 0 5mm 12mm"><div class="shot"><img src="img/bo-desc.jpg"></div><div class="shot"><img src="img/bo-costs.jpg"></div></div>
+  <div class="fd"><div class="n">2</div><div><h4>No chat, so every question goes to one agent</h4><p>Each listing offers the agent's phone, email, calendar and a contact form. With 2,426 listings and 200+ professionals, that's roughly a dozen listings per person, all answering the same questions (costs, renovations, availability) one at a time.</p></div></div>
+  <div class="fd"><div class="n">3</div><div><h4>"Currently only available in Finnish"</h4><p>Bo Property Watch, the email service that brings buyers back, says so on the English buying page. Non-Finnish buyers need an agent to set it up.</p></div></div>
+  <div class="grid2" style="margin-top:4mm">
+    <div class="shot"><img src="img/bo-watch.jpg"></div>
+    <div class="box">
+      <h3>Scorecard <span class="muted small">(our view, from 4 pages)</span></h3>
+      <div class="score">
+        <span>Listing quality and photos</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+        <span>Ways to contact an agent</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+        <span>Instant answers (24/7)</span><span class="bars"><i></i><i></i><i></i><i></i><i></i></span>
+        <span>English buyer experience</span><span class="bars"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>
+        <span>Seller lead capture</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+      </div>
+      <p class="src" style="margin-top:3mm">This is a qualitative view. Check the Finnish site (bo.fi) for a chat before sending, because we reviewed the English pages only.</p>
+    </div>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Serviceform Mira × Bo LKV</span><span>4</span></div>
+</div>
+
+<!-- 5 QUESTION MAP -->
+<div class="page">
+  <div class="kick">The finding</div>
+  <h2>The answers are already on the page.<br>They're just in Finnish, and they wait for office hours.</h2>
+  <p class="lead">What a buyer asks about one listing, and where the answer already sits on bo.fi. Mira learns this data, so it can answer any listing in any language without extra work from the agent.</p>
+  <table class="t">
+    <tr><th>Buyer asks (any language)</th><th>Where the answer is today</th><th>Example: Parantolankatu 7–9</th><th>Mira</th></tr>
+    <tr><td>What are the monthly costs?</td><td>"Asumiskustannukset" (Finnish)</td><td>€647.59/month + water €27/person</td><td><span class="pill ye">Answers</span></td></tr>
+    <tr><td>Is it vacant? When can I move in?</td><td>"Muita tietoja → Vapautuu"</td><td>Rented out, €850/month</td><td><span class="pill ye">Answers</span></td></tr>
+    <tr><td>What has been renovated?</td><td>"Tehdyt korjaukset" (Finnish)</td><td>Fibre 2024, locks and smoke alarms 2025…</td><td><span class="pill ye">Answers</span></td></tr>
+    <tr><td>Any big renovations coming?</td><td>"Ks. lisätietoa PTS:stä"</td><td>In the maintenance plan</td><td><span class="pill pa">Hands to agent</span></td></tr>
+    <tr><td>What's the debt-free price vs. the selling price?</td><td>"Hinta" (Finnish)</td><td>€93,000 / €89,899.22</td><td><span class="pill ye">Answers</span></td></tr>
+    <tr><td>Is there a sauna? Which floor?</td><td>"Huoneisto" (Finnish)</td><td>Own sauna, floor 1 of 4</td><td><span class="pill ye">Answers</span></td></tr>
+    <tr><td>Can I see it this weekend?</td><td>Agent's calendar link</td><td>Agent's free times</td><td><span class="pill ye">Books</span></td></tr>
+    <tr><td>Can you find me something similar?</td><td>Property Watch (Finnish only)</td><td>n/a</td><td><span class="pill ye">Collects criteria</span></td></tr>
+    <tr><td>What's my own home worth?</td><td>8-field valuation form</td><td>n/a</td><td><span class="pill ye">Books a valuation</span></td></tr>
+  </table>
+  <p class="src" style="margin-top:3mm">All listing data is from bo.fi/en/realty/bk4324506, 7 Oct 2026. "Mira" shows the intended behaviour, based on serviceform.fi's description (it learns from content, answers, books and hands over to a person). Confirm the setup with the Serviceform team.</p>
+  <div class="callout" style="margin-top:5mm">
+    <div class="big">The pitch in one line: <em>"Your listings already have the answers. Mira says them in every language, at 21:40, and books the viewing."</em></div>
+    <p>Agents still own every deal. Mira only removes the waiting.</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Serviceform Mira × Bo LKV</span><span>5</span></div>
+</div>
+
+<!-- 6 NOTES -->
+<div class="page">
+  <div class="kick">Concept page · notes</div>
+  <h2>What the concept page shows</h2>
+  <p class="lead">The concept page is a separate long PDF. It shows bo.fi exactly as it looks today, with the Mira layer added in tan dashed lines. Each yellow number on it matches a note below.</p>
+  <div class="grid2" style="grid-template-columns:62mm 1fr;gap:7mm">
+    <div><div class="shot" style="height:205mm"><img src="img/concept-thumb.jpg"></div><p class="cap">Concept page, top part (scaled down).</p></div>
+    <div>
+      <div class="fd"><div class="n">1</div><div><h4>English page, Finnish content</h4><p>The description, costs and price breakdown on bo.fi/en are in Finnish.</p></div></div>
+      <div class="fd"><div class="n">2</div><div><h4>One agent per question</h4><p>Phone, email, calendar and a form. Nothing answers instantly.</p></div></div>
+      <div class="fd"><div class="n">3</div><div><h4>Property Watch: Finnish only</h4><p>Bo's own wording on the English buying page.</p></div></div>
+      <div class="fd"><div class="n">4</div><div><h4>Mira answers from the listing</h4><p>Costs, rental status and renovations in English at 21:41, using only data already on the page. <span class="ill">Illustrative UI</span></p></div></div>
+      <div class="fd"><div class="n">5</div><div><h4>Books the viewing</h4><p>Into the agent's calendar, which Bo already offers on every listing.</p></div></div>
+      <div class="fd"><div class="n">6</div><div><h4>Hands over to the agent</h4><p>"Talk to Terhi" passes the whole conversation along, so the agent starts warm.</p></div></div>
+      <div class="fd"><div class="n">7</div><div><h4>Seller leads in conversation</h4><p>The 8-field valuation form becomes a one-minute chat that ends in a booked valuation.</p></div></div>
+      <div class="fd"><div class="n">8</div><div><h4>Every Bo market, one assistant</h4><p>Finnish, English, Swedish and Spanish for Helsinki, Lapland and the Costa del Sol, and 95+ languages in total.</p></div></div>
+      <div class="fd"><div class="n">9</div><div><h4>Weekly report and proof</h4><p>After-hours activity Bo can't see today, alongside the RE/MAX and Gedauto results. <span class="ill">Example numbers</span></p></div></div>
+    </div>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Serviceform Mira × Bo LKV</span><span>6</span></div>
+</div>
+
+<!-- 7 VALUE + PILOT -->
+<div class="page">
+  <div class="kick">Value model · illustrative</div>
+  <h2>A handful of extra sales a year covers it many times over</h2>
+  <p class="lead">These are deliberately cautious assumptions, and Bo can swap in its own numbers. The revenue per sale is a rough average: Bo's total 2025 revenue divided by the sales it reported for 2024.</p>
+  <div class="grid2">
+    <div class="box">
+      <h3>The maths <span class="ill">Assumptions</span></h3>
+      <div class="calc">
+        <div>Extra viewings booked by Mira, per office every 2 weeks</div><div class="v">1</div>
+        <div>Extra viewings per year (16 offices × 26)</div><div class="v">416</div>
+        <div>Share of viewings that lead to a sale</div><div class="v">1 in 25</div>
+        <div>Extra sales per year</div><div class="v">≈ 17</div>
+        <div>Average revenue per sale (€25.4M ÷ 3,600)</div><div class="v">≈ €7,000</div>
+        <div class="tot">Extra revenue per year</div><div class="tot v">≈ €116,000</div>
+      </div>
+      <p class="src" style="margin-top:3mm">Viewing volume and conversion are assumptions, not data. Seller leads from the valuation chat aren't counted here, though each new listing brings commission of its own.</p>
+    </div>
+    <div>
+      <div class="callout" style="margin-bottom:5mm">
+        <div class="big">The RE/MAX benchmark: <em>2× leads from the same traffic.</em></div>
+        <p>Our model assumes a small fraction of that. Bo also gets something that's hard to price: an English site that actually works in English.</p>
+      </div>
+      <h3>What Bo's management cares about</h3>
+      <ul class="clean small">
+        <li>No more questions waiting overnight, without longer hours for agents</li>
+        <li>International buyers served from day one</li>
+        <li>More valuations, which means more listings</li>
+        <li>EU data storage and GDPR by default (Google Cloud Finland)</li>
+      </ul>
+    </div>
+  </div>
+  <h3 style="margin-top:7mm">30-day pilot, built by the Serviceform team</h3>
+  <div class="wk">
+    <div><b>Week 1</b><h4>Set up</h4><ul class="clean small"><li>Mira learns the listings, prices and service pages</li><li>Connect agents' calendars</li><li>Agree handover rules</li></ul></div>
+    <div><b>Weeks 2–3</b><h4>Go live</h4><ul class="clean small"><li>Start with 2–3 offices, for example Helsinki, Levi and Marbella</li><li>Listing pages and the valuation chat</li><li>FI, EN, SV and ES</li></ul></div>
+    <div><b>Week 4</b><h4>Review</h4><ul class="clean small"><li>Conversations outside office hours</li><li>Viewings and valuations booked</li><li>Decide on a rollout to all 16 offices</li></ul></div>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Illustrative model. Not a forecast.</span><span>7</span></div>
+</div>
+
+<!-- 8 MESSAGE + ABOUT -->
+<div class="page">
+  <div class="kick">Ready to send</div>
+  <h2>The message to Bo</h2>
+  <p class="lead">Short and written from Bo's side. Attach the concept page. Written in Finnish because Bo's management works in Finnish.</p>
+  <div class="msg">
+    <div class="h">Email from Serviceform to Bo LKV · Finnish</div>
+    <b>Aihe: bo.fi/en vastaa suomeksi – ja vasta aamulla</b><br><br>
+    Hei [Nimi],<br><br>
+    Kävin läpi Bon englanninkielisiä sivuja. Kohteet ja kuvat ovat upeita, mutta kohdesivujen kuvaus, asumiskustannukset ja hintatiedot ovat suomeksi, ja Property Watch on omien sanojenne mukaan "currently only available in Finnish". Kaikki kysymykset menevät välittäjän puhelimeen, sähköpostiin tai lomakkeelle.<br><br>
+    Teimme valmiin esimerkin kohteesta Parantolankatu 7–9. Siinä tekoälyagenttimme Mira vastaa ostajalle englanniksi klo 21.41 kohteen omilla tiedoilla ja varaa näytön suoraan välittäjän kalenteriin. RE/MAXilla vastaava ratkaisu kaksinkertaisti liidit samasta liikenteestä.<br><br>
+    Katsotaanko 20 minuutissa? Ensi viikon tiistai tai torstai sopisi minulle.<br><br>
+    [Nimi], Serviceform
+  </div>
+  <h3 style="margin-top:7mm">About Mira <span class="muted small">(from serviceform.fi, 7 Oct 2026)</span></h3>
+  <div class="grid2">
+    <ul class="clean small">
+      <li>Learns the company's products, prices, policies and tone of voice, and answers from its own content</li>
+      <li>95+ languages across the website, WhatsApp, Instagram, Messenger and email</li>
+      <li>Qualifies leads and books meetings and viewings into real calendars (Ourly)</li>
+    </ul>
+    <ul class="clean small">
+      <li>Hands the conversation to a person, with full context, at the right moment</li>
+      <li>EU core infrastructure (Google Cloud Finland), with GDPR and a DPA by default</li>
+      <li>Serviceform's own team builds and maintains the setup, at a fixed price</li>
+    </ul>
+  </div>
+  <div class="box bg" style="margin-top:4mm">
+    <h4>To confirm before sending</h4>
+    <p class="small" style="margin:0">Does the Finnish site (bo.fi) have a chat? Who owns digital at Bo (the marketing lead or CEO Saara Murtovaara)? Can Mira read Bo's listing feed directly? Which calendar system do the agents use?</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Serviceform Mira × Bo LKV</span><span>8</span></div>
+</div>
+
+<!-- 9 CTA -->
+<div class="page cover" style="padding-top:28mm">
+  <div class="top"><span>KNOCK · knock.fi</span><span>Next step</span></div>
+  <h1 style="margin-top:34mm;font-size:34pt">One analysis is a sample.<br><em>Twenty is a pipeline.</em></h1>
+  <div class="sub">Pick 10–20 target companies across your five industries: online stores, real estate, car dealers, education and construction. For each one I'll research the company, find the gap, build the concept on their real site and write the message. Your team reviews it and sends it.</div>
+  <div class="grid2" style="margin-top:12mm;gap:5mm">
+    <div class="box" style="border-color:rgba(255,255,255,.18)"><h3 style="color:#fff">What you get per prospect</h3><ul class="clean small" style="color:#d4d0c8"><li>Research and an audit with sharp findings</li><li>A question map from their own pages</li><li>A concept page with Mira on their real site</li><li>A value model and a pilot outline</li><li>A message ready to send</li></ul></div>
+    <div class="box" style="border-color:rgba(255,255,255,.18)"><h3 style="color:#fff">Optional</h3><ul class="clean small" style="color:#d4d0c8"><li>A 60-second personalised video for your top prospects</li><li>An explainer video for Mira</li></ul></div>
+  </div>
+  <div class="bot">
+    <div><b>Let's talk for 20 minutes</b><span>Kira · Knock · knock.fi</span></div>
+    <div class="tagl">knock.fi</div>
+  </div>
+</div>
+
+</body>
+</html>

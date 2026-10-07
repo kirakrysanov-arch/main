@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bo × Serviceform Mira</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  :root{--ink:#1c1b19;--muted:#5f5d58;--line:#e6e3dc;--bg:#f5f4f0;--tan:#d39a62;--tan-d:#b97a3e;--mk:#ffc400;--bo:#f6e3e3}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1440px;background:#fff;font-family:'Lato',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+
+  .top{background:#26231f;color:#fff;padding:56px 60px 50px;position:relative;overflow:hidden}
+  .top:after{content:"";position:absolute;right:-140px;top:-180px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(211,154,98,.55),rgba(211,154,98,0) 65%)}
+  .top .k{font:800 13px 'Plus Jakarta Sans';letter-spacing:.18em;text-transform:uppercase;color:#e9b98a;position:relative;z-index:1}
+  .top h1{font-size:58px;line-height:1.04;font-weight:800;margin:14px 0 16px;position:relative;z-index:1}
+  .top h1 span{color:var(--tan)}
+  .top p{font-size:19px;line-height:1.5;color:#d4d0c8;max-width:940px;position:relative;z-index:1}
+  .legend{display:flex;gap:26px;margin-top:26px;font:700 14px 'Plus Jakarta Sans';color:#e4e0d8;position:relative;z-index:1}
+  .legend i{display:inline-block;vertical-align:middle;margin-right:8px}
+  .lg-m{width:24px;height:24px;border-radius:50%;background:var(--mk)}
+  .lg-r{width:26px;height:18px;border:3px solid #ff4d4d;border-radius:4px}
+  .lg-p{width:26px;height:18px;border:3px dashed var(--tan);border-radius:4px}
+
+  .sec{padding:56px 60px 10px}
+  .sh{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sh .n{font:800 15px 'Plus Jakarta Sans';color:#fff;background:var(--ink);border-radius:8px;padding:5px 11px}
+  .sh h2{font-size:34px;font-weight:800}
+  .sd{font-size:18px;line-height:1.5;color:var(--muted);max-width:1080px;margin-bottom:26px}
+  .mk{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--mk);color:#111;font:800 21px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.35),0 0 0 4px #fff;z-index:30}
+  .wrap{position:relative}
+  .shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(30,25,15,.10)}
+  .shot img{display:block;width:100%}
+  .bbar{display:flex;align-items:center;gap:8px;background:#efede8;padding:11px 16px;border-bottom:1px solid var(--line)}
+  .bbar i{width:12px;height:12px;border-radius:50%;background:#d3cfc6}
+  .bbar .u{margin-left:12px;background:#fff;border-radius:7px;padding:5px 14px;font:600 13px 'Plus Jakarta Sans';color:#7d796f;flex:1;max-width:520px}
+  .hl{position:absolute;border:3.5px solid #ff2d2d;border-radius:8px;box-shadow:0 0 0 6px rgba(255,45,45,.16);z-index:10}
+  .cap{font:500 14px 'Lato';color:var(--muted);margin-top:14px}
+
+  /* evidence */
+  .ev{display:grid;grid-template-columns:1.25fr .8fr 1fr;gap:26px;align-items:start}
+  .evc{position:relative}
+  .evc .shot{border:3.5px solid #ff2d2d}
+  .evc h3{font-size:19px;font-weight:800;margin:16px 0 6px}
+  .evc p{font-size:15px;line-height:1.5;color:var(--muted)}
+  .evc .mk{left:-14px;top:-14px}
+  .stack img+img{border-top:1px solid var(--line)}
+  .tagfi{position:absolute;right:12px;top:12px;background:#ff2d2d;color:#fff;font:800 12px 'Plus Jakarta Sans';border-radius:100px;padding:5px 11px;z-index:5}
+  .strip{margin-top:30px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .strip div{background:var(--bg);border-radius:12px;padding:16px 18px}
+  .strip b{display:block;font:800 26px 'Plus Jakarta Sans'}
+  .strip span{font:500 13.5px 'Lato';color:var(--muted)}
+  .strip .r b{color:#e0281c}
+
+  /* Mira widget (styled after serviceform.fi) */
+  .mw{position:absolute;width:390px;background:#fff;border-radius:18px;box-shadow:0 30px 70px rgba(30,20,10,.35);font-family:Arial,Helvetica,sans-serif;color:#222;z-index:20;border:3px dashed var(--tan);overflow:hidden}
+  .mw .hd{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #eee;background:#fff}
+  .mw .av{width:38px;height:38px;background:#111;clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);color:#fff;font:italic 700 13px Georgia,serif;display:flex;align-items:center;justify-content:center}
+  .mw .nm{font:700 15px Arial}
+  .mw .on{font:600 11.5px Arial;color:#2f9a5a}
+  .mw .x{margin-left:auto;width:28px;height:28px;border-radius:50%;background:#f1efea;display:flex;align-items:center;justify-content:center;font:700 13px Arial;color:#555}
+  .mw .bd{padding:14px 14px 8px;display:flex;flex-direction:column;gap:9px;background:#faf9f6}
+  .mw .t{align-self:center;font:600 11px Arial;color:#999}
+  .mw .b{max-width:84%;padding:10px 13px;border-radius:15px;font:400 13.6px/1.42 Arial}
+  .mw .bot{align-self:flex-start;background:#fff;border:1px solid #ece9e2;border-bottom-left-radius:5px}
+  .mw .me{align-self:flex-end;background:var(--tan);color:#fff;border-bottom-right-radius:5px}
+  .mw .b b{font-weight:700}
+  .mw .cal{align-self:flex-start;width:92%;background:#fff;border:1px solid #ece9e2;border-radius:14px;padding:11px 12px}
+  .mw .cal .h{display:flex;align-items:center;gap:8px;font:700 12.5px Arial;margin-bottom:8px}
+  .mw .cal .h i{width:24px;height:24px;border-radius:50%;background:#e9e5dc;font:700 10px Arial;font-style:normal;display:flex;align-items:center;justify-content:center}
+  .mw .cal .g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .mw .cal .g div{border:1px solid #e3dfd6;border-radius:8px;text-align:center;padding:6px 0;font:600 11.5px Arial}
+  .mw .cal .g div small{display:block;font:400 10px Arial;color:#888}
+  .mw .cal .g .on2{background:#26231f;color:#fff;border-color:#26231f}
+  .mw .cal .g .on2 small{color:#cfc9bd}
+  .mw .cal .ok{margin-top:8px;background:#26231f;color:#fff;border-radius:8px;text-align:center;padding:7px;font:700 12px Arial}
+  .mw .ch{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+  .mw .ch span{background:var(--tan);color:#fff;border-radius:8px;padding:6px 10px;font:600 11.5px Arial}
+  .mw .in{display:flex;align-items:center;gap:8px;padding:10px 12px;border-top:1px solid #eee}
+  .mw .in div{flex:1;font:400 12.5px Arial;color:#aaa}
+  .mw .in i{width:30px;height:30px;border-radius:50%;background:var(--tan);display:block}
+  .mw .pw{text-align:center;font:400 10px Arial;color:#aaa;padding:0 0 8px}
+  .launch{position:absolute;width:58px;height:58px;border-radius:50%;background:var(--tan);box-shadow:0 8px 20px rgba(0,0,0,.25);z-index:20;display:flex;align-items:center;justify-content:center}
+  .launch:after{content:"";width:22px;height:18px;border-radius:5px 5px 5px 1px;background:#fff}
+  .stamp{position:absolute;background:#26231f;color:#fff;border-radius:100px;padding:8px 14px;font:800 13px 'Plus Jakarta Sans';z-index:25}
+  .stamp i{font-style:normal;color:var(--tan)}
+
+  /* teaser */
+  .tz{position:absolute;width:340px;background:#fff;border-radius:18px;box-shadow:0 26px 60px rgba(30,20,10,.32);padding:30px 22px 20px;font-family:Arial;z-index:20;border:3px dashed var(--tan)}
+  .tz .av{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:48px;height:48px;background:#111;clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0 50%);color:#fff;font:italic 700 15px Georgia;display:flex;align-items:center;justify-content:center}
+  .tz .s{font:700 11px Arial;letter-spacing:.08em;color:#555;text-transform:uppercase}
+  .tz h4{font:400 24px Arial;margin:8px 0 6px}
+  .tz p{font:400 14px/1.45 Arial;color:#333;margin-bottom:14px}
+  .tz .bt{background:var(--tan);color:#fff;border-radius:8px;text-align:center;padding:10px;font:400 14px Arial;margin-top:8px}
+  .langs{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .langs span{background:var(--bg);border-radius:100px;padding:8px 16px;font:700 14px 'Plus Jakarta Sans'}
+  .langs span.on{background:var(--tan);color:#fff}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .rep{border-radius:16px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(30,25,15,.10);overflow:hidden;position:relative}
+  .rep .h{background:#26231f;color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;font:800 16px 'Plus Jakarta Sans'}
+  .rep .h span{margin-left:auto;font:700 12px 'Plus Jakarta Sans';background:#ffc400;color:#111;border-radius:100px;padding:4px 11px}
+  .kp{display:grid;grid-template-columns:repeat(2,1fr)}
+  .kp div{padding:20px 22px;border-bottom:1px solid #f0eee8;border-right:1px solid #f0eee8}
+  .kp b{display:block;font:800 30px 'Plus Jakarta Sans'}
+  .kp span{font:500 13.5px 'Lato';color:var(--muted)}
+  .proof{display:flex;flex-direction:column;gap:14px}
+  .proof div{background:var(--bg);border-radius:14px;padding:20px 22px}
+  .proof b{font:800 30px 'Plus Jakarta Sans';color:var(--tan-d)}
+  .proof p{font:500 15px/1.45 'Lato';color:#3b3934;margin-top:4px}
+  .proof small{font:500 12px 'Lato';color:#8a867c}
+
+  .foot{margin-top:56px;background:#26231f;color:#b9b4aa;padding:30px 60px;font:500 13.5px/1.6 'Lato';display:flex;justify-content:space-between;gap:40px}
+  .foot b{color:#fff;font:800 15px 'Plus Jakarta Sans'}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="k">Sample "maksuton analyysi" · prepared for Serviceform</div>
+  <h1>Bo LKV × <span>Mira</span></h1>
+  <p>Serviceform's free analysis, done before the first call. Bo's English-language site (bo.fi/en) is shown exactly as it looks today (screenshots taken 7 Oct 2026). Only the Mira layer is new.</p>
+  <div class="legend">
+    <div><i class="lg-m"></i>Numbered notes, explained in the pack</div>
+    <div><i class="lg-r"></i>What we found on the site today</div>
+    <div><i class="lg-p"></i>Mira layer (illustrative)</div>
+  </div>
+</div>
+
+<!-- 1 TODAY -->
+<div class="sec">
+  <div class="sh"><span class="n">1</span><h2>Today: 2,426 listings, no chat, and the English pages answer in Finnish</h2></div>
+  <p class="sd">Bo promotes "English-speaking professionals", homes in Lapland and an office in Marbella. On the English site, though, the listing details, the description and the costs are all in Finnish, and every question goes to a single agent's phone, email or form.</p>
+  <div class="ev">
+    <div class="evc">
+      <div class="mk">1</div>
+      <div class="shot stack" style="position:relative"><div class="tagfi">bo.fi/en, in Finnish</div><img src="img/bo-desc.jpg" style="width:62%;margin:0 auto"><img src="img/bo-costs.jpg"></div>
+      <h3>English page, Finnish content</h3>
+      <p>On bo.fi/en, listing <i>Parantolankatu 7–9</i> has its description, "Huoneisto", "Asumiskustannukset" and "Hinta" all in Finnish. An international buyer can't read the costs.</p>
+    </div>
+    <div class="evc">
+      <div class="mk">2</div>
+      <div class="shot"><img src="img/bo-agentbox.jpg"></div>
+      <h3>Every question goes to one person</h3>
+      <p>The options are a phone number, an email, the agent's calendar and a 4-field form. "What's the maintenance charge?" at 21:40 waits until the next morning.</p>
+    </div>
+    <div class="evc">
+      <div class="mk">3</div>
+      <div class="shot"><img src="img/bo-watch.jpg"></div>
+      <h3>"Currently only available in Finnish"</h3>
+      <p>Bo Property Watch, the service that brings buyers back, says so itself on the English buying page. Non-Finnish buyers need an agent to set it up for them.</p>
+    </div>
+  </div>
+  <div class="strip">
+    <div><b>2,426</b><span>properties for sale on bo.fi</span></div>
+    <div><b>3,600+</b><span>properties sold in 2024</span></div>
+    <div><b>200+</b><span>professionals</span></div>
+    <div><b>16</b><span>offices in Finland and Spain</span></div>
+    <div class="r"><b>0</b><span>chat on the pages we reviewed</span></div>
+  </div>
+</div>
+
+<!-- 2 MIRA ON LISTING -->
+<div class="sec">
+  <div class="sh"><span class="n">2</span><h2>With Mira: every listing answers 24/7, in the buyer's language, and books the viewing</h2></div>
+  <p class="sd">Mira learns from the listing data Bo already publishes, answers in English (or any of 95+ languages), offers times from the agent's calendar, and passes the buyer to the agent with a summary of the conversation.</p>
+  <div class="wrap" style="height:1570px">
+    <div class="shot" style="width:1000px">
+      <div class="bbar"><i></i><i></i><i></i><div class="u">bo.fi/en/realty/bk4324506</div></div>
+      <img src="img/bo-listing-top.jpg">
+    </div>
+    <div class="stamp" style="left:760px;top:600px">21:42 · <i>answered in 0 s</i></div>
+    <div class="mw" style="left:900px;top:300px;width:420px">
+      <div class="hd"><div class="av">Bo</div><div><div class="nm">Bo · Mira</div><div class="on">● Online now</div></div><div class="x">✕</div></div>
+      <div class="bd">
+        <div class="t">Today 21:41</div>
+        <div class="b bot">Hi! I can answer questions about <b>Parantolankatu 7–9</b> in any language. What would you like to know? 👋</div>
+        <div class="b me">Hi, what are the monthly costs? And is it vacant?</div>
+        <div class="b bot">Monthly charges total <b>€647.59</b> (maintenance €532.50 + financing €115.09), plus water at €27 per person. The flat is <b>currently rented out</b> at €850/month, so it also works as an investment.</div>
+        <div class="b me">Any big renovations coming?</div>
+        <div class="b bot">Recent work includes fibre to every flat (2024) and new locks and smoke alarms (2025). Planned renovations are in the maintenance plan (PTS). Shall I ask Terhi to send it to you?</div>
+        <div class="cal"><div class="h"><i>TW</i>Book a viewing with Terhi Westerberg</div>
+          <div class="g"><div>Thu<small>17:00</small></div><div class="on2">Sat<small>12:00</small></div><div>Sun<small>13:00</small></div></div>
+          <div class="ok">Confirm Sat 12:00</div></div>
+        <div class="ch"><span>Send me the PTS</span><span>Talk to Terhi</span></div>
+      </div>
+      <div class="in"><div>Ask Mira anything…</div><i></i></div>
+      <div class="pw">Powered by Serviceform</div>
+    </div>
+    <div class="launch" style="left:1240px;top:1180px"></div>
+    <div class="mk" style="left:880px;top:420px">4</div>
+    <div class="mk" style="left:880px;top:850px">5</div>
+    <div class="mk" style="left:1300px;top:960px">6</div>
+  </div>
+  <p class="cap">The answers above use only data from the listing page itself (costs, rental, completed renovations). The viewing times are illustrative. Bo already offers "Book a time from my calendar" on every listing, and Mira would use the same calendar. Mira's open chat view is drawn in the style of serviceform.fi, not copied from the product.</p>
+</div>
+
+<!-- 3 SELLERS + LANGUAGES -->
+<div class="sec">
+  <div class="sh"><span class="n">3</span><h2>Seller leads too: a free valuation booked in the conversation</h2></div>
+  <p class="sd">Bo's most important lead form, "Book a free valuation", appears on every page. It has 8 fields and a reason dropdown. Mira can ask the same questions in conversation and book a valuation slot right away, in Finnish, Swedish, English or Spanish.</p>
+  <div class="duo" style="grid-template-columns:1.25fr 1fr">
+    <div class="wrap">
+      <div class="shot"><div class="bbar"><i></i><i></i><i></i><div class="u">bo.fi/en</div></div><img src="img/bo-valuation.jpg"></div>
+      <div class="tz" style="right:24px;top:170px">
+        <div class="av">Bo</div>
+        <div class="s">● Free valuation</div>
+        <h4>Thinking of selling? 👋</h4>
+        <p>Tell me the area and type of home, and I'll book a free valuation with a local Bo agent. It takes about a minute.</p>
+        <div class="bt">Book a free valuation</div>
+        <div class="bt">What is my home worth?</div>
+      </div>
+      <div class="mk" style="left:-14px;top:-14px">7</div>
+    </div>
+    <div>
+      <h3 style="font-size:24px;margin:10px 0 10px">One assistant, every Bo market</h3>
+      <p style="font:400 16px/1.55 'Lato';color:var(--muted)">Bo sells in Helsinki, Lapland (Levi, Ylläs) and on the Costa del Sol. Mira answers in the language the visitor writes in, so the English site no longer needs a Finnish reader.</p>
+      <div class="langs"><span class="on">Suomi</span><span class="on">English</span><span class="on">Svenska</span><span class="on">Español</span><span>Deutsch</span><span>Eesti</span><span>Norsk</span><span>+ 88 more</span></div>
+      <div class="wrap" style="margin-top:26px"><div class="shot"><img src="img/bo-stats.jpg"></div><div class="mk" style="left:-14px;top:-14px">8</div></div>
+      <p class="cap">Bo's own figures, from its homepage.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 4 RESULTS -->
+<div class="sec">
+  <div class="sh"><span class="n">4</span><h2>What Bo would see each week, and why it's credible</h2></div>
+  <p class="sd">The report shows what happens outside office hours and in other languages, which Bo can't see today. The proof comes from Serviceform's published real-estate and dealer cases.</p>
+  <div class="duo">
+    <div class="wrap">
+      <div class="rep">
+        <div class="h">Mira · Bo weekly summary <span>Example numbers</span></div>
+        <div class="kp">
+          <div><b>412</b><span>listing conversations</span></div>
+          <div><b>58%</b><span>outside office hours</span></div>
+          <div><b>31</b><span>viewings booked in agents' calendars</span></div>
+          <div><b>14</b><span>valuation requests (seller leads)</span></div>
+          <div><b>6</b><span>languages used (fi, en, sv, es, de, et)</span></div>
+          <div><b>84%</b><span>questions answered without an agent</span></div>
+        </div>
+      </div>
+      <div class="mk" style="right:-14px;top:-14px">9</div>
+      <p class="cap">All numbers in this report are invented to show its layout. They are not a forecast.</p>
+    </div>
+    <div class="proof">
+      <div><b>2× leads</b><p>RE/MAX: "a chatbot on every property page, viewings booked around the clock", with twice the leads from the same traffic.</p><small>Serviceform customer story, serviceform.fi</small></div>
+      <div><b>70%</b><p>Gedauto: 70% of website leads come through the chatbot, with 924 more leads in six months.</p><small>Serviceform customer story, serviceform.fi</small></div>
+      <div><b>95+</b><p>Languages from one AI agent, with data stored in the EU (Google Cloud Finland).</p><small>serviceform.fi/products/mira-ai-chatbot</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <div><b>Knock · knock.fi</b><br>Sample concept prepared by Kira for Serviceform. Not affiliated with Serviceform or Bo LKV.</div>
+  <div style="max-width:800px">The bo.fi screenshots are unchanged (7 Oct 2026). Mira's chat, the valuation teaser, the viewing times and the weekly report are illustrative and drawn in the style of serviceform.fi. They are not the actual product UI. Listing facts come from bo.fi/en/realty/bk4324506.</div>
+</div>
+
+</body>
+</html>
