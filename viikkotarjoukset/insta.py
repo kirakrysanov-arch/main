@@ -17,7 +17,8 @@ W, H = 1080, 1350
 BADGE = 390  # hintapallon halkaisija (px)
 # Kuva-alue (kuva keskitetään sen alareunaan) ja tekstilohkon alareuna:
 # samat kaikissa kuvissa, jotta sarja on yhtenäinen.
-PHOTO_W, PHOTO_H, PHOTO_TOP = 700, 600, 300
+PHOTO_W, PHOTO_H, PHOTO_TOP = 900, 680, 240
+PHOTO_AREA = 400_000  # tavoitepinta-ala (px²), jotta tuotteet näyttävät yhtä suurilta
 TEXT_BOTTOM = 80
 
 
@@ -25,12 +26,14 @@ def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower().translate(str.maketrans("äöå", "aoa"))).strip("-")
 
 
-def photo_size(path, max_w, max_h):
+def photo_size(path, max_w, max_h, area):
+    """Skaalaa kuvan suunnilleen samaan pinta-alaan (näyttää yhtä isolta
+    muodosta riippumatta), kuitenkin enintään kuva-alueen kokoiseksi."""
     if not path:
         return max_w, max_h
     with Image.open(path) as im:
         w, h = im.size
-    k = min(max_w / w, max_h / h)
+    k = min((area / (w * h)) ** 0.5, max_w / w, max_h / h)
     return round(w * k), round(h * k)
 
 
@@ -39,7 +42,7 @@ def page_html(it):
     a = lambda n: data_uri(os.path.join(HERE, "pohjat", n))
     vat = (it["price"] * ALV).quantize(Decimal("0.01"), ROUND_HALF_UP)
     img = find("kuvat", it["code"])
-    pw, ph = photo_size(img, PHOTO_W, PHOTO_H)
+    pw, ph = photo_size(img, PHOTO_W, PHOTO_H, PHOTO_AREA)
     price_fs = 112 if len(money(it["price"])) <= 4 else 92
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fira+Sans+Condensed:wght@700&display=block" rel="stylesheet">
@@ -48,7 +51,7 @@ html,body{{margin:0}}
 body{{width:{W}px;height:{H}px;background:{BG};overflow:hidden;font-family:'DM Sans';position:relative}}
 body>div{{position:absolute}}
 .pw{{left:{(W - PHOTO_W)//2}px;top:{PHOTO_TOP}px;width:{PHOTO_W}px;height:{PHOTO_H}px;display:flex;align-items:flex-end;justify-content:center}}
-.pw img{{max-width:100%;max-height:100%;width:{pw}px;height:{ph}px}}
+.pw img{{width:{pw}px;height:{ph}px}}
 .badge{{left:{W - BADGE - 18}px;top:18px;width:{BADGE}px;height:{BADGE}px}}
 .badge img{{width:100%;height:100%;display:block}}
 .bt{{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
