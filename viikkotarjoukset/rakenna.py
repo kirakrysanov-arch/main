@@ -6,13 +6,14 @@ jäävät ennalleen, ja tuotealueet peitetään ja piirretään uudelleen.
     python3 viikkotarjoukset/rakenna.py
 
 Tuotekuvat: kuvat/<tuotenro>.png|jpg  (puuttuva kuva -> paikkamerkki)
-QR-koodit:  qr/<n>.png, missä n on taulukon Page 1 -tuotteen järjestysnumero
-            1-6 (puuttuva QR -> paikkamerkki)
+QR-koodit:  qr/<nimi>.png, jonka ensimmäinen sana vastaa käyttövinkin
+            ensimmäistä sanaa, esim. qr/Lohiwallenberg.png (puuttuva QR -> paikkamerkki)
 """
 import base64
 import datetime as dt
 import html
 import os
+import re
 import subprocess
 import sys
 from decimal import Decimal, ROUND_HALF_UP
@@ -85,6 +86,18 @@ def find(folder, stem):
     return None
 
 
+def find_qr(tip):
+    folder = os.path.join(HERE, "qr")
+    word = re.split(r"[\s,]+", tip.strip().lower())[0] if tip.strip() else ""
+    if not word or not os.path.isdir(folder):
+        return None
+    for name in sorted(os.listdir(folder)):
+        stem = re.split(r"[\s,._-]+", name.lower())[0]
+        if word.startswith(stem) or stem.startswith(word):
+            return os.path.join(folder, name)
+    return None
+
+
 def week_label(items):
     weeks = sorted({d.isocalendar()[1] for it in items for d in (it["from"], it["to"])
                     if isinstance(d, (dt.date, dt.datetime))})
@@ -109,7 +122,7 @@ def overlay_html(layout, items, week):
         row, cx = L["rows"][r], COLS[c]
         if "tip" in row:
             t = row["tip"]
-            qr = find("qr", i + 1)
+            qr = find_qr(it["tip"])
             qr_html = (f'<img src="{data_uri(qr)}">' if qr else '<span>QR</span>')
             out.append(f'<div class="kv" style="left:{cx-63}pt;top:{t+8}pt">Käyttövinkki</div>')
             out.append(f'<div class="qr{"" if qr else " ph"}" style="left:{cx+19}pt;top:{t}pt">{qr_html}</div>')
@@ -117,7 +130,7 @@ def overlay_html(layout, items, week):
         y0, y1 = row["img"]
         img = find("kuvat", it["code"])
         if img:
-            out.append(f'<div class="ph-img" style="left:{cx-112}pt;top:{y0}pt;height:{y1-y0}pt">'
+            out.append(f'<div class="ph-img" style="left:{cx-100}pt;top:{y0}pt;height:{y1-y0}pt">'
                        f'<img src="{data_uri(img)}"></div>')
         else:
             out.append(f'<div class="ph-img ph" style="left:{cx-80}pt;top:{y0+20}pt;width:160pt;height:{y1-y0-30}pt">'
@@ -144,11 +157,11 @@ body>div{{position:absolute}}
 .week{{right:47.5pt;top:41pt;font:29pt/1 'Just Another Hand';color:#364153;white-space:nowrap}}
 .kv{{font:16pt/1 'Just Another Hand';color:#4a5565;width:76pt;text-align:center}}
 .qr{{width:42pt;height:42pt;background:#fff}}
-.qr img{{width:100%;height:100%;display:block}}
+.qr img{{width:100%;height:100%;display:block;image-rendering:pixelated}}
 .tip{{width:220pt;text-align:center;font:22pt/0.95 'Just Another Hand';color:#8fb584;text-wrap:balance}}
 .ph{{border:1.2pt dashed #8fb584;border-radius:6pt;display:flex;align-items:center;justify-content:center;
      text-align:center;font:600 9pt/1.4 'DM Sans';color:#8fb584;letter-spacing:.05em;box-sizing:border-box}}
-.ph-img:not(.ph){{width:224pt;display:flex;align-items:center;justify-content:center}}
+.ph-img:not(.ph){{width:200pt;display:flex;align-items:center;justify-content:center}}
 .ph-img img{{max-width:100%;max-height:100%;object-fit:contain}}
 .badge{{width:101pt;height:101pt}}
 .badge img{{width:100%;height:100%;display:block}}
