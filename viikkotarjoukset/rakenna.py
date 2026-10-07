@@ -27,6 +27,15 @@ ALV = Decimal("1.135")
 BG = "#e8f5e3"
 COLS = [166, 397, 629]  # sarakkeiden keskikohdat (pt)
 
+# Kuvakohtaiset säädöt tuotenumeron mukaan: koko (scale) ja siirto (dx, dy, pt),
+# esim. jotta hintapallo ei peitä tuotetta.
+SAADOT = {
+    "137653": {"scale": 0.86, "dx": -18, "dy": 28},  # Hätälä lohimurekemassa
+    "131717": {"scale": 0.9, "dx": -14, "dy": 40},   # Atria tryffelikassler
+    "128394": {"scale": 0.88, "dx": -16, "dy": 30},  # Eesti Pagar porkkanakakku
+    "103821": {"scale": 0.78, "dx": -12, "dy": 10},            # Sauvon maustekurkkukuutio
+}
+
 # Asettelu kummallekin pohjalle (pt, sivun yläreunasta).
 LAYOUTS = {
     "perus": {  # pohja ilman käyttövinkkejä
@@ -130,8 +139,10 @@ def overlay_html(layout, items, week):
         y0, y1 = row["img"]
         img = find("kuvat", it["code"])
         if img:
+            a = SAADOT.get(it["code"], {})
+            tf = f'translate({a.get("dx", 0)}pt,{a.get("dy", 0)}pt) scale({a.get("scale", 1)})'
             out.append(f'<div class="ph-img" style="left:{cx-100}pt;top:{y0}pt;height:{y1-y0}pt">'
-                       f'<img src="{data_uri(img)}"></div>')
+                       f'<img src="{data_uri(img)}" style="transform:{tf}"></div>')
         else:
             out.append(f'<div class="ph-img ph" style="left:{cx-80}pt;top:{y0+20}pt;width:160pt;height:{y1-y0-30}pt">'
                        f'<span>TUOTEKUVA<br>{e(it["code"])}</span></div>')
