@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Groweo AI Reach Upsell Pack</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--ink:#16171d;--muted:#5d6273;--line:#e4e5ec;--bg:#f4f4f7;--g1:#7fa7f8;--g2:#8a43d6;--gp:#7b4fe0;--gl:#a98bff;--mt:#d6000f;--mk:#ffc400;--ok:#0f7a52}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.52;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.jk{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9a9fb2;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--gp);margin-bottom:2.6mm}
+  h2{font-size:22pt;line-height:1.1;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.4pt;line-height:1.5;color:var(--muted);margin-bottom:6mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.7mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:1.9mm;width:2mm;height:2mm;border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .src{font-size:7.2pt;color:#9a9fb2;line-height:1.4}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;position:relative;background:#fff}
+  .shot img{display:block;width:100%}
+  .cap{font-size:7.4pt;color:var(--muted);margin-top:1.6mm}
+
+  /* cover */
+  .cover{background:#1d1d22;color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(138,67,214,.45),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(127,167,248,.25),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;align-items:center;font:700 9pt 'Plus Jakarta Sans';color:#a7a9b8}
+  .pfor{display:inline-block;margin-top:46mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:40pt;line-height:1.04;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--gl)}
+  .cover .sub{font-size:12.6pt;line-height:1.5;color:#c9cad6;max-width:150mm}
+  .cover .thumb{margin-top:12mm;border-radius:3mm;overflow:hidden;height:62mm;border:1px solid rgba(255,255,255,.15)}
+  .cover .thumb img{width:100%;display:block}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:18mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a7a9b8}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--gl);text-align:right}
+
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-bottom:6mm}
+  .facts div{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .facts b{display:block;font:800 16pt 'Plus Jakarta Sans';color:var(--mt);line-height:1.1}
+  .facts span{font-size:8pt;color:var(--muted);line-height:1.3;display:block;margin-top:1mm}
+  table.t{width:100%;border-collapse:collapse;font-size:8.8pt}
+  table.t th{text-align:left;font:800 7.4pt 'Plus Jakarta Sans';text-transform:uppercase;letter-spacing:.06em;color:#7c8094;padding:2mm 2.4mm;border-bottom:1.4px solid var(--ink)}
+  table.t td{padding:2.1mm 2.4mm;border-bottom:1px solid var(--line);vertical-align:top}
+  .pill{display:inline-block;font:800 7pt 'Plus Jakarta Sans';border-radius:100px;padding:.6mm 2.4mm;white-space:nowrap}
+  .no{background:#ffe7e3;color:#c0331b}.pa{background:#fff2d6;color:#956000}.ye{background:#dcf6ea;color:var(--ok)}.gw{background:#efe9ff;color:#5a36c4}
+  .fd{display:grid;grid-template-columns:9mm 1fr;gap:3mm;margin-bottom:4.4mm}
+  .fd .n{width:8mm;height:8mm;border-radius:50%;background:var(--mk);color:#111;font:800 10pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .fd h4{margin-bottom:.6mm}
+  .fd p{font-size:9pt;color:#33384a;margin-bottom:0}
+  .score{display:grid;grid-template-columns:1fr auto;gap:1.6mm 4mm;font-size:9pt;align-items:center}
+  .score .bars{display:flex;gap:1mm}
+  .score .bars i{width:5mm;height:2.4mm;border-radius:1mm;background:#e3e4ea;display:block}
+  .score .bars i.on{background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .callout{background:#1d1d22;color:#fff;border-radius:4mm;padding:6mm 7mm}
+  .callout .big{font:800 15pt/1.25 'Plus Jakarta Sans';margin-bottom:2mm}
+  .callout .big em{font-style:normal;color:var(--gl)}
+  .callout p{color:#c9cad6;font-size:9.4pt;margin:0}
+  .msg{background:var(--bg);border-radius:4mm;padding:6mm 7mm;font-size:9.6pt;line-height:1.6}
+  .msg .h{font:800 8pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--gp);margin-bottom:2mm}
+  .calc{display:grid;grid-template-columns:1fr auto;gap:0;font-size:9.4pt}
+  .calc div{padding:2.4mm 0;border-bottom:1px solid var(--line)}
+  .calc .v{text-align:right;font:800 10pt 'Plus Jakarta Sans'}
+  .calc .tot{font:800 11pt 'Plus Jakarta Sans';border-bottom:none;padding-top:3.4mm}
+  .calc .tot.v{color:var(--gp);font-size:14pt}
+  .wk{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .wk>div{border:1px solid var(--line);border-radius:3.4mm;padding:4mm}
+  .wk b{font:800 7.6pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--gp)}
+  .wk h4{margin:1mm 0 1.6mm}
+  .wk ul{font-size:8.6pt}
+  .ill{display:inline-block;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;background:#ffc400;color:#111;border-radius:100px;padding:.6mm 2.4mm;vertical-align:middle;margin-left:2mm}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<div class="page cover">
+  <div class="top"><span>KNOCK · knock.fi</span><span>Sample · October 2026</span></div>
+  <div class="pfor">Prepared for Groweo · Sales</div>
+  <h1>Selling <em>AI Reach</em><br>to customers you already have.</h1>
+  <div class="sub">A ready-to-use upsell pack for one live Groweo customer, Muurametalot. It covers what their site is missing, what AI Reach would add, and the message your account manager can send this week.</div>
+  <div class="thumb"><img src="img/cover-concept.jpg"></div>
+  <div class="bot">
+    <div><b>Groweo AI Reach × Muurametalot</b><span>Upsell pack and concept page · 9 pages</span></div>
+    <div class="tagl">knock.fi</div>
+  </div>
+</div>
+
+<!-- 2 LETTER -->
+<div class="page">
+  <div class="kick">Summary</div>
+  <h2>AI Reach launches this month.<br>Your best leads are already customers.</h2>
+  <p class="lead">Groweo has more than 1,700 customers, and many of them run WordPress sites with Groweo tools already in place. Each of them is a natural AI Reach customer. What your team needs is a quick way to show each one, in concrete terms, what AI Reach would do for <i>their</i> site.</p>
+  <p>This pack shows how that looks for one account: <b>Muurametalot</b>, a modular house builder already running the Groweo quiz, chat and quote form, and already a case study on groweo.com.</p>
+  <p>The finding is simple. Since September 2026 every Muurametalot model is a "NopsaKoti", a name nobody searches for yet. Buyers search for things like <i>"paljonko maksaa muuttovalmis omakotitalo"</i>, and the site has no page that answers that directly. Its newest content is company news. Groweo already captures the lead once a buyer arrives. AI Reach is what brings more buyers in.</p>
+  <div class="box bg" style="margin:5mm 0">
+    <h3>What's inside</h3>
+    <ul class="clean small">
+      <li><b>Muurametalot today</b>: the facts, and the Groweo tools already on the site</li>
+      <li><b>Content audit</b>: what exists, what's missing, and a 12-question topic map</li>
+      <li><b>Concept page</b>, as a separate long PDF: the real site with the AI Reach layer, plus one guide drafted with their real prices</li>
+      <li><b>Value model</b> (illustrative) and a 90-day plan</li>
+      <li><b>The message</b> your account manager can send, in Finnish</li>
+    </ul>
+  </div>
+  <p>I make packs like this at Knock. I research each account, build the concept on the customer's real site and write the message. The process is semi-automated: I set the strategy and check everything by hand. I've worked in this market before, at Leadoo and Videobot, so I know how these conversations go.</p>
+  <p>If this is useful, I'd like to show you how it would work across a batch of your accounts in 20 minutes.</p>
+  <p style="margin-top:6mm"><b>Kira</b><br><span class="muted">Knock · knock.fi</span></p>
+  <div class="pf"><b>KNOCK</b><span>Groweo AI Reach × Muurametalot</span><span>2</span></div>
+</div>
+
+<!-- 3 TODAY -->
+<div class="page">
+  <div class="kick">The account</div>
+  <h2>Muurametalot today</h2>
+  <p class="lead">A Finnish builder of move-in-ready modular homes, made in its own factories in Tornio and Kangasniemi. The company is ProModules Oy and has been building since 2003.</p>
+  <div class="facts">
+    <div><b>423</b><span>house packages delivered (site counter)</span></div>
+    <div><b>11</b><span>NopsaKoti models, 64–135 m²</span></div>
+    <div><b>€178k–287k</b><span>move-in-ready prices, including ground-source heat</span></div>
+    <div><b>&lt; 2 mo</b><span>build time on site, as stated by Muurametalot</span></div>
+  </div>
+  <h3>Groweo is already doing its part</h3>
+  <div class="shot" style="margin-bottom:2mm"><img src="img/mt-quiz.jpg"></div>
+  <p class="cap">The "Testaa sinulle sopivin talo" quiz on muurametalot.fi/valmistalot, marked "Powered by groweo". Screenshot from 7 Oct 2026.</p>
+  <table class="t" style="margin-top:4mm">
+    <tr><th>Groweo tool on the site</th><th>Where</th><th>Role</th></tr>
+    <tr><td><span class="pill gw">House quiz</span></td><td>Home page and models page</td><td>Turns a visitor into a lead with model suggestions sent by email</td></tr>
+    <tr><td><span class="pill gw">Chat</span></td><td>Every page, bottom right</td><td>Answers questions on the spot</td></tr>
+    <tr><td><span class="pill gw">Quote form</span></td><td>/yhteys/tarjouspyynto</td><td>Sends a quote request to the area rep. The form links to Groweo's terms of use</td></tr>
+    <tr><td><span class="pill no">Search & AI content</span></td><td>None</td><td>Nothing brings new buyers <i>to</i> these tools. This is the gap AI Reach fills</td></tr>
+  </table>
+  <div class="callout" style="margin-top:6mm">
+    <div class="big">Why this account first: <em>live Groweo customer, case study on groweo.com, brand-new product name, high-value sale.</em></div>
+    <p>A single extra house sale is worth about €180,000–290,000 to them. AI Reach doesn't need to deliver much to be clearly worth it.</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Sources: muurametalot.fi (home, valmistalot, muuttovalmis-talopaketti, tarjouspyyntö), 7 Oct 2026</span><span>3</span></div>
+</div>
+
+<!-- 4 AUDIT -->
+<div class="page">
+  <div class="kick">Content audit</div>
+  <h2>Strong product pages. Very little that answers buyers' questions.</h2>
+  <p class="lead">We reviewed the home page, the models page, the move-in-ready page and the quote form. The site sells well to someone who has already decided. It does little for someone who is still searching.</p>
+  <div class="grid2" style="margin-bottom:5mm">
+    <div><div class="shot"><img src="img/mt-news.jpg"></div><p class="cap">Home page: the newest content is the NopsaKoti switch, a Ruka project and a customer-satisfaction post.</p></div>
+    <div><div class="shot" style="padding:3mm"><img src="img/mt-foot.jpg"></div><p class="cap">Footer: 2 latest articles, both company news, and 1 customer story.</p></div>
+  </div>
+  <div class="grid2">
+    <div>
+      <h3>What's there</h3>
+      <ul class="clean small">
+        <li>Clear model cards with prices and sizes (11 models)</li>
+        <li>A good explainer page: "Muuttovalmis talopaketti"</li>
+        <li>A few older guide-style posts: ASP loans, "Mitä muita kuluja…", interior design</li>
+        <li>An FAQ page linked in the top bar</li>
+        <li>The Groweo quiz, chat and quote form</li>
+      </ul>
+      <h3 style="margin-top:4mm">What's missing</h3>
+      <ul class="clean small">
+        <li>Pages built around the questions buyers type into Google or ChatGPT</li>
+        <li>An explanation of "NopsaKoti" in the words buyers use: modular, prefab, move-in-ready</li>
+        <li>A regular flow of content. The latest posts are news</li>
+        <li>Links from content to the quiz (the quiz is only on the home and models pages)</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Scorecard <span class="muted small">(our view, from 4 pages)</span></h3>
+      <div class="score">
+        <span>Product information</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+        <span>Lead capture (Groweo)</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+        <span>Price transparency</span><span class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+        <span>Answers to buyer questions</span><span class="bars"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span>
+        <span>Fresh content</span><span class="bars"><i class="on"></i><i></i><i></i><i></i><i></i></span>
+        <span>Ready for AI answers (GEO)</span><span class="bars"><i class="on"></i><i></i><i></i><i></i><i></i></span>
+      </div>
+      <p class="src" style="margin-top:4mm">This is a qualitative view, not a measured SEO score. The AI Reach analysis would replace it with real data.</p>
+    </div>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Groweo AI Reach × Muurametalot</span><span>4</span></div>
+</div>
+
+<!-- 5 TOPIC MAP -->
+<div class="page">
+  <div class="kick">The finding</div>
+  <h2>"NopsaKoti" is a new name.<br>Buyers search with their own words.</h2>
+  <p class="lead">Since September 2026 the whole range is sold as NopsaKodit. That's a good brand name, but nobody types it into a search box yet. This is the starting topic list we'd give AI Reach.</p>
+  <table class="t">
+    <tr><th>#</th><th>Buyer question (Finnish)</th><th>What it means</th><th>On the site today</th></tr>
+    <tr><td>1</td><td>Paljonko muuttovalmis omakotitalo maksaa 2026?</td><td>Total cost</td><td><span class="pill pa">Partly</span> prices on model cards</td></tr>
+    <tr><td>2</td><td>Mitä muita kuluja talopaketin päälle tulee?</td><td>Hidden costs</td><td><span class="pill ye">Covered</span> existing article</td></tr>
+    <tr><td>3</td><td>Moduulitalo vai elementtitalo – mitä eroa?</td><td>What NopsaKoti is</td><td><span class="pill no">Missing</span></td></tr>
+    <tr><td>4</td><td>Kauanko omakotitalon rakentaminen kestää?</td><td>Timeline</td><td><span class="pill pa">Partly</span> one section on a page</td></tr>
+    <tr><td>5</td><td>Talopaketti ASP-lainalla</td><td>First-home financing</td><td><span class="pill ye">Covered</span> existing article</td></tr>
+    <tr><td>6</td><td>Pieni omakotitalo alle 100 m²</td><td>Small homes</td><td><span class="pill no">Missing</span> (4 models fit)</td></tr>
+    <tr><td>7</td><td>Maalämpö uuteen omakotitaloon – hinta ja hyödyt</td><td>Heating</td><td><span class="pill pa">Partly</span> USP box only</td></tr>
+    <tr><td>8</td><td>Mitä sorapatja tarkoittaa? Tontin valmistelu</td><td>Plot preparation</td><td><span class="pill no">Missing</span></td></tr>
+    <tr><td>9</td><td>Ensiasunto omakotitalona alle 200 000 €?</td><td>First-time buyers</td><td><span class="pill no">Missing</span> (4 models under €200k)</td></tr>
+    <tr><td>10</td><td>Kosteudenhallinta: miksi tehdasrakentaminen?</td><td>Quality worries</td><td><span class="pill pa">Partly</span> USP box only</td></tr>
+    <tr><td>11</td><td>Tuuletettu alapohja vai maanvarainen laatta?</td><td>Technical choice</td><td><span class="pill pa">Partly</span> USP box only</td></tr>
+    <tr><td>12</td><td>Muuttovalmis talo [maakunta]: toimitus ja edustaja</td><td>Local searches</td><td><span class="pill no">Missing</span> (form lists areas)</td></tr>
+  </table>
+  <p class="src" style="margin-top:3mm">Coverage is judged from the four pages reviewed on 7 Oct 2026, plus the article titles they link to. No search volumes are shown because we haven't measured them. AI Reach's keyword research would rank these topics.</p>
+  <div class="callout" style="margin-top:5mm">
+    <div class="big">Start with #1, #3, #4 and #6. <em>They're the questions closest to a quote request.</em></div>
+    <p>Each guide ends in the Groweo quiz ("Testaa sopivin talo") and the quote form, so every reader can become a lead.</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Groweo AI Reach × Muurametalot</span><span>5</span></div>
+</div>
+
+<!-- 6 CONCEPT NOTES -->
+<div class="page">
+  <div class="kick">Concept page · notes</div>
+  <h2>What the concept page shows</h2>
+  <p class="lead">The concept page is a separate long PDF. It shows muurametalot.fi exactly as it is today, with the AI Reach layer added in purple dashed lines. Each yellow number on it matches a note below.</p>
+  <div class="grid2" style="grid-template-columns:62mm 1fr;gap:7mm">
+    <div><div class="shot" style="height:205mm"><img src="img/concept-thumb.jpg"></div><p class="cap">Concept page, top part (scaled down). Open the PDF for full size.</p></div>
+    <div>
+      <div class="fd"><div class="n">1</div><div><h4>Groweo is already live</h4><p>The quiz, chat and quote form all run on Groweo, so lead capture is already in place.</p></div></div>
+      <div class="fd"><div class="n">2</div><div><h4>The newest content is company news</h4><p>Good for people who know the brand, but not what a first-time buyer searches for.</p></div></div>
+      <div class="fd"><div class="n">3</div><div><h4>Thin content flow</h4><p>2 latest articles and 1 customer story. "NopsaKoti" is not yet a search term.</p></div></div>
+      <div class="fd"><div class="n">4</div><div><h4>AI Reach finds the gaps</h4><p>Topics buyers search for, compared with what the site covers. <span class="ill">Illustrative UI</span></p></div></div>
+      <div class="fd"><div class="n">5</div><div><h4>New "Oppaat" section</h4><p>Four guides in Muurametalot's own style and photos, published only after approval.</p></div></div>
+      <div class="fd"><div class="n">6</div><div><h4>Every guide leads to the Groweo quiz</h4><p>Content brings the visitor in and Groweo turns them into a lead, all on one licence.</p></div></div>
+      <div class="fd"><div class="n">7</div><div><h4>A real draft</h4><p>"Mitä muuttovalmis omakotitalo maksaa 2026?" uses only facts from their site (prices, inclusions), with an AI disclosure line.</p></div></div>
+      <div class="fd"><div class="n">8</div><div><h4>Found in AI answers</h4><p>Clear pages with real numbers are the kind AI tools quote. This can't be guaranteed, but it becomes much more likely.</p></div></div>
+      <div class="fd"><div class="n">9</div><div><h4>Measured in Groweo Performance</h4><p>Which guides lead to quiz starts and quote requests, so AI Reach writes more of what works. <span class="ill">Example numbers</span></p></div></div>
+    </div>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Groweo AI Reach × Muurametalot</span><span>6</span></div>
+</div>
+
+<!-- 7 VALUE + PLAN -->
+<div class="page">
+  <div class="kick">Value model · illustrative</div>
+  <h2>One extra house a year pays for it many times over</h2>
+  <p class="lead">These are deliberately cautious assumptions. Muurametalot knows its own conversion rates and can replace ours in a minute.</p>
+  <div class="grid2">
+    <div class="box">
+      <h3>The maths <span class="ill">Assumptions</span></h3>
+      <div class="calc">
+        <div>Extra quote requests from guides, per month</div><div class="v">3</div>
+        <div>Share of quote requests that become a signed house</div><div class="v">1 in 20</div>
+        <div>Extra houses per year (3 × 12 ÷ 20)</div><div class="v">1.8</div>
+        <div>Average move-in-ready price (mid-range)</div><div class="v">€215,000</div>
+        <div class="tot">Extra sales per year</div><div class="tot v">≈ €387,000</div>
+      </div>
+      <p class="src" style="margin-top:3mm">The price range of €177,975–287,175 is from muurametalot.fi. Quote volume and conversion rate are assumptions, not data. AI Reach costs: a €149 setup fee plus the licence plan (see Groweo's pricing).</p>
+    </div>
+    <div>
+      <div class="callout" style="margin-bottom:5mm">
+        <div class="big">Break-even is <em>far below one house.</em></div>
+        <p>Even if the real numbers are a tenth of ours, the guides keep working and the content builds up over time.</p>
+      </div>
+      <h3>What the account manager can show</h3>
+      <ul class="clean small">
+        <li>Their own prices, already in a ready-made guide</li>
+        <li>The Groweo quiz they already pay for, now getting more traffic</li>
+        <li>Performance reports that tie each guide to quote requests</li>
+        <li>No extra work for their team, only a review before publishing</li>
+      </ul>
+    </div>
+  </div>
+  <h3 style="margin-top:7mm">First 90 days with AI Reach</h3>
+  <div class="wk">
+    <div><b>Weeks 1–2</b><h4>Set up and analyse</h4><ul class="clean small"><li>Check that the site runs on WordPress</li><li>Run the AI Reach topic and SEO audit</li><li>Agree on tone and the review process</li></ul></div>
+    <div><b>Weeks 3–6</b><h4>First four guides</h4><ul class="clean small"><li>Topics #1, #3, #4 and #6</li><li>Link each guide to the quiz and quote form</li><li>Add an "Oppaat" block to the home page</li></ul></div>
+    <div><b>Weeks 7–12</b><h4>Measure and repeat</h4><ul class="clean small"><li>Performance: readers → quiz → quote requests</li><li>Write more of what works</li><li>Start the regional pages (#12)</li></ul></div>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Illustrative model. Not a forecast.</span><span>7</span></div>
+</div>
+
+<!-- 8 MESSAGE + ABOUT -->
+<div class="page">
+  <div class="kick">Ready to send</div>
+  <h2>The account manager's message</h2>
+  <p class="lead">Short and written from the customer's side. Attach the concept page. Written in Finnish because both Groweo and Muurametalot work in Finnish.</p>
+  <div class="msg">
+    <div class="h">Email from the Groweo account manager to Muurametalot · Finnish</div>
+    <b>Aihe: Oppaat, jotka tuovat lisää tarjouspyyntöjä</b><br><br>
+    Hei [Nimi],<br><br>
+    Talomallitesti ja chat toimivat teillä jo hienosti. Katsoin, mitä talon rakentajat kysyvät Googlelta ja AI-työkaluilta ennen tarjouspyyntöä: esimerkiksi <i>"paljonko maksaa muuttovalmis omakotitalo"</i> ja <i>"moduulitalo vai elementtitalo"</i>. Sivuillanne ei vielä ole näihin suoraa vastausta, ja NopsaKoti on uusi nimi, jota kukaan ei vielä hae.<br><br>
+    Uusi Groweo AI Reach tekee juuri tämän: se löytää aiheet, kirjoittaa oppaat teidän tyylillänne ja ohjaa lukijat suoraan talomallitestiin. Tein liitteeseen valmiin esimerkin, jossa on yksi opas teidän omilla hinnoillanne.<br><br>
+    Katsotaanko yhdessä 20 minuutissa? Ensi viikon tiistai tai torstai sopisi minulle.<br><br>
+    [Nimi], Groweo
+  </div>
+  <h3 style="margin-top:7mm">About Groweo AI Reach <span class="muted small">(from groweo.com, 7 Oct 2026)</span></h3>
+  <div class="grid2">
+    <ul class="clean small">
+      <li>SEO and GEO content technology for <b>WordPress</b> sites, available from <b>October 2026</b></li>
+      <li>Finds topics from the site's existing content, competitors and customer questions, using keyword research and content-gap analysis</li>
+      <li>Creates content in the brand's voice, either as drafts to review or published automatically with AI disclosures</li>
+    </ul>
+    <ul class="clean small">
+      <li>Tracks results in <b>Groweo Performance</b> and uses them to plan what comes next</li>
+      <li>Audits technical SEO. The customer or partner makes the changes</li>
+      <li>Available on all Groweo licence plans: <b>€149 setup</b> (excl. VAT), with the number of articles set by the plan</li>
+    </ul>
+  </div>
+  <div class="box bg" style="margin-top:4mm">
+    <h4>To confirm before sending</h4>
+    <p class="small" style="margin:0">Is muurametalot.fi on WordPress? Is Finnish supported at launch? How many articles a month does their plan include? Can guides link to the quiz automatically? Who at Muurametalot owns marketing?</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Groweo AI Reach × Muurametalot</span><span>8</span></div>
+</div>
+
+<!-- 9 CTA -->
+<div class="page cover" style="padding-top:28mm">
+  <div class="top"><span>KNOCK · knock.fi</span><span>Next step</span></div>
+  <h1 style="margin-top:34mm;font-size:34pt">One pack is a sample.<br><em>Twenty is a launch campaign.</em></h1>
+  <div class="sub">Pick 10–20 Groweo customers with WordPress sites. For each one I'll research the account, find the content gap, build the concept on their real site and write the account manager's message. Your team just reviews and sends.</div>
+  <div class="grid2" style="margin-top:12mm;gap:5mm">
+    <div class="box" style="border-color:rgba(255,255,255,.18)"><h3 style="color:#fff">What you get per account</h3><ul class="clean small" style="color:#c9cad6"><li>Research and a content audit</li><li>A topic map for AI Reach</li><li>A concept page on the customer's real site</li><li>One drafted guide using their real facts</li><li>A message ready to send</li></ul></div>
+    <div class="box" style="border-color:rgba(255,255,255,.18)"><h3 style="color:#fff">Optional</h3><ul class="clean small" style="color:#c9cad6"><li>A 60-second AI Reach explainer video to use in place of, or alongside, the 30-minute walkthrough</li><li>A personalised video version for your top accounts</li></ul></div>
+  </div>
+  <div class="bot">
+    <div><b>Let's talk for 20 minutes</b><span>Kira · Knock · knock.fi</span></div>
+    <div class="tagl">knock.fi</div>
+  </div>
+</div>
+
+</body>
+</html>

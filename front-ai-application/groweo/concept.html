@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Muurametalot × Groweo AI Reach</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  :root{--ink:#16171d;--muted:#5d6273;--line:#e4e5ec;--bg:#f4f4f7;--g1:#7fa7f8;--g2:#8a43d6;--gp:#7b4fe0;--mt:#d6000f;--mk:#ffc400;--ok:#0f8a5f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1440px;background:#fff;font-family:'Lato',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  .jk,h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+
+  /* frame */
+  .top{background:#1d1d22;color:#fff;padding:56px 60px 50px;position:relative;overflow:hidden}
+  .top:after{content:"";position:absolute;right:-120px;top:-160px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(138,67,214,.55),rgba(127,167,248,.0) 65%)}
+  .top .k{font:800 13px 'Plus Jakarta Sans';letter-spacing:.18em;text-transform:uppercase;color:#b9a8ff}
+  .top h1{font-size:58px;line-height:1.04;font-weight:800;margin:14px 0 16px;position:relative;z-index:1}
+  .top h1 span{color:#a98bff}
+  .top p{font-size:19px;line-height:1.5;color:#c9cad6;max-width:900px;position:relative;z-index:1}
+  .legend{display:flex;gap:26px;margin-top:26px;font:700 14px 'Plus Jakarta Sans';color:#d9dae4;position:relative;z-index:1}
+  .legend i{display:inline-block;vertical-align:middle;margin-right:8px}
+  .lg-m{width:24px;height:24px;border-radius:50%;background:var(--mk)}
+  .lg-r{width:26px;height:18px;border:3px solid #ff4d4d;border-radius:4px}
+  .lg-p{width:26px;height:18px;border:3px dashed #a98bff;border-radius:4px}
+
+  .sec{padding:56px 60px 10px}
+  .sh{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+  .sh .n{font:800 15px 'Plus Jakarta Sans';color:#fff;background:var(--ink);border-radius:8px;padding:5px 11px}
+  .sh h2{font-size:34px;font-weight:800}
+  .sd{font-size:18px;line-height:1.5;color:var(--muted);max-width:1050px;margin-bottom:26px}
+
+  .mk{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--mk);color:#111;font:800 21px 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.35),0 0 0 4px #fff;z-index:20}
+  .hl{position:absolute;border:3.5px solid #ff2d2d;border-radius:8px;box-shadow:0 0 0 6px rgba(255,45,45,.16);z-index:10}
+  .wrap{position:relative}
+  .shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(20,20,40,.10)}
+  .shot img{display:block;width:100%}
+  .bbar{display:flex;align-items:center;gap:8px;background:#eef0f4;padding:11px 16px;border-bottom:1px solid var(--line)}
+  .bbar i{width:12px;height:12px;border-radius:50%;background:#d0d3dc}
+  .bbar .u{margin-left:12px;background:#fff;border-radius:7px;padding:5px 14px;font:600 13px 'Plus Jakarta Sans';color:#7c8094;flex:1;max-width:520px}
+
+  /* section 1 evidence */
+  .ev{display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px}
+  .evc{position:relative}
+  .evc .shot{height:250px;display:flex;align-items:center;justify-content:center;background:#fff}
+  .evc .shot img{width:100%}
+  .evc h3{font-size:19px;font-weight:800;margin:16px 0 6px}
+  .evc p{font-size:15px;line-height:1.5;color:var(--muted)}
+  .evc .mk{left:-14px;top:-14px}
+  .qs{margin-top:30px;background:var(--bg);border-radius:14px;padding:22px 26px;display:flex;gap:22px;align-items:center}
+  .qs b{font:800 15px 'Plus Jakarta Sans';white-space:nowrap}
+  .qs .c{display:flex;flex-wrap:wrap;gap:9px}
+  .qs .c span{background:#fff;border:1px solid var(--line);border-radius:100px;padding:7px 14px;font:600 14px 'Lato';color:#30323d}
+  .qs .c span:before{content:"⌕ ";color:#9a9db0}
+
+  /* AI Reach panel */
+  .ar{position:absolute;background:#fff;border-radius:16px;box-shadow:0 30px 70px rgba(20,10,60,.38);width:430px;font-family:'Plus Jakarta Sans';overflow:hidden;z-index:15;border:3px dashed #a98bff}
+  .ar .ah{background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
+  .ar .ah .lo{font:800 17px 'Plus Jakarta Sans';letter-spacing:-.03em}
+  .ar .ah .lo sup{font-size:9px}
+  .ar .ah .t{margin-left:auto;font:700 11px 'Plus Jakarta Sans';background:rgba(255,255,255,.22);border-radius:100px;padding:4px 10px}
+  .ar .ab{padding:14px 18px 16px}
+  .ar .st{font:800 15px 'Plus Jakarta Sans';margin-bottom:3px}
+  .ar .ss{font:500 12px 'Lato';color:#777a8a;margin-bottom:10px}
+  .ar .row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eef0f4;font:600 13.5px 'Lato';color:#262833}
+  .ar .row span{margin-left:auto;font:800 10.5px 'Plus Jakarta Sans';border-radius:100px;padding:3px 9px;white-space:nowrap}
+  .no{background:#ffe7e3;color:#c0331b}.pa{background:#fff2d6;color:#956000}.ye{background:#dcf6ea;color:#0f7a52}
+  .ar .btn{margin-top:12px;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;border-radius:100px;text-align:center;padding:10px;font:800 13px 'Plus Jakarta Sans'}
+  .ar .fn{font:600 10.5px 'Lato';color:#9a9db0;text-align:center;margin-top:8px}
+
+  /* inserted guides section (in site style) */
+  .gd{position:relative;background:#fff;padding:46px 90px 50px;border:4px dashed #a98bff;border-left:none;border-right:none}
+  .gd .tag{position:absolute;top:-17px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;font:800 13px 'Plus Jakarta Sans';border-radius:100px;padding:6px 16px;white-space:nowrap}
+  .gd h3{font:900 30px 'Lato';color:var(--mt);text-align:center;letter-spacing:.01em;text-transform:uppercase}
+  .gd .gs{text-align:center;font:400 15px 'Lato';color:#444;margin:8px 0 26px}
+  .gc{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .gc>div{border:1px solid #e6e6e6;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  .gc .im{height:150px;background-size:cover;background-position:center}
+  .gc .tx{padding:14px 16px 16px}
+  .gc .ty{font:700 11px 'Lato';color:#888;text-transform:uppercase;letter-spacing:.08em}
+  .gc h4{font:900 15.5px/1.3 'Lato';color:var(--mt);text-transform:uppercase;margin:6px 0 7px}
+  .gc p{font:400 13px/1.45 'Lato';color:#444}
+  .gc .rm{display:inline-block;margin-top:10px;background:#e8e8e8;color:#555;font:400 12px 'Lato';padding:4px 12px}
+
+  /* article page */
+  .art{background:#fff}
+  .ban{background:var(--mt);color:#fff;text-align:center;padding:40px 200px 38px}
+  .ban .kk{font:900 13px 'Lato';letter-spacing:.2em;opacity:.85}
+  .ban h3{font:900 36px/1.15 'Lato';text-transform:uppercase;margin:8px 0 10px}
+  .ban .me{font:400 14px 'Lato';opacity:.9}
+  .ab2{display:grid;grid-template-columns:1fr 330px;gap:46px;padding:40px 110px 46px}
+  .ab2 .ld{font:700 17px/1.6 'Lato';color:#222;border-left:5px solid var(--mt);padding:4px 0 4px 18px;margin-bottom:24px}
+  .ab2 h4{font:900 19px 'Lato';color:var(--mt);text-transform:uppercase;margin:22px 0 10px}
+  .ab2 p,.ab2 li{font:400 15px/1.6 'Lato';color:#333}
+  .ab2 ul{padding-left:20px}
+  .ab2 a{color:var(--mt);font-weight:700;text-decoration:none}
+  table.pr{width:100%;border-collapse:collapse;font:400 14.5px 'Lato'}
+  table.pr th{background:#f3f3f3;text-align:left;padding:9px 12px;font-weight:900;font-size:13px;color:#444;text-transform:uppercase;letter-spacing:.04em}
+  table.pr td{padding:9px 12px;border-bottom:1px solid #eee}
+  table.pr td.r,table.pr th.r{text-align:right}
+  .side .cta{background:var(--mt);color:#fff;padding:24px;text-align:center}
+  .side .cta h5{font:900 20px/1.25 'Lato';text-transform:uppercase;margin-bottom:8px}
+  .side .cta p{color:#fff;font-size:14px;margin-bottom:14px}
+  .side .cta .b1{background:#fff;color:var(--mt);font:900 14px 'Lato';padding:10px;margin-bottom:8px}
+  .side .cta .b2{border:2px solid #fff;font:900 14px 'Lato';padding:8px}
+  .side .pw{font:600 10.5px 'Lato';text-align:right;opacity:.8;margin-top:8px}
+  .side .toc{border:1px solid #e6e6e6;padding:18px 20px;margin-top:20px}
+  .side .toc b{font:900 14px 'Lato';text-transform:uppercase;color:#222}
+  .side .toc div{font:400 14px 'Lato';color:#444;padding:6px 0;border-bottom:1px solid #f0f0f0}
+  .disc{margin-top:26px;background:#f6f4ff;border:1px solid #e3dcff;border-radius:6px;padding:12px 16px;font:600 13px 'Lato';color:#4a3c86}
+
+  /* AI answer + performance */
+  .duo{display:grid;grid-template-columns:420px 1fr;gap:50px;align-items:start}
+  .ph{width:380px;margin:0 auto;background:#111;border-radius:52px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.25);position:relative}
+  .ph .sc{background:#fff;border-radius:40px;overflow:hidden;min-height:540px;padding:26px 20px}
+  .ph .nt{width:110px;height:26px;background:#111;border-radius:20px;margin:-14px auto 18px}
+  .q{background:#f1f1f5;border-radius:18px 18px 4px 18px;padding:12px 15px;font:700 15px 'Lato';margin:0 0 16px 50px}
+  .an{font:400 14.5px/1.55 'Lato';color:#222}
+  .an .ai{display:flex;align-items:center;gap:8px;font:800 13px 'Plus Jakarta Sans';color:#555;margin-bottom:8px}
+  .an .ai i{width:22px;height:22px;border-radius:50%;background:conic-gradient(#7fa7f8,#8a43d6,#7fa7f8);display:block}
+  .an b{font-weight:900}
+  .srcs{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .srcs div{border:1px solid #e6e6ee;border-radius:12px;padding:9px 12px;font:600 12.5px 'Lato';color:#333;display:flex;gap:10px;align-items:center}
+  .srcs div i{font-style:normal;width:26px;height:26px;border-radius:7px;background:var(--mt);color:#fff;font:900 12px 'Lato';display:flex;align-items:center;justify-content:center;flex:none}
+  .srcs div.o i{background:#c9cbd6}
+  .srcs .hl2{outline:3.5px solid #a98bff;outline-offset:2px}
+  .pf{border-radius:16px;border:1px solid var(--line);box-shadow:0 18px 50px rgba(20,20,40,.10);overflow:hidden;position:relative}
+  .pf .ph2{background:#26262c;color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;font:800 16px 'Plus Jakarta Sans'}
+  .pf .ph2 span{margin-left:auto;font:700 12px 'Plus Jakarta Sans';background:#ffc400;color:#111;border-radius:100px;padding:4px 11px}
+  .pf table{width:100%;border-collapse:collapse;font:600 15px 'Lato'}
+  .pf th{font:800 12px 'Plus Jakarta Sans';text-transform:uppercase;letter-spacing:.06em;color:#7c8094;text-align:left;padding:14px 22px;border-bottom:1px solid var(--line)}
+  .pf td{padding:14px 22px;border-bottom:1px solid #f0f1f5}
+  .pf td.n,.pf th.n{text-align:right}
+  .bar{display:inline-block;height:9px;border-radius:5px;background:linear-gradient(90deg,var(--g1),var(--g2));vertical-align:middle;margin-left:10px}
+  .loop{display:flex;gap:12px;align-items:center;margin-top:24px}
+  .loop div{flex:1;background:var(--bg);border-radius:12px;padding:16px;text-align:center;font:800 15px 'Plus Jakarta Sans'}
+  .loop div small{display:block;font:500 12.5px 'Lato';color:var(--muted);margin-top:4px}
+  .loop em{font-style:normal;font:800 22px 'Plus Jakarta Sans';color:#a98bff}
+  .cap{font:500 14px 'Lato';color:var(--muted);margin-top:14px}
+
+  .foot{margin-top:56px;background:#1d1d22;color:#a7a9b8;padding:30px 60px;font:500 13.5px/1.6 'Lato';display:flex;justify-content:space-between;gap:40px}
+  .foot b{color:#fff;font:800 15px 'Plus Jakarta Sans'}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="k">Sample concept · prepared for Groweo</div>
+  <h1>Muurametalot × <span>Groweo® AI Reach</span></h1>
+  <p>What AI Reach would add for an existing Groweo customer, shown on muurametalot.fi exactly as it looks today (screenshots taken 7 Oct 2026). The site is unchanged. Only the AI Reach layer is new.</p>
+  <div class="legend">
+    <div><i class="lg-m"></i>Numbered notes, explained in the pack</div>
+    <div><i class="lg-r"></i>What we found on the site today</div>
+    <div><i class="lg-p"></i>AI Reach layer (illustrative)</div>
+  </div>
+</div>
+
+<!-- 1 TODAY -->
+<div class="sec">
+  <div class="sh"><span class="n">1</span><h2>Today: Groweo already captures the leads. The content doesn't bring them in.</h2></div>
+  <p class="sd">Muurametalot already runs the Groweo house quiz, chat and quote form. The newest content on the site is company news, while buyers are searching for prices, build times and house types.</p>
+  <div class="ev">
+    <div class="evc">
+      <div class="mk">1</div>
+      <div class="shot" style="border:3.5px solid #ff2d2d"><img src="img/mt-quiz.jpg"></div>
+      <h3>Groweo is already live</h3>
+      <p>The "Testaa sinulle sopivin talo" quiz (Powered by Groweo), the chat bubble on every page and the quote form all run on Groweo. Anyone who arrives can become a lead.</p>
+    </div>
+    <div class="evc">
+      <div class="mk">2</div>
+      <div class="shot" style="border:3.5px solid #ff2d2d"><img src="img/mt-news.jpg"></div>
+      <h3>The newest content is company news</h3>
+      <p>The homepage highlights the NopsaKoti switch, a Ruka project and a customer-satisfaction post. These are useful for people who already know the brand, but rarely what a first-time buyer searches for.</p>
+    </div>
+    <div class="evc">
+      <div class="mk">3</div>
+      <div class="shot" style="border:3.5px solid #ff2d2d"><img src="img/mt-foot.jpg" style="width:80%;margin:0 auto"></div>
+      <h3>2 latest articles, 1 customer story</h3>
+      <p>The footer shows how thin the content stream is. Since September every model has been a "NopsaKoti", a new name that nobody searches for yet.</p>
+    </div>
+  </div>
+  <div class="qs"><b>What buyers ask instead:</b>
+    <div class="c"><span>paljonko maksaa muuttovalmis omakotitalo</span><span>moduulitalo vai elementtitalo</span><span>kauanko omakotitalon rakentaminen kestää</span><span>pieni omakotitalo alle 100 m2</span><span>maalämpö uuteen omakotitaloon</span><span>talopaketti ASP-lainalla</span></div>
+  </div>
+</div>
+
+<!-- 2 WITH AI REACH -->
+<div class="sec">
+  <div class="sh"><span class="n">2</span><h2>With AI Reach: guides that answer buyers, then lead into the Groweo quiz</h2></div>
+  <p class="sd">AI Reach finds the gaps, drafts guides in Muurametalot's own style and publishes them once they're approved. Every guide ends in the Groweo quiz or quote form the site already has.</p>
+  <div class="wrap">
+    <div class="shot">
+      <div class="bbar"><i></i><i></i><i></i><div class="u">muurametalot.fi</div></div>
+      <div style="position:relative">
+        <img src="img/mt-top.jpg">
+        <div class="ar" style="right:34px;top:118px">
+          <div class="ah"><div class="lo">groweo<sup>®</sup> AI Reach</div><div class="t">Content gaps</div></div>
+          <div class="ab">
+            <div class="st">Sisältöaukot · muurametalot.fi</div>
+            <div class="ss">Topics buyers search for, compared with what the site covers</div>
+            <div class="row">muuttovalmis omakotitalo hinta<span class="pa">Partly</span></div>
+            <div class="row">moduulitalo vai elementtitalo<span class="no">Missing</span></div>
+            <div class="row">omakotitalon rakentamisen kesto<span class="pa">Partly</span></div>
+            <div class="row">pieni omakotitalo alle 100 m²<span class="no">Missing</span></div>
+            <div class="row">maalämpö uuteen taloon<span class="no">Missing</span></div>
+            <div class="row">talopaketti ASP-lainalla<span class="ye">Covered</span></div>
+            <div class="btn">Create 4 draft guides →</div>
+            <div class="fn">Illustrative view. Real topics come from the AI Reach analysis.</div>
+          </div>
+        </div>
+      </div>
+      <div class="gd">
+        <div class="tag">AI Reach · new section (drafts, published after approval)</div>
+        <h3>Oppaat talon rakentajalle</h3>
+        <div class="gs">Vastauksia kysymyksiin, joita kysytään ennen tarjouspyyntöä.</div>
+        <div class="gc">
+          <div><div class="im" style="background-image:url(img/g-kitchen.jpg)"></div><div class="tx"><div class="ty">Opas · 6 min</div><h4>Mitä muuttovalmis omakotitalo maksaa vuonna 2026?</h4><p>Hinnat 177 975 eurosta. Mitä hintaan sisältyy ja mitä tulee lisäksi.</p><span class="rm">Lue lisää</span></div></div>
+          <div><div class="im" style="background-image:url(img/g-crane.jpg)"></div><div class="tx"><div class="ty">Opas · 5 min</div><h4>Moduulitalo vai elementtitalo – mitä eroa?</h4><p>NopsaKoti selitettynä: mitä tehtaalla valmistuu ja mitä tontilla.</p><span class="rm">Lue lisää</span></div></div>
+          <div><div class="im" style="background-image:url(img/g-house.jpg)"></div><div class="tx"><div class="ty">Opas · 4 min</div><h4>Kauanko omakotitalon rakentaminen kestää?</h4><p>Tehtaalla ja työmaalla: miten muuttovalmis talo syntyy alle kahdessa kuukaudessa.</p><span class="rm">Lue lisää</span></div></div>
+          <div><div class="im" style="background-image:url(img/g-dahlia.jpg)"></div><div class="tx"><div class="ty">Opas · 5 min</div><h4>Pieni omakotitalo alle 100 m²</h4><p>Dahlia, Pioni, Tuomi ja Iiris: neljä tapaa asua pienesti ja valmiiksi.</p><span class="rm">Lue lisää</span></div></div>
+        </div>
+      </div>
+      <img src="img/mt-quiz.jpg" style="border-top:4px solid #ff2d2d">
+    </div>
+    <div class="mk" style="right:440px;top:150px">4</div>
+    <div class="mk" style="left:-14px;top:1500px">5</div>
+    <div class="mk" style="left:-14px;bottom:520px">6</div>
+  </div>
+  <p class="cap">The homepage above is unchanged apart from the dashed AI Reach elements. The guide images reuse Muurametalot's own photos. The quiz at the bottom is the existing Groweo quiz, which every guide links to.</p>
+</div>
+
+<!-- 3 ARTICLE -->
+<div class="sec">
+  <div class="sh"><span class="n">3</span><h2>One guide, drafted: real prices, their style, leads back to Groweo</h2></div>
+  <p class="sd">A first draft built only from facts already on muurametalot.fi (prices from the models page and inclusions from the move-in-ready page). Their expert reviews it before anything is published.</p>
+  <div class="wrap">
+    <div class="shot art">
+      <div class="bbar"><i></i><i></i><i></i><div class="u">muurametalot.fi/oppaat/muuttovalmis-omakotitalo-hinta</div></div>
+      <img src="img/mt-head.jpg">
+      <div class="ban">
+        <div class="kk">OPAS</div>
+        <h3>Mitä muuttovalmis omakotitalo maksaa vuonna 2026?</h3>
+        <div class="me">Muurametalot · Päivitetty lokakuussa 2026 · Lukuaika 6 min</div>
+      </div>
+      <div class="ab2">
+        <div>
+          <div class="ld">Lyhyt vastaus: Muurametalojen muuttovalmiit NopsaKodit maksavat 177 975 eurosta (Dahlia, 64 m²) 287 175 euroon (Magnolia, 128 m²). Maalämpö ja maaviileä sisältyvät aina hintaan. Lisäksi tarvitset tontin ja sille ajetun sorapatjan.</div>
+          <h4>Hinnat talomalleittain</h4>
+          <table class="pr">
+            <tr><th>Talomalli</th><th>Huoneistoala</th><th class="r">Muuttovalmiina alk.</th><th class="r">€ / m²</th></tr>
+            <tr><td>Dahlia · 3h, k, s</td><td>64 m²</td><td class="r">177 975 €</td><td class="r">2 781</td></tr>
+            <tr><td>Pioni · 3h, k, s</td><td>69 m²</td><td class="r">178 500 €</td><td class="r">2 587</td></tr>
+            <tr><td>Iiris · 4h, k, s</td><td>95,5 m²</td><td class="r">197 400 €</td><td class="r">2 067</td></tr>
+            <tr><td>Lilja · 4h, k, s</td><td>104 m²</td><td class="r">204 855 €</td><td class="r">1 970</td></tr>
+            <tr><td>Jasmiini · 6h, k, s</td><td>129 m²</td><td class="r">245 700 €</td><td class="r">1 905</td></tr>
+            <tr><td>Magnolia · 5h, k, s</td><td>128 m²</td><td class="r">287 175 €</td><td class="r">2 244</td></tr>
+          </table>
+          <p style="font-size:13px;color:#777;margin-top:8px">Kaikki 11 NopsaKoti-mallia ja ajantasaiset hinnat: <a>Talomallit →</a></p>
+          <h4>Mitä hintaan sisältyy?</h4>
+          <ul><li>Talon lupakuvat ja perustukset</li><li>Maalämpö: vesikiertoinen lattialämmitys, maalämpöpumppu ja kallioporaus</li><li>Talo runkoineen, vesikattoineen ja sisustuksineen</li><li>Pitävä muuttopäivä ja kattava toimitussisältö</li></ul>
+          <h4>Mitä tulee lisäksi?</h4>
+          <p>Tarvitset tontin ja sille ajetun sorapatjan. Muut kulut on eritelty oppaassa <a>Mitä muita kuluja tulee muuttovalmiin talopaketin päälle →</a></p>
+          <div class="disc">Tämä opas on laadittu Groweo® AI Reachin avulla ja tarkistettu Muurametalojen asiantuntijan toimesta.</div>
+        </div>
+        <div class="side">
+          <div class="cta"><h5>Mikä talomalli sopii sinulle?</h5><p>Vastaa muutamaan kysymykseen, niin saat sopivat mallit sähköpostiisi.</p><div class="b1">Testaa sopivin talo →</div><div class="b2">Pyydä tarjous</div><div class="pw">Powered by groweo</div></div>
+          <div class="toc"><b>Tässä oppaassa</b><div>Hinnat talomalleittain</div><div>Mitä hintaan sisältyy?</div><div>Mitä tulee lisäksi?</div><div>Miksi hinta pitää?</div><div>Usein kysytyt kysymykset</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="mk" style="left:-14px;top:420px">7</div>
+  </div>
+  <p class="cap">Prices are from muurametalot.fi/valmistalot, checked 7 Oct 2026 (price per m² calculated). Inclusions are from the "Muuttovalmis talopaketti" page. The disclosure line follows Groweo's note that AI Reach publishes "with the appropriate AI disclosures".</p>
+</div>
+
+<!-- 4 AI ANSWERS + PERFORMANCE -->
+<div class="sec">
+  <div class="sh"><span class="n">4</span><h2>Found in AI answers, measured in Groweo Performance</h2></div>
+  <p class="sd">Clear guides with real numbers are the kind of page AI tools quote. Groweo Performance then shows which guides lead to quiz starts and quote requests, and AI Reach writes more of what works.</p>
+  <div class="duo">
+    <div class="wrap">
+      <div class="ph"><div class="sc"><div class="nt"></div>
+        <div class="q">Paljonko muuttovalmis omakotitalo maksaa?</div>
+        <div class="an"><div class="ai"><i></i>AI-avustaja</div>
+          Hinta riippuu koosta ja toimitussisällöstä. Esimerkiksi <b>Muurametalojen muuttovalmiit NopsaKodit maksavat noin 178 000 eurosta (64 m²) noin 287 000 euroon (128 m²)</b>, ja hintaan sisältyy maalämpö. Lisäksi tarvitaan tontti ja sorapatja.<br><br>Muuttovalmiissa toimituksessa talo valmistuu tontilla alle kahdessa kuukaudessa, koska suurin osa rakennetaan tehtaalla.
+          <div class="srcs">
+            <div class="hl2"><i>M</i>muurametalot.fi · Mitä muuttovalmis omakotitalo maksaa vuonna 2026?</div>
+            <div class="o"><i>·</i>Other source</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="mk" style="left:0;top:300px">8</div>
+    </div>
+    <div>
+      <div class="wrap">
+        <div class="pf">
+          <div class="ph2">groweo® Performance · Guides → leads <span>Example numbers</span></div>
+          <table>
+            <tr><th>Guide</th><th class="n">Readers</th><th class="n">Quiz starts</th><th class="n">Quote requests</th></tr>
+            <tr><td>Mitä muuttovalmis omakotitalo maksaa 2026?</td><td class="n">1 240</td><td class="n">96<span class="bar" style="width:96px"></span></td><td class="n">11</td></tr>
+            <tr><td>Moduulitalo vai elementtitalo</td><td class="n">680</td><td class="n">41<span class="bar" style="width:41px"></span></td><td class="n">4</td></tr>
+            <tr><td>Kauanko rakentaminen kestää?</td><td class="n">530</td><td class="n">33<span class="bar" style="width:33px"></span></td><td class="n">3</td></tr>
+            <tr><td>Pieni omakotitalo alle 100 m²</td><td class="n">910</td><td class="n">74<span class="bar" style="width:74px"></span></td><td class="n">8</td></tr>
+          </table>
+        </div>
+        <div class="mk" style="right:-14px;top:-14px">9</div>
+      </div>
+      <div class="loop">
+        <div>Guide<small>AI Reach writes it</small></div><em>→</em>
+        <div>Quiz / chat<small>Groweo captures the lead</small></div><em>→</em>
+        <div>Quote request<small>goes to the area rep</small></div><em>→</em>
+        <div>Performance<small>shows what to write next</small></div>
+      </div>
+      <p class="cap">All numbers in this table are made up to show the report's layout. They are not forecasts. Being cited in AI answers can't be guaranteed. Clear, factual pages simply make it more likely.</p>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <div><b>Knock · knock.fi</b><br>Sample concept prepared by Kira for Groweo. Not affiliated with Groweo or Muurametalot.</div>
+  <div style="max-width:780px">Muurametalot screenshots are unchanged (7 Oct 2026). The AI Reach panel, guide cards, article draft, AI answer and Performance table are illustrative and based on groweo.com/en/ai-content-generation-seo-geo. They don't show the actual product UI.</div>
+</div>
+
+</body>
+</html>
