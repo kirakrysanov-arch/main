@@ -19,6 +19,21 @@ BADGE = 390  # hintapallon halkaisija (px)
 # samat kaikissa kuvissa, jotta sarja on yhtenäinen.
 PHOTO_W, PHOTO_H, PHOTO_TOP = 900, 680, 240
 PHOTO_AREA = 400_000  # tavoitepinta-ala (px²), jotta tuotteet näyttävät yhtä suurilta
+# Kuvan kallistus asteina tuotenumeron mukaan (positiivinen = vastapäivään).
+KALLISTUS = {
+    "145141": 15,  # Miyata pankojauho
+}
+
+
+def tilted(path, code):
+    deg = KALLISTUS.get(code)
+    if not path or not deg:
+        return path
+    out = os.path.join(HERE, "build", "insta", f"{code}-kallistettu.png")
+    with Image.open(path) as im:
+        im = im.convert("RGBA").rotate(deg, resample=Image.BICUBIC, expand=True)
+        im.crop(im.getbbox()).save(out)
+    return out
 TEXT_BOTTOM = 80
 
 
@@ -41,7 +56,7 @@ def page_html(it):
     e = html.escape
     a = lambda n: data_uri(os.path.join(HERE, "pohjat", n))
     vat = (it["price"] * ALV).quantize(Decimal("0.01"), ROUND_HALF_UP)
-    img = find("kuvat", it["code"])
+    img = tilted(find("kuvat", it["code"]), it["code"])
     pw, ph = photo_size(img, PHOTO_W, PHOTO_H, PHOTO_AREA)
     price_fs = 112 if len(money(it["price"])) <= 4 else 92
     return f"""<!doctype html><html><head><meta charset="utf-8">
