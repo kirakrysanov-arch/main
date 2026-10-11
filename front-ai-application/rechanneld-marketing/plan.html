@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>reChanneld Marketing Kickstart</title>
+<link href="fonts.css" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  :root{--navy:#0b1648;--navy2:#13205e;--teal:#3ccbb4;--teal-d:#16917f;--ink:#121527;--muted:#5b6078;--line:#e3e6ef;--bg:#f3f5f9;--red:#d9472f;--amber:#b77900}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Lato',sans-serif;color:var(--ink);font-size:10pt;line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
+  .page{width:210mm;height:297mm;padding:16mm 17mm 19mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+  .page:last-child{page-break-after:auto}
+  .pf{position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;font:600 7.4pt 'Plus Jakarta Sans';color:#9aa0b6;border-top:1px solid var(--line);padding-top:2.6mm}
+  .pf b{color:var(--ink);letter-spacing:.06em}
+  .kick{font:800 7.8pt 'Plus Jakarta Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--teal-d);margin-bottom:2.6mm}
+  h2{font-size:22pt;line-height:1.1;font-weight:800;margin-bottom:3.4mm}
+  h3{font-size:12pt;font-weight:800;margin-bottom:2mm}
+  h4{font-size:10pt;font-weight:800;margin-bottom:1mm}
+  p{margin-bottom:2.4mm}
+  .lead{font-size:11.2pt;line-height:1.5;color:var(--muted);margin-bottom:5.5mm}
+  .small{font-size:8.6pt}.muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+  .box{border:1px solid var(--line);border-radius:4mm;padding:5mm}
+  .bg{background:var(--bg);border-color:var(--bg)}
+  ul.clean{list-style:none}
+  ul.clean li{padding-left:5mm;position:relative;margin-bottom:1.6mm}
+  ul.clean li:before{content:"";position:absolute;left:0;top:1.9mm;width:2mm;height:2mm;border-radius:50%;background:var(--teal)}
+  .src{font-size:7.2pt;color:#9aa0b6;line-height:1.4}
+  .shot{border:1px solid var(--line);border-radius:3mm;overflow:hidden;background:#fff}
+  .shot img{display:block;width:100%}
+  .cap{font-size:7.4pt;color:var(--muted);margin-top:1.6mm}
+  .tag{display:inline-block;font:800 6.8pt 'Plus Jakarta Sans';letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:.7mm 2.4mm;vertical-align:middle}
+  .t-draft{background:#ffc400;color:#111}.t-teal{background:#dcf7f2;color:#0d7566}
+
+  .cover{background:var(--navy);color:#fff;padding:22mm 20mm;background-image:radial-gradient(150mm 120mm at 100% 0%,rgba(60,203,180,.30),transparent 60%),radial-gradient(120mm 100mm at 0% 100%,rgba(60,120,255,.25),transparent 60%)}
+  .cover .top{display:flex;justify-content:space-between;font:700 9pt 'Plus Jakarta Sans';color:#a9b0d0}
+  .pfor{display:inline-block;margin-top:42mm;font:800 8.5pt 'Plus Jakarta Sans';letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:2mm 4.4mm}
+  .cover h1{font-size:40pt;line-height:1.04;font-weight:800;margin:8mm 0 7mm}
+  .cover h1 em{font-style:normal;color:var(--teal)}
+  .cover .sub{font-size:12.6pt;line-height:1.5;color:#c8cde4;max-width:155mm}
+  .cover .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:16mm}
+  .cover .stats div{border-top:1px solid rgba(255,255,255,.2);padding-top:3mm}
+  .cover .stats b{display:block;font:800 19pt 'Plus Jakarta Sans';color:var(--teal)}
+  .cover .stats span{font-size:8.4pt;color:#a9b0d0}
+  .cover .bot{position:absolute;left:20mm;right:20mm;bottom:18mm;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(255,255,255,.15);padding-top:6mm}
+  .cover .bot b{display:block;font:800 11pt 'Plus Jakarta Sans'}
+  .cover .bot span{font-size:9pt;color:#a9b0d0}
+  .tagl{font:700 10pt 'Plus Jakarta Sans';color:var(--teal)}
+
+  .callout{background:var(--navy);color:#fff;border-radius:4mm;padding:6mm 7mm}
+  .callout .big{font:800 15pt/1.25 'Plus Jakarta Sans';margin-bottom:2mm}
+  .callout .big em{font-style:normal;color:var(--teal)}
+  .callout p{color:#c8cde4;font-size:9.4pt;margin:0}
+
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin-bottom:5mm}
+  .kpi div{background:var(--bg);border-radius:3mm;padding:3.6mm}
+  .kpi b{display:block;font:800 17pt 'Plus Jakarta Sans';color:var(--navy);line-height:1.1}
+  .kpi span{font-size:8pt;color:var(--muted);line-height:1.3;display:block;margin-top:1mm}
+  table.t{width:100%;border-collapse:collapse;font-size:8.7pt}
+  table.t th{text-align:left;font:800 7.3pt 'Plus Jakarta Sans';text-transform:uppercase;letter-spacing:.06em;color:#7c8199;padding:2mm 2.4mm;border-bottom:1.4px solid var(--ink)}
+  table.t td{padding:2.1mm 2.4mm;border-bottom:1px solid var(--line);vertical-align:top}
+  table.t td b{font-family:'Plus Jakarta Sans'}
+  .num{font:800 10pt 'Plus Jakarta Sans';color:var(--teal-d);white-space:nowrap}
+  .st{display:inline-block;width:2.6mm;height:2.6mm;border-radius:50%;vertical-align:middle;margin-right:1.4mm}
+  .s-r{background:#e5533b}.s-a{background:#f0b400}.s-g{background:#2bb39a}
+
+  .month{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .month>div{border:1px solid var(--line);border-radius:3.4mm;padding:4mm;background:#fff}
+  .month b.m{font:800 7.6pt 'Plus Jakarta Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--teal-d)}
+  .month h4{margin:1mm 0 2mm;font-size:11pt}
+  .month ul{font-size:8.5pt}
+  .month .out{margin-top:2.6mm;background:var(--bg);border-radius:2mm;padding:2.2mm 2.6mm;font-size:8pt}
+  .month .out b{font-family:'Plus Jakarta Sans'}
+
+  /* case one-pager */
+  .cs{border-radius:4mm;overflow:hidden;border:1px solid var(--line);box-shadow:0 3mm 8mm rgba(10,20,60,.10)}
+  .cs .hd{background:var(--navy);color:#fff;display:grid;grid-template-columns:1fr 62mm;min-height:66mm}
+  .cs .hd .tx{padding:7mm}
+  .cs .hd .k2{font:800 7.4pt 'Plus Jakarta Sans';letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+  .cs .hd h3{font-size:18pt;line-height:1.15;color:#fff;margin:3mm 0}
+  .cs .hd p{color:#c8cde4;font-size:9pt;margin:0}
+  .cs .hd .ph{background-size:cover;background-position:center}
+  .cs .nums{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+  .cs .nums div{padding:5mm 4mm;border-right:1px solid var(--line)}
+  .cs .nums b{display:block;font:800 20pt 'Plus Jakarta Sans';color:var(--teal-d)}
+  .cs .nums span{font-size:8pt;color:var(--muted)}
+  .cs .bd{display:grid;grid-template-columns:1fr 1fr;gap:6mm;padding:6mm 7mm}
+  .cs .q{font:600 italic 11.4pt/1.45 'Lato';color:var(--navy);border-left:3px solid var(--teal);padding-left:4mm}
+  .cs .q span{display:block;font:700 normal 8.4pt 'Plus Jakarta Sans';color:var(--muted);margin-top:2mm}
+  .cs .ft{background:var(--bg);padding:4mm 7mm;display:flex;justify-content:space-between;align-items:center;font:700 8.4pt 'Plus Jakarta Sans'}
+  .cs .ft i{font-style:normal;background:var(--teal);color:var(--navy);border-radius:100px;padding:1.6mm 4mm}
+
+  /* linkedin */
+  .li{border:1px solid #dfe2ea;border-radius:3mm;background:#fff;padding:4mm;font-size:8.4pt;line-height:1.45}
+  .li .who{display:flex;gap:2.4mm;align-items:center;margin-bottom:2.6mm}
+  .li .av{width:9mm;height:9mm;border-radius:50%;background:var(--navy);color:var(--teal);font:800 8pt 'Plus Jakarta Sans';display:flex;align-items:center;justify-content:center}
+  .li .who b{font:800 8.6pt 'Plus Jakarta Sans';display:block}
+  .li .who span{font-size:7.2pt;color:#7c8199}
+  .li p{margin-bottom:1.8mm}
+  .li .img{height:28mm;border-radius:2mm;background:var(--navy);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 4mm;margin-top:2mm}
+  .li .img b{font:800 18pt 'Plus Jakarta Sans';color:var(--teal);line-height:1}
+  .li .img span{font:700 8pt 'Plus Jakarta Sans'}
+  .cal{width:100%;border-collapse:collapse;font-size:8pt;margin-top:3mm}
+  .cal th{font:800 7pt 'Plus Jakarta Sans';text-transform:uppercase;letter-spacing:.06em;color:#7c8199;text-align:left;padding:1.6mm 2mm;border-bottom:1.4px solid var(--ink)}
+  .cal td{padding:1.8mm 2mm;border-bottom:1px solid var(--line);vertical-align:top}
+
+  /* storyboard */
+  .sb{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm}
+  .fr{border:1px solid var(--line);border-radius:3mm;overflow:hidden}
+  .fr .scr{height:34mm;background:var(--navy);color:#fff;padding:3.4mm;position:relative;display:flex;flex-direction:column;justify-content:center}
+  .fr .scr .tc{position:absolute;top:2.4mm;right:3mm;font:700 6.8pt 'Plus Jakarta Sans';color:#a9b0d0}
+  .fr .scr b{font:800 11pt/1.2 'Plus Jakarta Sans'}
+  .fr .scr em{font-style:normal;color:var(--teal)}
+  .fr .scr .chip{display:inline-block;background:#fff;color:var(--navy);border-radius:100px;padding:.8mm 2.4mm;font:700 6.8pt 'Plus Jakarta Sans';margin:1mm 1mm 0 0}
+  .fr .vo{padding:3mm;font-size:7.9pt;line-height:1.4}
+  .fr .vo b{font:800 7pt 'Plus Jakarta Sans';letter-spacing:.08em;color:var(--teal-d);text-transform:uppercase;display:block;margin-bottom:.6mm}
+
+  .work{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .work .w{border:1px solid var(--line);border-radius:3mm;overflow:hidden}
+  .work .w .im{height:42mm;background-size:cover;background-position:top center;border-bottom:1px solid var(--line)}
+  .work .w div.tx{padding:3mm 3.6mm;font-size:8.3pt}
+  .work .w div.tx b{font:800 9pt 'Plus Jakarta Sans';display:block}
+
+  .opt{display:grid;grid-template-columns:repeat(3,1fr);gap:3.6mm}
+  .opt>div{border:1.4px solid var(--line);border-radius:3.6mm;padding:5mm 4.4mm;position:relative}
+  .opt>div.rec{border-color:var(--teal);background:#f2fcfa}
+  .opt .rb{position:absolute;top:-3mm;left:4mm;background:var(--teal);color:var(--navy);font:800 7pt 'Plus Jakarta Sans';border-radius:100px;padding:.8mm 2.6mm}
+  .opt h4{font-size:11.4pt}
+  .opt .pr{font:800 17pt 'Plus Jakarta Sans';color:var(--navy);margin:2mm 0 .6mm}
+  .opt .pr small{font-size:8pt;color:var(--muted);font-weight:600}
+  .opt ul{font-size:8.4pt;margin-top:2.4mm}
+</style>
+</head>
+<body>
+
+<!-- 1 COVER -->
+<div class="page cover">
+  <div class="top"><span>KNOCK · knock.fi</span><span>Proposal · October 2026</span></div>
+  <div class="pfor">Prepared for Mikko &amp; Touko · reChanneld</div>
+  <h1>reChanneld has the proof.<br><em>Now it needs a voice.</em></h1>
+  <div class="sub">A 90-day marketing kickstart: positioning, website copy, case stories, LinkedIn, an explainer video and account-based outreach. It's built on the results you already have, without hiring a marketing team.</div>
+  <div class="stats">
+    <div><b>4.3M</b><span>annual sessions through reChanneld</span></div>
+    <div><b>7</b><span>case studies with named customers and numbers</span></div>
+    <div><b>20+</b><span>reference logos: Posti, S-Pankki, Nets, DNA…</span></div>
+    <div><b>0</b><span>marketing channels using any of it today</span></div>
+  </div>
+  <div class="bot">
+    <div><b>reChanneld Marketing Kickstart</b><span>Kira · Knock · knock.fi</span></div>
+    <div class="tagl">Better choices.<br>Happier customers.</div>
+  </div>
+</div>
+
+<!-- 2 SUMMARY -->
+<div class="page">
+  <div class="kick">Summary for Mikko</div>
+  <h2>You don't have a proof problem.<br>You have a distribution problem.</h2>
+  <p class="lead">reChanneld already has results most SaaS companies would envy: −45% phone calls at Lippu.fi, CSAT up from 50% to 84% at CDON, and +107% AI-agent usage when the widget is live. Almost nobody outside your sales calls sees them.</p>
+  <div class="grid2" style="margin-bottom:6mm">
+    <div class="box bg">
+      <h3>Where things stand today</h3>
+      <ul class="clean small">
+        <li>No marketing team, plan or regular activity</li>
+        <li>The website rebrand is in progress, with no timeline</li>
+        <li>No social media activity and no paid campaigns</li>
+        <li>One sales deck and a few customer stories</li>
+        <li>Sales is founder- and Touko-led, mostly through personal networks</li>
+      </ul>
+      <p class="src" style="margin-top:2mm">Based on my conversation with Touko, October 2026.</p>
+    </div>
+    <div class="box">
+      <h3>What I propose</h3>
+      <ul class="clean small">
+        <li><b>Month 1:</b> positioning, website copy for the rebrand, 3 case one-pagers</li>
+        <li><b>Month 2:</b> LinkedIn engine (company page + founders) and a 60-second explainer video</li>
+        <li><b>Month 3:</b> account-based outreach packs for 10 target accounts (Finland + UK)</li>
+        <li>One person, part-time, with a fixed scope and fixed price</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout" style="margin-bottom:6mm">
+    <div class="big">The goal for 90 days: <em>a website, a story and a pipeline</em> that don't depend on who you already know.</div>
+    <p>Concrete target: a relaunched website message, 3 case one-pagers, 24 LinkedIn posts, 1 explainer video, 10 outbound packs sent, and a steady flow of qualified demo meetings.</p>
+  </div>
+  <h3>Why me</h3>
+  <p class="small">I've worked in conversational marketing and sales tech at Leadoo and Videobot, so I know how this market buys. I also make explainer videos. Touko has already seen my work: in two weeks I built account-based packs for DC Thomson, Reach, the Mirror, the Express and the Manchester Evening News, each built on the prospect's real website (see page 10).</p>
+  <p class="small" style="margin-top:4mm"><b>The decision needed:</b> agree the scope and option (page 11), and the start date.</p>
+  <div class="pf"><b>KNOCK</b><span>reChanneld Marketing Kickstart</span><span>2</span></div>
+</div>
+
+<!-- 3 WHAT YOU HAVE -->
+<div class="page">
+  <div class="kick">What you already have</div>
+  <h2>Enough proof to fill a year of content</h2>
+  <p class="lead">Everything on this page comes from your current sales deck. None of it is used in public marketing yet.</p>
+  <div class="kpi">
+    <div><b>4,285,000</b><span>annual sessions</span></div>
+    <div><b>€1.64</b><span>net value generated per session</span></div>
+    <div><b>79%</b><span>of channel selections go to self-service, automation and leads</span></div>
+    <div><b>87%</b><span>of end users find reChanneld easy and clear</span></div>
+  </div>
+  <table class="t">
+    <tr><th>Customer</th><th>Headline result</th><th>Also</th><th>Speed</th></tr>
+    <tr><td><b>Lippu.fi</b> (CTS Eventim)</td><td><span class="num">−45%</span> customer service phone calls</td><td>80% of contacts go to the preferred channel; +22% leads</td><td>8 business days</td></tr>
+    <tr><td><b>S-Bank</b> (3.3M customers)</td><td><span class="num">+83%</span> of contacts go to self-service</td><td>79% of choices hit the bank's preferred option</td><td></td></tr>
+    <tr><td><b>CDON</b> (&gt;2M customers)</td><td><span class="num">−50%</span> contacts needing a human</td><td>CSAT up from 50% to 84%; +93% go to self-service</td><td>Immediately</td></tr>
+    <tr><td><b>Laurea</b> (11,000 students)</td><td><span class="num">+92%</span> of contacts go to self-service</td><td>Direct email down from 80% to 49% of tickets</td><td>A few weeks</td></tr>
+    <tr><td><b>Nets / Nexi</b></td><td><span class="num">78%</span> nudged to automation and self-service</td><td>+12% of contacts became leads</td><td>2 weeks</td></tr>
+    <tr><td><b>Keusote</b> (public health)</td><td><span class="num">NPS +70</span> website satisfaction, up from negative</td><td>+50% to self-service; −7% phone volume</td><td>6 months</td></tr>
+    <tr><td><b>AI agent case</b> (unnamed)</td><td><span class="num">+107%</span> AI-agent volume with reChanneld</td><td>−62% when the widget was removed for 2 months</td><td></td></tr>
+  </table>
+  <div class="shot" style="margin-top:4mm;width:40%;float:left;margin-right:5mm"><img src="img/logos.jpg"></div>
+  <p class="cap">Reference logos from the sales deck, including Posti, Sanoma, HS, Varma, S-Pankki, Neste, Nets, DNA, Toyota Financial Services, Poliisi and Laurea.</p>
+  <div class="pf"><b>KNOCK</b><span>Source: "reChanneld – Channel Strategy Platform" sales deck</span><span>3</span></div>
+</div>
+
+<!-- 4 GAP -->
+<div class="page">
+  <div class="kick">The gap</div>
+  <h2>Every marketing channel is empty today</h2>
+  <p class="lead">This isn't a criticism. It's normal for a product-led team. But each empty channel is a place where a buyer looks for you and finds nothing, or finds a competitor.</p>
+  <table class="t">
+    <tr><th>Area</th><th>Today</th><th>Why it matters</th><th>90-day fix</th></tr>
+    <tr><td><b>Positioning</b></td><td><span class="st s-r"></span>Not written down</td><td>Everyone describes reChanneld differently: "nudges", "widget", "channel strategy"</td><td>One sentence, three messages and proof for each (page 5)</td></tr>
+    <tr><td><b>Website</b></td><td><span class="st s-a"></span>Rebrand in progress, status unknown</td><td>Buyers check the site before they reply to Touko</td><td>Copy and structure ready for the rebrand, plus a case page</td></tr>
+    <tr><td><b>Case stories</b></td><td><span class="st s-a"></span>Only inside the deck</td><td>Your strongest asset, and nobody can link to it</td><td>3 one-pagers + web versions (page 6)</td></tr>
+    <tr><td><b>LinkedIn</b></td><td><span class="st s-r"></span>No activity</td><td>Where customer service and digital leaders spend time</td><td>2 posts a week: company page + founders (page 7)</td></tr>
+    <tr><td><b>Video</b></td><td><span class="st s-r"></span>None</td><td>"Nudging" is easier to show than to explain</td><td>A 60-second explainer (page 8)</td></tr>
+    <tr><td><b>Outbound</b></td><td><span class="st s-a"></span>Founder-led, through personal networks</td><td>Doesn't scale and doesn't reach the UK</td><td>Account packs for 10 target accounts (page 9)</td></tr>
+    <tr><td><b>Paid ads</b></td><td><span class="st s-r"></span>None</td><td>Only worth it once the message and site work</td><td>Not in the first 90 days. Test in Q2.</td></tr>
+    <tr><td><b>Measurement</b></td><td><span class="st s-r"></span>None</td><td>Without it, marketing turns into opinions</td><td>A simple monthly dashboard: reach, visits, demos</td></tr>
+  </table>
+  <div class="callout" style="margin-top:6mm">
+    <div class="big">Order matters: <em>message → website → content → outreach → ads.</em></div>
+    <p>Spending on ads before the message and website are ready wastes money. The plan follows this order.</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>reChanneld Marketing Kickstart</span><span>4</span></div>
+</div>
+
+<!-- 5 POSITIONING -->
+<div class="page">
+  <div class="kick">Positioning · draft</div>
+  <h2>One sentence everyone can repeat</h2>
+  <div class="callout" style="margin-bottom:5mm">
+    <div class="big">reChanneld guides every customer to the <em>right channel before they contact you</em>, so self-service and AI agents get used, phone queues shrink and customers get answers faster.</div>
+    <p>Draft for discussion with Mikko. The wording should come from the founders, and the structure is what matters.</p>
+  </div>
+  <div class="grid3" style="margin-bottom:6mm">
+    <div class="box"><span class="tag t-teal">Save costs</span><h4 style="margin-top:2mm">Fewer contacts for humans</h4><p class="small">Lippu.fi −45% calls · CDON −50% contacts to humans · Keusote −7% phone volume</p></div>
+    <div class="box"><span class="tag t-teal">Improve CX</span><h4 style="margin-top:2mm">Faster, clearer answers</h4><p class="small">CDON CSAT 50% → 84% · Keusote NPS negative → +70 · 87% find it easy</p></div>
+    <div class="box"><span class="tag t-teal">See behaviour</span><h4 style="margin-top:2mm">Know why people contact you</h4><p class="small">Real-time insight "better than traditional web statistics" (Nets/Nexi)</p></div>
+  </div>
+  <h3>The 2026 angle: reChanneld makes AI agents pay off</h3>
+  <p class="small">Many companies bought an AI agent in 2025–26, and their customers still call. Your own data shows why: AI-agent conversations rose 44% when the widget launched, fell 62% when it was removed, and rose 107% when it came back. This is the most timely message you have, and no competitor can claim it.</p>
+  <div class="shot" style="margin-top:3mm"><img src="img/aichart.jpg"></div>
+  <p class="cap">From the sales deck: "CASE: reChanneld impact on AI Agent volumes".</p>
+  <div class="box bg" style="margin-top:4mm"><p class="small" style="margin:0"><b>Suggested campaign line:</b> <i>"Your AI agent is only as good as the traffic you send it."</i></p></div>
+  <div class="pf"><b>KNOCK</b><span>Draft messaging. To be agreed with the founders.</span><span>5</span></div>
+</div>
+
+<!-- 6 SAMPLE: CASE ONE-PAGER -->
+<div class="page">
+  <div class="kick">Sample 1 · Case one-pager <span class="tag t-draft" style="margin-left:2mm">Draft · needs Lippu.fi approval</span></div>
+  <h2>What a case story looks like outside the deck</h2>
+  <p class="lead">This uses only facts and the quote from your deck. The same format becomes a web page, a PDF for sales, a LinkedIn post and a 30-second video.</p>
+  <div class="cs">
+    <div class="hd">
+      <div class="tx">
+        <div class="k2">Case · Lippu.fi (part of CTS Eventim)</div>
+        <h3>Lippu.fi cut customer service calls by 45% in eight business days</h3>
+        <p>Finland's market-leading ticketing service used reChanneld to guide customers to the right channel before they picked up the phone.</p>
+      </div>
+      <div class="ph" style="background-image:url(img/lippu-photo.jpg)"></div>
+    </div>
+    <div class="nums">
+      <div><b>−45%</b><span>customer service phone calls</span></div>
+      <div><b>80%</b><span>of contacts went to the preferred (self-service) channel</span></div>
+      <div><b>+22%</b><span>lead generation</span></div>
+      <div style="border-right:none"><b>8 days</b><span>to implement</span></div>
+    </div>
+    <div class="bd">
+      <div>
+        <h4>The challenge</h4>
+        <p class="small">Ticket buyers with questions about events, orders and changes went straight to the phone, even when the answer was available online.</p>
+        <h4 style="margin-top:3mm">What reChanneld did</h4>
+        <p class="small">A plug-and-play widget on the customer service pages asks "How can we help?" and guides each topic to the best channel: self-service, automation or a person. Lippu.fi defined its own channel strategy and had it live in eight business days.</p>
+      </div>
+      <div class="q">"Within just a few days we were able to nail our service channel strategy with reChanneld. Nudges work excellently, and we offer a far more intuitive experience to our customers than before!"<span>Teresa Alander, Head of Operations, Lippu.fi</span></div>
+    </div>
+    <div class="ft"><span>reChanneld · Channel strategy platform by Front AI</span><i>Book a 20-min demo</i></div>
+  </div>
+  <p class="src" style="margin-top:3mm">The challenge text is my wording based on the deck. Confirm it with Lippu.fi. The photo is from the deck.</p>
+  <div class="pf"><b>KNOCK</b><span>Sample deliverable</span><span>6</span></div>
+</div>
+
+<!-- 7 SAMPLE: LINKEDIN -->
+<div class="page">
+  <div class="kick">Sample 2 · LinkedIn <span class="tag t-draft" style="margin-left:2mm">Drafts</span></div>
+  <h2>Three posts, ready to publish</h2>
+  <p class="lead">Written for the founders' and Touko's personal profiles, which reach further than a company page. Each post is built on one result from the deck.</p>
+  <div class="grid3">
+    <div class="li"><div class="who"><div class="av">M</div><div><b>Mikko · Co-founder</b><span>reChanneld by Front AI</span></div></div>
+      <p><b>You bought an AI agent. Your customers still call.</b></p>
+      <p>We tested it with one customer: the AI agent with and without reChanneld guiding people to it.</p>
+      <p>Widget on: +44% AI-agent conversations.<br>Widget off for two months: −62%.<br>Widget back: +107%.</p>
+      <p>An AI agent is only as good as the traffic you send it.</p>
+      <div class="img"><b>+107%</b><span>AI-agent volume with reChanneld</span></div></div>
+    <div class="li"><div class="who"><div class="av">T</div><div><b>Touko Laakkonen</b><span>Head of GTM Finland</span></div></div>
+      <p><b>CSAT went from 50% to 84%. Nobody was hired.</b></p>
+      <p>CDON, the biggest marketplace in the Nordics, cut contacts that needed a human by 50% right after launch.</p>
+      <p>Customers didn't get less service. They got the right service faster, and satisfaction followed.</p>
+      <p>Faster answers are the best CX project there is.</p>
+      <div class="img"><b>50% → 84%</b><span>CSAT at CDON</span></div></div>
+    <div class="li"><div class="who"><div class="av">re</div><div><b>reChanneld</b><span>Company page</span></div></div>
+      <p><b>From a negative NPS to +70.</b></p>
+      <p>Keusote provides health and social services to more than 200,000 people in 11 municipalities. Their website wasn't working for citizens.</p>
+      <p>With reChanneld: +50% of contacts to digital self-service, −7% phone volume in six months, and website satisfaction from negative to NPS +70.</p>
+      <div class="img"><b>NPS +70</b><span>Keusote website satisfaction</span></div></div>
+  </div>
+  <h3 style="margin-top:6mm">First four weeks: content calendar</h3>
+  <table class="cal">
+    <tr><th>Week</th><th>Monday · founder</th><th>Thursday · company / Touko</th></tr>
+    <tr><td>1</td><td>"You bought an AI agent. Your customers still call." (AI agent case)</td><td>What is a channel strategy? (a 30-second explainer clip)</td></tr>
+    <tr><td>2</td><td>CDON: CSAT 50% → 84%</td><td>Lippu.fi case one-pager (link to the web page)</td></tr>
+    <tr><td>3</td><td>Why we built reChanneld (founder story)</td><td>Keusote: NPS negative → +70</td></tr>
+    <tr><td>4</td><td>3 mistakes in customer service channel design</td><td>The explainer video launch</td></tr>
+  </table>
+  <div class="pf"><b>KNOCK</b><span>Sample deliverable</span><span>7</span></div>
+</div>
+
+<!-- 8 SAMPLE: VIDEO -->
+<div class="page">
+  <div class="kick">Sample 3 · Explainer video · 60 seconds</div>
+  <h2>Show nudging in one minute</h2>
+  <p class="lead">"Nudging" sounds abstract until you see it. This storyboard shows the problem, the moment of choice and the result. I produce it end to end: script, visuals, voice and captions, with versions for the website, LinkedIn and sales emails.</p>
+  <div class="sb">
+    <div class="fr"><div class="scr"><span class="tc">0–8 s</span><b>A customer has a question.<br><em>They call.</em></b><div><span class="chip">📞 Queue: 14 min</span></div></div><div class="vo"><b>VO</b>Your customer has a simple question. The answer is on your website, but they call anyway.</div></div>
+    <div class="fr"><div class="scr"><span class="tc">8–18 s</span><b>Self-service, chat and an AI agent.<br><em>Nobody finds them.</em></b></div><div class="vo"><b>VO</b>You've invested in self-service, chat and an AI agent. But customers don't know where to go, so they pick the phone.</div></div>
+    <div class="fr"><div class="scr"><span class="tc">18–28 s</span><b>"Hey, how may we help you?"</b><div><span class="chip">My account</span><span class="chip">Orders</span><span class="chip">Change ticket</span></div></div><div class="vo"><b>VO</b>reChanneld sits on your site and asks one simple question at the moment of choice.</div></div>
+    <div class="fr"><div class="scr"><span class="tc">28–38 s</span><b>Each topic goes to <em>the best channel</em>.</b><div><span class="chip">Self-service ✓</span><span class="chip">AI agent ✓</span><span class="chip">Phone, when needed</span></div></div><div class="vo"><b>VO</b>Then it guides each customer to the best channel for their topic: self-service, automation or a person when it really matters.</div></div>
+    <div class="fr"><div class="scr"><span class="tc">38–50 s</span><b><em>−45%</em> calls · <em>50→84%</em> CSAT · <em>+107%</em> AI agent use</b></div><div class="vo"><b>VO</b>Lippu.fi cut calls by 45%. CDON lifted CSAT from 50 to 84%. And AI agents finally get used.</div></div>
+    <div class="fr"><div class="scr"><span class="tc">50–60 s</span><b>Live in days.<br><em>reChanneld.</em></b><div><span class="chip">Book a 20-min demo</span></div></div><div class="vo"><b>VO</b>Plug-and-play, and live in days, not months. reChanneld: better choices, happier customers.</div></div>
+  </div>
+  <div class="box bg" style="margin-top:6mm">
+    <h4>Cut-downs from the same production</h4>
+    <ul class="clean small" style="margin-top:2mm"><li>3 × 15-second LinkedIn clips (one per case)</li><li>A silent, captioned version for the website hero</li><li>A personalised intro version for top outbound accounts ("Hi DC Thomson…")</li></ul>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>Sample deliverable</span><span>8</span></div>
+</div>
+
+<!-- 9 PLAN -->
+<div class="page">
+  <div class="kick">The plan</div>
+  <h2>90 days, three steps, one owner</h2>
+  <p class="lead">Each month ends with something you can see and use. A fortnightly 30-minute check-in with Mikko and Touko keeps decisions moving.</p>
+  <div class="month">
+    <div><b class="m">Month 1</b><h4>Foundations</h4><ul class="clean"><li>Positioning workshop (2 h with the founders)</li><li>Messaging guide: one sentence, 3 messages, proof</li><li>Website copy and structure for the rebrand</li><li>3 case one-pagers: Lippu.fi, CDON, AI agent</li><li>LinkedIn profiles refreshed (company, founders, Touko)</li></ul><div class="out"><b>You get:</b> a clear story and ready copy for the site and sales</div></div>
+    <div><b class="m">Month 2</b><h4>Voice</h4><ul class="clean"><li>LinkedIn: 2 posts a week, written for the founders' voices</li><li>60-second explainer video and 3 cut-downs</li><li>Case pages live on the website</li><li>The sales deck refreshed with the new message</li><li>Simple monthly dashboard</li></ul><div class="out"><b>You get:</b> a visible, regular presence and a video that sells</div></div>
+    <div><b class="m">Month 3</b><h4>Pipeline</h4><ul class="clean"><li>Account-based outreach packs for 10 target accounts in Finland and the UK</li><li>Messages for Touko and the founders to send</li><li>Follow-up content for warm accounts</li><li>Review: what worked, and Q1 plan and budget</li></ul><div class="out"><b>You get:</b> 10 accounts approached with tailored packs, and a plan for next quarter</div></div>
+  </div>
+  <h3 style="margin-top:7mm">How we'll measure it</h3>
+  <table class="t">
+    <tr><th>Metric</th><th>Baseline (today)</th><th>Target by day 90</th></tr>
+    <tr><td>Public case stories</td><td>0</td><td>3</td></tr>
+    <tr><td>LinkedIn posts (company + founders)</td><td>None</td><td>24</td></tr>
+    <tr><td>Explainer video</td><td>None</td><td>1 + 3 cut-downs</td></tr>
+    <tr><td>Target accounts approached with a tailored pack</td><td>A few, ad hoc</td><td>10</td></tr>
+    <tr><td>Qualified demo meetings from marketing and outreach</td><td>Not tracked</td><td>Tracked monthly. Target set together in week 2</td></tr>
+  </table>
+  <div class="pf"><b>KNOCK</b><span>reChanneld Marketing Kickstart</span><span>9</span></div>
+</div>
+
+<!-- 10 ALREADY DONE -->
+<div class="page">
+  <div class="kick">Already done for reChanneld</div>
+  <h2>You've seen how I work</h2>
+  <p class="lead">These were built for Touko in October 2026, before any agreement, to help open UK accounts. Each one is built on the prospect's real website, with the reChanneld widget shown on top and a business case.</p>
+  <div class="work">
+    <div class="w"><div class="im" style="background-image:url(img/prev-mirpack.jpg)"></div><div class="tx"><b>The Mirror: account pack</b>Review, concept, topic map, renewals timing and business case. Also made for the Express and the Manchester Evening News.</div></div>
+    <div class="w"><div class="im" style="background-image:url(img/prev-mircon.jpg)"></div><div class="tx"><b>The Mirror: concept page</b>mirror.co.uk exactly as it is, with one reChanneld "front door" for Mirror+ readers.</div></div>
+    <div class="w"><div class="im" style="background-image:url(img/prev-dct.jpg)"></div><div class="tx"><b>DC Thomson: help concept</b>No redesign: the reChanneld layer on their existing pages, with numbered findings.</div></div>
+    <div class="w"><div class="im" style="background-image:url(img/prev-home.jpg)"></div><div class="tx"><b>Homepage concept</b>A proposal for the front.ai / reChanneld homepage: "Guide every customer to the right channel before they pick up the phone".</div></div>
+  </div>
+  <div class="callout" style="margin-top:6mm">
+    <div class="big">Month 3 of the plan is exactly this, <em>done 10 times, for the accounts you choose.</em></div>
+    <p>The difference now: real product screenshots from you, so every concept shows the actual reChanneld widget.</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>reChanneld Marketing Kickstart</span><span>10</span></div>
+</div>
+
+<!-- 11 OPTIONS -->
+<div class="page">
+  <div class="kick">Working together</div>
+  <h2>Three ways to start</h2>
+  <p class="lead">All options are fixed-price and monthly, with no long contract. After 90 days we decide together whether to continue, change the scope or make it a permanent role.</p>
+  <div class="opt">
+    <div><h4>Light</h4><div class="pr">€2,400 <small>/ month</small></div><p class="small muted">About 1 day a week</p><ul class="clean"><li>Positioning and messaging</li><li>Website copy for the rebrand</li><li>LinkedIn: 1 post a week</li><li>2 case one-pagers</li></ul></div>
+    <div class="rec"><span class="rb">Recommended</span><h4>Kickstart</h4><div class="pr">€4,500 <small>/ month</small></div><p class="small muted">About 2 days a week · 3 months</p><ul class="clean"><li>Everything in the 90-day plan (page 9)</li><li>LinkedIn: 2 posts a week</li><li>3 case one-pagers + web pages</li><li>60-second explainer video and cut-downs</li><li>10 account-based outreach packs</li></ul></div>
+    <div><h4>Outbound only</h4><div class="pr">€2,900 <small>/ month</small></div><p class="small muted">5 account packs a month</p><ul class="clean"><li>Research and a concept on each prospect's real site</li><li>Business case and findings</li><li>Message for Touko to send</li><li>Ideal if marketing waits for the rebrand</li></ul></div>
+  </div>
+  <div class="grid2" style="margin-top:7mm">
+    <div class="box bg"><h4>Not included</h4><p class="small" style="margin:0">Ad spend, paid tools, website development and design (the rebrand itself), and travel. I'll recommend whether and when each makes sense.</p></div>
+    <div class="box bg"><h4>What I need from you</h4><p class="small" style="margin:0">A 2-hour positioning session with the founders, product access or screenshots, approval rights for customer quotes, and a 30-minute check-in every two weeks.</p></div>
+  </div>
+  <div class="callout" style="margin-top:6mm">
+    <div class="big">The first two weeks, if we agree: <em>positioning workshop, messaging draft and the Lippu.fi one-pager live.</em></div>
+    <p>Prices exclude VAT. Invoiced monthly in advance.</p>
+  </div>
+  <div class="pf"><b>KNOCK</b><span>reChanneld Marketing Kickstart</span><span>11</span></div>
+</div>
+
+<!-- 12 CTA -->
+<div class="page cover" style="padding-top:28mm">
+  <div class="top"><span>KNOCK · knock.fi</span><span>Next step</span></div>
+  <h1 style="margin-top:36mm;font-size:34pt">Seven case studies.<br>Twenty logos.<br><em>Let's let people see them.</em></h1>
+  <div class="sub">Agree the option and the start date, and I'll book the positioning workshop for the first week.</div>
+  <div class="bot">
+    <div><b>Kira</b><span>Knock · knock.fi · ex-Leadoo, ex-Videobot</span></div>
+    <div class="tagl">knock.fi</div>
+  </div>
+</div>
+
+</body>
+</html>
