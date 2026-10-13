@@ -126,6 +126,9 @@ def overlay_html(layout, items, week):
     # viikkonumero
     out.append('<div class="cover" style="left:560pt;top:38pt;width:200pt;height:44pt"></div>')
     out.append(f'<div class="week">Hinnat voimassa vko {e(week)}</div>')
+    # alatunnisteen hintarivi: hinta sis. alv näytetään vihreällä
+    out.append('<div class="cover" style="left:554pt;top:1030pt;width:206pt;height:16pt"></div>')
+    out.append('<div class="foot" style="left:556.5pt;top:1034pt">Hinnat täysin myyntierin, vihreä hinta sis. alv.</div>')
 
     for i, it in enumerate(items[:6]):
         r, c = divmod(i, 3)
@@ -167,6 +170,7 @@ body{{position:relative;width:793.699pt;height:1122.52pt;overflow:hidden}}
 body>div{{position:absolute}}
 .cover{{background:{BG}}}
 .week{{right:47.5pt;top:41pt;font:29pt/1 'Just Another Hand';color:#364153;white-space:nowrap}}
+.foot{{font:400 9pt/9pt 'DM Sans';color:#364153;white-space:nowrap}}
 .kv{{font:16pt/1 'Just Another Hand';color:#4a5565;width:76pt;text-align:center}}
 .qr{{width:42pt;height:42pt;background:#fff}}
 .qr img{{width:100%;height:100%;display:block;image-rendering:pixelated}}
