@@ -192,7 +192,7 @@ p {
 .kameli-palvelukortti:hover {
 	border-color: var(--kameli-hiili);
 	transform: translateY(-3px);
-	box-shadow: 0 14px 30px -18px rgba(16, 19, 18, 0.45);
+	box-shadow: 0 14px 30px -18px rgba(11, 11, 11, 0.45);
 }
 .kameli-palvelukortti .kameli-ikoni {
 	width: 56px;
@@ -379,7 +379,7 @@ p {
 
 /* Yhteydenottolomake */
 .kameli-lomakekortti {
-	box-shadow: 0 24px 50px -30px rgba(16, 19, 18, 0.35);
+	box-shadow: 0 24px 50px -30px rgba(11, 11, 11, 0.35);
 }
 .kameli-lomake__kentta {
 	display: flex;
@@ -433,7 +433,7 @@ p {
 	color: var(--wp--preset--color--valkoinen) !important;
 }
 .kameli-lomake__laheta:hover {
-	background: #2c3431 !important;
+	background: #2a2a2a !important;
 }
 .kameli-lomake-ilmoitus {
 	margin: 0 0 1.25rem;

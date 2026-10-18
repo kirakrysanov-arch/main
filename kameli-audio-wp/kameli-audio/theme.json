@@ -11,13 +11,13 @@
 			"palette": [
 				{
 					"slug": "hiili",
-					"name": "Hiili",
-					"color": "#101312"
+					"name": "Musta",
+					"color": "#0b0b0b"
 				},
 				{
 					"slug": "yo",
-					"name": "Yö",
-					"color": "#1a1f1d"
+					"name": "Tummanharmaa",
+					"color": "#171717"
 				},
 				{
 					"slug": "vihrea",
@@ -42,7 +42,7 @@
 				{
 					"slug": "vaalea-teksti",
 					"name": "Vaalea teksti",
-					"color": "#c3cdc8"
+					"color": "#c9c9c9"
 				},
 				{
 					"slug": "reuna",
