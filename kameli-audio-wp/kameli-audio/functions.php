@@ -59,7 +59,28 @@ function kameli_audio_pattern_category() {
 add_action( 'init', 'kameli_audio_pattern_category', 9 );
 
 /**
- * Kortti-tyyli ryhmälohkolle: ohut musta reunus ja pyöristetyt kulmat.
+ * Jos logoa ei ole asetettu (Ulkoasu → Editori), ylätunniste näyttää teeman mukana tulevan logon.
+ *
+ * @param string $content Lohkon HTML.
+ * @param array  $block   Lohko.
+ */
+function kameli_audio_default_logo( $content, $block ) {
+	if ( '' !== trim( $content ) ) {
+		return $content;
+	}
+	$width = isset( $block['attrs']['width'] ) ? (int) $block['attrs']['width'] : 64;
+	return sprintf(
+		'<div class="wp-block-site-logo"><a href="%s" class="custom-logo-link" rel="home"><img src="%s" class="custom-logo" alt="%s" width="%d" /></a></div>',
+		esc_url( home_url( '/' ) ),
+		kameli_audio_image( 'kameli-audio-logo.png' ),
+		esc_attr( get_bloginfo( 'name' ) ),
+		$width
+	);
+}
+add_filter( 'render_block_core/site-logo', 'kameli_audio_default_logo', 10, 2 );
+
+/**
+ * Kortti-tyyli ryhmälohkolle.
  */
 function kameli_audio_block_styles() {
 	register_block_style(

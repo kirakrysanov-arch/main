@@ -1,7 +1,7 @@
 <?php
 /**
  * Apufunktiot, jotka tuottavat toistuvien osioiden lohkomerkinnän (hero, kortit,
- * listat, toimintakehote, yhteydenotto). Lohkomallit (patterns/) kokoavat sivut näistä.
+ * palvelurivit, toimintakehote, yhteydenotto). Lohkomallit (patterns/) kokoavat sivut näistä.
  *
  * @package kameli-audio
  */
@@ -31,61 +31,99 @@ function kameli_audio_page_url( $path ) {
 }
 
 /**
- * Musta yläosa sivun otsikolla ja alaotsikolla.
+ * Lohkon kommentin attribuutit JSON-muodossa.
  *
+ * @param array $attrs Attribuutit.
+ */
+function kameli_audio_attrs( $attrs ) {
+	return $attrs ? ' ' . wp_json_encode( $attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) : '';
+}
+
+/**
+ * Ryhmälohko.
+ *
+ * @param string $inner   Sisältö.
+ * @param string $class   Lisäluokat.
+ * @param string $align   "", "wide" tai "full".
+ */
+function kameli_audio_group( $inner, $class = '', $align = '' ) {
+	$attrs = array();
+	$cls   = 'wp-block-group';
+	if ( $align ) {
+		$attrs['align'] = $align;
+		$cls           .= ' align' . $align;
+	}
+	if ( $class ) {
+		$attrs['className'] = $class;
+		$cls               .= ' ' . $class;
+	}
+	$attrs['layout'] = array( 'type' => 'default' );
+	return "\n" . '<!-- wp:group' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
+		. '<div class="' . $cls . '">' . $inner . '</div>' . "\n"
+		. '<!-- /wp:group -->' . "\n";
+}
+
+/**
+ * Tumma yläosa: yläotsake, H1-otsikko ja alaotsikko. Aaltoviiva piirretään CSS:llä.
+ *
+ * @param string $eyebrow     Pieni yläotsake.
  * @param string $title       H1-otsikko.
  * @param string $subtitle    Alaotsikko.
  * @param bool   $subtitle_h2 Näytetäänkö alaotsikko H2-otsikkona (muuten kappale).
  */
-function kameli_audio_hero( $title, $subtitle, $subtitle_h2 = false ) {
-	$out  = '<!-- wp:group {"align":"full","className":"kameli-hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"musta","textColor":"valkoinen","layout":{"type":"constrained"}} -->' . "\n";
-	$out .= '<div class="wp-block-group alignfull kameli-hero has-valkoinen-color has-musta-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">';
-	$out .= kameli_audio_heading( $title, 1, true );
+function kameli_audio_hero( $eyebrow, $title, $subtitle, $subtitle_h2 = false ) {
 	if ( $subtitle_h2 ) {
-		$out .= "\n\n" . '<!-- wp:heading {"textAlign":"center","className":"kameli-alaotsikko","fontSize":"large"} -->' . "\n";
-		$out .= '<h2 class="wp-block-heading has-text-align-center kameli-alaotsikko has-large-font-size">' . esc_html( $subtitle ) . '</h2>' . "\n";
-		$out .= '<!-- /wp:heading -->';
+		$sub = "\n" . '<!-- wp:heading {"className":"kameli-alaotsikko","fontSize":"large"} -->' . "\n"
+			. '<h2 class="wp-block-heading kameli-alaotsikko has-large-font-size">' . esc_html( $subtitle ) . '</h2>' . "\n"
+			. '<!-- /wp:heading -->' . "\n";
 	} else {
-		$out .= "\n\n" . '<!-- wp:paragraph {"align":"center","className":"kameli-alaotsikko","fontSize":"large"} -->' . "\n";
-		$out .= '<p class="has-text-align-center kameli-alaotsikko has-large-font-size">' . esc_html( $subtitle ) . '</p>' . "\n";
-		$out .= '<!-- /wp:paragraph -->';
+		$sub = kameli_audio_paragraph( esc_html( $subtitle ), 'lead', 'kameli-alaotsikko' );
 	}
-	$out .= '</div>' . "\n" . '<!-- /wp:group -->' . "\n\n";
-	return $out;
+	return kameli_audio_section_open( 'hiili', '', 'kameli-hero' )
+		. kameli_audio_group(
+			kameli_audio_paragraph( esc_html( $eyebrow ), '', 'kameli-eyebrow' )
+			. kameli_audio_heading( $title, 1 )
+			. $sub,
+			'kameli-hero__sisalto',
+			'wide'
+		)
+		. kameli_audio_section_close();
 }
 
 /**
  * Osion aloitus: täysleveä ryhmä valitulla taustalla.
  *
- * @param string $background Värin slug (valkoinen, vaalea, musta).
+ * @param string $background Värin slug (valkoinen, dyyni, hiili, yo, hiekka).
  * @param string $anchor     Valinnainen HTML-ankkuri.
+ * @param string $class      Valinnainen lisäluokka.
  */
-function kameli_audio_section_open( $background = 'valkoinen', $anchor = '' ) {
-	$attrs = array(
-		'align'           => 'full',
-		'style'           => array(
-			'spacing' => array(
-				'padding' => array(
-					'top'    => 'var:preset|spacing|60',
-					'bottom' => 'var:preset|spacing|60',
-				),
+function kameli_audio_section_open( $background = 'valkoinen', $anchor = '', $class = '' ) {
+	$attrs = array();
+	if ( $anchor ) {
+		$attrs['anchor'] = $anchor;
+	}
+	$attrs['align'] = 'full';
+	if ( $class ) {
+		$attrs['className'] = $class;
+	}
+	$attrs['style']           = array(
+		'spacing' => array(
+			'padding' => array(
+				'top'    => 'var:preset|spacing|70',
+				'bottom' => 'var:preset|spacing|70',
 			),
 		),
-		'backgroundColor' => $background,
-		'layout'          => array( 'type' => 'constrained' ),
 	);
-	$id = '';
-	if ( $anchor ) {
-		$attrs = array( 'anchor' => $anchor ) + $attrs;
-		$id    = ' id="' . esc_attr( $anchor ) . '"';
-	}
-	$classes = 'wp-block-group alignfull has-' . $background . '-background-color has-background';
-	if ( 'musta' === $background ) {
+	$attrs['backgroundColor'] = $background;
+	$classes                  = 'wp-block-group alignfull' . ( $class ? ' ' . $class : '' ) . ' has-' . $background . '-background-color has-background';
+	if ( in_array( $background, array( 'hiili', 'yo' ), true ) ) {
 		$attrs['textColor'] = 'valkoinen';
 		$classes           .= ' has-valkoinen-color has-text-color';
 	}
-	return '<!-- wp:group ' . wp_json_encode( $attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . ' -->' . "\n"
-		. '<div' . $id . ' class="' . $classes . '" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">';
+	$attrs['layout'] = array( 'type' => 'constrained' );
+	$id              = $anchor ? ' id="' . esc_attr( $anchor ) . '"' : '';
+	return '<!-- wp:group' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
+		. '<div' . $id . ' class="' . $classes . '" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">';
 }
 
 /**
@@ -98,43 +136,39 @@ function kameli_audio_section_close() {
 /**
  * Otsikkolohko.
  *
- * @param string $text     Teksti.
- * @param int    $level    Otsikkotaso.
- * @param bool   $centered Keskitetäänkö.
+ * @param string $text  Teksti.
+ * @param int    $level Otsikkotaso.
+ * @param string $class Lisäluokka.
  */
-function kameli_audio_heading( $text, $level = 2, $centered = false ) {
+function kameli_audio_heading( $text, $level = 2, $class = '' ) {
 	$attrs = array();
-	$class = 'wp-block-heading';
-	if ( $centered ) {
-		$attrs['textAlign'] = 'center';
-		$class             .= ' has-text-align-center';
-	}
+	$cls   = 'wp-block-heading';
 	if ( 2 !== $level ) {
 		$attrs['level'] = $level;
 	}
-	$json = $attrs ? ' ' . wp_json_encode( $attrs ) : '';
-	return "\n" . '<!-- wp:heading' . $json . ' -->' . "\n"
-		. '<h' . $level . ' class="' . $class . '">' . esc_html( $text ) . '</h' . $level . '>' . "\n"
+	if ( $class ) {
+		$attrs['className'] = $class;
+		$cls               .= ' ' . $class;
+	}
+	return "\n" . '<!-- wp:heading' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
+		. '<h' . $level . ' class="' . $cls . '">' . esc_html( $text ) . '</h' . $level . '>' . "\n"
 		. '<!-- /wp:heading -->' . "\n";
 }
 
 /**
  * Kappale.
  *
- * @param string $text     Teksti (sallittu: linkit, lihavointi).
- * @param string $extra    Valinnaiset lisäasetukset: "center", "small", "harmaa", "lead".
+ * @param string $text  Teksti (sallittu: linkit, lihavointi).
+ * @param string $extra Valinnaiset asetukset: "small", "lead".
+ * @param string $class Lisäluokka.
  */
-function kameli_audio_paragraph( $text, $extra = '' ) {
+function kameli_audio_paragraph( $text, $extra = '', $class = '' ) {
 	$attrs   = array();
 	$classes = array();
 	$opts    = array_filter( explode( ' ', $extra ) );
-	if ( in_array( 'center', $opts, true ) ) {
-		$attrs['align'] = 'center';
-		$classes[]      = 'has-text-align-center';
-	}
-	if ( in_array( 'harmaa', $opts, true ) ) {
-		$attrs['textColor'] = 'harmaa';
-		$classes[]          = 'has-harmaa-color has-text-color';
+	if ( $class ) {
+		$attrs['className'] = $class;
+		$classes[]          = $class;
 	}
 	if ( in_array( 'small', $opts, true ) ) {
 		$attrs['fontSize'] = 'small';
@@ -144,10 +178,9 @@ function kameli_audio_paragraph( $text, $extra = '' ) {
 		$attrs['fontSize'] = 'large';
 		$classes[]         = 'has-large-font-size';
 	}
-	$json  = $attrs ? ' ' . wp_json_encode( $attrs ) : '';
-	$class = $classes ? ' class="' . implode( ' ', $classes ) . '"' : '';
-	return "\n" . '<!-- wp:paragraph' . $json . ' -->' . "\n"
-		. '<p' . $class . '>' . wp_kses_post( $text ) . '</p>' . "\n"
+	$cls = $classes ? ' class="' . implode( ' ', $classes ) . '"' : '';
+	return "\n" . '<!-- wp:paragraph' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
+		. '<p' . $cls . '>' . wp_kses_post( $text ) . '</p>' . "\n"
 		. '<!-- /wp:paragraph -->' . "\n";
 }
 
@@ -155,9 +188,10 @@ function kameli_audio_paragraph( $text, $extra = '' ) {
  * Luettelo.
  *
  * @param string[] $items Rivit.
+ * @param string   $class Lisäluokka.
  */
-function kameli_audio_list( $items ) {
-	$out = "\n" . '<!-- wp:list -->' . "\n" . '<ul class="wp-block-list">';
+function kameli_audio_list( $items, $class = 'kameli-lista' ) {
+	$out = "\n" . '<!-- wp:list' . kameli_audio_attrs( array( 'className' => $class ) ) . ' -->' . "\n" . '<ul class="wp-block-list ' . $class . '">';
 	foreach ( $items as $item ) {
 		$out .= '<!-- wp:list-item -->' . "\n" . '<li>' . wp_kses_post( $item ) . '</li>' . "\n" . '<!-- /wp:list-item -->';
 	}
@@ -181,7 +215,7 @@ function kameli_audio_image_block( $file, $width, $alt = '', $class = '' ) {
 	if ( $class ) {
 		$attrs['className'] = $class;
 	}
-	return "\n" . '<!-- wp:image ' . wp_json_encode( $attrs ) . ' -->' . "\n"
+	return "\n" . '<!-- wp:image' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
 		. '<figure class="wp-block-image size-full is-resized' . ( $class ? ' ' . $class : '' ) . '"><img src="' . kameli_audio_image( $file ) . '" alt="' . esc_attr( $alt ) . '" style="width:' . esc_attr( $width ) . '"/></figure>' . "\n"
 		. '<!-- /wp:image -->' . "\n";
 }
@@ -190,25 +224,60 @@ function kameli_audio_image_block( $file, $width, $alt = '', $class = '' ) {
  * Kortti (ryhmä Kortti-tyylillä).
  *
  * @param string $inner Sisältö.
+ * @param string $class Lisäluokka.
  */
-function kameli_audio_card( $inner ) {
-	return '<!-- wp:group {"className":"is-style-kortti","layout":{"type":"constrained"}} -->' . "\n"
-		. '<div class="wp-block-group is-style-kortti">' . $inner . '</div>' . "\n"
-		. '<!-- /wp:group -->';
+function kameli_audio_card( $inner, $class = '' ) {
+	return kameli_audio_group( $inner, trim( 'is-style-kortti ' . $class ) );
 }
 
 /**
- * Sarakkeet: jokainen alkio on yhden sarakkeen sisältö.
+ * Sarakkeet.
  *
  * @param string[] $columns Sarakkeiden sisällöt.
+ * @param string[] $widths  Valinnaiset leveydet, esim. array( '40%', '60%' ).
+ * @param string   $class   Lisäluokka.
  */
-function kameli_audio_columns( $columns ) {
-	$out = "\n" . '<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|40","top":"var:preset|spacing|40"}}}} -->' . "\n"
-		. '<div class="wp-block-columns alignwide">';
-	foreach ( $columns as $column ) {
-		$out .= '<!-- wp:column -->' . "\n" . '<div class="wp-block-column">' . $column . '</div>' . "\n" . '<!-- /wp:column -->' . "\n\n";
+function kameli_audio_columns( $columns, $widths = array(), $class = '' ) {
+	$attrs = array( 'align' => 'wide' );
+	if ( $class ) {
+		$attrs['className'] = $class;
+	}
+	$attrs['style'] = array(
+		'spacing' => array(
+			'blockGap' => array(
+				'left' => 'var:preset|spacing|50',
+				'top'  => 'var:preset|spacing|40',
+			),
+		),
+	);
+	$out = "\n" . '<!-- wp:columns' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
+		. '<div class="wp-block-columns alignwide' . ( $class ? ' ' . $class : '' ) . '">';
+	foreach ( array_values( $columns ) as $i => $column ) {
+		if ( ! empty( $widths[ $i ] ) ) {
+			$out .= '<!-- wp:column {"width":"' . $widths[ $i ] . '"} -->' . "\n" . '<div class="wp-block-column" style="flex-basis:' . $widths[ $i ] . '">';
+		} else {
+			$out .= '<!-- wp:column -->' . "\n" . '<div class="wp-block-column">';
+		}
+		$out .= $column . '</div>' . "\n" . '<!-- /wp:column -->' . "\n\n";
 	}
 	return rtrim( $out ) . '</div>' . "\n" . '<!-- /wp:columns -->' . "\n";
+}
+
+/**
+ * Osion otsikkoalue: yläotsake, H2 ja valinnainen johdanto.
+ *
+ * @param string $eyebrow Yläotsake.
+ * @param string $title   Otsikko.
+ * @param string $text    Johdanto.
+ */
+function kameli_audio_section_head( $eyebrow, $title, $text = '' ) {
+	return kameli_audio_group(
+		kameli_audio_paragraph( esc_html( $eyebrow ), '', 'kameli-eyebrow' )
+		. kameli_audio_heading( $title, 2, 'kameli-osio-otsikko' )
+		. ( $text ? kameli_audio_paragraph( $text, 'lead', 'kameli-johdanto' ) : '' ),
+		'kameli-osion-alku',
+		'wide'
+	);
 }
 
 /**
@@ -221,10 +290,11 @@ function kameli_audio_columns( $columns ) {
  */
 function kameli_audio_service_card( $icon, $title, $text, $url ) {
 	return kameli_audio_card(
-		kameli_audio_image_block( $icon, '40px' )
+		kameli_audio_image_block( $icon, '44px', '', 'kameli-ikoni' )
 		. kameli_audio_heading( $title, 3 )
-		. kameli_audio_paragraph( $text, 'small harmaa' )
-		. kameli_audio_paragraph( '<a class="kameli-lue-lisaa" href="' . $url . '"><strong>Lue lisää →</strong></a>', 'small' )
+		. kameli_audio_paragraph( $text )
+		. kameli_audio_paragraph( '<a class="kameli-lue-lisaa" href="' . $url . '">Lue lisää</a>' ),
+		'kameli-palvelukortti'
 	);
 }
 
@@ -237,72 +307,111 @@ function kameli_audio_service_cards() {
 			kameli_audio_service_card( 'ikoni-yritykset.svg', 'Yritystapahtumat', 'Ammattimaiset äänipalvelut konferensseihin, messuille ja yritystilaisuuksiin.', kameli_audio_page_url( 'palvelut/yritykset' ) ),
 			kameli_audio_service_card( 'ikoni-yksityiset.svg', 'Yksityistapahtumat', 'Tee juhlastasi ikimuistoinen parhaalla mahdollisella äänentoistolla.', kameli_audio_page_url( 'palvelut/yksityiset' ) ),
 			kameli_audio_service_card( 'ikoni-artistit.svg', 'Bändit & Artistit', 'Studiotallennus, miksaus ja masterointi ammattilaisille.', kameli_audio_page_url( 'palvelut/artistit' ) ),
-		)
+		),
+		array(),
+		'kameli-korttirivi'
 	);
 }
 
 /**
- * Palvelukuvaus palvelusivuille: otsikko, leipäteksti ja luettelo.
+ * Palvelurivi palvelusivuille: otsikko vasemmalla, leipäteksti ja luettelo oikealla.
  *
- * @param string   $title  Otsikko.
- * @param string   $body   Leipäteksti.
- * @param string[] $items  Luettelon rivit.
- * @param string   $after  Valinnainen loppukappale.
+ * @param string   $title Otsikko.
+ * @param string   $body  Leipäteksti.
+ * @param string[] $items Luettelon rivit.
+ * @param string   $after Valinnainen loppukappale.
  */
 function kameli_audio_service_block( $title, $body, $items, $after = '' ) {
-	$out = kameli_audio_heading( $title )
-		. kameli_audio_paragraph( $body )
-		. kameli_audio_list( $items );
-	if ( $after ) {
-		$out .= kameli_audio_paragraph( $after );
-	}
-	return $out;
+	return kameli_audio_columns(
+		array(
+			kameli_audio_heading( $title, 2, 'kameli-palvelurivi__otsikko' ),
+			kameli_audio_paragraph( $body, 'lead' )
+				. kameli_audio_list( $items )
+				. ( $after ? kameli_audio_paragraph( $after ) : '' ),
+		),
+		array( '38%', '62%' ),
+		'kameli-palvelurivi'
+	);
 }
 
 /**
- * "Miksi valita Kameli Audio" -osio.
+ * Palvelurivit yhtenä valkoisena osiona.
  *
- * @param string $background Taustaväri.
+ * @param string $eyebrow Yläotsake.
+ * @param array  $rows    Taulukko kameli_audio_service_block-argumenteista.
  */
-function kameli_audio_why_us( $background = 'vaalea' ) {
-	return kameli_audio_section_open( $background )
-		. kameli_audio_heading( 'Miksi valita Kameli Audio' )
-		. kameli_audio_list(
+function kameli_audio_service_rows( $eyebrow, $rows ) {
+	$out = kameli_audio_section_open( 'valkoinen' )
+		. kameli_audio_group( kameli_audio_paragraph( esc_html( $eyebrow ), '', 'kameli-eyebrow' ), 'kameli-osion-alku', 'wide' );
+	foreach ( $rows as $row ) {
+		$out .= call_user_func_array( 'kameli_audio_service_block', $row );
+	}
+	return $out . kameli_audio_section_close();
+}
+
+/**
+ * "Miksi valita Kameli Audio" -osio tummalla taustalla.
+ */
+function kameli_audio_why_us() {
+	$tiles = array(
+		array( 'Ammattitason kalusto', 'Ammattitason kalusto ja kokemus sekä pienistä että suurista tapahtumista.' ),
+		array( 'Suunniteltu tilaasi', 'Suunnittelu ja toteutus tilan, ohjelman ja yleisömäärän mukaan.' ),
+		array( 'Ihmisläheinen tapa toimia', 'Joustava, selkeä ja ihmisläheinen tekemisen tapa.' ),
+		array( 'Muusikon korvat', 'Esiintyjänä ja muusikkona toimiva ääniteknikko, joka ymmärtää sekä esiintyjän että järjestäjän näkökulman.' ),
+	);
+	$cols = array();
+	foreach ( $tiles as $tile ) {
+		$cols[] = kameli_audio_heading( $tile[0], 3, 'kameli-syy__otsikko' ) . kameli_audio_paragraph( $tile[1] );
+	}
+	return kameli_audio_section_open( 'yo', '', 'kameli-miksi' )
+		. kameli_audio_section_head( 'Miksi Kameli Audio', 'Ääni, josta ei tarvitse huolehtia' )
+		. kameli_audio_columns( $cols, array(), 'kameli-syyt' )
+		. kameli_audio_section_close();
+}
+
+/**
+ * Hiekanvärinen toimintakehotekaista.
+ *
+ * @param string $title Otsikko.
+ * @param string $text  Teksti.
+ */
+function kameli_audio_cta( $title = 'Tarvitsetteko äänituotannon seuraavaan tapahtumaan?', $text = 'Laita viestiä, niin katsotaan päivät.' ) {
+	return kameli_audio_section_open( 'hiekka', '', 'kameli-cta' )
+		. kameli_audio_columns(
 			array(
-				'Ammattitason kalusto ja kokemus sekä pienistä että suurista tapahtumista',
-				'Suunnittelu ja toteutus tilan, ohjelman ja yleisömäärän mukaan',
-				'Joustava, selkeä ja ihmisläheinen tekemisen tapa',
-				'Esiintyjänä ja muusikkona toimiva ääniteknikko, joka ymmärtää sekä esiintyjän että järjestäjän näkökulman',
-			)
+				kameli_audio_heading( $title, 2 ) . kameli_audio_paragraph( esc_html( $text ), 'lead' ),
+				"\n" . '<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->' . "\n"
+				. '<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"hiili","textColor":"valkoinen"} -->' . "\n"
+				. '<div class="wp-block-button"><a class="wp-block-button__link has-valkoinen-color has-hiili-background-color has-text-color has-background wp-element-button" href="#yhteydenotto">Pyydä tarjous</a></div>' . "\n"
+				. '<!-- /wp:button --></div>' . "\n"
+				. '<!-- /wp:buttons -->' . "\n",
+			),
+			array( '66%', '34%' ),
+			'kameli-cta__rivi'
 		)
 		. kameli_audio_section_close();
 }
 
 /**
- * Musta toimintakehotekaista "Pyydä tarjous" -painikkeella.
+ * Yhteydenotto-osio (ankkuri #yhteydenotto): tiedot vasemmalla, lomake oikealla.
  *
- * @param string $text Painikkeen teksti.
+ * @param string $title Otsikko.
  */
-function kameli_audio_cta( $text = 'Pyydä tarjous' ) {
-	return kameli_audio_section_open( 'musta' )
-		. "\n" . '<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->' . "\n"
-		. '<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"valkoinen","textColor":"musta"} -->' . "\n"
-		. '<div class="wp-block-button"><a class="wp-block-button__link has-musta-color has-valkoinen-background-color has-text-color has-background wp-element-button" href="#yhteydenotto">' . esc_html( $text ) . '</a></div>' . "\n"
-		. '<!-- /wp:button --></div>' . "\n"
-		. '<!-- /wp:buttons -->' . "\n"
-		. kameli_audio_section_close();
-}
-
-/**
- * Yhteydenottolomake-osio (ankkuri #yhteydenotto).
- *
- * @param string $title      Otsikko.
- * @param string $background Taustaväri.
- */
-function kameli_audio_contact_section( $title = 'Ota yhteyttä', $background = 'vaalea' ) {
-	return kameli_audio_section_open( $background, 'yhteydenotto' )
-		. kameli_audio_heading( $title, 2, true )
-		. "\n" . '<!-- wp:shortcode -->' . "\n" . '[kameli_yhteydenotto]' . "\n" . '<!-- /wp:shortcode -->' . "\n"
+function kameli_audio_contact_section( $title = 'Kerro tapahtumastasi' ) {
+	$info = kameli_audio_paragraph( 'Yhteydenotto', '', 'kameli-eyebrow' )
+		. kameli_audio_heading( $title, 2, 'kameli-osio-otsikko' )
+		. kameli_audio_paragraph( 'Kerro päivämäärä, paikka ja arvio yleisömäärästä – tai projektistasi studiossa – niin palaamme asiaan.' )
+		. kameli_audio_list(
+			array(
+				'<a href="mailto:juha@kameliaudio.fi">juha@kameliaudio.fi</a>',
+				'<a href="mailto:sakari@kameliaudio.fi">sakari@kameliaudio.fi</a>',
+				'Kameli Studio, Hakkila, Vantaa',
+			),
+			'kameli-yhteystiedot'
+		);
+	$form = kameli_audio_card( "\n" . '<!-- wp:shortcode -->' . "\n" . '[kameli_yhteydenotto]' . "\n" . '<!-- /wp:shortcode -->' . "\n", 'kameli-lomakekortti' );
+	return kameli_audio_section_open( 'dyyni', 'yhteydenotto' )
+		. kameli_audio_columns( array( $info, $form ), array( '40%', '60%' ), 'kameli-yhteys' )
 		. kameli_audio_section_close();
 }
 
@@ -318,14 +427,17 @@ function kameli_audio_contact_section( $title = 'Ota yhteyttä', $background = '
 function kameli_audio_person_card( $name, $role, $bio, $phone, $email ) {
 	$tel = preg_replace( '/[^0-9+]/', '', $phone );
 	return kameli_audio_card(
-		kameli_audio_image_block( 'henkilo-paikkamerkki.svg', '160px', $name, 'kameli-henkilokuva' )
-		. kameli_audio_heading( $name, 3, true )
-		. kameli_audio_paragraph( '<strong>' . esc_html( $role ) . '</strong>', 'center small' )
-		. kameli_audio_paragraph( esc_html( $bio ), 'center small harmaa' )
-		. "\n" . '<!-- wp:separator {"backgroundColor":"reuna"} -->' . "\n"
-		. '<hr class="wp-block-separator has-text-color has-reuna-color has-alpha-channel-opacity has-reuna-background-color has-background"/>' . "\n"
-		. '<!-- /wp:separator -->' . "\n"
-		. kameli_audio_paragraph( '<a class="kameli-puhelin" href="tel:' . esc_attr( $tel ) . '">' . esc_html( $phone ) . '</a>', 'center small' )
-		. kameli_audio_paragraph( '<a class="kameli-sahkoposti" href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a>', 'center small' )
+		kameli_audio_image_block( 'henkilo-paikkamerkki.svg', '100%', $name, 'kameli-henkilokuva' )
+		. kameli_audio_paragraph( esc_html( $role ), '', 'kameli-eyebrow' )
+		. kameli_audio_heading( $name, 3 )
+		. kameli_audio_paragraph( esc_html( $bio ) )
+		. kameli_audio_list(
+			array(
+				'<a href="tel:' . esc_attr( $tel ) . '">' . esc_html( $phone ) . '</a>',
+				'<a href="mailto:' . esc_attr( $email ) . '">' . esc_html( $email ) . '</a>',
+			),
+			'kameli-yhteystiedot'
+		),
+		'kameli-henkilokortti'
 	);
 }

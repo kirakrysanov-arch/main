@@ -9,26 +9,90 @@
 			"defaultGradients": false,
 			"customGradient": false,
 			"palette": [
-				{ "slug": "musta", "name": "Musta", "color": "#0a0a0a" },
-				{ "slug": "valkoinen", "name": "Valkoinen", "color": "#ffffff" },
-				{ "slug": "vaalea", "name": "Vaaleanharmaa", "color": "#f3f3f3" },
-				{ "slug": "harmaa", "name": "Harmaa", "color": "#5c5c5c" },
-				{ "slug": "reuna", "name": "Reunaviiva", "color": "#d9d9d9" }
+				{
+					"slug": "hiili",
+					"name": "Hiili",
+					"color": "#16130f"
+				},
+				{
+					"slug": "yo",
+					"name": "Yö",
+					"color": "#231e19"
+				},
+				{
+					"slug": "hiekka",
+					"name": "Hiekka",
+					"color": "#d9a55b"
+				},
+				{
+					"slug": "dyyni",
+					"name": "Dyyni",
+					"color": "#f4efe8"
+				},
+				{
+					"slug": "valkoinen",
+					"name": "Valkoinen",
+					"color": "#ffffff"
+				},
+				{
+					"slug": "harmaa",
+					"name": "Harmaa",
+					"color": "#6b6258"
+				},
+				{
+					"slug": "vaalea-teksti",
+					"name": "Vaalea teksti",
+					"color": "#cfc6ba"
+				},
+				{
+					"slug": "reuna",
+					"name": "Reunaviiva",
+					"color": "#e3dace"
+				}
 			]
 		},
 		"layout": {
-			"contentSize": "760px",
-			"wideSize": "1120px"
+			"contentSize": "720px",
+			"wideSize": "1200px"
 		},
 		"spacing": {
-			"units": [ "px", "rem", "%", "vw" ],
+			"units": [
+				"px",
+				"rem",
+				"%",
+				"vw"
+			],
 			"spacingSizes": [
-				{ "slug": "20", "name": "XS", "size": "0.5rem" },
-				{ "slug": "30", "name": "S", "size": "1rem" },
-				{ "slug": "40", "name": "M", "size": "1.5rem" },
-				{ "slug": "50", "name": "L", "size": "clamp(2rem, 4vw, 3rem)" },
-				{ "slug": "60", "name": "XL", "size": "clamp(3rem, 7vw, 5rem)" },
-				{ "slug": "70", "name": "XXL", "size": "clamp(4rem, 10vw, 7rem)" }
+				{
+					"slug": "20",
+					"name": "XS",
+					"size": "0.5rem"
+				},
+				{
+					"slug": "30",
+					"name": "S",
+					"size": "1rem"
+				},
+				{
+					"slug": "40",
+					"name": "M",
+					"size": "1.5rem"
+				},
+				{
+					"slug": "50",
+					"name": "L",
+					"size": "clamp(2rem, 4vw, 3rem)"
+				},
+				{
+					"slug": "60",
+					"name": "XL",
+					"size": "clamp(3rem, 7vw, 5rem)"
+				},
+				{
+					"slug": "70",
+					"name": "XXL",
+					"size": "clamp(4rem, 10vw, 7rem)"
+				}
 			]
 		},
 		"typography": {
@@ -36,36 +100,73 @@
 			"fluid": true,
 			"fontFamilies": [
 				{
-					"slug": "inter",
-					"name": "Inter",
-					"fontFamily": "Inter, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+					"slug": "archivo",
+					"name": "Archivo",
+					"fontFamily": "Archivo, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
 					"fontFace": [
 						{
-							"fontFamily": "Inter",
+							"fontFamily": "Archivo",
 							"fontStyle": "normal",
 							"fontWeight": "100 900",
+							"fontStretch": "62% 125%",
 							"fontDisplay": "swap",
-							"src": [ "file:./assets/fonts/inter-latin-wght-normal.woff2" ]
+							"src": [
+								"file:./assets/fonts/archivo-latin-standard-normal.woff2"
+							]
 						}
 					]
 				}
 			],
 			"fontSizes": [
-				{ "slug": "small", "name": "Pieni", "size": "0.875rem", "fluid": false },
-				{ "slug": "medium", "name": "Normaali", "size": "1.0625rem", "fluid": false },
-				{ "slug": "large", "name": "Iso", "size": "1.375rem", "fluid": { "min": "1.25rem", "max": "1.375rem" } },
-				{ "slug": "x-large", "name": "Erittäin iso", "size": "2rem", "fluid": { "min": "1.625rem", "max": "2rem" } },
-				{ "slug": "xx-large", "name": "Otsikko", "size": "3.25rem", "fluid": { "min": "1.875rem", "max": "3.25rem" } }
+				{
+					"slug": "small",
+					"name": "Pieni",
+					"size": "0.875rem",
+					"fluid": false
+				},
+				{
+					"slug": "medium",
+					"name": "Normaali",
+					"size": "1.0625rem",
+					"fluid": false
+				},
+				{
+					"slug": "large",
+					"name": "Iso",
+					"size": "1.3rem",
+					"fluid": {
+						"min": "1.15rem",
+						"max": "1.3rem"
+					}
+				},
+				{
+					"slug": "x-large",
+					"name": "Erittäin iso",
+					"size": "2.4rem",
+					"fluid": {
+						"min": "1.75rem",
+						"max": "2.4rem"
+					}
+				},
+				{
+					"slug": "xx-large",
+					"name": "Otsikko",
+					"size": "4.25rem",
+					"fluid": {
+						"min": "2.1rem",
+						"max": "4.25rem"
+					}
+				}
 			]
 		}
 	},
 	"styles": {
 		"color": {
 			"background": "var(--wp--preset--color--valkoinen)",
-			"text": "var(--wp--preset--color--musta)"
+			"text": "var(--wp--preset--color--hiili)"
 		},
 		"typography": {
-			"fontFamily": "var(--wp--preset--font-family--inter)",
+			"fontFamily": "var(--wp--preset--font-family--archivo)",
 			"fontSize": "var(--wp--preset--font-size--medium)",
 			"lineHeight": "1.65"
 		},
@@ -80,51 +181,116 @@
 			"heading": {
 				"typography": {
 					"fontWeight": "700",
-					"lineHeight": "1.2",
-					"letterSpacing": "-0.01em"
+					"lineHeight": "1.08",
+					"letterSpacing": "-0.015em"
 				}
 			},
-			"h1": { "typography": { "fontSize": "var(--wp--preset--font-size--xx-large)", "letterSpacing": "-0.02em" } },
-			"h2": { "typography": { "fontSize": "var(--wp--preset--font-size--x-large)" } },
-			"h3": { "typography": { "fontSize": "var(--wp--preset--font-size--large)" } },
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--xx-large)",
+					"letterSpacing": "-0.02em"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--x-large)"
+				}
+			},
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)"
+				}
+			},
 			"link": {
-				"color": { "text": "currentColor" },
-				"typography": { "textDecoration": "underline" },
-				":hover": { "typography": { "textDecoration": "none" } }
+				"color": {
+					"text": "currentColor"
+				},
+				"typography": {
+					"textDecoration": "underline"
+				},
+				":hover": {
+					"typography": {
+						"textDecoration": "none"
+					}
+				}
 			},
 			"button": {
 				"color": {
-					"background": "var(--wp--preset--color--musta)",
-					"text": "var(--wp--preset--color--valkoinen)"
+					"background": "var(--wp--preset--color--hiekka)",
+					"text": "var(--wp--preset--color--hiili)"
 				},
-				"border": { "radius": "6px" },
+				"border": {
+					"radius": "999px"
+				},
 				"spacing": {
-					"padding": { "top": "0.8rem", "bottom": "0.8rem", "left": "1.75rem", "right": "1.75rem" }
+					"padding": {
+						"top": "0.85rem",
+						"bottom": "0.85rem",
+						"left": "1.6rem",
+						"right": "1.6rem"
+					}
 				},
 				"typography": {
 					"fontSize": "0.95rem",
-					"fontWeight": "700"
+					"fontWeight": "700",
+					"letterSpacing": "0.02em"
 				},
 				":hover": {
-					"color": { "background": "#333333" }
+					"color": {
+						"background": "#e6b977"
+					}
+				},
+				":focus": {
+					"outline": {
+						"color": "var(--wp--preset--color--hiekka)",
+						"offset": "3px",
+						"style": "solid",
+						"width": "2px"
+					}
 				}
 			}
 		},
 		"blocks": {
 			"core/navigation": {
-				"typography": { "fontSize": "0.95rem", "fontWeight": "600" }
+				"typography": {
+					"fontSize": "0.95rem",
+					"fontWeight": "600"
+				}
 			},
 			"core/site-title": {
-				"typography": { "fontSize": "1.25rem", "fontWeight": "800", "letterSpacing": "-0.01em" },
-				"elements": { "link": { "typography": { "textDecoration": "none" } } }
+				"typography": {
+					"fontSize": "1.1rem",
+					"fontWeight": "800",
+					"letterSpacing": "0.08em",
+					"textTransform": "uppercase"
+				},
+				"elements": {
+					"link": {
+						"typography": {
+							"textDecoration": "none"
+						}
+					}
+				}
 			},
 			"core/list": {
-				"spacing": { "padding": { "left": "1.25rem" } }
+				"spacing": {
+					"padding": {
+						"left": "1.25rem"
+					}
+				}
 			}
 		}
 	},
 	"templateParts": [
-		{ "name": "header", "title": "Ylätunniste", "area": "header" },
-		{ "name": "footer", "title": "Alatunniste", "area": "footer" }
+		{
+			"name": "header",
+			"title": "Ylätunniste",
+			"area": "header"
+		},
+		{
+			"name": "footer",
+			"title": "Alatunniste",
+			"area": "footer"
+		}
 	]
 }

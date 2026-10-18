@@ -1,7 +1,10 @@
 # Kameli Audio – WordPress-teema
 
-A WordPress block theme for the Kameli Audio website, based on the Canva mockups
-(Palvelut, Ota yhteyttä) and the copy in `Kameli_Audio-projekti.docx`.
+A WordPress block theme for the Kameli Audio website, built on the page structure of the Canva
+mockups (Palvelut, Ota yhteyttä) and the copy in `Kameli_Audio-projekti.docx`.
+
+Look: charcoal and sand (the camel) instead of plain black and white, wide Archivo headings that echo
+the logo's lettering, and the logo's waveform line repeated at the bottom of the page headers.
 
 ## Install
 
@@ -19,7 +22,7 @@ Requires WordPress 6.6 or newer (tested on 7.1).
 ## Editing
 
 - **Page content** (texts, images, lists): *Pages* → open the page. Every section is a normal editable block.
-- **Logo**: *Appearance → Editor → Patterns → Header* → click the logo placeholder. Until a logo is set, the site title is shown.
+- **Logo**: the Kameli Audio logo ships with the theme and shows automatically. To use a different file: *Appearance → Editor → Patterns → Header* → Site Logo.
 - **Menu**: *Appearance → Editor → Navigation*.
 - **Ready-made sections** (hero, cards, contact form …) are under the *Kameli Audio* category in the block inserter's *Patterns* tab.
 
@@ -37,8 +40,7 @@ honeypot field + WordPress nonce.
 |---|---|
 | Etusivu, Yksityiset, Artistit | Draft copy – replace with final texts |
 | Ota yhteyttä | Phone numbers (`+358 XX XXX XXXX`), check the email addresses, team photos |
-| Etusivu hero | Background image (currently a dark placeholder graphic) |
-| Header | Logo |
+| Footer, contact sections | Check the email addresses |
 
 ## Rebuilding the zip
 
@@ -48,7 +50,7 @@ After changing files in `kameli-audio/`, run `./build-zip.sh`.
 
 ```
 kameli-audio/
-├── style.css, theme.json      theme info, colours, fonts (Inter, self-hosted), spacing
+├── style.css, theme.json      theme info, colours, fonts (Archivo, self-hosted), spacing
 ├── functions.php
 ├── inc/markup.php             helpers that generate the repeated sections
 ├── inc/contact-form.php       contact form, message storage, settings field

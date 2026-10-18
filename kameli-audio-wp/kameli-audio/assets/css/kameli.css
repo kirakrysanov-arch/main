@@ -1,136 +1,385 @@
-/* Kameli Audio – lisätyylit, joita theme.json ei kata. */
+/*
+ * Kameli Audio – lisätyylit, joita theme.json ei kata.
+ * Ilme: hiilenmusta ja hiekka (kameli), leveät otsikot kuten logossa,
+ * logon aaltoviiva toistuvana aiheena.
+ */
 
-/* Ylätunniste */
-.kameli-header {
-	position: sticky;
-	top: 0;
-	z-index: 50;
-	border-bottom: 1px solid var(--wp--preset--color--reuna);
-}
-.admin-bar .kameli-header {
-	top: var(--wp-admin--admin-bar--height, 0);
-}
-.kameli-header .wp-block-navigation-item__content {
-	text-decoration: none;
-	padding-bottom: 2px;
-	border-bottom: 2px solid transparent;
-}
-.kameli-header .wp-block-navigation-item__content:hover,
-.kameli-header .current-menu-item > .wp-block-navigation-item__content {
-	border-bottom-color: currentColor;
-}
-.kameli-header .kameli-nav-painike > .wp-block-navigation-item__content {
-	background: var(--wp--preset--color--musta);
-	color: var(--wp--preset--color--valkoinen);
-	border: 0;
-	border-radius: 6px;
-	padding: 0.55rem 1.1rem;
-}
-.kameli-header .kameli-nav-painike > .wp-block-navigation-item__content:hover {
-	background: #333;
-}
-/* Mobiilivalikko: musta tausta, isot linkit */
-.kameli-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
-	font-size: 1.5rem;
-	gap: 1.25rem;
-}
-.kameli-header .is-menu-open .kameli-nav-painike > .wp-block-navigation-item__content {
-	background: var(--wp--preset--color--valkoinen);
-	color: var(--wp--preset--color--musta);
+:root {
+	--kameli-hiili: var(--wp--preset--color--hiili);
+	--kameli-hiekka: var(--wp--preset--color--hiekka);
+	--kameli-okra: #8a5d1f; /* hiekan tumma sävy vaalealle taustalle (riittävä kontrasti) */
+	--kameli-reuna: var(--wp--preset--color--reuna);
+	--kameli-vaalea: var(--wp--preset--color--vaalea-teksti);
 }
 
-/* Hero */
-.kameli-hero .kameli-alaotsikko {
-	font-weight: 400;
-	letter-spacing: 0;
-	opacity: 0.9;
-	margin-top: 0.75rem;
-}
-.kameli-etusivu-hero h1 {
-	font-size: clamp(2.75rem, 7vw, 5rem);
-}
-
-/* Kortti-tyyli */
-.wp-block-group.is-style-kortti {
-	border: 1.5px solid var(--wp--preset--color--musta);
-	border-radius: 12px;
-	padding: clamp(1.25rem, 3vw, 2rem);
-	background: var(--wp--preset--color--valkoinen);
-	height: 100%;
-	box-sizing: border-box;
-}
-.wp-block-group.is-style-kortti > * {
-	margin-block-start: 0.6rem;
-}
-.wp-block-group.is-style-kortti > :first-child {
-	margin-block-start: 0;
-}
-.kameli-lue-lisaa {
-	text-decoration: none;
-}
-.kameli-lue-lisaa:hover {
-	text-decoration: underline;
-}
-
-/* Osiot kiinni toisissaan ilman valkoisia rakoja */
+/* Osiot kiinni toisissaan ilman rakoja */
 .wp-site-blocks > * + *,
 .wp-block-post-content > .alignfull + .alignfull,
 main > .wp-block-post-content {
 	margin-block-start: 0;
 }
 
-/* Pitkät suomenkieliset sanat eivät valu yli mobiilissa */
-h1, h2, h3 {
+/* Typografia: leveät otsikot logon tapaan */
+h1, h2, h3,
+.wp-block-site-title {
+	font-stretch: 118%;
+	text-wrap: balance;
 	overflow-wrap: break-word;
 	hyphens: auto;
 }
+p {
+	text-wrap: pretty;
+}
+.kameli-eyebrow {
+	font-size: 0.78rem !important;
+	font-weight: 700;
+	font-stretch: 125%;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: var(--kameli-okra);
+	margin-bottom: 0.25rem !important;
+}
+.has-hiili-background-color .kameli-eyebrow,
+.has-yo-background-color .kameli-eyebrow {
+	color: var(--kameli-hiekka);
+}
+.has-hiekka-background-color .kameli-eyebrow {
+	color: var(--kameli-hiili);
+}
+::selection {
+	background: var(--kameli-hiekka);
+	color: var(--kameli-hiili);
+}
 
-/* Henkilökortti */
-.kameli-henkilokuva,
-.kameli-keskitetty {
+/* Linkit tummalla taustalla */
+.has-hiili-background-color a:not(.wp-element-button),
+.has-yo-background-color a:not(.wp-element-button) {
+	color: inherit;
+	text-decoration-color: var(--kameli-hiekka);
+	text-underline-offset: 0.2em;
+}
+
+/* Ylätunniste */
+.kameli-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+}
+.admin-bar .kameli-header {
+	top: var(--wp-admin--admin-bar--height, 0);
+}
+.kameli-header .wp-block-site-logo img {
+	display: block;
+}
+.kameli-header .wp-block-navigation-item__content {
+	text-decoration: none;
+	padding-block: 0.3rem;
+	background-image: linear-gradient(var(--kameli-hiekka), var(--kameli-hiekka));
+	background-size: 0 2px;
+	background-position: 0 100%;
+	background-repeat: no-repeat;
+	transition: background-size 0.25s ease;
+}
+.kameli-header .wp-block-navigation-item__content:hover,
+.kameli-header .current-menu-item > .wp-block-navigation-item__content,
+.kameli-header .wp-block-navigation-item__content[aria-current="page"] {
+	background-size: 100% 2px;
+}
+.kameli-header .kameli-nav-painike > .wp-block-navigation-item__content {
+	background: var(--kameli-hiekka);
+	color: var(--kameli-hiili);
+	border-radius: 999px;
+	padding: 0.55rem 1.15rem;
+	font-weight: 700;
+}
+.kameli-header .kameli-nav-painike > .wp-block-navigation-item__content:hover {
+	background: #e6b977;
+}
+.kameli-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+	font-size: 1.6rem;
+	font-stretch: 118%;
+	gap: 1.4rem;
+	padding-top: 2rem;
+}
+
+/* Hero: tumma, vasemmalle tasattu, logon aaltoviiva alareunassa */
+.kameli-hero {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: calc(var(--wp--preset--spacing--70) + 70px) !important;
+}
+.kameli-hero::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0;
+	height: 90px;
+	background: url("../images/aaltoviiva-hiekka.svg") center bottom / auto 100% repeat-x;
+	pointer-events: none;
+}
+.kameli-hero > * {
+	position: relative;
+	z-index: 1;
+}
+.kameli-hero h1 {
+	max-width: 16ch;
+	margin-top: 0.5rem;
+}
+.kameli-hero .kameli-alaotsikko {
+	font-weight: 400;
+	font-stretch: 100%;
+	letter-spacing: 0;
+	line-height: 1.45;
+	color: var(--kameli-vaalea);
+	max-width: 46ch;
+	margin-top: 1.25rem;
+}
+.kameli-hero--etusivu h1 {
+	font-size: clamp(2.6rem, 7vw, 5.5rem);
+}
+.kameli-hero__rivi {
+	align-items: center !important;
+}
+.kameli-hero__logo {
+	margin: 0 auto !important;
+	max-width: 360px;
+}
+.kameli-hero .wp-block-buttons {
+	margin-top: 2rem;
+}
+.wp-block-button.is-style-outline > .wp-block-button__link {
+	border: 2px solid currentColor;
+	background: transparent;
+	color: inherit;
+	padding-block: calc(0.85rem - 2px);
+}
+.wp-block-button.is-style-outline > .wp-block-button__link:hover {
+	border-color: var(--kameli-hiekka);
+	color: var(--kameli-hiekka);
+}
+
+/* Osion otsikkoalue */
+.kameli-osion-alku {
+	margin-bottom: var(--wp--preset--spacing--50);
+}
+.kameli-osio-otsikko {
+	max-width: 22ch;
+}
+.kameli-johdanto {
+	max-width: 60ch;
+	color: var(--wp--preset--color--harmaa);
+	margin-top: 1rem !important;
+}
+
+/* Kortit */
+.wp-block-group.is-style-kortti {
+	background: var(--wp--preset--color--valkoinen);
+	border: 1px solid var(--kameli-reuna);
+	border-radius: 14px;
+	padding: clamp(1.4rem, 3vw, 2.2rem);
+	height: 100%;
+	box-sizing: border-box;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	gap: 0.75rem;
 }
-.kameli-henkilokuva img {
-	border: 1.5px solid var(--wp--preset--color--musta);
-	border-radius: 10px;
-	aspect-ratio: 1;
-	object-fit: cover;
+.wp-block-group.is-style-kortti > * {
+	margin: 0 !important;
 }
-.kameli-puhelin,
-.kameli-sahkoposti {
+.kameli-palvelukortti {
+	position: relative;
+	transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.kameli-palvelukortti:hover {
+	border-color: var(--kameli-hiili);
+	transform: translateY(-3px);
+	box-shadow: 0 14px 30px -18px rgba(22, 19, 15, 0.45);
+}
+.kameli-palvelukortti .kameli-ikoni {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: var(--wp--preset--color--dyyni);
+	display: grid;
+	place-items: center;
+}
+.kameli-palvelukortti .kameli-ikoni img {
+	width: 30px !important;
+}
+.kameli-palvelukortti h3 {
+	font-size: 1.35rem;
+	margin-top: 0.5rem !important;
+}
+.kameli-palvelukortti p {
+	color: var(--wp--preset--color--harmaa);
+}
+.kameli-palvelukortti p:last-child {
+	margin-top: auto !important;
+	padding-top: 0.5rem;
+}
+/* Koko kortti on klikattava */
+.kameli-palvelukortti .kameli-lue-lisaa::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+}
+.kameli-lue-lisaa {
+	font-weight: 700;
+	color: var(--kameli-hiili);
+	text-decoration: none;
 	display: inline-flex;
 	align-items: center;
-	gap: 0.5rem;
-	text-decoration: none;
+	gap: 0.4rem;
 }
-.kameli-puhelin::before,
-.kameli-sahkoposti::before {
-	content: "";
-	width: 1em;
-	height: 1em;
-	background: currentColor;
-	-webkit-mask: var(--kameli-ikoni) center / contain no-repeat;
-	mask: var(--kameli-ikoni) center / contain no-repeat;
+.kameli-lue-lisaa::after {
+	content: "→";
+	transition: transform 0.2s ease;
 }
-.kameli-puhelin {
-	--kameli-ikoni: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E");
+.kameli-lue-lisaa:hover::after,
+.kameli-palvelukortti:hover .kameli-lue-lisaa::after {
+	transform: translateX(4px);
 }
-.kameli-sahkoposti {
-	--kameli-ikoni: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z'/%3E%3C/svg%3E");
+.kameli-lue-lisaa:focus-visible {
+	outline: 2px solid var(--kameli-hiili);
+	outline-offset: 4px;
 }
 
-/* Studiokortti */
-.kameli-studio {
-	max-width: 320px;
+/* Luettelot: pieni hiekanvärinen aaltomerkki */
+.kameli-lista {
+	list-style: none;
+	padding-left: 0 !important;
+	display: grid;
+	gap: 0.7rem;
+}
+.kameli-lista li {
+	position: relative;
+	padding-left: 1.9rem;
+}
+.kameli-lista li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.35em;
+	width: 1.1rem;
+	height: 0.8em;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14' fill='none' stroke='%23d9a55b' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M1 9V5a2 2 0 0 1 4 0v6a2 2 0 0 0 4 0V3a2 2 0 0 1 4 0v8a2 2 0 0 0 4 0V6a2 2 0 0 1 4 0v2'/%3E%3C/svg%3E") left center / contain no-repeat;
+}
+
+/* Palvelurivit */
+.kameli-palvelurivi {
+	border-top: 1px solid var(--kameli-reuna);
+	padding-top: var(--wp--preset--spacing--50);
+	margin-top: var(--wp--preset--spacing--50) !important;
+}
+.kameli-osion-alku + .kameli-palvelurivi {
+	margin-top: 0 !important;
+}
+.kameli-palvelurivi__otsikko {
+	font-size: clamp(1.5rem, 2.6vw, 2rem) !important;
+	position: sticky;
+	top: 110px;
+}
+
+/* Miksi Kameli Audio */
+.kameli-syyt > .wp-block-column {
+	border-top: 2px solid var(--kameli-hiekka);
+	padding-top: 1.25rem;
+}
+.kameli-syy__otsikko {
+	font-size: 1.2rem !important;
+	color: var(--kameli-hiekka);
+}
+.kameli-syyt p {
+	color: var(--kameli-vaalea);
+}
+
+/* Toimintakehote */
+.kameli-cta {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: calc(var(--wp--preset--spacing--70) + 60px) !important;
+}
+.kameli-cta::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0;
+	height: 90px;
+	background: url("../images/aaltoviiva-tumma.svg") center bottom / auto 100% repeat-x;
+	pointer-events: none;
+}
+.kameli-cta > * {
+	position: relative;
+	z-index: 1;
+}
+.kameli-cta__rivi {
+	align-items: center !important;
+}
+.kameli-cta h2 {
+	max-width: 28ch;
+}
+
+/* Yhteystiedot-luettelo */
+.kameli-yhteystiedot {
+	list-style: none;
+	padding-left: 0 !important;
+	display: grid;
+	gap: 0.55rem;
+	font-weight: 600;
+}
+.kameli-yhteystiedot a {
+	color: inherit;
+	text-decoration-color: var(--kameli-hiekka);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.25em;
+}
+
+/* Henkilökortti */
+.kameli-henkilokortti {
+	padding: 0 !important;
+	overflow: hidden;
+}
+.kameli-henkilokortti > :not(.kameli-henkilokuva) {
+	padding-inline: clamp(1.4rem, 3vw, 2rem) !important;
+}
+.kameli-henkilokortti > :last-child {
+	padding-bottom: clamp(1.4rem, 3vw, 2rem);
+}
+.kameli-henkilokuva {
+	width: 100%;
+}
+.kameli-henkilokuva img {
+	width: 100% !important;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	display: block;
+}
+
+/* Alatunniste */
+.kameli-footer a {
+	color: var(--wp--preset--color--valkoinen);
+	text-decoration: none;
+}
+.kameli-footer a:hover {
+	color: var(--kameli-hiekka);
+}
+.kameli-linkkilista {
+	list-style: none;
+	padding-left: 0 !important;
+	display: grid;
+	gap: 0.4rem;
+}
+.kameli-copyright {
+	max-width: var(--wp--style--global--wide-size);
 	margin-inline: auto !important;
-	text-align: center;
+	margin-top: var(--wp--preset--spacing--50) !important;
+	padding-top: var(--wp--preset--spacing--40);
+	border-top: 1px solid rgba(255, 255, 255, 0.12);
+	opacity: 0.75;
 }
 
 /* Yhteydenottolomake */
-.kameli-lomake {
-	max-width: 520px;
-	margin-inline: auto;
+.kameli-lomakekortti {
+	box-shadow: 0 24px 50px -30px rgba(22, 19, 15, 0.35);
 }
 .kameli-lomake__kentta {
 	display: flex;
@@ -139,7 +388,7 @@ h1, h2, h3 {
 	margin: 0 0 1.1rem;
 }
 .kameli-lomake label {
-	font-size: 0.875rem;
+	font-size: 0.85rem;
 	font-weight: 700;
 }
 .kameli-lomake input,
@@ -148,20 +397,22 @@ h1, h2, h3 {
 	font-size: 1rem;
 	width: 100%;
 	box-sizing: border-box;
-	padding: 0.75rem 0.9rem;
-	border: 1.5px solid var(--wp--preset--color--musta);
-	border-radius: 6px;
-	background: var(--wp--preset--color--valkoinen);
-	color: var(--wp--preset--color--musta);
+	padding: 0.8rem 0.95rem;
+	border: 1px solid #cbbfae;
+	border-radius: 10px;
+	background: #fdfbf8;
+	color: var(--kameli-hiili);
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .kameli-lomake textarea {
 	min-height: 9rem;
 	resize: vertical;
 }
-.kameli-lomake input:focus-visible,
-.kameli-lomake textarea:focus-visible {
-	outline: 3px solid var(--wp--preset--color--musta);
-	outline-offset: 2px;
+.kameli-lomake input:focus,
+.kameli-lomake textarea:focus {
+	outline: none;
+	border-color: var(--kameli-hiili);
+	box-shadow: 0 0 0 3px rgba(217, 165, 91, 0.45);
 }
 .kameli-lomake__ansa {
 	position: absolute !important;
@@ -178,21 +429,48 @@ h1, h2, h3 {
 	width: 100%;
 	cursor: pointer;
 	border: 0;
+	background: var(--kameli-hiili) !important;
+	color: var(--wp--preset--color--valkoinen) !important;
+}
+.kameli-lomake__laheta:hover {
+	background: #3a322a !important;
 }
 .kameli-lomake-ilmoitus {
-	max-width: 520px;
-	margin: 0 auto 1.5rem;
+	margin: 0 0 1.25rem;
 	padding: 1rem 1.25rem;
-	border-radius: 6px;
-	border: 1.5px solid var(--wp--preset--color--musta);
-	background: var(--wp--preset--color--valkoinen);
+	border-radius: 10px;
+	border-left: 4px solid var(--kameli-hiekka);
+	background: var(--wp--preset--color--dyyni);
 }
 .kameli-lomake-ilmoitus--virhe {
-	border-color: #b3261e;
-	color: #b3261e;
+	border-left-color: #b3261e;
+	color: #8c1d18;
 }
 
 /* Hyppy ankkuriin kiinteän ylätunnisteen alle */
 [id] {
-	scroll-margin-top: 90px;
+	scroll-margin-top: 100px;
+}
+
+/* Mobiili */
+@media (max-width: 781px) {
+	.kameli-hero__logo {
+		max-width: 180px;
+		margin: 1rem 0 0 !important;
+	}
+	.kameli-hero--etusivu .kameli-hero__rivi {
+		flex-direction: column-reverse;
+	}
+	.kameli-palvelurivi__otsikko {
+		position: static;
+	}
+	.kameli-cta .wp-block-buttons {
+		justify-content: flex-start !important;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+	}
 }
