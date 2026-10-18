@@ -18,7 +18,7 @@ echo kameli_audio_section_open( 'valkoinen' )
 	. kameli_audio_columns(
 		array(
 			kameli_audio_person_card(
-				'Juha Pöyry',
+				'Juha Pöysä',
 				'Vastaava teknikko, studiomestari',
 				'Vastaan tapahtumatekniikan toteutuksesta sekä kaluston ylläpidosta. Studion puolella teen äänitetuotannon kaikki vaiheet esituotannosta miksaukseen ja masterointiin.',
 				'+358 XX XXX XXXX',
