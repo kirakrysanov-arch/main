@@ -474,3 +474,251 @@ p {
 		transition: none !important;
 	}
 }
+
+/* ---------- Blogi ---------- */
+
+/* Kategoriasuodatin */
+.kameli-suodatin {
+	gap: 0.5rem !important;
+	margin-bottom: var(--wp--preset--spacing--50) !important;
+}
+.kameli-suodatin p,
+.kameli-suodatin ul {
+	margin: 0;
+}
+.kameli-suodatin__kategoriat {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	list-style: none;
+	padding: 0 !important;
+}
+.kameli-suodatin a {
+	display: inline-block;
+	padding: 0.45rem 1rem;
+	border: 1px solid var(--kameli-reuna);
+	border-radius: 999px;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--kameli-hiili);
+	text-decoration: none;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.kameli-suodatin a:hover {
+	border-color: var(--kameli-hiili);
+}
+.blog .kameli-suodatin__kaikki a,
+.kameli-suodatin__kategoriat .current-cat a {
+	background: var(--kameli-hiili);
+	border-color: var(--kameli-hiili);
+	color: var(--wp--preset--color--valkoinen);
+}
+
+/* Julkaisukortit */
+.kameli-postiruudukko {
+	gap: var(--wp--preset--spacing--40) !important;
+}
+@media (max-width: 900px) {
+	.kameli-postiruudukko {
+		grid-template-columns: 1fr 1fr !important;
+	}
+}
+@media (max-width: 600px) {
+	.kameli-postiruudukko {
+		grid-template-columns: 1fr !important;
+	}
+}
+.kameli-postikortti {
+	position: relative;
+	padding: 0 !important;
+	overflow: hidden;
+	transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.kameli-postikortti:hover {
+	border-color: var(--kameli-hiili);
+	transform: translateY(-3px);
+	box-shadow: 0 14px 30px -18px rgba(11, 11, 11, 0.45);
+}
+.kameli-postikortti > :not(.wp-block-post-featured-image) {
+	padding-inline: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+.kameli-postikortti > .wp-block-post-featured-image + * ,
+.kameli-postikortti > :first-child:not(.wp-block-post-featured-image) {
+	padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+.kameli-postikortti > :last-child {
+	padding-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+	margin-top: auto !important;
+}
+/* Kortti ilman kuvaa: aaltoviiva kuvan paikalla */
+.kameli-postikortti:not(:has(.wp-block-post-featured-image))::before {
+	content: "";
+	display: block;
+	aspect-ratio: 16 / 7;
+	background: var(--kameli-hiili) url("../images/aaltoviiva-vihrea.svg") center bottom / auto 70% repeat-x;
+}
+.kameli-postikortti .wp-block-post-featured-image img {
+	transition: transform 0.4s ease;
+}
+.kameli-postikortti:hover .wp-block-post-featured-image img {
+	transform: scale(1.03);
+}
+.kameli-postikortti .wp-block-post-title {
+	font-size: 1.3rem;
+	line-height: 1.2;
+}
+.kameli-postikortti .wp-block-post-title a {
+	text-decoration: none;
+	color: inherit;
+}
+/* Koko kortti on klikattava otsikon linkin kautta */
+.kameli-postikortti .wp-block-post-title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+.kameli-postikortti .kameli-eyebrow a,
+.kameli-postikortti .kameli-eyebrow {
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+	color: var(--kameli-tummavihrea);
+}
+.kameli-postikortti .wp-block-post-excerpt {
+	color: var(--wp--preset--color--harmaa);
+}
+.kameli-postikortti .wp-block-post-excerpt__more-text {
+	display: none;
+}
+.kameli-postikortti__pvm {
+	color: var(--wp--preset--color--harmaa);
+}
+.wp-block-query-pagination {
+	margin-top: var(--wp--preset--spacing--50) !important;
+	font-weight: 600;
+}
+.wp-block-query-pagination a {
+	text-decoration: none;
+}
+.wp-block-query-pagination .current {
+	color: var(--kameli-tummavihrea);
+}
+
+/* Osion otsikkorivi linkillä oikealla */
+.kameli-osio-otsikkorivi {
+	align-items: flex-end !important;
+	margin-bottom: var(--wp--preset--spacing--40) !important;
+}
+.kameli-osio-otsikkorivi > .wp-block-column:last-child {
+	text-align: right;
+}
+@media (max-width: 781px) {
+	.kameli-osio-otsikkorivi > .wp-block-column:last-child {
+		text-align: left;
+	}
+}
+
+/* Hero-otsikon kategoriat ja päiväys */
+.kameli-hero .kameli-eyebrow a {
+	color: inherit;
+	text-decoration: none;
+}
+.kameli-hero--artikkeli > *,
+.kameli-hero--artikkeli h1 {
+	max-width: var(--wp--style--global--content-size) !important;
+	margin-inline: auto !important;
+}
+.kameli-hero--artikkeli h1 {
+	font-size: clamp(2rem, 4.5vw, 3.25rem);
+}
+.kameli-hero .wp-block-term-description p {
+	margin: 0;
+}
+
+/* Artikkeli */
+.kameli-artikkeli__kuva img {
+	border-radius: 14px;
+}
+.kameli-artikkeli .wp-block-post-content {
+	font-size: 1.125rem;
+	line-height: 1.75;
+}
+.kameli-artikkeli .wp-block-post-content h2 {
+	font-size: clamp(1.5rem, 3vw, 2rem);
+	margin-top: 2.5rem;
+}
+.kameli-artikkeli .wp-block-post-content h3 {
+	font-size: 1.3rem;
+	margin-top: 2rem;
+}
+.kameli-artikkeli .wp-block-post-content > p:first-child.has-large-font-size {
+	font-size: 1.35rem !important;
+	line-height: 1.55;
+}
+.kameli-artikkeli .wp-block-post-content a {
+	text-decoration-color: var(--wp--preset--color--vihrea);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+.kameli-artikkeli__alaosa {
+	max-width: var(--wp--style--global--content-size);
+	margin-inline: auto !important;
+	margin-top: var(--wp--preset--spacing--60) !important;
+	padding-top: var(--wp--preset--spacing--40);
+	border-top: 1px solid var(--kameli-reuna);
+	font-weight: 600;
+}
+.kameli-artikkeli__alaosa a {
+	text-decoration: none;
+}
+
+/* Asiakastarinan faktalaatikko */
+.kameli-faktat {
+	background: var(--wp--preset--color--vaalea);
+	border-radius: 14px;
+	padding: clamp(1.25rem, 3vw, 1.75rem);
+	margin-block: 2rem !important;
+}
+.kameli-faktat .wp-block-columns {
+	gap: 1.25rem !important;
+	margin: 0;
+}
+.kameli-faktat p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.4;
+}
+.kameli-faktat .kameli-eyebrow {
+	margin-bottom: 0.3rem !important;
+}
+
+/* Lainaus */
+.wp-block-quote.kameli-lainaus,
+.kameli-artikkeli .wp-block-quote {
+	border: 0;
+	margin-block: 2.5rem;
+	padding: 0 0 0 3.25rem;
+	position: relative;
+	font-size: 1.35rem;
+	line-height: 1.5;
+	font-weight: 500;
+}
+.wp-block-quote.kameli-lainaus::before,
+.kameli-artikkeli .wp-block-quote::before {
+	content: "”";
+	position: absolute;
+	left: 0;
+	top: -0.35em;
+	font-size: 4.5rem;
+	font-weight: 800;
+	line-height: 1;
+	color: var(--wp--preset--color--vihrea);
+}
+.wp-block-quote cite {
+	display: block;
+	margin-top: 0.75rem;
+	font-size: 0.9rem;
+	font-style: normal;
+	font-weight: 600;
+	color: var(--wp--preset--color--harmaa);
+}

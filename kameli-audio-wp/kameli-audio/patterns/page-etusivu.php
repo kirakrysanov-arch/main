@@ -57,5 +57,6 @@ echo kameli_audio_section_open( 'valkoinen' )
 	)
 	. kameli_audio_section_close();
 
+echo kameli_audio_case_studies_section();
 echo kameli_audio_cta();
 echo kameli_audio_contact_section();

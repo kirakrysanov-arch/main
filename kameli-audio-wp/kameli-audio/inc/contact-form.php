@@ -81,6 +81,17 @@ function kameli_audio_register_settings() {
 add_action( 'admin_init', 'kameli_audio_register_settings' );
 
 /**
+ * Nykyisen sivun osoite (myös blogin listaus- ja kategoriasivuilla), johon lomakkeen jälkeen palataan.
+ */
+function kameli_audio_current_url() {
+	global $wp;
+	if ( is_singular() ) {
+		return get_permalink();
+	}
+	return home_url( $wp && $wp->request ? trailingslashit( $wp->request ) : '/' );
+}
+
+/**
  * Lomakkeen HTML.
  */
 function kameli_audio_contact_form_shortcode() {
@@ -98,7 +109,7 @@ function kameli_audio_contact_form_shortcode() {
 	?>
 	<form class="kameli-lomake" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 		<input type="hidden" name="action" value="kameli_yhteydenotto" />
-		<input type="hidden" name="kameli_paluu" value="<?php echo esc_url( get_permalink() ); ?>" />
+		<input type="hidden" name="kameli_paluu" value="<?php echo esc_url( kameli_audio_current_url() ); ?>" />
 		<?php wp_nonce_field( 'kameli_yhteydenotto', 'kameli_nonce' ); ?>
 
 		<p class="kameli-lomake__kentta">
@@ -198,3 +209,14 @@ function kameli_audio_handle_contact() {
 }
 add_action( 'admin_post_nopriv_kameli_yhteydenotto', 'kameli_audio_handle_contact' );
 add_action( 'admin_post_kameli_yhteydenotto', 'kameli_audio_handle_contact' );
+
+/**
+ * Lyhytkoodilohko sivupohjissa (esim. blogin yhteydenotto-osio): WordPress ajaa lyhytkoodit
+ * automaattisesti vain sivun sisällössä, joten ajetaan ne myös tässä.
+ *
+ * @param string $content Lohkon HTML.
+ */
+function kameli_audio_render_shortcode_block( $content ) {
+	return false !== strpos( $content, '[kameli_yhteydenotto' ) ? do_shortcode( $content ) : $content;
+}
+add_filter( 'render_block_core/shortcode', 'kameli_audio_render_shortcode_block' );

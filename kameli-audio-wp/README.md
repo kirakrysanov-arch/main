@@ -10,8 +10,9 @@ the logo's lettering, and the logo's waveform line repeated at the bottom of the
 
 1. In WordPress: **Appearance → Themes → Add New → Upload Theme**, choose `kameli-audio.zip`, then **Activate**.
 2. On first activation the theme creates automatically:
-   - pages **Etusivu**, **Palvelut**, **Palvelut › Yritykset**, **Palvelut › Yksityiset**, **Palvelut › Artistit**, **Ota yhteyttä**
-   - the main menu (Palvelut · Yritykset · Yksityiset · Artistit · Ota yhteyttä)
+   - pages **Etusivu**, **Palvelut**, **Palvelut › Yritykset**, **Palvelut › Yksityiset**, **Palvelut › Artistit**, **Ota yhteyttä**, **Blogi**
+   - the main menu (Palvelut · Yritykset · Yksityiset · Artistit · Blogi · Ota yhteyttä)
+   - the blog: categories **Asiakastarinat** and **Artikkelit**, Blogi as the posts page, and 8 drafts (see Blog below)
    - Etusivu as the site's front page, and clean URLs (`/palvelut/yritykset/`) if the site still used the default `?p=123` format.
    Existing pages with the same address are never overwritten.
 3. **Settings → General**: set *Site Title* to `Kameli Audio`, *Site Language* to `Suomi`,
@@ -26,6 +27,19 @@ Requires WordPress 6.6 or newer (tested on 7.1).
 - **Menu**: *Appearance → Editor → Navigation*.
 - **Ready-made sections** (hero, cards, contact form …) are under the *Kameli Audio* category in the block inserter's *Patterns* tab.
 
+## Blog and case studies
+
+- Blog: `/blogi/`, with filter buttons Kaikki · Artikkelit · Asiakastarinat.
+- Case studies (references) are blog posts in the **Asiakastarinat** category, at `/category/asiakastarinat/`.
+  The three newest also appear on Etusivu and Palvelut.
+- **New case study:** *Posts → Add New* → choose the *Asiakastarina (pohja)* pattern (fact box, Lähtötilanne,
+  Ratkaisu, Lopputulos, customer quote) → set category *Asiakastarinat* → add a featured image → Publish.
+- **New article:** *Posts → Add New*; new posts go to *Artikkelit* by default.
+- Drafts created on activation (not visible until published): 3 case study templates and 5 articles based on the
+  January video topics in the project plan.
+- Posts without a featured image show the green waveform in the card instead of a photo.
+- Every post ends with the "Pyydä tarjous" band and the contact form.
+
 ## Contact form
 
 The form is the shortcode `[kameli_yhteydenotto]` (already on every page). Every message is
@@ -39,6 +53,7 @@ honeypot field + WordPress nonce.
 | Where | What |
 |---|---|
 | Etusivu, Yksityiset, Artistit | Draft copy – replace with final texts |
+| Blog | 3–5 case studies before launch (project plan), featured images |
 | Ota yhteyttä | Phone numbers (`+358 XX XXX XXXX`), check the email addresses, team photos |
 | Footer, contact sections | Check the email addresses |
 
@@ -55,7 +70,9 @@ kameli-audio/
 ├── inc/markup.php             helpers that generate the repeated sections
 ├── inc/contact-form.php       contact form, message storage, settings field
 ├── inc/starter-content.php    creates pages + menu on first activation
-├── patterns/                  one pattern per page + footer
-├── templates/, parts/         page/post/404 templates, header, footer
+├── patterns/                  one pattern per page, case study template, CTA, contact, footer
+├── templates/, parts/         page, blog, category, post and 404 templates, header, footer
 └── assets/                    CSS, font, icons, placeholder images
 ```
+
+Project plan and status: [`docs/projektisuunnitelma.md`](docs/projektisuunnitelma.md).

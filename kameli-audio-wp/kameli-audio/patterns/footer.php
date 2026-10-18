@@ -23,7 +23,7 @@
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:paragraph {"className":"kameli-eyebrow"} -->
-<p class="kameli-eyebrow">Palvelut</p>
+<p class="kameli-eyebrow">Sivut</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"className":"kameli-linkkilista"} -->
@@ -33,6 +33,8 @@
 <li><a href="<?php echo kameli_audio_page_url( 'palvelut/yksityiset' ); ?>">Yksityiset</a></li>
 <!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="<?php echo kameli_audio_page_url( 'palvelut/artistit' ); ?>">Artistit</a></li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li><a href="<?php echo kameli_audio_page_url( 'blogi' ); ?>">Blogi</a></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:column -->

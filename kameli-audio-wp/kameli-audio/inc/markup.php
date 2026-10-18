@@ -441,3 +441,67 @@ function kameli_audio_person_card( $name, $role, $bio, $phone, $email ) {
 		'kameli-henkilokortti'
 	);
 }
+
+/**
+ * Julkaisulistaus (kortit ruudukossa). Sama korttimerkintä kuin blogin pohjissa.
+ *
+ * @param string $category Kategorian slug tai tyhjä (kaikki).
+ * @param int    $per_page Montako julkaisua.
+ */
+function kameli_audio_post_query( $category = '', $per_page = 3 ) {
+	$query = array(
+		'perPage'  => $per_page,
+		'pages'    => 0,
+		'offset'   => 0,
+		'postType' => 'post',
+		'order'    => 'desc',
+		'orderBy'  => 'date',
+		'inherit'  => false,
+	);
+	$term = $category ? get_term_by( 'slug', $category, 'category' ) : null;
+	if ( $term ) {
+		$query['taxQuery'] = array( 'category' => array( $term->term_id ) );
+	}
+	$attrs = array(
+		'queryId' => 20,
+		'query'   => $query,
+		'align'   => 'wide',
+		'layout'  => array( 'type' => 'default' ),
+	);
+	return "\n" . '<!-- wp:query' . kameli_audio_attrs( $attrs ) . ' -->' . "\n"
+		. '<div class="wp-block-query alignwide"><!-- wp:post-template {"className":"kameli-postiruudukko","layout":{"type":"grid","columnCount":3}} -->' . "\n"
+		. '<!-- wp:group {"className":"is-style-kortti kameli-postikortti","layout":{"type":"default"}} -->' . "\n"
+		. '<div class="wp-block-group is-style-kortti kameli-postikortti"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /-->' . "\n\n"
+		. '<!-- wp:post-terms {"term":"category","className":"kameli-eyebrow"} /-->' . "\n\n"
+		. '<!-- wp:post-title {"level":3,"isLink":true} /-->' . "\n\n"
+		. '<!-- wp:post-excerpt {"excerptLength":22} /-->' . "\n\n"
+		. '<!-- wp:post-date {"fontSize":"small","className":"kameli-postikortti__pvm"} /--></div>' . "\n"
+		. '<!-- /wp:group -->' . "\n"
+		. '<!-- /wp:post-template -->' . "\n\n"
+		. '<!-- wp:query-no-results -->' . "\n"
+		. '<!-- wp:paragraph -->' . "\n" . '<p>Ensimmäiset julkaisut ovat tulossa pian.</p>' . "\n" . '<!-- /wp:paragraph -->' . "\n"
+		. '<!-- /wp:query-no-results --></div>' . "\n"
+		. '<!-- /wp:query -->' . "\n";
+}
+
+/**
+ * Asiakastarinat-osio: kolme uusinta referenssiä ja linkki kaikkiin.
+ *
+ * @param string $background Taustaväri.
+ */
+function kameli_audio_case_studies_section( $background = 'vaalea' ) {
+	$term = get_term_by( 'slug', 'asiakastarinat', 'category' );
+	$url  = $term ? get_term_link( $term ) : home_url( '/blogi/' );
+	return kameli_audio_section_open( $background )
+		. kameli_audio_columns(
+			array(
+				kameli_audio_paragraph( 'Referenssit', '', 'kameli-eyebrow' )
+					. kameli_audio_heading( 'Asiakastarinat', 2, 'kameli-osio-otsikko' ),
+				kameli_audio_paragraph( '<a class="kameli-lue-lisaa" href="' . esc_url( is_wp_error( $url ) ? home_url( '/blogi/' ) : $url ) . '">Kaikki asiakastarinat</a>' ),
+			),
+			array( '70%', '30%' ),
+			'kameli-osio-otsikkorivi'
+		)
+		. kameli_audio_post_query( 'asiakastarinat', 3 )
+		. kameli_audio_section_close();
+}
