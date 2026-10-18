@@ -93,7 +93,7 @@ function kameli_audio_hero( $eyebrow, $title, $subtitle, $subtitle_h2 = false ) 
 /**
  * Osion aloitus: täysleveä ryhmä valitulla taustalla.
  *
- * @param string $background Värin slug (valkoinen, dyyni, hiili, yo, hiekka).
+ * @param string $background Värin slug (valkoinen, vaalea, hiili, yo, vihrea).
  * @param string $anchor     Valinnainen HTML-ankkuri.
  * @param string $class      Valinnainen lisäluokka.
  */
@@ -376,7 +376,7 @@ function kameli_audio_why_us() {
  * @param string $text  Teksti.
  */
 function kameli_audio_cta( $title = 'Tarvitsetteko äänituotannon seuraavaan tapahtumaan?', $text = 'Laita viestiä, niin katsotaan päivät.' ) {
-	return kameli_audio_section_open( 'hiekka', '', 'kameli-cta' )
+	return kameli_audio_section_open( 'vihrea', '', 'kameli-cta' )
 		. kameli_audio_columns(
 			array(
 				kameli_audio_heading( $title, 2 ) . kameli_audio_paragraph( esc_html( $text ), 'lead' ),
@@ -410,7 +410,7 @@ function kameli_audio_contact_section( $title = 'Kerro tapahtumastasi' ) {
 			'kameli-yhteystiedot'
 		);
 	$form = kameli_audio_card( "\n" . '<!-- wp:shortcode -->' . "\n" . '[kameli_yhteydenotto]' . "\n" . '<!-- /wp:shortcode -->' . "\n", 'kameli-lomakekortti' );
-	return kameli_audio_section_open( 'dyyni', 'yhteydenotto' )
+	return kameli_audio_section_open( 'vaalea', 'yhteydenotto' )
 		. kameli_audio_columns( array( $info, $form ), array( '40%', '60%' ), 'kameli-yhteys' )
 		. kameli_audio_section_close();
 }

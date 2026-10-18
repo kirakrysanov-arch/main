@@ -12,22 +12,22 @@
 				{
 					"slug": "hiili",
 					"name": "Hiili",
-					"color": "#16130f"
+					"color": "#101312"
 				},
 				{
 					"slug": "yo",
 					"name": "Yö",
-					"color": "#231e19"
+					"color": "#1a1f1d"
 				},
 				{
-					"slug": "hiekka",
-					"name": "Hiekka",
-					"color": "#d9a55b"
+					"slug": "vihrea",
+					"name": "Vihreä",
+					"color": "#52b489"
 				},
 				{
-					"slug": "dyyni",
-					"name": "Dyyni",
-					"color": "#f4efe8"
+					"slug": "vaalea",
+					"name": "Vaalea",
+					"color": "#eef4f1"
 				},
 				{
 					"slug": "valkoinen",
@@ -37,17 +37,17 @@
 				{
 					"slug": "harmaa",
 					"name": "Harmaa",
-					"color": "#6b6258"
+					"color": "#59635f"
 				},
 				{
 					"slug": "vaalea-teksti",
 					"name": "Vaalea teksti",
-					"color": "#cfc6ba"
+					"color": "#c3cdc8"
 				},
 				{
 					"slug": "reuna",
 					"name": "Reunaviiva",
-					"color": "#e3dace"
+					"color": "#d8e3dd"
 				}
 			]
 		},
@@ -216,7 +216,7 @@
 			},
 			"button": {
 				"color": {
-					"background": "var(--wp--preset--color--hiekka)",
+					"background": "var(--wp--preset--color--vihrea)",
 					"text": "var(--wp--preset--color--hiili)"
 				},
 				"border": {
@@ -237,12 +237,12 @@
 				},
 				":hover": {
 					"color": {
-						"background": "#e6b977"
+						"background": "#74c9a3"
 					}
 				},
 				":focus": {
 					"outline": {
-						"color": "var(--wp--preset--color--hiekka)",
+						"color": "var(--wp--preset--color--vihrea)",
 						"offset": "3px",
 						"style": "solid",
 						"width": "2px"

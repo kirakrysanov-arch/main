@@ -1,13 +1,13 @@
 /*
  * Kameli Audio – lisätyylit, joita theme.json ei kata.
- * Ilme: hiilenmusta ja hiekka (kameli), leveät otsikot kuten logossa,
+ * Ilme: hiilenmusta ja Kameli Audion vihreä, leveät otsikot kuten logossa,
  * logon aaltoviiva toistuvana aiheena.
  */
 
 :root {
 	--kameli-hiili: var(--wp--preset--color--hiili);
-	--kameli-hiekka: var(--wp--preset--color--hiekka);
-	--kameli-okra: #8a5d1f; /* hiekan tumma sävy vaalealle taustalle (riittävä kontrasti) */
+	--kameli-vihrea: var(--wp--preset--color--vihrea);
+	--kameli-tummavihrea: #1d7a52; /* vihreän tumma sävy vaalealle taustalle (riittävä kontrasti) */
 	--kameli-reuna: var(--wp--preset--color--reuna);
 	--kameli-vaalea: var(--wp--preset--color--vaalea-teksti);
 }
@@ -36,18 +36,18 @@ p {
 	font-stretch: 125%;
 	letter-spacing: 0.18em;
 	text-transform: uppercase;
-	color: var(--kameli-okra);
+	color: var(--kameli-tummavihrea);
 	margin-bottom: 0.25rem !important;
 }
 .has-hiili-background-color .kameli-eyebrow,
 .has-yo-background-color .kameli-eyebrow {
-	color: var(--kameli-hiekka);
+	color: var(--kameli-vihrea);
 }
-.has-hiekka-background-color .kameli-eyebrow {
+.has-vihrea-background-color .kameli-eyebrow {
 	color: var(--kameli-hiili);
 }
 ::selection {
-	background: var(--kameli-hiekka);
+	background: var(--kameli-vihrea);
 	color: var(--kameli-hiili);
 }
 
@@ -55,7 +55,7 @@ p {
 .has-hiili-background-color a:not(.wp-element-button),
 .has-yo-background-color a:not(.wp-element-button) {
 	color: inherit;
-	text-decoration-color: var(--kameli-hiekka);
+	text-decoration-color: var(--kameli-vihrea);
 	text-underline-offset: 0.2em;
 }
 
@@ -74,7 +74,7 @@ p {
 .kameli-header .wp-block-navigation-item__content {
 	text-decoration: none;
 	padding-block: 0.3rem;
-	background-image: linear-gradient(var(--kameli-hiekka), var(--kameli-hiekka));
+	background-image: linear-gradient(var(--kameli-vihrea), var(--kameli-vihrea));
 	background-size: 0 2px;
 	background-position: 0 100%;
 	background-repeat: no-repeat;
@@ -86,14 +86,14 @@ p {
 	background-size: 100% 2px;
 }
 .kameli-header .kameli-nav-painike > .wp-block-navigation-item__content {
-	background: var(--kameli-hiekka);
+	background: var(--kameli-vihrea);
 	color: var(--kameli-hiili);
 	border-radius: 999px;
 	padding: 0.55rem 1.15rem;
 	font-weight: 700;
 }
 .kameli-header .kameli-nav-painike > .wp-block-navigation-item__content:hover {
-	background: #e6b977;
+	background: #74c9a3;
 }
 .kameli-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
 	font-size: 1.6rem;
@@ -113,7 +113,7 @@ p {
 	position: absolute;
 	inset: auto 0 0;
 	height: 90px;
-	background: url("../images/aaltoviiva-hiekka.svg") center bottom / auto 100% repeat-x;
+	background: url("../images/aaltoviiva-vihrea.svg") center bottom / auto 100% repeat-x;
 	pointer-events: none;
 }
 .kameli-hero > * {
@@ -153,8 +153,8 @@ p {
 	padding-block: calc(0.85rem - 2px);
 }
 .wp-block-button.is-style-outline > .wp-block-button__link:hover {
-	border-color: var(--kameli-hiekka);
-	color: var(--kameli-hiekka);
+	border-color: var(--kameli-vihrea);
+	color: var(--kameli-vihrea);
 }
 
 /* Osion otsikkoalue */
@@ -192,13 +192,13 @@ p {
 .kameli-palvelukortti:hover {
 	border-color: var(--kameli-hiili);
 	transform: translateY(-3px);
-	box-shadow: 0 14px 30px -18px rgba(22, 19, 15, 0.45);
+	box-shadow: 0 14px 30px -18px rgba(16, 19, 18, 0.45);
 }
 .kameli-palvelukortti .kameli-ikoni {
 	width: 56px;
 	height: 56px;
 	border-radius: 50%;
-	background: var(--wp--preset--color--dyyni);
+	background: var(--wp--preset--color--vaalea);
 	display: grid;
 	place-items: center;
 }
@@ -262,7 +262,7 @@ p {
 	top: 0.35em;
 	width: 1.1rem;
 	height: 0.8em;
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14' fill='none' stroke='%23d9a55b' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M1 9V5a2 2 0 0 1 4 0v6a2 2 0 0 0 4 0V3a2 2 0 0 1 4 0v8a2 2 0 0 0 4 0V6a2 2 0 0 1 4 0v2'/%3E%3C/svg%3E") left center / contain no-repeat;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14' fill='none' stroke='%2352b489' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M1 9V5a2 2 0 0 1 4 0v6a2 2 0 0 0 4 0V3a2 2 0 0 1 4 0v8a2 2 0 0 0 4 0V6a2 2 0 0 1 4 0v2'/%3E%3C/svg%3E") left center / contain no-repeat;
 }
 
 /* Palvelurivit */
@@ -282,12 +282,12 @@ p {
 
 /* Miksi Kameli Audio */
 .kameli-syyt > .wp-block-column {
-	border-top: 2px solid var(--kameli-hiekka);
+	border-top: 2px solid var(--kameli-vihrea);
 	padding-top: 1.25rem;
 }
 .kameli-syy__otsikko {
 	font-size: 1.2rem !important;
-	color: var(--kameli-hiekka);
+	color: var(--kameli-vihrea);
 }
 .kameli-syyt p {
 	color: var(--kameli-vaalea);
@@ -328,7 +328,7 @@ p {
 }
 .kameli-yhteystiedot a {
 	color: inherit;
-	text-decoration-color: var(--kameli-hiekka);
+	text-decoration-color: var(--kameli-vihrea);
 	text-decoration-thickness: 2px;
 	text-underline-offset: 0.25em;
 }
@@ -360,7 +360,7 @@ p {
 	text-decoration: none;
 }
 .kameli-footer a:hover {
-	color: var(--kameli-hiekka);
+	color: var(--kameli-vihrea);
 }
 .kameli-linkkilista {
 	list-style: none;
@@ -379,7 +379,7 @@ p {
 
 /* Yhteydenottolomake */
 .kameli-lomakekortti {
-	box-shadow: 0 24px 50px -30px rgba(22, 19, 15, 0.35);
+	box-shadow: 0 24px 50px -30px rgba(16, 19, 18, 0.35);
 }
 .kameli-lomake__kentta {
 	display: flex;
@@ -398,9 +398,9 @@ p {
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0.8rem 0.95rem;
-	border: 1px solid #cbbfae;
+	border: 1px solid #bccac3;
 	border-radius: 10px;
-	background: #fdfbf8;
+	background: #fbfdfc;
 	color: var(--kameli-hiili);
 	transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -412,7 +412,7 @@ p {
 .kameli-lomake textarea:focus {
 	outline: none;
 	border-color: var(--kameli-hiili);
-	box-shadow: 0 0 0 3px rgba(217, 165, 91, 0.45);
+	box-shadow: 0 0 0 3px rgba(82, 180, 137, 0.45);
 }
 .kameli-lomake__ansa {
 	position: absolute !important;
@@ -433,14 +433,14 @@ p {
 	color: var(--wp--preset--color--valkoinen) !important;
 }
 .kameli-lomake__laheta:hover {
-	background: #3a322a !important;
+	background: #2c3431 !important;
 }
 .kameli-lomake-ilmoitus {
 	margin: 0 0 1.25rem;
 	padding: 1rem 1.25rem;
 	border-radius: 10px;
-	border-left: 4px solid var(--kameli-hiekka);
-	background: var(--wp--preset--color--dyyni);
+	border-left: 4px solid var(--kameli-vihrea);
+	background: var(--wp--preset--color--vaalea);
 }
 .kameli-lomake-ilmoitus--virhe {
 	border-left-color: #b3261e;

@@ -3,7 +3,7 @@
 A WordPress block theme for the Kameli Audio website, built on the page structure of the Canva
 mockups (Palvelut, Ota yhteyttä) and the copy in `Kameli_Audio-projekti.docx`.
 
-Look: charcoal and sand (the camel) instead of plain black and white, wide Archivo headings that echo
+Look: charcoal with the Kameli Audio green (#52B489), wide Archivo headings that echo
 the logo's lettering, and the logo's waveform line repeated at the bottom of the page headers.
 
 ## Install
