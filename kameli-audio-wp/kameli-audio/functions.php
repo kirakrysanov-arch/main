@@ -14,6 +14,7 @@ define( 'KAMELI_AUDIO_VERSION', wp_get_theme( get_template() )->get( 'Version' )
 require_once get_template_directory() . '/inc/markup.php';
 require_once get_template_directory() . '/inc/contact-form.php';
 require_once get_template_directory() . '/inc/starter-content.php';
+require_once get_template_directory() . '/inc/setup-page.php';
 
 /**
  * Teeman perusasetukset.

@@ -15,7 +15,14 @@ the logo's lettering, and the logo's waveform line repeated at the bottom of the
    - the blog: categories **Asiakastarinat** and **Artikkelit**, Blogi as the posts page, and 8 drafts (see Blog below)
    - Etusivu as the site's front page, and clean URLs (`/palvelut/yritykset/`) if the site still used the default `?p=123` format.
    Existing pages with the same address are never overwritten.
-3. **Settings → General**: set *Site Title* to `Kameli Audio`, *Site Language* to `Suomi`,
+3. **Site that already had content** (e.g. an existing kameliaudio.fi): the theme never changes existing
+   pages on its own, so an old front page or old pages at the same addresses would keep their old content.
+   Go to **Appearance → Kameli Audio -asennus** (a notice links there), keep the pages ticked and click
+   **Käytä teeman sivuja**. Their old content is saved in each page's revisions (or as a "Vanha: …" draft
+   if revisions are disabled), Etusivu becomes the front page and Blogi the posts page.
+   Note: *Live Preview* before activation shows the site's current content in the new theme and will look
+   empty – the theme's pages only exist after activation.
+4. **Settings → General**: set *Site Title* to `Kameli Audio`, *Site Language* to `Suomi`,
    and *Yhteydenottojen vastaanottaja* to the email address that should receive contact-form messages.
 
 Requires WordPress 6.6 or newer (tested on 7.1).
