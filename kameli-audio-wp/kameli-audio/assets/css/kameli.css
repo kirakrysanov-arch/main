@@ -1,0 +1,198 @@
+/* Kameli Audio – lisätyylit, joita theme.json ei kata. */
+
+/* Ylätunniste */
+.kameli-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	border-bottom: 1px solid var(--wp--preset--color--reuna);
+}
+.admin-bar .kameli-header {
+	top: var(--wp-admin--admin-bar--height, 0);
+}
+.kameli-header .wp-block-navigation-item__content {
+	text-decoration: none;
+	padding-bottom: 2px;
+	border-bottom: 2px solid transparent;
+}
+.kameli-header .wp-block-navigation-item__content:hover,
+.kameli-header .current-menu-item > .wp-block-navigation-item__content {
+	border-bottom-color: currentColor;
+}
+.kameli-header .kameli-nav-painike > .wp-block-navigation-item__content {
+	background: var(--wp--preset--color--musta);
+	color: var(--wp--preset--color--valkoinen);
+	border: 0;
+	border-radius: 6px;
+	padding: 0.55rem 1.1rem;
+}
+.kameli-header .kameli-nav-painike > .wp-block-navigation-item__content:hover {
+	background: #333;
+}
+/* Mobiilivalikko: musta tausta, isot linkit */
+.kameli-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+	font-size: 1.5rem;
+	gap: 1.25rem;
+}
+.kameli-header .is-menu-open .kameli-nav-painike > .wp-block-navigation-item__content {
+	background: var(--wp--preset--color--valkoinen);
+	color: var(--wp--preset--color--musta);
+}
+
+/* Hero */
+.kameli-hero .kameli-alaotsikko {
+	font-weight: 400;
+	letter-spacing: 0;
+	opacity: 0.9;
+	margin-top: 0.75rem;
+}
+.kameli-etusivu-hero h1 {
+	font-size: clamp(2.75rem, 7vw, 5rem);
+}
+
+/* Kortti-tyyli */
+.wp-block-group.is-style-kortti {
+	border: 1.5px solid var(--wp--preset--color--musta);
+	border-radius: 12px;
+	padding: clamp(1.25rem, 3vw, 2rem);
+	background: var(--wp--preset--color--valkoinen);
+	height: 100%;
+	box-sizing: border-box;
+}
+.wp-block-group.is-style-kortti > * {
+	margin-block-start: 0.6rem;
+}
+.wp-block-group.is-style-kortti > :first-child {
+	margin-block-start: 0;
+}
+.kameli-lue-lisaa {
+	text-decoration: none;
+}
+.kameli-lue-lisaa:hover {
+	text-decoration: underline;
+}
+
+/* Osiot kiinni toisissaan ilman valkoisia rakoja */
+.wp-site-blocks > * + *,
+.wp-block-post-content > .alignfull + .alignfull,
+main > .wp-block-post-content {
+	margin-block-start: 0;
+}
+
+/* Pitkät suomenkieliset sanat eivät valu yli mobiilissa */
+h1, h2, h3 {
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+/* Henkilökortti */
+.kameli-henkilokuva,
+.kameli-keskitetty {
+	display: flex;
+	justify-content: center;
+}
+.kameli-henkilokuva img {
+	border: 1.5px solid var(--wp--preset--color--musta);
+	border-radius: 10px;
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+.kameli-puhelin,
+.kameli-sahkoposti {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	text-decoration: none;
+}
+.kameli-puhelin::before,
+.kameli-sahkoposti::before {
+	content: "";
+	width: 1em;
+	height: 1em;
+	background: currentColor;
+	-webkit-mask: var(--kameli-ikoni) center / contain no-repeat;
+	mask: var(--kameli-ikoni) center / contain no-repeat;
+}
+.kameli-puhelin {
+	--kameli-ikoni: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z'/%3E%3C/svg%3E");
+}
+.kameli-sahkoposti {
+	--kameli-ikoni: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z'/%3E%3C/svg%3E");
+}
+
+/* Studiokortti */
+.kameli-studio {
+	max-width: 320px;
+	margin-inline: auto !important;
+	text-align: center;
+}
+
+/* Yhteydenottolomake */
+.kameli-lomake {
+	max-width: 520px;
+	margin-inline: auto;
+}
+.kameli-lomake__kentta {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	margin: 0 0 1.1rem;
+}
+.kameli-lomake label {
+	font-size: 0.875rem;
+	font-weight: 700;
+}
+.kameli-lomake input,
+.kameli-lomake textarea {
+	font: inherit;
+	font-size: 1rem;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.75rem 0.9rem;
+	border: 1.5px solid var(--wp--preset--color--musta);
+	border-radius: 6px;
+	background: var(--wp--preset--color--valkoinen);
+	color: var(--wp--preset--color--musta);
+}
+.kameli-lomake textarea {
+	min-height: 9rem;
+	resize: vertical;
+}
+.kameli-lomake input:focus-visible,
+.kameli-lomake textarea:focus-visible {
+	outline: 3px solid var(--wp--preset--color--musta);
+	outline-offset: 2px;
+}
+.kameli-lomake__ansa {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+.kameli-lomake__huomautus {
+	font-size: 0.8125rem;
+	color: var(--wp--preset--color--harmaa);
+}
+.kameli-lomake__laheta {
+	width: 100%;
+	cursor: pointer;
+	border: 0;
+}
+.kameli-lomake-ilmoitus {
+	max-width: 520px;
+	margin: 0 auto 1.5rem;
+	padding: 1rem 1.25rem;
+	border-radius: 6px;
+	border: 1.5px solid var(--wp--preset--color--musta);
+	background: var(--wp--preset--color--valkoinen);
+}
+.kameli-lomake-ilmoitus--virhe {
+	border-color: #b3261e;
+	color: #b3261e;
+}
+
+/* Hyppy ankkuriin kiinteän ylätunnisteen alle */
+[id] {
+	scroll-margin-top: 90px;
+}
