@@ -248,10 +248,7 @@ function kameli_audio_handle_setup() {
 		}
 	}
 
-	if ( ! get_posts( array( 'post_type' => 'wp_navigation', 'title' => 'Päävalikko', 'numberposts' => 1 ) ) ) {
-		kameli_audio_create_navigation();
-	}
-	kameli_audio_add_blog_to_navigation( get_page_by_path( 'blogi' ) );
+	kameli_audio_create_navigation();
 
 	wp_safe_redirect( admin_url( 'themes.php?page=kameli-audio-asennus&valmis=1' ) );
 	exit;

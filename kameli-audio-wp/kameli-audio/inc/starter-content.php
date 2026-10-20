@@ -42,14 +42,21 @@ function kameli_audio_render_pattern_file( $file ) {
 }
 
 /**
- * Luo sivut, valikon ja etusivuasetuksen.
+ * Onko asetuksen osoittama sivu olemassa ja julkaistu?
+ *
+ * @param string $option page_on_front tai page_for_posts.
+ */
+function kameli_audio_option_page_ok( $option ) {
+	$page = get_post( (int) get_option( $option ) );
+	return $page && 'page' === $page->post_type && 'publish' === $page->post_status;
+}
+
+/**
+ * Luo puuttuvat teeman sivut, blogin, valikon ja etusivuasetuksen. Ajetaan joka kerta, kun
+ * teema otetaan käyttöön: jos sivuja on poistettu, ne luodaan uudelleen. Olemassa olevia
+ * sivuja ei muuteta.
  */
 function kameli_audio_create_starter_content() {
-	if ( get_option( 'kameli_audio_starter_done' ) ) {
-		return;
-	}
-	update_option( 'kameli_audio_starter_done', 1 );
-
 	// Siistit osoitteet (esim. /palvelut/yritykset/), jos sivustolla on vielä oletusmuoto.
 	global $wp_rewrite;
 	if ( '' === get_option( 'permalink_structure' ) ) {
@@ -60,26 +67,7 @@ function kameli_audio_create_starter_content() {
 		flush_rewrite_rules( false );
 	}
 
-	$created = array();
-	foreach ( kameli_audio_starter_pages() as $path => $page ) {
-		if ( get_page_by_path( $path ) ) {
-			continue;
-		}
-		$parent_path = dirname( $path );
-		$parent      = '.' !== $parent_path ? get_page_by_path( $parent_path ) : null;
-		$id          = wp_insert_post(
-			array(
-				'post_type'   => 'page',
-				'post_status' => 'publish',
-				'post_title'  => $page[0],
-				'post_name'   => basename( $path ),
-				'post_parent' => $parent ? $parent->ID : 0,
-			)
-		);
-		if ( $id && ! is_wp_error( $id ) ) {
-			$created[ $path ] = $id;
-		}
-	}
+	$created = kameli_audio_create_missing_pages( array_keys( kameli_audio_starter_pages() ) );
 
 	// Kategoriat ennen sisältöä, jotta etusivun Asiakastarinat-listaus osoittaa oikeaan kategoriaan.
 	kameli_audio_setup_blog();
@@ -99,12 +87,16 @@ function kameli_audio_create_starter_content() {
 		update_post_meta( $id, '_kameli_sisalto_versio', KAMELI_AUDIO_CONTENT_VERSION );
 	}
 
-	if ( isset( $created['etusivu'] ) && ! get_option( 'page_on_front' ) ) {
+	// Etusivu etusivuksi, jos etusivua ei ole asetettu tai se on poistettu.
+	$front = get_page_by_path( 'etusivu' );
+	if ( $front && ( 'page' !== get_option( 'show_on_front' ) || ! kameli_audio_option_page_ok( 'page_on_front' ) ) ) {
 		update_option( 'show_on_front', 'page' );
-		update_option( 'page_on_front', $created['etusivu'] );
+		update_option( 'page_on_front', $front->ID );
 	}
 
 	kameli_audio_create_navigation();
+	update_option( 'kameli_audio_starter_done', 1 );
+	update_option( 'kameli_audio_version', KAMELI_AUDIO_VERSION );
 
 	// Varmistetaan, ettei tämän pyynnön aikana tallentunut vajaita osoitesääntöjä.
 	delete_option( 'rewrite_rules' );
@@ -112,7 +104,52 @@ function kameli_audio_create_starter_content() {
 add_action( 'after_switch_theme', 'kameli_audio_create_starter_content' );
 
 /**
- * Päävalikko. Navigaatiolohko käyttää automaattisesti uusinta valikkoa.
+ * Teeman päivityksen jälkeen (uusi zip ladattu käytössä olevan teeman päälle) sama tarkistus
+ * kerran: puuttuvat sivut, blogi ja valikko luodaan. Olemassa olevia sivuja ei muuteta.
+ */
+function kameli_audio_check_after_update() {
+	if ( KAMELI_AUDIO_VERSION === get_option( 'kameli_audio_version' ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	update_option( 'kameli_audio_version', KAMELI_AUDIO_VERSION );
+	kameli_audio_create_starter_content();
+}
+add_action( 'admin_init', 'kameli_audio_check_after_update' );
+
+/**
+ * Luo annetuista teeman sivuista ne, joita ei ole (vanhemmat ennen lapsia).
+ *
+ * @param string[] $paths Sivujen polut.
+ * @return int[] Luodut sivut: polku => tunniste.
+ */
+function kameli_audio_create_missing_pages( $paths ) {
+	$pages   = kameli_audio_starter_pages();
+	$created = array();
+	foreach ( $paths as $path ) {
+		$existing = get_page_by_path( $path );
+		if ( $existing && 'trash' !== $existing->post_status ) {
+			continue;
+		}
+		$parent = '.' !== dirname( $path ) ? get_page_by_path( dirname( $path ) ) : null;
+		$id     = wp_insert_post(
+			array(
+				'post_type'   => 'page',
+				'post_status' => 'publish',
+				'post_title'  => $pages[ $path ][0],
+				'post_name'   => basename( $path ),
+				'post_parent' => $parent ? $parent->ID : 0,
+			)
+		);
+		if ( $id && ! is_wp_error( $id ) ) {
+			$created[ $path ] = $id;
+		}
+	}
+	return $created;
+}
+
+/**
+ * Päävalikko teeman sivuista. Jos Päävalikko on jo olemassa, sen linkit päivitetään
+ * (esim. kun sivuja on poistettu ja luotu uudelleen). Navigaatiolohko käyttää tätä valikkoa.
  */
 function kameli_audio_create_navigation() {
 	$items = array(
@@ -127,7 +164,7 @@ function kameli_audio_create_navigation() {
 	$content = '';
 	foreach ( $items as $path => $class ) {
 		$page = get_page_by_path( $path );
-		if ( ! $page ) {
+		if ( ! $page || 'publish' !== $page->post_status ) {
 			continue;
 		}
 		$attrs = array(
@@ -147,26 +184,44 @@ function kameli_audio_create_navigation() {
 		return;
 	}
 
-	wp_insert_post(
+	$menus = get_posts(
 		array(
-			'post_type'    => 'wp_navigation',
-			'post_status'  => 'publish',
-			'post_title'   => 'Päävalikko',
-			'post_content' => wp_slash( trim( $content ) ),
+			'post_type'   => 'wp_navigation',
+			'title'       => 'Päävalikko',
+			'numberposts' => 1,
 		)
 	);
+	$menu  = array(
+		'post_type'    => 'wp_navigation',
+		'post_status'  => 'publish',
+		'post_title'   => 'Päävalikko',
+		'post_content' => wp_slash( trim( $content ) ),
+	);
+	if ( $menus ) {
+		// Jätetään itse muokattu valikko rauhaan, jos kaikki sen sivulinkit ovat yhä voimassa.
+		preg_match_all( '/"id":(\d+)/', $menus[0]->post_content, $linked );
+		$broken = ! $linked[1];
+		foreach ( $linked[1] as $linked_id ) {
+			$linked_page = get_post( (int) $linked_id );
+			if ( ! $linked_page || 'publish' !== $linked_page->post_status ) {
+				$broken = true;
+			}
+		}
+		if ( ! $broken ) {
+			return;
+		}
+		$menu['ID'] = $menus[0]->ID;
+		wp_update_post( $menu );
+	} else {
+		wp_insert_post( $menu );
+	}
 }
 
 /**
- * Blogi: kategoriat, Blogi-sivu julkaisujen sivuksi ja luonnosjulkaisut.
- * Ajetaan kerran; myös sivustoille, joilla teeman aiempi versio on jo käytössä.
+ * Blogi: kategoriat, Blogi-sivu julkaisujen sivuksi ja (vain kerran) luonnosjulkaisut.
+ * Turvallinen ajaa monta kertaa: luo vain puuttuvat asiat.
  */
 function kameli_audio_setup_blog() {
-	if ( get_option( 'kameli_audio_blog_done' ) ) {
-		return;
-	}
-	update_option( 'kameli_audio_blog_done', 1 );
-
 	$categories = array(
 		'asiakastarinat' => array( 'Asiakastarinat', 'Referenssit: toteutuksia asiakkaidemme tapahtumista ja tuotannoista.' ),
 		'artikkelit'     => array( 'Artikkelit', 'Vinkkejä tapahtumien tekniikan suunnitteluun ja kurkistuksia tuotantojen taakse.' ),
@@ -175,7 +230,7 @@ function kameli_audio_setup_blog() {
 	foreach ( $categories as $slug => $category ) {
 		$term = get_term_by( 'slug', $slug, 'category' );
 		if ( ! $term ) {
-			$term = wp_insert_term( $category[0], 'category', array( 'slug' => $slug, 'description' => $category[1] ) );
+			$term         = wp_insert_term( $category[0], 'category', array( 'slug' => $slug, 'description' => $category[1] ) );
 			$ids[ $slug ] = is_wp_error( $term ) ? 0 : (int) $term['term_id'];
 		} else {
 			$ids[ $slug ] = (int) $term->term_id;
@@ -183,25 +238,20 @@ function kameli_audio_setup_blog() {
 	}
 
 	// Uudet julkaisut menevät oletuksena Artikkeleihin eivätkä "Luokittelemattomiin".
-	if ( $ids['artikkelit'] ) {
+	if ( $ids['artikkelit'] && ! get_option( 'kameli_audio_blog_done' ) ) {
 		update_option( 'default_category', $ids['artikkelit'] );
 	}
 
-	$blog = get_page_by_path( 'blogi' );
-	if ( ! $blog ) {
-		$blog_id = wp_insert_post(
-			array(
-				'post_type'   => 'page',
-				'post_status' => 'publish',
-				'post_title'  => 'Blogi',
-				'post_name'   => 'blogi',
-			)
-		);
-		$blog    = $blog_id && ! is_wp_error( $blog_id ) ? get_post( $blog_id ) : null;
-	}
-	if ( $blog && ! get_option( 'page_for_posts' ) ) {
+	$created = kameli_audio_create_missing_pages( array( 'blogi' ) );
+	$blog    = get_page_by_path( 'blogi' );
+	if ( $blog && ( isset( $created['blogi'] ) || ! kameli_audio_option_page_ok( 'page_for_posts' ) ) ) {
 		update_option( 'page_for_posts', $blog->ID );
 	}
+
+	if ( get_option( 'kameli_audio_blog_done' ) ) {
+		return;
+	}
+	update_option( 'kameli_audio_blog_done', 1 );
 
 	// WordPressin oma esimerkkijulkaisu luonnokseksi, jos sitä ei ole muokattu.
 	$hello = get_post( 1 );
@@ -345,13 +395,3 @@ function kameli_audio_add_blog_to_navigation( $blog ) {
 		)
 	);
 }
-
-/**
- * Sivustot, joilla teema otettiin käyttöön ennen blogia: blogi lisätään kerran hallinnan puolella.
- */
-function kameli_audio_maybe_setup_blog() {
-	if ( get_option( 'kameli_audio_starter_done' ) && ! get_option( 'kameli_audio_blog_done' ) && current_user_can( 'manage_options' ) ) {
-		kameli_audio_setup_blog();
-	}
-}
-add_action( 'admin_init', 'kameli_audio_maybe_setup_blog' );

@@ -20,6 +20,7 @@ the logo's lettering, and the logo's waveform line repeated at the bottom of the
    Go to **Appearance → Kameli Audio -asennus** (a notice links there), keep the pages ticked and click
    **Käytä teeman sivuja**. Their old content is saved in each page's revisions (or as a "Vanha: …" draft
    if revisions are disabled), Etusivu becomes the front page and Blogi the posts page.
+   If pages were deleted later, activating the theme again (or uploading a new version) recreates the missing ones.
    Note: *Live Preview* before activation shows the site's current content in the new theme and will look
    empty – the theme's pages only exist after activation.
 4. **Settings → General**: set *Site Title* to `Kameli Audio`, *Site Language* to `Suomi`,
