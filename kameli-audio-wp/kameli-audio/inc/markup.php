@@ -304,9 +304,9 @@ function kameli_audio_service_card( $icon, $title, $text, $url ) {
 function kameli_audio_service_cards() {
 	return kameli_audio_columns(
 		array(
-			kameli_audio_service_card( 'ikoni-yritykset.svg', 'Yritystapahtumat', 'Ammattimaiset äänipalvelut konferensseihin, messuille ja yritystilaisuuksiin.', kameli_audio_page_url( 'palvelut/yritykset' ) ),
-			kameli_audio_service_card( 'ikoni-yksityiset.svg', 'Yksityistapahtumat', 'Tee juhlastasi ikimuistoinen parhaalla mahdollisella äänentoistolla.', kameli_audio_page_url( 'palvelut/yksityiset' ) ),
-			kameli_audio_service_card( 'ikoni-artistit.svg', 'Bändit & Artistit', 'Studiotallennus, miksaus ja masterointi ammattilaisille.', kameli_audio_page_url( 'palvelut/artistit' ) ),
+			kameli_audio_service_card( 'ikoni-yritykset.svg', 'Yritystapahtumat', 'Ammattimaiset tekniikkapalvelut konferensseihin, messuille ja yritystilaisuuksiin.', kameli_audio_page_url( 'palvelut/yritykset' ) ),
+			kameli_audio_service_card( 'ikoni-yksityiset.svg', 'Yksityistapahtumat', 'Tee juhlastasi ikimuistoinen parhaalla mahdollisella ääni- ja valokalustolla.', kameli_audio_page_url( 'palvelut/yksityiset' ) ),
+			kameli_audio_service_card( 'ikoni-artistit.svg', 'Bändit & Artistit', 'Live- ja studiotuotannot saman katon alla – demoista valmiisiin julkaisuihin.', kameli_audio_page_url( 'palvelut/artistit' ) ),
 		),
 		array(),
 		'kameli-korttirivi'
@@ -364,7 +364,7 @@ function kameli_audio_why_us() {
 		$cols[] = kameli_audio_heading( $tile[0], 3, 'kameli-syy__otsikko' ) . kameli_audio_paragraph( $tile[1] );
 	}
 	return kameli_audio_section_open( 'yo', '', 'kameli-miksi' )
-		. kameli_audio_section_head( 'Miksi Kameli Audio', 'Ääni, josta ei tarvitse huolehtia' )
+		. kameli_audio_section_head( 'Miksi Kameli Audio', 'Tekniikka, josta ei tarvitse huolehtia' )
 		. kameli_audio_columns( $cols, array(), 'kameli-syyt' )
 		. kameli_audio_section_close();
 }
@@ -405,7 +405,7 @@ function kameli_audio_contact_section( $title = 'Kerro tapahtumastasi' ) {
 			array(
 				'<a href="mailto:juha@kameliaudio.fi">juha@kameliaudio.fi</a>',
 				'<a href="mailto:sakari@kameliaudio.fi">sakari@kameliaudio.fi</a>',
-				'Kameli Studio, Hakkila, Vantaa',
+				'Oasis Studio, Hakkila, Vantaa',
 			),
 			'kameli-yhteystiedot'
 		);

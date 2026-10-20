@@ -10,7 +10,7 @@
  * @package kameli-audio
  */
 
-echo kameli_audio_hero( 'Yritykset', 'Yritystapahtumat & tapahtumajärjestäjät', 'Huolellisesti suunniteltu ääni luo tunnelman, varmistaa sujuvuuden ja tekee tapahtumastasi elämyksen.', true );
+echo kameli_audio_hero( 'Yritykset', 'Yritystapahtumat & tapahtumajärjestäjät', 'Huolellisesti suunniteltu ääni ja valo luovat tunnelman, varmistavat sujuvuuden ja tekevät tapahtumastasi elämyksen.', true );
 
 echo kameli_audio_service_rows(
 	'Mitä tarjoamme',
@@ -20,7 +20,7 @@ echo kameli_audio_service_rows(
 			'Olipa kyseessä satapäinen pikkujoulugaala, henkilöstöpäivän iltaohjelma tai intiimi juhlatilaisuus, varmistamme että saat juhlaasi kokonaisuuden, joka tuntuu huolitellulta ja ammattilaisen käsialalta — ilman, että sinun tarvitsee huolehtia teknisistä yksityiskohdista.',
 			array(
 				'Puheet, juonnot ja yllätysohjelmat kuuluvat selkeästi kaikkialle tilaan',
-				'Musiikki soi laadukkaasti ilman liian kovaa tai epätasaista volyymia',
+				'Musiikki soi halutulla alueella tasaisella volyymilla ja laadukkaasti',
 				'Esiintyjät saavat ammattilaistason teknisen tuen, jotta show toimii ja yleisö viihtyy',
 			)
 		),

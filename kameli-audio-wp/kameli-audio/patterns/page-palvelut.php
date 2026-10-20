@@ -10,13 +10,13 @@
  * @package kameli-audio
  */
 
-echo kameli_audio_hero( 'Palvelut', 'Palvelumme', 'Tarjoamme ammattitason audiopalveluita monipuolisiin tarpeisiin.' );
+echo kameli_audio_hero( 'Palvelut', 'Palvelumme', 'Tarjoamme ammattitason tapahtumatekniikkaa ja studiopalveluita monipuolisiin tarpeisiin.' );
 
 echo kameli_audio_section_open( 'valkoinen' )
 	. kameli_audio_section_head(
 		'Mitä teemme',
-		'Ääniratkaisut tapahtumiin ja tuotantoihin',
-		'Olemme erikoistuneet tarjoamaan huippuluokan ääniratkaisuja kaikenlaisiin tapahtumiin ja tuotantoihin. Olipa kyseessä yritystilaisuus, yksityisjuhla tai musiikkituotanto, meillä on osaaminen ja välineet tehdä siitä ikimuistoinen. Ota yhteyttä, niin suunnitellaan yhdessä täydellinen äänielämys!'
+		'Tekniikkaratkaisut tapahtumiin ja tuotantoihin',
+		'Olemme erikoistuneet tarjoamaan huippuluokan ääni- ja valoratkaisuja kaikenlaisiin tapahtumiin ja tuotantoihin. Olipa kyseessä yritystilaisuus, yksityisjuhla tai musiikkituotanto, meillä on osaaminen ja välineet tehdä siitä ikimuistoinen. Ota yhteyttä, niin suunnitellaan yhdessä täydellinen elämys!'
 	)
 	. kameli_audio_service_cards()
 	. kameli_audio_section_close();

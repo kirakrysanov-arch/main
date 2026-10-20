@@ -11,23 +11,24 @@
  */
 
 // LUONNOS: tämän sivun tekstit ovat paikkamerkkejä, jotka korvataan lopullisilla.
-echo kameli_audio_hero( 'Yksityiset', 'Yksityistilaisuudet & juhlat', 'Tee juhlastasi ikimuistoinen parhaalla mahdollisella äänentoistolla.', true );
+echo kameli_audio_hero( 'Yksityiset', 'Yksityistilaisuudet & juhlat', 'Näyttävä valaistus ja tehokas äänentoisto tekevät juhlastasi ikimuistoisen.', true );
 
 echo kameli_audio_service_rows(
 	'Mitä tarjoamme',
 	array(
 		array(
 			'Häät',
-			'Hääpäivänä jokaisen sanan pitää kuulua ja jokaisen kappaleen soida juuri oikein. Suunnittelemme äänentoiston vihkimisestä illan viimeiseen tanssiin, jotta te voitte keskittyä juhlimiseen.',
+			'Hääpäivänä jokaisen sanan pitää kuulua ja tunnelman olla kohdallaan vihkimisestä illan viimeiseen tanssiin. Suunnittelemme äänentoiston ja valaistuksen kanssanne kokonaisuudeksi, jotta te voitte keskittyä juhlimiseen.',
 			array(
 				'Vihkiminen ja puheet kuuluvat selkeästi myös takariveille',
+				'Valaistus luo tunnelman juhlasaliin ja tanssilattialle',
 				'Musiikki soi tasaisesti koko illan ajan',
-				'Tekniikka asennetaan ja puretaan huomaamattomasti',
+				'Tekniikka asennetaan ja puretaan huomaamattomasti teidän aikataulunne mukaan',
 			)
 		),
 		array(
 			'Merkkipäivät ja perhejuhlat',
-			'Syntymäpäivät, valmistujaiset ja muut merkkipäivät ansaitsevat äänen, joka tukee tunnelmaa eikä varasta huomiota. Mitoitamme ratkaisun tilan ja vierasmäärän mukaan.',
+			'Syntymäpäivät, valmistujaiset ja muut merkkipäivät ansaitsevat äänen ja valaistuksen, jotka tukevat tunnelmaa eikä varasta huomiota. Mitoitamme ratkaisun tilan ja vierasmäärän mukaan.',
 			array(
 				'Langattomat mikrofonit puheisiin ja ohjelmanumeroihin',
 				'Taustamusiikki ja tanssimusiikki samasta järjestelmästä',
@@ -38,8 +39,8 @@ echo kameli_audio_service_rows(
 			'Pienkonsertit ja yhdistysten tilaisuudet',
 			'Kotikonsertti, kylätapahtuma tai yhdistyksen juhla – autamme pienemmissäkin tilaisuuksissa, jotta esiintyjät ja yleisö saavat parhaan mahdollisen kokemuksen.',
 			array(
-				'Äänentoisto esiintyjille ja juontajalle',
-				'Ääniteknikko paikalla koko tilaisuuden ajan',
+				'Äänentoisto ja valaistus esiintyjille ja juontajalle',
+				'Teknikko paikalla koko tilaisuuden ajan',
 				'Neuvoa ja ideoita jo suunnitteluvaiheessa',
 			)
 		),

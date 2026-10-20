@@ -82,4 +82,4 @@ kameli-audio/
 └── assets/                    CSS, font, icons, placeholder images
 ```
 
-Project plan and status: [`docs/projektisuunnitelma.md`](docs/projektisuunnitelma.md).
+Project plan and status: [`docs/projektisuunnitelma.md`](docs/projektisuunnitelma.md). Juha's text comments: [`docs/juhan-kommentit.md`](docs/juhan-kommentit.md).

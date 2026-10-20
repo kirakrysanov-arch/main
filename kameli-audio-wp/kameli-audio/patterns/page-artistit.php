@@ -11,27 +11,27 @@
  */
 
 // LUONNOS: tämän sivun tekstit ovat paikkamerkkejä, jotka korvataan lopullisilla.
-echo kameli_audio_hero( 'Artistit', 'Bändit & artistit', 'Studiotallennus, miksaus ja masterointi – esituotannosta valmiiseen masteriin.', true );
+echo kameli_audio_hero( 'Artistit', 'Bändit & artistit', 'Live- ja studiotuotannot saman katon alla – demoista valmiisiin julkaisuihin.', true );
 
 echo kameli_audio_service_rows(
 	'Mitä tarjoamme',
 	array(
 		array(
 			'Esituotanto ja sovitus',
-			'Hyvä äänite alkaa ennen ensimmäistä otosta. Käymme biisit läpi kanssasi ja tuomme tarvittaessa tuoreen näkökulman sovituksiin, sanoituksiin ja rakenteisiin.',
+			'Hyvä äänite alkaa ennen ensimmäistä otosta. Käymme biisit läpi kanssasi ja tuomme tuoreen näkökulman sovituksiin, sanoituksiin ja rakenteisiin.',
 			array(
 				'Biisien ja sovitusten läpikäynti ennen studiota',
 				'Muusikon ja lauluntekijän näkökulma tuotantoon',
-				'Selkeä suunnitelma äänityspäiville',
+				'Laaditaan valmis tuotantosuunnitelma aikatauluineen',
 			)
 		),
 		array(
-			'Äänitys Kameli Studiolla',
-			'Äänitämme Kameli Studiolla Vantaan Hakkilassa. Rento ilmapiiri ja ammattitason välineet auttavat saamaan esityksestä parhaan irti.',
+			'Äänitys Oasis Studiolla',
+			'Äänitämme Oasis Studiollamme Vantaan Hakkilassa. Rento ilmapiiri ja ammattitason välineet auttavat saamaan esityksestä parhaan irti.',
 			array(
 				'Bändit, soolosoittajat ja laulajat',
-				'Kokonaiset levyt, EP:t ja yksittäiset singlet',
-				'Ääniteknikko, joka on itsekin esiintyjä',
+				'Pitkäsoitot, EP:t sekä singlejulkaisut',
+				'Studiomestari, joka on itsekin esiintyjä',
 			)
 		),
 		array(
@@ -41,6 +41,15 @@ echo kameli_audio_service_rows(
 				'Miksaus omista tai meillä äänitetyistä raidoista',
 				'Masterointi suoratoistopalveluihin, radioon ja fyysisille formaateille',
 				'Kommentointikierrokset, kunnes lopputulos on oikea',
+			)
+		),
+		array(
+			'Live-tuotannot',
+			'Teemme myös live-tuotantoja. Autamme bändiä valmistautumaan keikoille ja kiertueille niin, että soundi on kohdallaan jo ensimmäisestä illasta lähtien.',
+			array(
+				'PA-treenit',
+				'Kiertueiden valmistelu',
+				'Soundien hakeminen keikkoja varten',
 			)
 		),
 	)

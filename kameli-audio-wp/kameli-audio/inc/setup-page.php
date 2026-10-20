@@ -12,10 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Sivupohjien tekstien versio. Kasvatetaan, kun teeman sivujen tekstejä muutetaan, jotta
+ * asennussivu tarjoaa päivitettyjä tekstejä jo luoduille sivuille.
+ */
+const KAMELI_AUDIO_CONTENT_VERSION = 2;
+
+/**
  * Teeman sivujen tila.
  *
  * @return array[] Polku => array( title, file, page (WP_Post|null), state ).
- *                 state: "ok", "vanha" (vanha sisältö) tai "puuttuu".
+ *                 state: "ok", "vanha" (vanha sisältö), "paivitys" (teeman sivu, uudemmat
+ *                 tekstit saatavilla) tai "puuttuu".
  */
 function kameli_audio_page_states() {
 	$states = array();
@@ -30,6 +37,8 @@ function kameli_audio_page_states() {
 			$state = (int) get_option( 'page_for_posts' ) === $post->ID ? 'ok' : 'vanha';
 		} elseif ( false === strpos( $post->post_content, 'kameli-' ) ) {
 			$state = 'vanha';
+		} elseif ( (int) get_post_meta( $post->ID, '_kameli_sisalto_versio', true ) < KAMELI_AUDIO_CONTENT_VERSION ) {
+			$state = 'paivitys';
 		}
 		if ( 'etusivu' === $path && $post && 'ok' === $state && ( 'page' !== get_option( 'show_on_front' ) || (int) get_option( 'page_on_front' ) !== $post->ID ) ) {
 			$state = 'vanha';
@@ -76,7 +85,7 @@ function kameli_audio_setup_notice() {
 		return;
 	}
 	printf(
-		'<div class="notice notice-warning"><p><strong>Kameli Audio:</strong> osa teeman sivuista puuttuu tai sisältää vielä vanhan sivuston sisältöä, joten sivusto ei näytä vielä oikealta. <a href="%s">Viimeistele asennus →</a></p></div>',
+		'<div class="notice notice-warning"><p><strong>Kameli Audio:</strong> osa teeman sivuista puuttuu, sisältää vielä vanhan sivuston sisältöä tai niihin on saatavilla päivitetyt tekstit. <a href="%s">Viimeistele asennus →</a></p></div>',
 		esc_url( admin_url( 'themes.php?page=kameli-audio-asennus' ) )
 	);
 }
@@ -92,7 +101,8 @@ function kameli_audio_setup_page() {
 	$states = kameli_audio_page_states();
 	$labels = array(
 		'ok'      => '<span style="color:#1d7a52">✓ Kunnossa</span>',
-		'vanha'   => '<span style="color:#b26200">Vanha sisältö</span>',
+		'vanha'    => '<span style="color:#b26200">Vanha sisältö</span>',
+		'paivitys' => '<span style="color:#1d5fb3">Uudemmat tekstit saatavilla</span>',
 		'puuttuu' => '<span style="color:#b3261e">Puuttuu</span>',
 	);
 	?>
@@ -120,7 +130,7 @@ function kameli_audio_setup_page() {
 					<tr>
 						<td>
 							<?php if ( 'ok' !== $state['state'] ) : ?>
-								<input type="checkbox" name="kameli_sivut[]" value="<?php echo esc_attr( $path ); ?>" id="kameli-<?php echo esc_attr( sanitize_title( $path ) ); ?>" checked />
+								<input type="checkbox" name="kameli_sivut[]" value="<?php echo esc_attr( $path ); ?>" id="kameli-<?php echo esc_attr( sanitize_title( $path ) ); ?>" <?php checked( 'paivitys' !== $state['state'] ); ?> />
 							<?php endif; ?>
 						</td>
 						<td><label for="kameli-<?php echo esc_attr( sanitize_title( $path ) ); ?>"><strong><?php echo esc_html( $state['title'] ); ?></strong></label>
@@ -138,7 +148,7 @@ function kameli_audio_setup_page() {
 				</tbody>
 			</table>
 			<?php if ( kameli_audio_setup_incomplete() ) : ?>
-				<p class="description" style="max-width:720px;margin-top:1em">Puuttuvat sivut luodaan. Valikko (Palvelut · Yritykset · Yksityiset · Artistit · Blogi · Ota yhteyttä) luodaan, jos sitä ei vielä ole.</p>
+				<p class="description" style="max-width:720px;margin-top:1em"><strong>Uudemmat tekstit saatavilla</strong> tarkoittaa, että teeman päivityksessä sivun tekstejä on muutettu. Valitse sivu, jos haluat uudet tekstit – huomaa, että sivulle WordPressissä itse tehdyt muutokset korvautuvat (ne jäävät versiohistoriaan). Puuttuvat sivut luodaan. Valikko (Palvelut · Yritykset · Yksityiset · Artistit · Blogi · Ota yhteyttä) luodaan, jos sitä ei vielä ole.</p>
 				<?php submit_button( 'Käytä teeman sivuja' ); ?>
 			<?php else : ?>
 				<p><strong>Kaikki teeman sivut ovat kunnossa.</strong></p>
@@ -156,7 +166,7 @@ function kameli_audio_setup_page() {
  */
 function kameli_audio_keep_old_content( $id ) {
 	$post = get_post( $id );
-	if ( ! $post || '' === trim( $post->post_content ) || false !== strpos( $post->post_content, 'kameli-' ) ) {
+	if ( ! $post || '' === trim( $post->post_content ) ) {
 		return;
 	}
 	if ( wp_revisions_enabled( $post ) ) {
@@ -190,6 +200,12 @@ function kameli_audio_handle_setup() {
 	// Kategoriat ja blogi ensin, jotta sivujen sisältö osoittaa oikeisiin kategorioihin.
 	kameli_audio_setup_blog();
 
+	// Artikkelit-kategorian kuvaus päivittyi (ääni → tekniikka); päivitetään, jos sitä ei ole muokattu.
+	$articles = get_term_by( 'slug', 'artikkelit', 'category' );
+	if ( $articles && 'Vinkkejä tapahtumien äänen suunnitteluun ja kurkistuksia tuotantojen taakse.' === $articles->description ) {
+		wp_update_term( $articles->term_id, 'category', array( 'description' => 'Vinkkejä tapahtumien tekniikan suunnitteluun ja kurkistuksia tuotantojen taakse.' ) );
+	}
+
 	// Ensin kaikki valitut sivut olemassa (vanhemmat ennen lapsia), sitten sisältö.
 	$ids = array();
 	foreach ( $selected as $path ) {
@@ -222,6 +238,7 @@ function kameli_audio_handle_setup() {
 			$update['post_content'] = wp_slash( kameli_audio_render_pattern_file( $pages[ $path ][1] ) );
 		}
 		wp_update_post( $update );
+		update_post_meta( $id, '_kameli_sisalto_versio', KAMELI_AUDIO_CONTENT_VERSION );
 		if ( 'etusivu' === $path ) {
 			update_option( 'show_on_front', 'page' );
 			update_option( 'page_on_front', $id );

@@ -96,6 +96,7 @@ function kameli_audio_create_starter_content() {
 				'post_content' => wp_slash( kameli_audio_render_pattern_file( $pages[ $path ][1] ) ),
 			)
 		);
+		update_post_meta( $id, '_kameli_sisalto_versio', KAMELI_AUDIO_CONTENT_VERSION );
 	}
 
 	if ( isset( $created['etusivu'] ) && ! get_option( 'page_on_front' ) ) {
@@ -168,7 +169,7 @@ function kameli_audio_setup_blog() {
 
 	$categories = array(
 		'asiakastarinat' => array( 'Asiakastarinat', 'Referenssit: toteutuksia asiakkaidemme tapahtumista ja tuotannoista.' ),
-		'artikkelit'     => array( 'Artikkelit', 'Vinkkejä tapahtumien äänen suunnitteluun ja kurkistuksia tuotantojen taakse.' ),
+		'artikkelit'     => array( 'Artikkelit', 'Vinkkejä tapahtumien tekniikan suunnitteluun ja kurkistuksia tuotantojen taakse.' ),
 	);
 	$ids        = array();
 	foreach ( $categories as $slug => $category ) {

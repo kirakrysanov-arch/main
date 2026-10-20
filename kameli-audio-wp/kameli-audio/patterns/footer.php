@@ -50,7 +50,7 @@
 <!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="mailto:sakari@kameliaudio.fi">sakari@kameliaudio.fi</a></li>
 <!-- /wp:list-item --><!-- wp:list-item -->
-<li>Kameli Studio, Hakkila, Vantaa</li>
+<li>Oasis Studio, Hakkila, Vantaa</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:column --></div>

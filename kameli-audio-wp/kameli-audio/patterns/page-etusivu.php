@@ -23,9 +23,9 @@ $buttons = "\n" . '<!-- wp:buttons -->' . "\n"
 echo kameli_audio_section_open( 'hiili', '', 'kameli-hero kameli-hero--etusivu' )
 	. kameli_audio_columns(
 		array(
-			kameli_audio_paragraph( 'Tapahtumatekniikka · Studio · Vantaa', '', 'kameli-eyebrow' )
+			kameli_audio_paragraph( 'Tapahtumatekniikka · Studio', '', 'kameli-eyebrow' )
 				. kameli_audio_heading( 'Ääni, joka kantaa.', 1 )
-				. kameli_audio_paragraph( 'Tapahtumien äänentoistoa ja studiotuotantoa Vantaan Hakkilasta – yrityksille, yksityisille ja artisteille.', 'lead', 'kameli-alaotsikko' )
+				. kameli_audio_paragraph( 'Tapahtumien teknistä toteutusta sekä studiotuotantoa Vantaan Hakkilasta – yrityksille, yksityisille ja artisteille.', 'lead', 'kameli-alaotsikko' )
 				. $buttons,
 			kameli_audio_image_block( 'kameli-audio-logo.png', '100%', 'Kameli Audio', 'kameli-hero__logo' ),
 		),
@@ -38,7 +38,7 @@ echo kameli_audio_section_open( 'valkoinen' )
 	. kameli_audio_section_head(
 		'Mitä teemme',
 		'Tapahtumatekniikkaa ja studiotuotantoa saman katon alta',
-		'Hoidamme tapahtumasi äänen suunnittelusta purkuun ja viemme musiikkisi esituotannosta valmiiksi masteriksi. Saat kokeneen tekijän, joka kuuntelee sekä sinua että tilaa.'
+		'Hoidamme tapahtumasi tekniikan suunnittelusta purkuun ja viemme musiikkisi esituotannosta valmiiksi masteriksi. Saat kokeneen tekijän, joka kuuntelee sekä sinua että tilaa.'
 	)
 	. kameli_audio_service_cards()
 	. kameli_audio_section_close();
