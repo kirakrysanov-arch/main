@@ -35,6 +35,17 @@ SAADOT = {
     "128394": {"scale": 0.88, "dx": -16, "dy": 30},  # Eesti Pagar porkkanakakku
     "103821": {"scale": 0.78, "dx": -12, "dy": 10},            # Sauvon maustekurkkukuutio
     "145141": {"scale": 0.86, "dx": -22, "dy": 8, "rotate": -15},  # Miyata pankojauho, kallistus vastapäivään
+    # vko 45-46
+    "111265": {"scale": 0.86, "dx": -18, "dy": 28},  # Atria naudan sisäpaisti
+    "104826": {"scale": 0.78, "dx": -28, "dy": 16},  # Arla smetana
+    "100186": {"scale": 0.9, "dx": -14, "dy": 30},   # Atria kanan filee
+    "130338": {"scale": 0.88, "dx": -16, "dy": 14},  # Atria säräjuuresainekset
+    "144753": {"scale": 0.86, "dx": -16, "dy": 12},  # Saarioinen currykastike
+    "100257": {"scale": 0.88, "dx": -18, "dy": 30},  # Atria kasleri
+    "140241": {"scale": 0.92, "dx": -12, "dy": 42},  # Kalaneuvos kirjolohifilee
+    "144153": {"scale": 0.86, "dx": -18, "dy": 32},  # Eesti Pagar appelsiini-suklaakakku
+    "114377": {"scale": 0.88, "dx": -18, "dy": 22},  # Lagerblad jättilihapulla
+    "111201": {"scale": 0.88, "dx": -16, "dy": 28},  # Saarioinen kermaperunat
 }
 
 # Asettelu kummallekin pohjalle (pt, sivun yläreunasta).
