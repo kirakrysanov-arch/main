@@ -1,6 +1,9 @@
 """Valmistelee tuotekuvat ja QR-koodit rakenna.py:tä varten.
 
-    python3 viikkotarjoukset/valmistele_kuvat.py <kuvakansio> [<qr-kansio>]
+    python3 viikkotarjoukset/valmistele_kuvat.py <kuvakansio> [<qr-kansio>] [--ai 104826,...]
+
+--ai: luettelon tuotenumeroiden taustat poistetaan tekoälymallilla (rembg),
+kun tuote itse on valkoinen ja tavallinen poisto syö siitä palan.
 
 Tuotekuvat: tiedostonimen alussa oleva tuotenumero (esim. "137653_lohi.png")
 ratkaisee tuotteen. Valkoinen tausta poistetaan reunoilta alkaen, joten kuva
@@ -48,13 +51,21 @@ def remove_white_bg(im, tol=24):
     return im
 
 
-def main(src, qr_src=None):
+def remove_bg_ai(im):
+    from rembg import new_session, remove  # pip install "rembg[cpu]"
+    out = remove(im.convert("RGB"), session=new_session("isnet-general-use")).convert("RGBA")
+    out.putalpha(out.getchannel("A").point(lambda v: 0 if v < 12 else v))  # hajapikselit pois
+    return out
+
+
+def main(src, qr_src=None, ai_codes=()):
     os.makedirs(os.path.join(HERE, "kuvat"), exist_ok=True)
     for name in sorted(os.listdir(src)):
         m = re.match(r"(\d{5,})", unicodedata.normalize("NFC", name))
         if not m or name.startswith("."):
             continue
-        im = remove_white_bg(Image.open(os.path.join(src, name)))
+        im = Image.open(os.path.join(src, name))
+        im = remove_bg_ai(im) if m.group(1) in ai_codes else remove_white_bg(im)
         bbox = im.getbbox()
         if bbox:
             im = im.crop(bbox)
@@ -78,4 +89,10 @@ def main(src, qr_src=None):
 
 
 if __name__ == "__main__":
-    main(*sys.argv[1:3])
+    args = sys.argv[1:]
+    ai = ()
+    if "--ai" in args:
+        i = args.index("--ai")
+        ai = tuple(args[i + 1].split(","))
+        del args[i:i + 2]
+    main(*args[:2], ai_codes=ai)
