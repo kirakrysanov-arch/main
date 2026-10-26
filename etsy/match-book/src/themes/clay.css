@@ -1,0 +1,19 @@
+/* Clay Court: terracotta with white court lines. Swap the reds for #2F6B45 (grass) or #2F5D8A (hard court). */
+:root {
+  --paper: #FBF6F0; --cream: #F4E4D4; --green: #A9502C; --green-2: #7A3A20; --ink: #3B2A22; --muted: #9A8578;
+  --hair: #E3CDBA; --hair-soft: #EFE0D2; --brass: #B8653D; --brass-deep: #8C4424;
+  --foil: linear-gradient(#B8653D, #B8653D);
+  --display: 'DM Serif Display', serif;
+  --rail-bg: #A9502C; --rail-ink: #FBEEE2; --tab-on: #FBF6F0; --tab-on-ink: #A9502C; --on-dark: #FBEEE2;
+  --cover-bg: #A9502C; --cover-ink: #FFF7EE; --cover-accent: #FFF7EE; --cover-line: rgba(255,247,238,.75);
+}
+.ph h1 { font-size: 38px; color: var(--green-2); }
+.ph h1 em { color: var(--brass); }
+.rail a { border-top-color: rgba(255,240,225,.22); }
+.cover { background: radial-gradient(ellipse at 50% 40%, #B85B34 0%, #A9502C 55%, #934526 100%); }
+.cover .lines-bg { opacity: 1; }
+.cover .lines-bg svg { height: 860px; }
+.cover .plate { background: #A9502C; border: 1.5px solid rgba(255,247,238,.9); outline: 1px solid rgba(255,247,238,.45); }
+.cover h1 { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #FFF7EE; font-size: 70px; }
+.cover .owner span { border-color: rgba(255,247,238,.7); }
+.cover .foot { color: rgba(255,247,238,.85); }

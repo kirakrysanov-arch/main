@@ -1,4 +1,5 @@
-"""Generates The Match Book tennis journal HTML. Run: python3 build.py"""
+"""Generates The Match Book tennis journal HTML. Run: python3 build.py [club|retro|clay|rally]"""
+import sys
 from pathlib import Path
 
 MATCHES = 30
@@ -10,9 +11,17 @@ COACH_PAGES = 6
 DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 MONTHS = ["January", "February", "March", "April", "May", "June", "July",
           "August", "September", "October", "November", "December"]
-FONTS = ("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400"
-         "&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400"
-         "&family=Montserrat:wght@400;500;600&display=swap")
+THEME = sys.argv[1] if len(sys.argv) > 1 else "club"
+FONTS = {
+    "club": "family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400"
+            "&family=Montserrat:wght@400;500;600",
+    "retro": "family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;1,9..144,400"
+             "&family=Barlow+Semi+Condensed:wght@500;600;700",
+    "clay": "family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400"
+            "&family=Montserrat:wght@400;500;600",
+    "rally": "family=Anton&family=Inter:wght@400;500;600;700",
+}
+FONT_URL = f"https://fonts.googleapis.com/css2?{FONTS[THEME]}&display=swap"
 
 
 def ball(color="var(--brass)", sw=1.2):
@@ -87,9 +96,9 @@ def table(heads, rows, widths=(), first=()):
 
 def cover():
     return ('<section class="page cover" id="cover">'
-            f'<div class="lines-bg">{court("rgba(214,190,130,.55)", 0.12, "rgba(214,190,130,.8)")}</div>'
+            f'<div class="lines-bg">{court("var(--cover-line)", 0.12, "var(--cover-accent)")}</div>'
             '<div class="inner"><div class="plate">'
-            f'<div class="ball">{ball("#D6BE82", 1)}</div>'
+            f'<div class="ball">{ball("var(--cover-accent)", 1)}</div>'
             '<div class="est">Tennis Performance Journal</div>'
             '<h1>The <em>Match</em><br>Book</h1>'
             '<div class="sub">Plan &middot; Play &middot; Reflect &middot; Rise</div>'
@@ -369,12 +378,16 @@ def build():
     pages += [gear(), kit()]
     pages += [coach(n) for n in range(1, COACH_PAGES + 1)]
     pages += [note(n, k) for n, k in enumerate(["lined", "lined", "dotted", "dotted", "courts", "courts"], 1)]
-    css = Path(__file__).with_name("journal.css").read_text()
+    here = Path(__file__).parent
+    css = (here / "journal.css").read_text()
+    if THEME != "club":
+        css += (here / "themes" / f"{THEME}.css").read_text()
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>The Match Book</title>'
-            f'<link rel="stylesheet" href="{FONTS}"><style>{css}</style></head><body>{"".join(pages)}</body></html>'), len(pages)
+            f'<link rel="stylesheet" href="{FONT_URL}"><style>{css}</style></head><body>{"".join(pages)}</body></html>'), len(pages)
 
 
 if __name__ == "__main__":
     html, count = build()
-    Path(__file__).with_name("journal.html").write_text(html)
+    name = "journal.html" if THEME == "club" else f"journal-{THEME}.html"
+    Path(__file__).with_name(name).write_text(html)
     print(f"{count} pages")

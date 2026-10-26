@@ -1,0 +1,35 @@
+/* Retro Club: 1970s racquet-club poster style. */
+:root {
+  --paper: #F6EDD9; --cream: #EBDDBC; --green: #1F6B3B; --green-2: #1B2B4B; --ink: #1B2B4B; --muted: #8C8068;
+  --hair: #D8C9A5; --hair-soft: #E8DCBF; --brass: #C2412D; --brass-deep: #1F6B3B;
+  --foil: linear-gradient(#C2412D, #C2412D);
+  --display: 'Fraunces', serif; --serif: 'Fraunces', serif; --sans: 'Barlow Semi Condensed', sans-serif;
+  --rail-bg: #1B2B4B; --rail-ink: #F6EDD9; --tab-on: #C2412D; --tab-on-ink: #F6EDD9; --on-dark: #F6EDD9;
+  --cover-bg: #F6EDD9; --cover-ink: #1B2B4B; --cover-accent: #C2412D; --cover-line: rgba(31,107,59,.35);
+}
+.ph h1 { font-weight: 800; font-size: 38px; letter-spacing: -.6px; color: var(--green-2); }
+.ph h1 em { font-weight: 400; color: var(--brass); }
+.ph::after { height: 6px; background: linear-gradient(to bottom, var(--green) 0 2px, transparent 2px 4px, var(--brass) 4px 6px); }
+.kicker, .lbl, .stat span, .tbl th, .score th, .btn, .slots a .w, .slots a .go, .rail a { font-weight: 600; letter-spacing: 2.2px; }
+.lbl, .kicker { font-size: 8px; }
+.check, .opts span, .rate span, .tbl td { font-size: 12.5px; }
+.rail { background: linear-gradient(90deg, #C2412D 0 3px, #F6EDD9 3px 5px, #1F6B3B 5px 8px, #1B2B4B 8px); }
+.home, .box, .stat, .steps div { border-radius: 0; }
+.home { border-width: 1.5px; border-color: var(--green); }
+.btn.solid { background: var(--green-2); border-color: var(--green-2); }
+.score th { background: var(--green); }
+.toc a .n, .slots a .n { font-style: normal; font-weight: 700; color: var(--brass); }
+.prose p.lead { font-style: italic; color: var(--green); }
+.cover::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 140px; z-index: 1;
+  background: repeating-linear-gradient(90deg, #1F6B3B 0 45px, #F6EDD9 45px 90px); }
+.cover::after { content: ""; position: absolute; top: 140px; left: 0; right: 0; height: 22px; z-index: 1;
+  background: radial-gradient(circle at 22.5px 0, #1F6B3B 22px, transparent 22.5px) 0 0 / 90px 22px repeat-x; }
+.cover .lines-bg { opacity: .9; }
+.cover .plate { border: 2px solid #1B2B4B; outline: 2px solid #C2412D; outline-offset: 5px; padding: 40px 48px; }
+.cover .est { color: #1F6B3B; font-weight: 700; letter-spacing: 5px; font-size: 9px; }
+.cover h1 { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #1B2B4B; font-weight: 800; font-size: 78px; letter-spacing: -2px; }
+.cover h1 em { color: #C2412D; font-weight: 400; letter-spacing: -1px; }
+.cover .sub { font-style: italic; color: #1F6B3B; }
+.cover .owner { color: #1B2B4B; font-weight: 700; }
+.cover .owner span { border-color: #1B2B4B; }
+.cover .foot { color: #1B2B4B; font-weight: 700; bottom: 34px; }

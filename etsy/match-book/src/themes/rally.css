@@ -1,0 +1,31 @@
+/* Rally: modern sporty, black and white with optic ball-yellow. */
+:root {
+  --paper: #FFFFFF; --cream: #F2F4EA; --green: #111111; --green-2: #111111; --ink: #111111; --muted: #8C8C8C;
+  --hair: #D6D6D6; --hair-soft: #EAEAEA; --brass: #111111; --brass-deep: #111111;
+  --foil: linear-gradient(#111, #111);
+  --display: 'Anton', sans-serif; --serif: 'Inter', sans-serif; --sans: 'Inter', sans-serif;
+  --rail-bg: #111111; --rail-ink: #FFFFFF; --tab-on: #D7F04A; --tab-on-ink: #111111; --on-dark: #D7F04A;
+  --cover-bg: #D7F04A; --cover-ink: #111111; --cover-accent: #111111; --cover-line: rgba(17,17,17,.4);
+}
+.ph h1 { font-weight: 400; font-size: 40px; text-transform: uppercase; letter-spacing: .5px; line-height: .95; }
+.ph h1 em { font-style: normal; background: #D7F04A; padding: 0 6px; }
+.ph::after { height: 3px; }
+.kicker, .lbl, .stat span, .tbl th, .btn, .rail a { font-weight: 700; letter-spacing: 1.6px; }
+.check, .opts span, .rate span, .tbl td, .score td.who { font-size: 10.5px; }
+.tbl td.cat, .prose p.lead { font-style: normal; }
+.home { border: 2px solid #111; }
+.check::before, .opts span::before, .circles i { border-width: 1.5px; }
+.toc a .n, .slots a .n { font-style: normal; font-family: 'Anton', sans-serif; font-size: 16px; }
+.toc a .t { font-size: 13px; font-weight: 500; }
+.prose p { font-size: 11px; }
+.prose p.lead { font-size: 15px; font-weight: 600; }
+.score th { background: #111; color: #D7F04A; }
+.cover .lines-bg { opacity: 1; }
+.cover .plate { background: #D7F04A; border: 3px solid #111; outline: none; padding: 34px 40px; }
+.cover .est { font-weight: 700; letter-spacing: 4px; }
+.cover h1 { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #111; font-size: 92px; text-transform: uppercase; line-height: .9; letter-spacing: 1px; }
+.cover h1 em { font-style: normal; }
+.cover .sub { font-style: normal; font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+.cover .owner { font-weight: 700; }
+.cover .owner span { border-bottom: 2px solid #111; }
+.cover .foot { color: #111; font-weight: 700; }
