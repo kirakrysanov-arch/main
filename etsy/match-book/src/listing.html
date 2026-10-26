@@ -1,0 +1,108 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+.slide{width:1600px;height:1200px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 28% 40%,#2B5440 0%,#1D3A2A 60%,#152B1F 100%);color:#EFE3C2;font-family:Montserrat,sans-serif}
+.slide.light{background:radial-gradient(ellipse at 50% 30%,#FFFDF6 0%,#EEE6D2 85%);color:#1F2A22}
+.foil{background:linear-gradient(120deg,#7E6230 0%,#B39457 25%,#E6D3A0 47%,#C2A263 64%,#8A6C35 86%,#B8975A 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-family:'Bodoni Moda',serif;font-weight:400;font-size:112px;line-height:1}
+h1 em,h2 em{font-style:italic}
+h2{font-family:'Bodoni Moda',serif;font-weight:400;font-size:76px;line-height:1.05}
+.light h2{color:#1D3A2A}.light h2 em{color:#7E6230}
+.k{font-size:15px;letter-spacing:7px;text-transform:uppercase;color:#D6BE82;font-weight:500}
+.light .k{color:#A07F42}
+.dev{position:absolute;border-radius:28px;background:#0E1511;padding:22px;box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 2px #2F3B33}
+.dev img{display:block;width:100%;border-radius:8px}
+.paper{position:absolute;box-shadow:0 30px 60px rgba(40,50,30,.3)}
+.paper img{display:block;width:100%}
+.badges{display:flex;gap:14px;flex-wrap:wrap}
+.badges span{border:1px solid rgba(214,190,130,.6);padding:14px 22px;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:#E6D3A0}
+.light .badges span{border-color:#A07F42;color:#7E6230}
+.rule{height:2px;width:120px;background:linear-gradient(90deg,#8A6C35,#E6D3A0,#8A6C35);margin:32px 0}
+.grid{position:absolute;inset:250px 80px 60px;display:grid;grid-template-columns:repeat(6,1fr);gap:28px}
+.grid figure{display:flex;flex-direction:column;align-items:center}
+.grid img{width:100%;box-shadow:0 18px 36px rgba(40,50,30,.25)}
+.grid figcaption{font-family:'Cormorant Garamond',serif;font-size:24px;margin-top:14px;font-style:italic;color:#3E4A40}
+.list div{font-family:'Cormorant Garamond',serif;font-size:31px;border-top:1px solid rgba(214,190,130,.35);padding:14px 0}
+.list div small{display:block;font-family:Montserrat;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#D6BE82;margin-bottom:4px}
+.light .list div{border-color:#D3CBB3}.light .list div small{color:#A07F42}
+.screen{position:absolute;background:#0E1511;border-radius:22px 22px 0 0;padding:20px 20px 26px;box-shadow:0 40px 80px rgba(0,0,0,.45)}
+.screen img{display:block;width:100%;background:#fff}
+.base{position:absolute;height:26px;background:linear-gradient(#C9CCC6,#8E928B);border-radius:0 0 20px 20px}
+</style></head><body>
+
+<section class="slide" id="s1">
+  <div style="position:absolute;left:110px;top:210px;width:640px">
+    <div class="k">For players who compete</div>
+    <h1 class="foil" style="margin-top:30px">The <em>Match</em><br>Book</h1>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-style:italic;margin-top:22px">Tennis Journal &amp; Stats Tracker</div>
+    <div class="rule"></div>
+    <div class="badges"><span>131 Pages</span><span>Hyperlinked</span><span>+ Stats Sheet</span></div>
+    <div style="margin-top:40px;font-size:15px;letter-spacing:3px;color:rgba(239,227,194,.7);text-transform:uppercase">GoodNotes &middot; Notability &middot; Print &middot; Google Sheets</div>
+  </div>
+  <div class="dev" style="width:470px;left:1050px;top:170px;transform:rotate(4deg)"><img src="previews/m01-post.png"></div>
+  <div class="dev" style="width:500px;left:770px;top:250px;transform:rotate(-5deg)"><img src="previews/cover.png"></div>
+</section>
+
+<section class="slide light" id="s2">
+  <div style="position:absolute;top:80px;left:0;right:0;text-align:center">
+    <div class="k">131 hyperlinked pages</div>
+    <h2 style="margin-top:18px">What&rsquo;s <em>Inside</em></h2>
+  </div>
+  <div class="grid">
+    <figure><img src="previews/profile.png"><figcaption>Player Profile</figcaption></figure>
+    <figure><img src="previews/season.png"><figcaption>Season Goals</figcaption></figure>
+    <figure><img src="previews/m01-pre.png"><figcaption>30 Match Plans</figcaption></figure>
+    <figure><img src="previews/m01-post.png"><figcaption>30 Match Reviews</figcaption></figure>
+    <figure><img src="previews/scout-01.png"><figcaption>20 Scouting Reports</figcaption></figure>
+    <figure><img src="previews/results.png"><figcaption>Results Log</figcaption></figure>
+    <figure><img src="previews/train-1.png"><figcaption>Training Log</figcaption></figure>
+    <figure><img src="previews/drills-1.png"><figcaption>20 Drill Cards</figcaption></figure>
+    <figure><img src="previews/body-1.png"><figcaption>Body &amp; Recovery</figcaption></figure>
+    <figure><img src="previews/gear.png"><figcaption>String Log</figcaption></figure>
+    <figure><img src="previews/coach-1.png"><figcaption>Coach Notes</figcaption></figure>
+    <figure><img src="previews/note-5.png"><figcaption>Court Diagrams</figcaption></figure>
+  </div>
+</section>
+
+<section class="slide" id="s3">
+  <div style="position:absolute;left:0;right:0;top:80px;text-align:center">
+    <div class="k">Before &middot; After</div>
+    <h2 class="foil" style="margin-top:18px">Plan it. <em>Play it.</em> Learn from it.</h2>
+  </div>
+  <div class="dev" style="width:560px;left:190px;top:270px;transform:rotate(-2deg)"><img src="previews/m01-pre.png"></div>
+  <div class="dev" style="width:560px;left:850px;top:270px;transform:rotate(2deg)"><img src="previews/m01-post.png"></div>
+</section>
+
+<section class="slide light" id="s4">
+  <div style="position:absolute;left:100px;top:150px;width:480px">
+    <div class="k">Bonus spreadsheet</div>
+    <h2 style="margin-top:18px">Know your <em>numbers</em></h2>
+    <div class="rule"></div>
+    <div class="list">
+      <div><small>Automatic dashboard</small>Win rate, serve %, break points</div>
+      <div><small>Surface &amp; month</small>See where you win and why</div>
+      <div><small>Head to head</small>Your record against every rival</div>
+      <div><small>Works everywhere</small>Google Sheets, Excel &amp; Numbers</div>
+    </div>
+  </div>
+  <div class="screen" style="width:900px;left:640px;top:250px"><img src="previews/dashboard.png"></div>
+  <div class="base" style="width:1000px;left:590px;top:897px"></div>
+</section>
+
+<section class="slide" id="s5">
+  <div style="position:absolute;left:110px;top:200px;width:620px">
+    <div class="k">Gift ready</div>
+    <h2 class="foil" style="margin-top:20px">Made for <em>competitors</em></h2>
+    <div class="rule"></div>
+    <div class="list">
+      <div><small>Junior players</small>&amp; the tennis parents behind them</div>
+      <div><small>League &amp; club players</small>chasing the next rating</div>
+      <div><small>College hopefuls</small>building a season record</div>
+      <div><small>Coaches</small>who want players to reflect</div>
+    </div>
+  </div>
+  <div class="dev" style="width:480px;left:1040px;top:160px;transform:rotate(4deg)"><img src="previews/drills-1.png"></div>
+  <div class="dev" style="width:500px;left:780px;top:250px;transform:rotate(-4deg)"><img src="previews/scout-01.png"></div>
+</section>
+</body></html>
