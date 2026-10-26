@@ -1,0 +1,119 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#16130F}
+.slide{width:1600px;height:1200px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 30% 40%,#2A241B 0%,#16130F 65%);color:#EADBB3;font-family:Montserrat,sans-serif}
+.slide.light{background:radial-gradient(ellipse at 50% 30%,#FFFDF8 0%,#EFE7D7 80%);color:#2A251E}
+.foil{background:linear-gradient(120deg,#7E5E28 0%,#B8954F 22%,#EAD49A 45%,#C6A35C 62%,#8C6A2F 85%,#BF9C55 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:118px;line-height:.95;letter-spacing:1px}
+h1 em{font-style:italic;font-weight:400}
+h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:84px;line-height:1}
+h2 em{font-style:italic}
+.k{font-size:15px;letter-spacing:7px;text-transform:uppercase;color:#C9AA6B;font-weight:500}
+.light .k{color:#A8843F}
+.dev{position:absolute;border-radius:28px;background:#0B0A08;padding:22px;box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 2px #3A3227}
+.dev img{display:block;width:100%;border-radius:8px}
+.paper{position:absolute;box-shadow:0 30px 60px rgba(60,45,20,.28)}
+.paper img{display:block;width:100%}
+.badges{display:flex;gap:14px;flex-wrap:wrap}
+.badges span{border:1px solid rgba(201,170,107,.6);padding:14px 22px;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:#E3CD95}
+.light .badges span{border-color:#A8843F;color:#8C6A2F}
+.rule{height:2px;width:120px;background:linear-gradient(90deg,#8C6A2F,#EAD49A,#8C6A2F);margin:34px 0}
+.grid{position:absolute;inset:250px 80px 70px;display:grid;grid-template-columns:repeat(6,1fr);gap:28px}
+.grid figure{display:flex;flex-direction:column;align-items:center}
+.grid img{width:100%;box-shadow:0 18px 36px rgba(60,45,20,.25)}
+.grid figcaption{font-family:'Cormorant Garamond',serif;font-size:24px;margin-top:14px;font-style:italic;color:#5A4A30}
+.call{position:absolute;display:flex;align-items:center;gap:18px;font-family:'Cormorant Garamond',serif;font-size:32px}
+.call b{width:44px;height:44px;border:1px solid #C9AA6B;transform:rotate(45deg);display:flex;align-items:center;justify-content:center;font-family:Montserrat;font-size:15px;color:#E3CD95;flex:none}
+.call b i{transform:rotate(-45deg);font-style:normal}
+.call small{display:block;font-family:Montserrat;font-size:15px;color:rgba(234,219,179,.65);margin-top:6px;letter-spacing:.5px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:26px 50px;margin-top:10px}
+.feat div{font-family:'Cormorant Garamond',serif;font-size:31px;border-top:1px solid rgba(201,170,107,.35);padding-top:16px}
+.feat div small{display:block;font-family:Montserrat;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#C9AA6B;margin-bottom:6px}
+</style></head><body>
+
+<!-- 1 Hero -->
+<section class="slide" id="s1">
+  <div style="position:absolute;left:110px;top:200px;width:640px">
+    <div class="k">Undated Undated &middot; Hyperlinked &middot; Instant Downloadmiddot; Hyperlinked Undated &middot; Hyperlinked &middot; Instant Downloadmiddot; Instant</div>
+    <h1 class="foil" style="margin-top:34px">The <em>Gilded</em><br>Year</h1>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-style:italic;margin-top:20px;color:#EADBB3">Luxury Digital Planner</div>
+    <div class="rule"></div>
+    <div class="badges"><span>133 Pages</span><span>3,000+ Links</span><span>Print Ready</span></div>
+    <div style="margin-top:44px;font-size:16px;letter-spacing:3px;color:rgba(234,219,179,.7);text-transform:uppercase">GoodNotes &middot; Notability &middot; Noteshelf &middot; Xodo</div>
+  </div>
+  <div class="dev" style="width:470px;left:1040px;top:150px;transform:rotate(4deg)"><img src="previews/jan.png"></div>
+  <div class="dev" style="width:500px;left:760px;top:240px;transform:rotate(-5deg)"><img src="previews/cover.png"></div>
+</section>
+
+<!-- 2 What's inside -->
+<section class="slide light" id="s2">
+  <div style="position:absolute;top:80px;left:0;right:0;text-align:center">
+    <div class="k">133 pages of quiet luxury</div>
+    <h2 style="margin-top:18px">What&rsquo;s <em style="color:#8C6A2F">Inside</em></h2>
+  </div>
+  <div class="grid">
+    <figure><img src="previews/year.png"><figcaption>Year at a Glance</figcaption></figure>
+    <figure><img src="previews/vision.png"><figcaption>Vision Board</figcaption></figure>
+    <figure><img src="previews/jan.png"><figcaption>12 Monthly Spreads</figcaption></figure>
+    <figure><img src="previews/jan-w1.png"><figcaption>60 Weekly Pages</figcaption></figure>
+    <figure><img src="previews/daily-1.png"><figcaption>14 Daily Pages</figcaption></figure>
+    <figure><img src="previews/review-jan.png"><figcaption>Monthly Reviews</figcaption></figure>
+    <figure><img src="previews/habits-jan.png"><figcaption>Habit Trackers</figcaption></figure>
+    <figure><img src="previews/budget.png"><figcaption>Monthly Budget</figcaption></figure>
+    <figure><img src="previews/savings.png"><figcaption>Savings Tracker</figcaption></figure>
+    <figure><img src="previews/selfcare.png"><figcaption>Self-Care Menu</figcaption></figure>
+    <figure><img src="previews/meals.png"><figcaption>Meal Planner</figcaption></figure>
+    <figure><img src="previews/goals.png"><figcaption>Annual Goals</figcaption></figure>
+  </div>
+</section>
+
+<!-- 3 Hyperlinks -->
+<section class="slide" id="s3">
+  <div style="position:absolute;left:110px;top:130px;width:620px">
+    <div class="k">Tap &middot; Glide &middot; Arrive</div>
+    <h2 class="foil" style="margin-top:22px">Fully <em>Hyperlinked</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="call" style="left:110px;top:460px"><b><i>1</i></b><div>Side tabs on every page<small>Jump to any month or section in one tap</small></div></div>
+  <div class="call" style="left:110px;top:600px"><b><i>2</i></b><div>Month &rarr; Week buttons<small>Weeks 1&ndash;5, Habits and Review per month</small></div></div>
+  <div class="call" style="left:110px;top:740px"><b><i>3</i></b><div>Gold diamond home key<small>Return to the index from anywhere</small></div></div>
+  <div class="call" style="left:110px;top:880px"><b><i>4</i></b><div>Week-to-week arrows<small>Flow through your month seamlessly</small></div></div>
+  <div class="dev" style="width:660px;left:840px;top:90px"><img src="previews/jan-w1.png"></div>
+</section>
+
+<!-- 4 Print + devices -->
+<section class="slide light" id="s4">
+  <div class="paper" style="width:500px;left:100px;top:230px;transform:rotate(-4deg)"><img src="previews/daily-1.png"></div>
+  <div class="paper" style="width:500px;left:430px;top:290px;transform:rotate(3deg)"><img src="previews/budget.png"></div>
+  <div style="position:absolute;left:1020px;top:330px;width:500px">
+    <div class="k">Digital &amp; printable</div>
+    <h2 style="margin-top:18px">Use it <em style="color:#8C6A2F">your way</em></h2>
+    <div class="rule"></div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:31px;line-height:1.55">
+      iPad &amp; Android tablets with GoodNotes, Notability, Noteshelf, Xodo and more.<br><br>
+      Or print at home on US Letter or A4 &mdash; ivory card stock makes it sing.
+    </div>
+    <div class="badges" style="margin-top:44px"><span>Undated</span><span>Reusable</span></div>
+  </div>
+</section>
+
+<!-- 5 Features -->
+<section class="slide" id="s5">
+  <div style="position:absolute;left:110px;top:250px;width:760px">
+    <div class="k">Everything you need</div>
+    <h2 class="foil" style="margin-top:22px">Plan <em>beautifully</em></h2>
+    <div class="rule"></div>
+    <div class="feat">
+      <div><small>Plan</small>Year, months, weeks &amp; days</div>
+      <div><small>Dream</small>Vision board &amp; annual goals</div>
+      <div><small>Grow</small>12 habit trackers &amp; reviews</div>
+      <div><small>Wealth</small>Budget, expenses &amp; savings</div>
+      <div><small>Wellness</small>Self-care menu &amp; meal planner</div>
+      <div><small>Create</small>10 lined, dotted &amp; grid notes</div>
+    </div>
+  </div>
+  <div class="dev" style="width:560px;left:970px;top:170px;transform:rotate(3deg)"><img src="previews/habits-jan.png"></div>
+</section>
+</body></html>
