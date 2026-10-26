@@ -18,7 +18,7 @@
 .toc a .n, .slots a .n { font-style: normal; font-family: 'Anton', sans-serif; font-size: 16px; }
 .toc a .t { font-size: 13px; font-weight: 500; }
 .prose p { font-size: 11px; }
-.prose p.lead { font-size: 15px; font-weight: 600; }
+.prose p.lead { font-family: var(--sans); font-size: 15px; font-weight: 600; line-height: 1.45; }
 .score th { background: #111; color: #D7F04A; }
 .cover .lines-bg { opacity: 1; }
 .cover .plate { background: #D7F04A; border: 3px solid #111; outline: none; padding: 34px 40px; }

@@ -1,11 +1,12 @@
-// Renders a journal theme to its PDF and page previews. Run: [THEME=retro] [NOPDF=1] node render.js <page ids...>
+// Renders a journal theme to its PDF and page previews.
+// Run: [THEME=retro] [NOPDF=1] [SRC=guide-retro.html OUT=listings/...pdf] node render.js <page ids...>
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 const theme = process.env.THEME || 'club';
-const html = theme === 'club' ? 'journal.html' : `journal-${theme}.html`;
-const pdf = theme === 'club' ? 'The-Match-Book-Tennis-Journal.pdf' : `The-Match-Book-Tennis-Journal-${theme[0].toUpperCase() + theme.slice(1)}.pdf`;
-const previews = theme === 'club' ? 'previews' : path.join('previews', theme);
+const html = process.env.SRC || (theme === 'club' ? 'journal.html' : `journal-${theme}.html`);
+const pdf = process.env.OUT || path.join('listings', theme, 'upload', theme === 'club' ? 'The-Match-Book-Tennis-Journal.pdf' : `The-Match-Book-Tennis-Journal-${theme[0].toUpperCase() + theme.slice(1)}.pdf`);
+const previews = path.join('previews', theme);
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 720, height: 960 }, deviceScaleFactor: 3 });

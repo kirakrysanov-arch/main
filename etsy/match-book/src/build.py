@@ -1,4 +1,5 @@
 """Generates The Match Book tennis journal HTML. Run: python3 build.py [club|retro|clay|rally]"""
+import re
 import sys
 from pathlib import Path
 
@@ -366,18 +367,80 @@ def note(n, kind):
     return page(f"note-{n}", "notes", body)
 
 
+def guide_page(pid, body):
+    # The guide has no index page, so its corner ball is decoration rather than a link.
+    body = re.sub(r'<a href="#index" class="home">(.*?)</a>', r'<div class="home">\1</div>', body, count=1)
+    return f'<section class="page" id="{pid}"><div class="main">{body}</div></section>'
+
+
+def guide():
+    """Two-page "Read Me First" PDF included with every download."""
+    files = [("The Match Book journal", "131-page hyperlinked PDF for GoodNotes, Notability and other PDF apps, or for printing"),
+             ("Stats tracker spreadsheet", "Excel file that also opens in Google Sheets and Apple Numbers"),
+             ("This guide", "Setup steps and answers to common questions")]
+    p1 = header("Read me first", "Thank <em>you</em>")
+    p1 += ('<div class="prose"><p class="lead">Thank you for choosing The Match Book. '
+           'Everything you need to plan, play and review a whole season is in this download.</p></div>')
+    p1 += box("What's included", "".join(f'<div class="check" style="height:auto;padding:7px 0"><span><b style="font-weight:600">{a}</b>'
+                                         f' &mdash; {d}</span></div>' for a, d in files), "margin-bottom:12px")
+    p1 += '<div class="steps" style="margin-bottom:12px">'
+    for n, (h, d) in enumerate([
+        ("GoodNotes", "Open the Etsy download on your iPad, tap the PDF, choose Share, then GoodNotes, then Import as New Document."),
+        ("Notability", "Tap the PDF, choose Share, then Notability. Turn off any option that flattens the file so the links keep working."),
+        ("Other apps", "Noteshelf, Xodo, Samsung Notes and most PDF apps work the same way: import the file as a new notebook."),
+        ("Printing", "Print at home on US Letter or A4 with &ldquo;fit to page&rdquo;. Thick paper or card stock gives the best finish."),
+    ], 1):
+        p1 += f'<div><h4><em>{"i ii iii iv".split()[n - 1]}.</em>{h}</h4><p>{d}</p></div>'
+    p1 += "</div>"
+    p1 += box("Using the links", '<div class="prose"><p style="font-size:13.5px;margin:0">Tap the tabs on the right edge to jump between '
+              'sections. Each match has Before and After buttons, and the tennis ball in the top corner of every page returns '
+              'to the index. In GoodNotes, switch to read-only mode (the pen icon) if a tap draws instead of following a link.</p></div>')
+    p1 += f'<div class="court" style="margin-top:18px">{court()}</div>'
+    p2 = header("Read me first", "The <em>Stats Tracker</em>")
+    p2 += '<div class="steps" style="margin-bottom:12px">'
+    for n, (h, d) in enumerate([
+        ("Google Sheets", "Upload the .xlsx file to Google Drive, open it, then choose File, then Save as Google Sheets."),
+        ("Excel &amp; Numbers", "Open the file directly. Everything works in Microsoft Excel and Apple Numbers."),
+        ("Start Here tab", "Read the first tab. Cream cells are yours to fill in; beige cells calculate by themselves."),
+        ("Sample matches", "Sixteen sample matches show how the dashboard looks. Clear the cream cells in those rows before you begin."),
+    ], 1):
+        p2 += f'<div><h4><em>{"i ii iii iv".split()[n - 1]}.</em>{h}</h4><p>{d}</p></div>'
+    p2 += "</div>"
+    p2 += box("A season in four habits", checks(4, ["Fill in the Match Plan before every match",
+                                                    "Complete the Match Review within an hour of finishing",
+                                                    "Add the numbers to the stats tracker the same day",
+                                                    "Turn one &ldquo;what to change&rdquo; into next week&rsquo;s practice focus"], "rnd"),
+              "margin-bottom:12px")
+    p2 += '<div class="row">'
+    p2 += box("Need help?", '<div class="prose"><p style="font-size:13.5px">Send me a message through Etsy and I will '
+              'reply as soon as I can. If a file will not download or open, I am happy to send it again.</p>'
+              '<p style="font-size:13.5px">If you enjoy The Match Book, a review on Etsy helps a small studio more than you know.</p></div>')
+    p2 += box("Terms of use", '<div class="prose"><p style="font-size:13.5px">For personal use by the buyer only. '
+              'Please do not share, resell or redistribute these files, in whole or in part.</p>'
+              '<p style="font-size:13.5px">Coaches who would like copies for their players can message me about a team licence.</p>'
+              '<p style="font-size:13.5px">Not affiliated with any tennis tournament, tour or governing body.</p></div>')
+    p2 += "</div>"
+    p2 += (f'<div class="court" style="margin:18px 0 10px">{court()}</div>'
+           '<p class="serif" style="text-align:center;font-style:italic;color:var(--muted);font-size:14px">'
+           'Every point tells you something. Enjoy the season.</p>')
+    return [guide_page("guide-1", p1), guide_page("guide-2", p2)]
+
+
 def build():
-    pages = [cover(), welcome(), index(), profile(), season(), calendar(), results(), matches()]
-    for n in range(1, MATCHES + 1):
-        pages += [match_pre(n), match_post(n)]
-    pages.append(scouting())
-    pages += [scout(n) for n in range(1, SCOUTS + 1)]
-    pages += [train(n) for n in range(1, TRAIN_WEEKS + 1)]
-    pages += [drills(n) for n in range(1, DRILL_PAGES + 1)]
-    pages += [body_week(n) for n in range(1, BODY_WEEKS + 1)]
-    pages += [gear(), kit()]
-    pages += [coach(n) for n in range(1, COACH_PAGES + 1)]
-    pages += [note(n, k) for n, k in enumerate(["lined", "lined", "dotted", "dotted", "courts", "courts"], 1)]
+    if len(sys.argv) > 2 and sys.argv[2] == "guide":
+        pages = guide()
+    else:
+        pages = [cover(), welcome(), index(), profile(), season(), calendar(), results(), matches()]
+        for n in range(1, MATCHES + 1):
+            pages += [match_pre(n), match_post(n)]
+        pages.append(scouting())
+        pages += [scout(n) for n in range(1, SCOUTS + 1)]
+        pages += [train(n) for n in range(1, TRAIN_WEEKS + 1)]
+        pages += [drills(n) for n in range(1, DRILL_PAGES + 1)]
+        pages += [body_week(n) for n in range(1, BODY_WEEKS + 1)]
+        pages += [gear(), kit()]
+        pages += [coach(n) for n in range(1, COACH_PAGES + 1)]
+        pages += [note(n, k) for n, k in enumerate(["lined", "lined", "dotted", "dotted", "courts", "courts"], 1)]
     here = Path(__file__).parent
     css = (here / "journal.css").read_text()
     if THEME != "club":
@@ -389,5 +452,7 @@ def build():
 if __name__ == "__main__":
     html, count = build()
     name = "journal.html" if THEME == "club" else f"journal-{THEME}.html"
+    if len(sys.argv) > 2 and sys.argv[2] == "guide":
+        name = f"guide-{THEME}.html"
     Path(__file__).with_name(name).write_text(html)
     print(f"{count} pages")

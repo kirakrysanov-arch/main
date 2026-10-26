@@ -1,4 +1,5 @@
-"""Builds The Match Book stats tracker workbook. Run: python3 build_tracker.py"""
+"""Builds The Match Book stats tracker workbook. Run: python3 build_tracker.py [club|retro|rally]"""
+import sys
 from datetime import date
 from pathlib import Path
 
@@ -9,21 +10,34 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
-OUT = Path(__file__).resolve().parent.parent / "The-Match-Book-Stats-Tracker.xlsx"
-GREEN, GREEN2, BRASS, CREAM, PAPER, INK, MUTED = "1D3A2A", "2D5440", "A07F42", "EFE7D3", "FBF8F0", "1F2A22", "7F8577"
+THEMES = {
+    # primary, calc text, accent, calc fill, input fill, ink, muted, header text, hairline, title font,
+    # wins/losses chart colours, winners/errors chart colours
+    "club": ("1D3A2A", "2D5440", "A07F42", "EFE7D3", "FBF8F0", "1F2A22", "7F8577", "F3E7C4", "D9D1BA", "Georgia",
+             ("1D3A2A", "C8B27A"), ("2D5440", "B5654F")),
+    "retro": ("1F6B3B", "1B2B4B", "C2412D", "EBDDBC", "FBF5E8", "1B2B4B", "8C8068", "F6EDD9", "D8C9A5", "Georgia",
+              ("1F6B3B", "C2412D"), ("1B2B4B", "C2412D")),
+    "rally": ("111111", "111111", "111111", "F1F5D2", "FFFFFF", "111111", "8C8C8C", "D7F04A", "D6D6D6", "Arial Black",
+              ("111111", "BDBDBD"), ("111111", "A8BF1F")),
+}
+THEME = sys.argv[1] if len(sys.argv) > 1 else "club"
+(GREEN, GREEN2, BRASS, CREAM, PAPER, INK, MUTED, HEAD_INK, HAIR, TITLE_FONT,
+ CHART_WL, CHART_WUE) = THEMES[THEME]
+SUFFIX = "" if THEME == "club" else f"-{THEME.title()}"
+OUT = Path(__file__).resolve().parent.parent / "listings" / THEME / "upload" / f"The-Match-Book-Stats-Tracker{SUFFIX}.xlsx"
 FIRST, LAST = 6, 155  # Match Log data rows (150 matches)
 SURFACES = ["Hard", "Clay", "Grass", "Indoor"]
 
-title_font = Font(name="Georgia", size=22, color=GREEN)
+title_font = Font(name=TITLE_FONT, size=22, color=GREEN)
 sub_font = Font(name="Arial", size=9, color=BRASS, bold=True)
-head_font = Font(name="Arial", size=9, bold=True, color="F3E7C4")
+head_font = Font(name="Arial", size=9, bold=True, color=HEAD_INK)
 body_font = Font(name="Arial", size=10, color=INK)
 calc_font = Font(name="Arial", size=10, color=GREEN2, bold=True)
 note_font = Font(name="Arial", size=9, italic=True, color=MUTED)
 head_fill = PatternFill("solid", fgColor=GREEN)
 input_fill = PatternFill("solid", fgColor=PAPER)
 calc_fill = PatternFill("solid", fgColor=CREAM)
-hair = Side(style="thin", color="D9D1BA")
+hair = Side(style="thin", color=HAIR)
 box = Border(left=hair, right=hair, top=hair, bottom=hair)
 center = Alignment(horizontal="center", vertical="center", wrap_text=True)
 
@@ -72,8 +86,8 @@ rows = [
     ("Beige cells", "These calculate automatically. Please don't type over them."),
     ("Sample data", "Rows 6–21 of the Match Log hold 16 sample matches so you can see the dashboard working. "
                     "Select the cream cells in those rows and press Delete to clear them before you start."),
-    ("During a match", "Ask a parent, coach or friend to keep a tally on the Match Book chart page, "
-                       "or note the totals shown by your club's scoreboard or a tracking app."),
+    ("During a match", "Ask a parent, coach or friend to keep a simple tally on paper or a scoring app, "
+                       "then copy the totals onto your Match Review page in the journal and into this log."),
     ("What to count", "1st serves in / attempted, points won on 1st and 2nd serve, break points won / chances, "
                       "winners, unforced errors and net points won / played. Leave anything you didn't track blank."),
     ("Google Sheets", "Upload this file to Google Drive, then open it with Google Sheets "
@@ -83,7 +97,7 @@ rows = [
 ]
 for i, (k, v) in enumerate(rows):
     r = 6 + i * 2
-    ws.cell(row=r, column=2, value=k).font = Font(name="Georgia", size=12, color=GREEN)
+    ws.cell(row=r, column=2, value=k).font = Font(name=TITLE_FONT, size=12, color=GREEN)
     c = ws.cell(row=r, column=3, value=v)
     c.font, c.alignment = body_font, Alignment(wrap_text=True, vertical="top")
     ws.row_dimensions[r].height = 30
@@ -202,7 +216,7 @@ for i, rowk in enumerate(kpis):
         lab.font = Font(name="Arial", size=8, bold=True, color=BRASS)
         db.merge_cells(start_row=r + 1, start_column=lc, end_row=r + 1, end_column=vc)
         v = db.cell(row=r + 1, column=lc, value=f.replace("C7", "B7").replace("F7", "E7"))
-        v.font, v.number_format, v.alignment = Font(name="Georgia", size=24, color=GREEN), fmt, Alignment(horizontal="left")
+        v.font, v.number_format, v.alignment = Font(name=TITLE_FONT, size=24, color=GREEN), fmt, Alignment(horizontal="left")
         db.row_dimensions[r + 1].height = 36
         for cc in (lc, vc):
             db.cell(row=r + 1, column=cc).border = Border(bottom=hair)
@@ -271,8 +285,8 @@ def bar(title_text, cols, colors, anchor, stacked=False):
     db.add_chart(ch, anchor)
 
 
-bar("Wins and losses by month", [3, 5], [GREEN, "C8B27A"], "L6", stacked=True)
-bar("Winners vs unforced errors", [6, 8], [GREEN2, "B5654F"], "L22")
+bar("Wins and losses by month", [3, 5], list(CHART_WL), "L6", stacked=True)
+bar("Winners vs unforced errors", [6, 8], list(CHART_WUE), "L22")
 
 # ------------------------------------------------------------------ Opponents
 op = wb.create_sheet("Opponents")
