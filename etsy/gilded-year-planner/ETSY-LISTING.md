@@ -13,7 +13,7 @@
 
 Images are 3200×2400 (4:3), which is Etsy's recommended ratio. The PDF is 7.5×10 in (iPad ratio), 133 pages, with 3,000+ internal hyperlinks.
 
-## Title (139 of 140 characters)
+## Title (135 of 140 characters)
 
 ```
 Luxury Digital Planner Undated, Black Gold Hyperlinked iPad Planner, GoodNotes Notability Planner, Printable Life Planner, Budget Habit
