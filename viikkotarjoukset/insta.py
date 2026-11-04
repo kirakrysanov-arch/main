@@ -11,7 +11,7 @@ import subprocess
 from PIL import Image
 from decimal import Decimal, ROUND_HALF_UP
 
-from rakenna import ALV, BG, HERE, data_uri, find, money, read_sheet, week_label
+from rakenna import BG, HERE, data_uri, find, money, read_sheet, week_label
 
 W, H = 1080, 1350
 BADGE = 390  # hintapallon halkaisija (px)
@@ -55,7 +55,7 @@ def photo_size(path, max_w, max_h, area):
 def page_html(it):
     e = html.escape
     a = lambda n: data_uri(os.path.join(HERE, "pohjat", n))
-    vat = (it["price"] * ALV).quantize(Decimal("0.01"), ROUND_HALF_UP)
+    vat = (it["price"] * it["alv"]).quantize(Decimal("0.01"), ROUND_HALF_UP)
     img = tilted(find("kuvat", it["code"]), it["code"])
     pw, ph = photo_size(img, PHOTO_W, PHOTO_H, PHOTO_AREA)
     price_fs = 112 if len(money(it["price"])) <= 4 else 92

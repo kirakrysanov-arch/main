@@ -23,7 +23,14 @@ import openpyxl
 from pypdf import PdfReader, PdfWriter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ALV = Decimal("1.135")
+ALV = Decimal("1.135")  # oletus: elintarvikkeiden alv 13,5 %
+
+
+def alv_kerroin(formula):
+    """Lukee alv-kertoimen taulukon E-sarakkeen kaavasta (esim. "=D17*1.255",
+    muut kuin elintarvikkeet 25,5 %); ilman kaavaa käytetään oletusta."""
+    m = re.search(r"\*\s*([0-9]+[.,][0-9]+)", str(formula or ""))
+    return Decimal(m.group(1).replace(",", ".")) if m else ALV
 BG = "#e8f5e3"
 COLS = [166, 397, 629]  # sarakkeiden keskikohdat (pt)
 
@@ -46,6 +53,18 @@ SAADOT = {
     "144153": {"scale": 0.86, "dx": -18, "dy": 32},  # Eesti Pagar appelsiini-suklaakakku
     "114377": {"scale": 0.88, "dx": -18, "dy": 22},  # Lagerblad jättilihapulla
     "111201": {"scale": 0.88, "dx": -16, "dy": 28},  # Saarioinen kermaperunat
+    # vko 47-48
+    "102936": {"scale": 0.88, "dx": -18, "dy": 24},  # Kariniemen paistileike
+    "139447": {"scale": 0.84, "dx": -32, "dy": 12},  # Eleplant rypsiöljyvalmiste
+    "142631": {"scale": 0.84, "dx": -22, "dy": 30},  # Fazer Briossi
+    "103882": {"scale": 0.88, "dx": -18, "dy": 24},  # Lagerblad jauhelihapihvi
+    "113937": {"scale": 0.84, "dx": -24, "dy": 30},  # Snellman porsaan kuutio
+    "145128": {"scale": 0.8, "dx": -34, "dy": 14},   # Seara koipireisi
+    "142041": {"scale": 0.8, "dx": -34, "dy": 14},   # Fazer ruokakaura
+    "138540": {"scale": 0.9, "dx": -16, "dy": 26},   # Görans Döner kanakebablastu
+    "138678": {"scale": 0.82, "dx": -30, "dy": 14},  # Wotkin's riistakäristys
+    "141190": {"scale": 0.9, "dx": -32, "dy": 8},    # GastroMax muovikauha S
+    "138751": {"scale": 0.9, "dx": -32, "dy": 8},    # GastroMax muovikauha M
 }
 
 # Asettelu kummallekin pohjalle (pt, sivun yläreunasta).
@@ -85,7 +104,7 @@ def read_sheet(path):
             continue
         cur.append({
             "from": row[1], "to": row[2],
-            "price": Decimal(str(row[3])), "unit": str(row[5]).strip(),
+            "price": Decimal(str(row[3])), "alv": alv_kerroin(row[4]), "unit": str(row[5]).strip(),
             "name": str(row[6]).strip(), "info": str(row[7] or "").strip(),
             "code": str(int(row[8])) if isinstance(row[8], (int, float)) else str(row[8] or ""),
             "tip": str(row[10]).strip() if len(row) > 10 and row[10] else "",
@@ -165,7 +184,7 @@ def overlay_html(layout, items, week):
         out.append(f'<div class="badge" style="left:{bx}pt;top:{row["badge"]}pt">'
                    f'<img src="{badge}"><div class="bt"><b>€{money(it["price"])}</b>'
                    f'<i>{e(it["unit"])}</i></div></div>')
-        vat = (it["price"] * ALV).quantize(Decimal("0.01"), ROUND_HALF_UP)
+        vat = (it["price"] * it["alv"]).quantize(Decimal("0.01"), ROUND_HALF_UP)
         out.append(
             f'<div class="txt" style="left:{cx-115}pt;top:{row["text"]}pt">'
             f'<p class="nm">{e(it["name"])}</p><p class="mt">{e(it["info"])}</p>'
