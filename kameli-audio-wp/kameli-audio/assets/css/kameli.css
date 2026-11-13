@@ -116,6 +116,30 @@ p {
 	max-width: 46ch;
 	margin-top: 1.25rem;
 }
+/* Etusivun kuvahero: valokuva koko leveydeltä, vasen reuna tummennettu tekstiä varten */
+.wp-block-cover.kameli-hero--kuva {
+	padding-block: var(--wp--preset--spacing--70) !important;
+}
+.kameli-hero--kuva .wp-block-cover__background {
+	background: linear-gradient(90deg, rgba(11, 11, 11, 0.95) 0%, rgba(11, 11, 11, 0.82) 38%, rgba(11, 11, 11, 0.3) 72%, rgba(11, 11, 11, 0.1) 100%) !important;
+	opacity: 1 !important;
+}
+.kameli-hero--kuva h1 {
+	font-size: clamp(2.6rem, 7vw, 5.5rem);
+	max-width: 11ch;
+}
+.kameli-hero--kuva .kameli-alaotsikko {
+	max-width: 34ch;
+}
+@media (max-width: 781px) {
+	.wp-block-cover.kameli-hero--kuva {
+		min-height: 600px !important;
+		align-items: flex-end;
+	}
+	.kameli-hero--kuva .wp-block-cover__background {
+		background: linear-gradient(180deg, rgba(11, 11, 11, 0.3) 0%, rgba(11, 11, 11, 0.8) 50%, rgba(11, 11, 11, 0.95) 100%) !important;
+	}
+}
 .kameli-hero--etusivu h1 {
 	font-size: clamp(2.6rem, 7vw, 5.5rem);
 }
