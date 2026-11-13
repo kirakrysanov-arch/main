@@ -13,7 +13,7 @@ Kopioi tästä alaspäin (WordPress muuttaa otsikot, listat ja lainauksen lohkoi
 Teimme Järvenpään Sosiaalidemokraattien vappujuhlan äänentoiston rantapuistossa jo neljättä vuotta peräkkäin. Puheet, musiikki ja tanssiesitykset kuuluivat koko alueelle, ja ensi vuoden juhla on jo kalenterissa.
 
 - **Asiakas:** Järvenpään Sosiaalidemokraatit
-- **Tilaisuus:** Vappujuhla, ulkotapahtuma [? noin X henkeä]
+- **Tilaisuus:** Vappujuhla, ulkotapahtuma
 - **Paikka:** Rantapuisto, Järvenpää
 - **Palvelut:** Äänentoisto, lavamonitorit, mikitys, miksaus, teknikko
 
@@ -39,8 +39,5 @@ Juhla sujui erinomaisesti alusta loppuun. Kalusto oli pystyssä aikataulussa, ja
 Aiemmista vuosista viisastuneena otin tänä vuonna pääkaiuttimien lisäksi sivufillit alueen laidoille, mikä paransi kuuluvuutta merkittävästi. Juuri tällaista oppimista toistuvat tapahtumat tuovat: joka vuosi toteutus on vähän parempi.
 
 Tämä oli jo neljäs peräkkäinen vuosi, kun teimme saman tapahtuman, ja ensi vuoden vappujuhla lisättiin kalenteriin saman tien.
-
-> [? Asiakkaan kommentti, esim. yhdistyksen puheenjohtajalta – yksi tai kaksi lausetta.]
-> — [? Nimi, rooli, Järvenpään Sosiaalidemokraatit]
 
 Järjestätkö yhdistyksen, kaupungin tai yrityksen ulkotapahtumaa? [Katso tapahtumapalvelumme](/palvelut/) tai [pyydä tarjous](#yhteydenotto) – katsotaan yhdessä, mitä tapahtumasi tarvitsee.

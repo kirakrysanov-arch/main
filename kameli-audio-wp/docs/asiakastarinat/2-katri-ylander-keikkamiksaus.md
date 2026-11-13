@@ -37,7 +37,4 @@ Jyväskylään mentiin uusilla stereokuunteluilla, ja asensin lisäksi talkback-
 
 Jo Oulussa talon oma tekniikkavastaava tuli keikan jälkeen kiittämään siitä, miten hyvältä heidän äänentoistonsa kuulosti. Syksylle on tiedossa vielä kaksi Katrin keikkaa, joille on hyvä lähteä tämän viikonlopun jälkeen.
 
-> [? Kommentti Katrilta tai Dex Viihteeltä – yksi tai kaksi lausetta.]
-> — [? Nimi, rooli]
-
 Tarvitseeko bändisi keikkamiksaajan, monitorimiksauksen tai apua korvamonitoroinnin kanssa? [Katso live-tuotantomme](/palvelut/artistit/) tai [laita viestiä](#yhteydenotto).

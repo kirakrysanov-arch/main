@@ -16,7 +16,7 @@
 <!-- 7. WordPress will then import each of the posts, pages, comments, categories, etc. -->
 <!--    contained in this file into your site. -->
 
-	<!-- generator="WordPress/7.1.3" created="2026-11-13 06:53" -->
+	<!-- generator="WordPress/7.1.3" created="2026-11-13 07:12" -->
 <rss version="2.0"
 	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -29,7 +29,7 @@
 	<title>Kameli Audio</title>
 	<link>https://kameliaudio.fi</link>
 	<description></description>
-	<pubDate>Fri, 13 Nov 2026 06:53:13 +0000</pubDate>
+	<pubDate>Fri, 13 Nov 2026 07:12:45 +0000</pubDate>
 	<language>en-US</language>
 	<wp:wxr_version>1.2</wp:wxr_version>
 	<wp:base_site_url>https://kameliaudio.fi</wp:base_site_url>
@@ -42,10 +42,10 @@
 
 		<item>
 		<title><![CDATA[Vappujuhlan äänentoisto Järvenpään rantapuistossa – jo neljättä vuotta]]></title>
-		<link>https://kameliaudio.fi/?p=58</link>
+		<link>https://kameliaudio.fi/?p=61</link>
 		<pubDate></pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">https://kameliaudio.fi/?p=58</guid>
+		<guid isPermaLink="false">https://kameliaudio.fi/?p=61</guid>
 		<description></description>
 		<content:encoded><![CDATA[<!-- wp:paragraph -->
 <p>Teimme Järvenpään Sosiaalidemokraattien vappujuhlan äänentoiston rantapuistossa jo neljättä vuotta peräkkäin. Puheet, musiikki ja tanssiesitykset kuuluivat koko alueelle, ja ensi vuoden juhla on jo kalenterissa.</p>
@@ -55,7 +55,7 @@
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li><strong>Asiakas:</strong> Järvenpään Sosiaalidemokraatit</li>
 <!-- /wp:list-item --><!-- wp:list-item -->
-<li><strong>Tilaisuus:</strong> Vappujuhla, ulkotapahtuma [? noin X henkeä]</li>
+<li><strong>Tilaisuus:</strong> Vappujuhla, ulkotapahtuma</li>
 <!-- /wp:list-item --><!-- wp:list-item -->
 <li><strong>Paikka:</strong> Rantapuisto, Järvenpää</li>
 <!-- /wp:list-item --><!-- wp:list-item -->
@@ -111,20 +111,14 @@
 <p>Tämä oli jo neljäs peräkkäinen vuosi, kun teimme saman tapahtuman, ja ensi vuoden vappujuhla lisättiin kalenteriin saman tien.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p>[? Asiakkaan kommentti, esim. yhdistyksen puheenjohtajalta – yksi tai kaksi lausetta.]</p>
-<!-- /wp:paragraph --><cite>[? Nimi, rooli, Järvenpään Sosiaalidemokraatit]</cite></blockquote>
-<!-- /wp:quote -->
-
 <!-- wp:paragraph -->
 <p>Järjestätkö yhdistyksen, kaupungin tai yrityksen ulkotapahtumaa? <a href="/palvelut/">Katso tapahtumapalvelumme</a> tai <a href="#yhteydenotto">pyydä tarjous</a> – katsotaan yhdessä, mitä tapahtumasi tarvitsee.</p>
 <!-- /wp:paragraph -->]]></content:encoded>
 		<excerpt:encoded><![CDATA[Teimme Järvenpään Sosiaalidemokraattien vappujuhlan äänentoiston rantapuistossa jo neljättä vuotta peräkkäin. Puheet, musiikki ja tanssiesitykset kuuluivat koko alueelle, ja ensi vuoden juhla on jo kalenterissa.]]></excerpt:encoded>
-		<wp:post_id>58</wp:post_id>
-		<wp:post_date><![CDATA[2026-11-13 06:53:13]]></wp:post_date>
+		<wp:post_id>61</wp:post_id>
+		<wp:post_date><![CDATA[2026-11-13 07:12:45]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[0000-00-00 00:00:00]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-11-13 06:53:13]]></wp:post_modified>
+		<wp:post_modified><![CDATA[2026-11-13 07:12:45]]></wp:post_modified>
 		<wp:post_modified_gmt><![CDATA[0000-00-00 00:00:00]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
@@ -163,10 +157,10 @@
 							</item>
 					<item>
 		<title><![CDATA[Keikkamiksaus Katri Ylanderille Oulussa ja Jyväskylässä]]></title>
-		<link>https://kameliaudio.fi/?p=59</link>
+		<link>https://kameliaudio.fi/?p=62</link>
 		<pubDate></pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">https://kameliaudio.fi/?p=59</guid>
+		<guid isPermaLink="false">https://kameliaudio.fi/?p=62</guid>
 		<description></description>
 		<content:encoded><![CDATA[<!-- wp:paragraph -->
 <p>Miksasin Katri Ylanderin keikkaviikonlopun 23.–24.10.2026 Oulun Voimala1889:ssä ja Jyväskylän Popparissa. Vastasin sekä sali- että monitorimiksauksesta – ja ensimmäisen illan yllätys johti korjaukseen, jonka ansiosta bändi kuuli soundinsa ensimmäistä kertaa niin kuin se oli tarkoitettu.</p>
@@ -224,20 +218,14 @@
 <p>Jo Oulussa talon oma tekniikkavastaava tuli keikan jälkeen kiittämään siitä, miten hyvältä heidän äänentoistonsa kuulosti. Syksylle on tiedossa vielä kaksi Katrin keikkaa, joille on hyvä lähteä tämän viikonlopun jälkeen.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p>[? Kommentti Katrilta tai Dex Viihteeltä – yksi tai kaksi lausetta.]</p>
-<!-- /wp:paragraph --><cite>[? Nimi, rooli]</cite></blockquote>
-<!-- /wp:quote -->
-
 <!-- wp:paragraph -->
 <p>Tarvitseeko bändisi keikkamiksaajan, monitorimiksauksen tai apua korvamonitoroinnin kanssa? <a href="/palvelut/artistit/">Katso live-tuotantomme</a> tai <a href="#yhteydenotto">laita viestiä</a>.</p>
 <!-- /wp:paragraph -->]]></content:encoded>
 		<excerpt:encoded><![CDATA[Miksasin Katri Ylanderin keikkaviikonlopun 23.–24.10.2026 Oulun Voimala1889:ssä ja Jyväskylän Popparissa. Vastasin sekä sali- että monitorimiksauksesta – ja ensimmäisen illan yllätys johti korjaukseen, jonka ansiosta bändi kuuli soundinsa ensimmäistä kertaa niin kuin se oli tarkoitettu.]]></excerpt:encoded>
-		<wp:post_id>59</wp:post_id>
-		<wp:post_date><![CDATA[2026-11-13 06:53:13]]></wp:post_date>
+		<wp:post_id>62</wp:post_id>
+		<wp:post_date><![CDATA[2026-11-13 07:12:45]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[0000-00-00 00:00:00]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-11-13 06:53:13]]></wp:post_modified>
+		<wp:post_modified><![CDATA[2026-11-13 07:12:45]]></wp:post_modified>
 		<wp:post_modified_gmt><![CDATA[0000-00-00 00:00:00]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
@@ -276,10 +264,10 @@
 							</item>
 					<item>
 		<title><![CDATA[Laulun ja pianon äänitys paikan päällä Tuuloksen seurakuntatalossa]]></title>
-		<link>https://kameliaudio.fi/?p=60</link>
+		<link>https://kameliaudio.fi/?p=63</link>
 		<pubDate></pubDate>
 		<dc:creator><![CDATA[admin]]></dc:creator>
-		<guid isPermaLink="false">https://kameliaudio.fi/?p=60</guid>
+		<guid isPermaLink="false">https://kameliaudio.fi/?p=63</guid>
 		<description></description>
 		<content:encoded><![CDATA[<!-- wp:paragraph -->
 <p>Äänitimme lauluharrastajan ohjelmistoa Tuuloksen seurakuntatalossa Hämeenlinnassa – tilassa, jonka akustiikka ja piano olivat laulajalle entuudestaan tuttuja. Laulu ja piano äänitettiin yhtä aikaa, ja valmiit kappaleet julkaistaan YouTubessa.</p>
@@ -330,23 +318,13 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>[? Kun kappaleet julkaistaan, lisää tähän YouTube-linkki omalle rivilleen – WordPress näyttää videon suoraan sivulla.]</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p>[? Laulajan kommentti – voi olla nimetön, esim. ”– laulaja, Hämeenlinna”.]</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
-
-<!-- wp:paragraph -->
 <p>Haluatko äänittää laulua, kuoroa tai pienyhtyettä omassa tutussa tilassa – kirkossa, salissa tai konserttipaikalla? Äänitämme myös Oasis Studiollamme Vantaan Hakkilassa. <a href="/palvelut/artistit/">Katso studiopalvelumme</a> tai <a href="#yhteydenotto">laita viestiä</a>.</p>
 <!-- /wp:paragraph -->]]></content:encoded>
 		<excerpt:encoded><![CDATA[Äänitimme lauluharrastajan ohjelmistoa Tuuloksen seurakuntatalossa Hämeenlinnassa – tilassa, jonka akustiikka ja piano olivat laulajalle entuudestaan tuttuja. Laulu ja piano äänitettiin yhtä aikaa, ja valmiit kappaleet julkaistaan YouTubessa.]]></excerpt:encoded>
-		<wp:post_id>60</wp:post_id>
-		<wp:post_date><![CDATA[2026-11-13 06:53:13]]></wp:post_date>
+		<wp:post_id>63</wp:post_id>
+		<wp:post_date><![CDATA[2026-11-13 07:12:45]]></wp:post_date>
 		<wp:post_date_gmt><![CDATA[0000-00-00 00:00:00]]></wp:post_date_gmt>
-		<wp:post_modified><![CDATA[2026-11-13 06:53:13]]></wp:post_modified>
+		<wp:post_modified><![CDATA[2026-11-13 07:12:45]]></wp:post_modified>
 		<wp:post_modified_gmt><![CDATA[0000-00-00 00:00:00]]></wp:post_modified_gmt>
 		<wp:comment_status><![CDATA[open]]></wp:comment_status>
 		<wp:ping_status><![CDATA[open]]></wp:ping_status>
