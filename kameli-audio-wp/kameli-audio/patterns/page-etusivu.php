@@ -25,7 +25,7 @@ echo kameli_audio_section_open( 'hiili', '', 'kameli-hero kameli-hero--etusivu' 
 		array(
 			kameli_audio_paragraph( 'Tapahtumatekniikka · Studio', '', 'kameli-eyebrow' )
 				. kameli_audio_heading( 'Ääni, joka kantaa.', 1 )
-				. kameli_audio_paragraph( 'Tapahtumien teknistä toteutusta sekä studiotuotantoa Vantaan Hakkilasta – yrityksille, yksityisille ja artisteille.', 'lead', 'kameli-alaotsikko' )
+				. kameli_audio_paragraph( 'Tapahtumien teknistä toteutusta sekä studiotuotantoa Uudellamaalla ja sen ulkopuolella – yrityksille, yksityisille ja artisteille.', 'lead', 'kameli-alaotsikko' )
 				. $buttons,
 			kameli_audio_image_block( 'kameli-audio-logo.png', '100%', 'Kameli Audio', 'kameli-hero__logo' ),
 		),

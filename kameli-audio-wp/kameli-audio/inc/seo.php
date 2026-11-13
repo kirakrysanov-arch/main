@@ -21,12 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 function kameli_audio_seo_defaults() {
 	return array(
 		'etusivu'             => array(
-			'Kameli Audio – tapahtumatekniikka ja äänitysstudio, Vantaa',
-			'Äänentoisto, valot ja tapahtumatekniikka yritystapahtumiin, juhliin ja keikoille sekä äänitysstudio Vantaan Hakkilassa. Pyydä tarjous!',
+			'Kameli Audio – tapahtumatekniikka ja äänitysstudio, Uusimaa',
+			'Äänentoisto, valot ja tapahtumatekniikka yritystapahtumiin, juhliin ja keikoille Uudellamaalla ja sen ulkopuolella sekä oma äänitysstudio. Pyydä tarjous!',
 		),
 		'palvelut'            => array(
 			'Palvelut: äänentoisto, valot ja studio | Kameli Audio',
-			'Tapahtumatekniikkaa yrityksille ja juhliin sekä live- ja studiotuotantoja artisteille. Suunnittelusta purkuun pääkaupunkiseudulla.',
+			'Tapahtumatekniikkaa yrityksille ja juhliin sekä live- ja studiotuotantoja artisteille. Suunnittelusta purkuun koko Uudellamaalla ja sen ulkopuolella.',
 		),
 		'palvelut/yritykset'  => array(
 			'Äänentoisto ja valot yritystapahtumiin | Kameli Audio',
@@ -38,11 +38,11 @@ function kameli_audio_seo_defaults() {
 		),
 		'palvelut/artistit'   => array(
 			'Äänitysstudio, miksaus ja keikkamiksaus | Kameli Audio',
-			'Äänitys Oasis Studiolla Vantaan Hakkilassa, miksaus ja masterointi sekä live-tuotannot: PA-treenit, kiertueiden valmistelu ja keikkamiksaus.',
+			'Äänitys omalla Oasis Studiollamme tai paikan päällä, miksaus ja masterointi sekä live-tuotannot: PA-treenit, kiertueiden valmistelu ja keikkamiksaus.',
 		),
 		'ota-yhteytta'        => array(
 			'Ota yhteyttä ja pyydä tarjous | Kameli Audio',
-			'Kerro tapahtumastasi tai projektistasi, niin palaamme asiaan. Juha Pöysä ja Sakari Juntura – Kameli Audio, Oasis Studio, Hakkila, Vantaa.',
+			'Kerro tapahtumastasi tai projektistasi, niin palaamme asiaan. Juha Pöysä ja Sakari Juntura palvelevat koko Uudellamaalla ja sen ulkopuolella.',
 		),
 		'blogi'               => array(
 			'Blogi ja asiakastarinat | Kameli Audio',
@@ -296,14 +296,14 @@ function kameli_audio_business_schema() {
 		'url'         => home_url( '/' ),
 		'logo'        => get_theme_file_uri( 'assets/images/kameli-audio-logo-tumma.png' ),
 		'image'       => get_theme_file_uri( 'assets/images/kameli-audio-logo-tumma.png' ),
-		'description' => 'Tapahtumatekniikkaa – äänentoisto ja valot – yritystapahtumiin, juhliin ja keikoille sekä äänitys, miksaus ja masterointi Oasis Studiolla Vantaan Hakkilassa.',
+		'description' => 'Tapahtumatekniikkaa – äänentoisto ja valot – yritystapahtumiin, juhliin ja keikoille sekä äänitys, miksaus ja masterointi omalla Oasis Studiolla – koko Uudellamaalla ja sen ulkopuolella.',
 		'address'     => array(
 			'@type'           => 'PostalAddress',
 			'addressLocality' => 'Vantaa',
 			'addressRegion'   => 'Uusimaa',
 			'addressCountry'  => 'FI',
 		),
-		'areaServed'  => array( 'Vantaa', 'Helsinki', 'Espoo', 'Uusimaa', 'Suomi' ),
+		'areaServed'  => array( 'Uusimaa', 'Etelä-Suomi', 'Suomi' ),
 		'knowsAbout'  => array( 'Tapahtumatekniikka', 'Äänentoisto', 'Valotekniikka', 'Äänitys', 'Miksaus', 'Masterointi', 'Keikkamiksaus' ),
 		'email'       => kameli_audio_contact_recipient(),
 		'telephone'   => '+358405727838',
@@ -340,7 +340,7 @@ function kameli_audio_seo_meta_box_html( $post ) {
 		$desc = trim( (string) get_post_meta( $post->ID, '_genesis_description', true ) );
 	}
 	?>
-	<p style="margin-top:0">Näin sivu näkyy Googlen hakutuloksissa. Käytä sanoja, joilla asiakkaat palveluita etsivät (esim. <em>äänentoisto, häät, Vantaa</em>).</p>
+	<p style="margin-top:0">Näin sivu näkyy Googlen hakutuloksissa. Käytä sanoja, joilla asiakkaat palveluita etsivät (esim. <em>äänentoisto, häät, Uusimaa</em>).</p>
 	<p>
 		<label for="kameli-seo-otsikko"><strong>Hakutulosotsikko</strong> <span class="description">(suositus enintään 60 merkkiä)</span></label><br />
 		<input type="text" id="kameli-seo-otsikko" name="kameli_seo_title" value="<?php echo esc_attr( $title ); ?>" maxlength="90" style="width:100%" placeholder="<?php echo esc_attr( get_the_title( $post ) . ' – ' . get_bloginfo( 'name' ) ); ?>" />

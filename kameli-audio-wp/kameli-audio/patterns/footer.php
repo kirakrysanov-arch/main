@@ -17,7 +17,7 @@
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Tapahtumatekniikkaa ja studiotuotantoa Vantaan Hakkilasta.</p>
+<p class="has-small-font-size">Tapahtumatekniikkaa ja studiotuotantoa Uudellamaalla ja sen ulkopuolella.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
