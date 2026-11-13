@@ -77,6 +77,26 @@ function kameli_audio_apply_seo_defaults() {
 }
 
 /**
+ * Teeman oma hakutulosotsikko tai -kuvaus: tallennettu arvo, tai teeman sivuille valmis arvo
+ * suoraan kameli_audio_seo_defaults()-listasta (ei riipu siitä, onko oletuksia tallennettu).
+ *
+ * @param int    $id  Sivun tai julkaisun tunniste.
+ * @param string $key '_kameli_seo_title' tai '_kameli_seo_desc'.
+ */
+function kameli_audio_seo_own( $id, $key ) {
+	$value = trim( (string) get_post_meta( $id, $key, true ) );
+	if ( '' !== $value || 'page' !== get_post_type( $id ) ) {
+		return $value;
+	}
+	$defaults = kameli_audio_seo_defaults();
+	$path     = get_page_uri( $id );
+	if ( ! isset( $defaults[ $path ] ) ) {
+		return '';
+	}
+	return '_kameli_seo_title' === $key ? $defaults[ $path ][0] : $defaults[ $path ][1];
+}
+
+/**
  * Sivu tai julkaisu, jota nyt katsotaan (blogin etusivulla Blogi-sivu).
  */
 function kameli_audio_seo_object_id() {
@@ -96,7 +116,7 @@ function kameli_audio_seo_object_id() {
  */
 function kameli_audio_seo_title( $id ) {
 	foreach ( array( '_kameli_seo_title', '_genesis_title', '_yoast_wpseo_title' ) as $key ) {
-		$value = trim( (string) get_post_meta( $id, $key, true ) );
+		$value = '_kameli_seo_title' === $key ? kameli_audio_seo_own( $id, $key ) : trim( (string) get_post_meta( $id, $key, true ) );
 		if ( '' !== $value && false === strpos( $value, '%%' ) ) {
 			return $value;
 		}
@@ -111,7 +131,7 @@ function kameli_audio_seo_title( $id ) {
  */
 function kameli_audio_seo_description( $id ) {
 	foreach ( array( '_kameli_seo_desc', '_genesis_description', '_yoast_wpseo_metadesc' ) as $key ) {
-		$value = trim( (string) get_post_meta( $id, $key, true ) );
+		$value = '_kameli_seo_desc' === $key ? kameli_audio_seo_own( $id, $key ) : trim( (string) get_post_meta( $id, $key, true ) );
 		if ( '' !== $value && false === strpos( $value, '%%' ) ) {
 			return $value;
 		}
@@ -217,7 +237,7 @@ function kameli_audio_yoast_fallback( $value, $yoast_key, $our_key ) {
 	if ( ! $id || '' !== trim( (string) get_post_meta( $id, $yoast_key, true ) ) ) {
 		return $value;
 	}
-	$ours = trim( (string) get_post_meta( $id, $our_key, true ) );
+	$ours = kameli_audio_seo_own( $id, $our_key );
 	return '' !== $ours ? $ours : $value;
 }
 add_filter(
@@ -314,7 +334,7 @@ add_action( 'add_meta_boxes', 'kameli_audio_seo_meta_box' );
 function kameli_audio_seo_meta_box_html( $post ) {
 	wp_nonce_field( 'kameli_seo', 'kameli_seo_nonce' );
 	$title = kameli_audio_seo_title( $post->ID );
-	$desc  = (string) get_post_meta( $post->ID, '_kameli_seo_desc', true );
+	$desc  = kameli_audio_seo_own( $post->ID, '_kameli_seo_desc' );
 	if ( '' === $desc ) {
 		$desc = trim( (string) get_post_meta( $post->ID, '_genesis_description', true ) );
 	}
