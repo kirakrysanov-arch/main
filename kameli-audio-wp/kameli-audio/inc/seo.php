@@ -59,19 +59,41 @@ function kameli_audio_seo_plugin_active() {
 }
 
 /**
- * Asettaa teeman sivuille valmiit hakutulosotsikot ja -kuvaukset, jos niitä ei ole vielä annettu.
+ * Teeman aiemmissa versioissa tallennetut oletustekstit. Ne poistetaan päivityksessä, jotta
+ * nykyiset oletukset (kameli_audio_seo_defaults) tulevat käyttöön. Itse kirjoitetut tekstit jäävät.
+ */
+function kameli_audio_old_seo_defaults() {
+	return array(
+		'Kameli Audio – tapahtumatekniikka ja äänitysstudio, Vantaa',
+		'Äänentoisto, valot ja tapahtumatekniikka yritystapahtumiin, juhliin ja keikoille sekä äänitysstudio Vantaan Hakkilassa. Pyydä tarjous!',
+		'Tapahtumatekniikkaa yrityksille ja juhliin sekä live- ja studiotuotantoja artisteille. Suunnittelusta purkuun pääkaupunkiseudulla.',
+		'Äänitys Oasis Studiolla Vantaan Hakkilassa, miksaus ja masterointi sekä live-tuotannot: PA-treenit, kiertueiden valmistelu ja keikkamiksaus.',
+		'Kerro tapahtumastasi tai projektistasi, niin palaamme asiaan. Juha Pöysä ja Sakari Juntura – Kameli Audio, Oasis Studio, Hakkila, Vantaa.',
+	);
+}
+
+/**
+ * Teeman sivujen hakutulostekstit: oletuksia ei tallenneta sivuille (ne luetaan suoraan
+ * kameli_audio_seo_defaults()-listasta), ja aiempien versioiden tallentamat oletukset poistetaan.
+ * Itse kirjoitetut tekstit jäävät ennalleen.
  */
 function kameli_audio_apply_seo_defaults() {
-	foreach ( kameli_audio_seo_defaults() as $path => $seo ) {
+	$old     = kameli_audio_old_seo_defaults();
+	$current = array();
+	foreach ( kameli_audio_seo_defaults() as $seo ) {
+		$current[] = $seo[0];
+		$current[] = $seo[1];
+	}
+	foreach ( array_keys( kameli_audio_seo_defaults() ) as $path ) {
 		$page = get_page_by_path( $path );
 		if ( ! $page ) {
 			continue;
 		}
-		if ( '' === (string) get_post_meta( $page->ID, '_kameli_seo_title', true ) ) {
-			update_post_meta( $page->ID, '_kameli_seo_title', $seo[0] );
-		}
-		if ( '' === (string) get_post_meta( $page->ID, '_kameli_seo_desc', true ) ) {
-			update_post_meta( $page->ID, '_kameli_seo_desc', $seo[1] );
+		foreach ( array( '_kameli_seo_title', '_kameli_seo_desc' ) as $key ) {
+			$value = (string) get_post_meta( $page->ID, $key, true );
+			if ( in_array( $value, $old, true ) || in_array( $value, $current, true ) ) {
+				delete_post_meta( $page->ID, $key );
+			}
 		}
 	}
 }
