@@ -55,7 +55,9 @@ Requires WordPress 6.6 or newer (tested on 7.1).
 - Adds the meta description, sharing previews (Open Graph: title, description, image `jakokuva.png` or the
   featured image) and, on the front page, business details for Google (schema.org LocalBusiness: Vantaa,
   area served, services). Phone number etc. can be added with the `kameli_audio_business_schema` filter.
-- If Yoast SEO, The SEO Framework, Rank Math or All in One SEO is installed, the theme leaves all of this to it.
+- If Yoast SEO, The SEO Framework, Rank Math or All in One SEO is installed, that plugin outputs the tags. With Yoast, the
+  theme still fills in its keyword titles and descriptions wherever the Yoast fields for a page are empty (anything typed
+  in Yoast wins), and the front page still gets the business details.
 - Sitemap: WordPress's own `/wp-sitemap.xml` – submit it in Google Search Console.
 
 ## Contact form

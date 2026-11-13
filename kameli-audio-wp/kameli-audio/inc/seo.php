@@ -204,6 +204,66 @@ function kameli_audio_seo_head() {
 add_action( 'wp_head', 'kameli_audio_seo_head', 1 );
 
 /**
+ * Yoast SEO käytössä: Yoast hoitaa otsikot ja kuvaukset, mutta jos sivulle ei ole Yoastissa
+ * kirjoitettu omaa otsikkoa tai kuvausta, käytetään teeman hakusanojen mukaan kirjoitettuja.
+ * Yoastissa käsin kirjoitettu arvo menee aina edelle.
+ *
+ * @param string $value     Yoastin arvo.
+ * @param string $yoast_key Yoastin oma kenttä.
+ * @param string $our_key   Teeman kenttä.
+ */
+function kameli_audio_yoast_fallback( $value, $yoast_key, $our_key ) {
+	$id = kameli_audio_seo_object_id();
+	if ( ! $id || '' !== trim( (string) get_post_meta( $id, $yoast_key, true ) ) ) {
+		return $value;
+	}
+	$ours = trim( (string) get_post_meta( $id, $our_key, true ) );
+	return '' !== $ours ? $ours : $value;
+}
+add_filter(
+	'wpseo_title',
+	function ( $title ) {
+		return kameli_audio_yoast_fallback( $title, '_yoast_wpseo_title', '_kameli_seo_title' );
+	}
+);
+add_filter(
+	'wpseo_metadesc',
+	function ( $desc ) {
+		return kameli_audio_yoast_fallback( $desc, '_yoast_wpseo_metadesc', '_kameli_seo_desc' );
+	}
+);
+add_filter(
+	'wpseo_opengraph_title',
+	function ( $title ) {
+		$id = kameli_audio_seo_object_id();
+		if ( $id && '' !== trim( (string) get_post_meta( $id, '_yoast_wpseo_opengraph-title', true ) ) ) {
+			return $title;
+		}
+		return kameli_audio_yoast_fallback( $title, '_yoast_wpseo_title', '_kameli_seo_title' );
+	}
+);
+add_filter(
+	'wpseo_opengraph_desc',
+	function ( $desc ) {
+		$id = kameli_audio_seo_object_id();
+		if ( $id && '' !== trim( (string) get_post_meta( $id, '_yoast_wpseo_opengraph-description', true ) ) ) {
+			return $desc;
+		}
+		return kameli_audio_yoast_fallback( $desc, '_yoast_wpseo_metadesc', '_kameli_seo_desc' );
+	}
+);
+
+/**
+ * Yritystiedot Googlelle etusivulla myös silloin, kun SEO-lisäosa on käytössä.
+ */
+function kameli_audio_business_schema_with_plugin() {
+	if ( kameli_audio_seo_plugin_active() && is_front_page() ) {
+		kameli_audio_business_schema();
+	}
+}
+add_action( 'wp_head', 'kameli_audio_business_schema_with_plugin', 2 );
+
+/**
  * Yritystiedot (schema.org LocalBusiness), joista Google tunnistaa yrityksen, toimialan ja alueen.
  */
 function kameli_audio_business_schema() {
