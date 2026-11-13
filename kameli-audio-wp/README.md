@@ -44,7 +44,7 @@ Requires WordPress 6.6 or newer (tested on 7.1).
 - **New article:** *Posts → Add New*; new posts go to *Artikkelit* by default.
 - Drafts created on activation (not visible until published): 3 case study templates and 5 articles based on the
   January video topics in the project plan.
-- Posts without a featured image show the green waveform in the card instead of a photo.
+- Posts without a featured image show as text-only cards; add a featured image for a photo.
 - Every post ends with the "Pyydä tarjous" band and the contact form.
 
 ## SEO (built in)
