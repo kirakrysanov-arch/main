@@ -10,7 +10,7 @@
  * @package kameli-audio
  */
 
-// Puhelinnumerot ja kuvat ovat paikkamerkkejä, jotka korvataan oikeilla.
+// Kuvat ovat paikkamerkkejä, jotka korvataan oikeilla.
 echo kameli_audio_hero( 'Ota yhteyttä', 'Olemme täällä auttamassa audioprojektissasi', 'Odotamme yhteydenottoasi ja toteutamme audioprojektisi vuosien kokemuksella, ammattitaidolla ja intohimolla.' );
 
 echo kameli_audio_section_open( 'valkoinen' )
@@ -21,14 +21,14 @@ echo kameli_audio_section_open( 'valkoinen' )
 				'Juha Pöysä',
 				'Vastaava teknikko, studiomestari',
 				'Vastaan tapahtumatekniikan toteutuksesta sekä kaluston ylläpidosta. Studion puolella teen äänitetuotannon kaikki vaiheet esituotannosta miksaukseen ja masterointiin.',
-				'+358 XX XXX XXXX',
+				'+358 40 572 7838',
 				'juha@kameliaudio.fi'
 			),
 			kameli_audio_person_card(
 				'Sakari Juntura',
 				'Hallinto ja tilaukset',
 				'Vastaan yrityksen hallinnosta, kuten rahoituksesta, talousasioista ja hankkeiden koordinoinnista. Olen toisinaan Juhan mukana keikoilla ja tapahtumissa. Olen säveltänyt ja kirjoittanut omaa tuotantoa pitkään, ja tarjoan mielelläni biiseille tuoretta näkökulmaa studiossa.',
-				'+358 XX XXX XXXX',
+				'+358 40 560 3192',
 				'sakari@kameliaudio.fi'
 			),
 		),

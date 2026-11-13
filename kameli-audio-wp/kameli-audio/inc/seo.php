@@ -306,6 +306,7 @@ function kameli_audio_business_schema() {
 		'areaServed'  => array( 'Vantaa', 'Helsinki', 'Espoo', 'Uusimaa', 'Suomi' ),
 		'knowsAbout'  => array( 'Tapahtumatekniikka', 'Äänentoisto', 'Valotekniikka', 'Äänitys', 'Miksaus', 'Masterointi', 'Keikkamiksaus' ),
 		'email'       => kameli_audio_contact_recipient(),
+		'telephone'   => '+358405727838',
 	);
 	/**
 	 * Yritystietojen muokkaus, esim. puhelinnumero tai sosiaalisen median profiilit:

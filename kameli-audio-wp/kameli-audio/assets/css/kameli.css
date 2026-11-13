@@ -316,8 +316,9 @@ p {
 }
 .kameli-henkilokuva img {
 	width: 100% !important;
-	aspect-ratio: 3 / 2;
+	aspect-ratio: 4 / 3;
 	object-fit: cover;
+	object-position: 50% 30%; /* pystykuvissa kasvot jäävät rajauksen sisään */
 	display: block;
 }
 

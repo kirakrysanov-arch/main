@@ -46,6 +46,10 @@
 
 <!-- wp:list {"className":"kameli-linkkilista"} -->
 <ul class="wp-block-list kameli-linkkilista"><!-- wp:list-item -->
+<li>Juha: <a href="tel:+358405727838">+358 40 572 7838</a></li>
+<!-- /wp:list-item --><!-- wp:list-item -->
+<li>Sakari: <a href="tel:+358405603192">+358 40 560 3192</a></li>
+<!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="mailto:juha@kameliaudio.fi">juha@kameliaudio.fi</a></li>
 <!-- /wp:list-item --><!-- wp:list-item -->
 <li><a href="mailto:sakari@kameliaudio.fi">sakari@kameliaudio.fi</a></li>
