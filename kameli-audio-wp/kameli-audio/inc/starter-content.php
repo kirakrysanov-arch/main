@@ -95,6 +95,7 @@ function kameli_audio_create_starter_content() {
 	}
 
 	kameli_audio_create_navigation();
+	kameli_audio_apply_seo_defaults();
 	update_option( 'kameli_audio_starter_done', 1 );
 	update_option( 'kameli_audio_version', KAMELI_AUDIO_VERSION );
 

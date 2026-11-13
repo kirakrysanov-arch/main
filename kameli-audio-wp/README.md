@@ -48,6 +48,16 @@ Requires WordPress 6.6 or newer (tested on 7.1).
 - Posts without a featured image show the green waveform in the card instead of a photo.
 - Every post ends with the "Pyydä tarjous" band and the contact form.
 
+## SEO (built in)
+
+- Every page and post has a **Hakukoneet (SEO)** box at the bottom of the editor: search-result title and
+  description. The theme pages get keyword-based defaults on activation / update (only where empty).
+- Adds the meta description, sharing previews (Open Graph: title, description, image `jakokuva.png` or the
+  featured image) and, on the front page, business details for Google (schema.org LocalBusiness: Vantaa,
+  area served, services). Phone number etc. can be added with the `kameli_audio_business_schema` filter.
+- If Yoast SEO, The SEO Framework, Rank Math or All in One SEO is installed, the theme leaves all of this to it.
+- Sitemap: WordPress's own `/wp-sitemap.xml` – submit it in Google Search Console.
+
 ## Contact form
 
 The form is the shortcode `[kameli_yhteydenotto]` (already on every page). Every message is
