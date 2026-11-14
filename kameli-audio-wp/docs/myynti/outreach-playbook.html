@@ -1,0 +1,533 @@
+<title>Kameli Outreach Playbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one reading column; a sticky bar with the language switch; the sequence is a real timeline (days), so it is numbered. */
+:root {
+	--bg: #ffffff;
+	--surface: #f3f6f4;
+	--fg: #101312;
+	--muted: #5b6661;
+	--line: #d8e3dd;
+	--accent: #1d7a52;
+	--accent-soft: #52b489;
+	--on-accent: #0b0b0b;
+	--bar: #0b0b0b;
+	--bar-fg: #ffffff;
+	--warn: #8a5a12;
+	--display: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg: #0e100f; --surface: #171b19; --fg: #eef2f0; --muted: #a6b1ac; --line: #2a312e;
+		--accent: #6fd3a5; --accent-soft: #52b489; --on-accent: #0b0b0b; --bar: #000000; --bar-fg: #ffffff; --warn: #e3b467;
+		color-scheme: dark;
+	}
+}
+:root[data-theme="dark"] {
+	--bg: #0e100f; --surface: #171b19; --fg: #eef2f0; --muted: #a6b1ac; --line: #2a312e;
+	--accent: #6fd3a5; --accent-soft: #52b489; --on-accent: #0b0b0b; --bar: #000000; --bar-fg: #ffffff; --warn: #e3b467;
+	color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bar); }
+.bar {
+	position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bar); color: var(--bar-fg);
+	padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px;
+}
+.bar-in { max-width: 860px; margin: 0 auto; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.brand { font: 800 0.8rem/1 var(--display); font-stretch: 125%; letter-spacing: 0.16em; text-transform: uppercase; }
+.brand b { color: var(--accent-soft); }
+nav.toc { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.9rem; }
+nav.toc a { color: var(--bar-fg); text-decoration: none; opacity: 0.85; }
+nav.toc a:hover { opacity: 1; text-decoration: underline; text-decoration-color: var(--accent-soft); }
+.lang { display: inline-flex; border: 1px solid #3a3f3c; border-radius: 999px; overflow: hidden; }
+.lang button { font: 600 0.85rem var(--body); padding: 6px 14px; background: transparent; color: var(--bar-fg); border: 0; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--accent-soft); color: var(--on-accent); }
+main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 80px; }
+.wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); font-stretch: 112%; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; }
+h2 { font-size: 1.6rem; font-weight: 750; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.lead { color: var(--muted); font-size: 1.08rem; max-width: 62ch; margin-top: 12px; }
+.eyebrow { font: 700 0.72rem/1 var(--display); font-stretch: 125%; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+section { display: grid; gap: 18px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.fact { background: var(--surface); border-radius: 10px; padding: 14px 16px; }
+.fact strong { display: block; font-family: var(--display); font-size: 0.95rem; margin-bottom: 2px; }
+.fact span { color: var(--muted); font-size: 0.92rem; }
+/* timeline */
+ol.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--line); margin-left: 84px; }
+ol.timeline li { position: relative; padding: 0 0 18px 26px; }
+ol.timeline li:last-child { padding-bottom: 0; }
+.day { position: absolute; left: -86px; top: 0; width: 66px; text-align: right; font: 700 0.8rem/1.6 var(--display); color: var(--accent); font-variant-numeric: tabular-nums; }
+ol.timeline li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-soft); border: 2px solid var(--bg); }
+.tag { display: inline-block; font: 600 0.72rem/1 var(--body); padding: 4px 8px; border-radius: 999px; background: var(--surface); color: var(--muted); margin-left: 6px; vertical-align: 2px; }
+/* message cards */
+.card { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.card-head { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; padding: 16px 18px; background: var(--surface); flex-wrap: wrap; }
+.card-head > div { min-width: 0; }
+.card-head .when { font: 700 0.75rem/1 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.card-head .goal { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+.copy { font: 600 0.85rem var(--body); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--fg); background: var(--bg); color: var(--fg); cursor: pointer; white-space: nowrap; }
+.copy:hover { background: var(--fg); color: var(--bg); }
+.copy:focus-visible, .lang button:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
+.msg { padding: 18px; display: grid; gap: 12px; }
+.subject { font-size: 0.95rem; }
+.subject b { font-family: var(--display); }
+.subject .alt { color: var(--muted); display: block; font-size: 0.88rem; }
+.body { white-space: pre-wrap; font-size: 0.98rem; line-height: 1.65; border-left: 3px solid var(--accent-soft); padding-left: 14px; overflow-wrap: anywhere; }
+.ph { background: rgba(82, 180, 137, 0.18); border-radius: 4px; padding: 0 3px; }
+.note { font-size: 0.9rem; color: var(--muted); }
+/* script */
+.script { display: grid; gap: 14px; }
+.step { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.step > div { min-width: 0; }
+.step .label { font: 700 0.85rem/1.4 var(--display); }
+.say { font-size: 1rem; }
+.say q { quotes: "”" "”"; }
+ul.qs { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.95rem; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--display); font-size: 0.85rem; background: var(--surface); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; width: 34%; }
+.tips { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-size: 0.9rem; }
+@media (max-width: 600px) {
+	.step { grid-template-columns: 1fr; gap: 6px; }
+	nav.toc { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 70px; }
+</style>
+
+<div class="bar"><div class="bar-in">
+	<span class="brand">Kameli <b>Audio</b> · Outreach</span>
+	<nav class="toc"><a href="#sequence">Sequence</a><a href="#emails">Emails</a><a href="#linkedin">LinkedIn</a><a href="#call">Call script</a><a href="#objections">Objections</a></nav>
+	<div class="lang" role="group" aria-label="Language">
+		<button type="button" id="btn-fi" aria-pressed="true">Suomi</button>
+		<button type="button" id="btn-en" aria-pressed="false">English</button>
+	</div>
+</div></div>
+
+<main><div class="wrap">
+
+<header>
+	<p class="eyebrow" data-l="fi">Myynti · tapahtumapaikat</p>
+	<p class="eyebrow" data-l="en" hidden>Sales · venues</p>
+	<h1 data-l="fi">Sähköpostisarja ja puhelukäsikirjoitus</h1>
+	<h1 data-l="en" hidden>Email sequence and call script</h1>
+	<p class="lead" data-l="fi">Juhan työkalu tapahtumapaikkojen lähestymiseen: neljä sähköpostia kolmessa viikossa, kaksi puhelua ja LinkedIn rinnalla. Tavoite on yksi asia: lyhyt tapaaminen tai puhelu, jossa selviää, miten Kameli Audio voi olla paikan tekniikkakumppani. Kirjaa jokainen yhteydenotto myyntiseurannan Excel-tiedostoon.</p>
+	<p class="lead" data-l="en" hidden>Juha's toolkit for reaching event venues: four emails over three weeks, two calls, with LinkedIn alongside. The goal is one thing: a short meeting or call to find out how Kameli Audio can become the venue's technology partner. Log every touch in the outreach tracker (Excel). The emails are written in Finnish for Finnish venues; the English versions are for reference or English-speaking contacts.</p>
+</header>
+
+<section aria-label="Basics">
+	<div class="facts">
+		<div class="fact"><strong data-l="fi">Kenelle</strong><strong data-l="en" hidden>Who</strong><span data-l="fi">Tapahtuma-, kokous- tai myyntipäällikkö. Ei yleisosoitteeseen, jos nimetty yhteys löytyy.</span><span data-l="en" hidden>Events, meetings or sales manager. Avoid general inboxes when a named contact exists.</span></div>
+		<div class="fact"><strong data-l="fi">Milloin</strong><strong data-l="en" hidden>When</strong><span data-l="fi">Ti–to klo 8–10. Puhelut klo 9–11 tai 13–15.</span><span data-l="en" hidden>Tue–Thu 8–10 am. Calls 9–11 am or 1–3 pm.</span></div>
+		<div class="fact"><strong data-l="fi">Määrä</strong><strong data-l="en" hidden>Volume</strong><span data-l="fi">10–15 uutta paikkaa viikossa riittää – laatu ennen määrää.</span><span data-l="en" hidden>10–15 new venues a week is enough – quality over quantity.</span></div>
+		<div class="fact"><strong data-l="fi">Muoto</strong><strong data-l="en" hidden>Format</strong><span data-l="fi">Pelkkä teksti, ei liitteitä ensimmäisessä viestissä, yksi linkki.</span><span data-l="en" hidden>Plain text, no attachments in the first email, one link.</span></div>
+	</div>
+</section>
+
+<section id="sequence">
+	<h2 data-l="fi">Sarja päivä päivältä</h2>
+	<h2 data-l="en" hidden>The sequence, day by day</h2>
+	<ol class="timeline">
+		<li><span class="day" data-l="fi">Päivä 0</span><span class="day" data-l="en" hidden>Day 0</span><strong data-l="fi">LinkedIn: seuraa paikan yrityssivua ja lähetä kontaktipyyntö. Lähetä sähköposti 1.</strong><strong data-l="en" hidden>LinkedIn: follow the venue's company page and send a connection request. Send email 1.</strong></li>
+		<li><span class="day" data-l="fi">Päivä 3</span><span class="day" data-l="en" hidden>Day 3</span><strong data-l="fi">Puhelu 1</strong><strong data-l="en" hidden>Call 1</strong><span class="tag" data-l="fi">jos ei vastausta</span><span class="tag" data-l="en" hidden>if no reply</span></li>
+		<li><span class="day" data-l="fi">Päivä 7</span><span class="day" data-l="en" hidden>Day 7</span><strong data-l="fi">Sähköposti 2 – vastaa samaan viestiketjuun.</strong><strong data-l="en" hidden>Email 2 – reply in the same thread.</strong></li>
+		<li><span class="day" data-l="fi">Päivä 10</span><span class="day" data-l="en" hidden>Day 10</span><strong data-l="fi">LinkedIn-viesti, jos kontaktipyyntö on hyväksytty.</strong><strong data-l="en" hidden>LinkedIn message, if the connection was accepted.</strong></li>
+		<li><span class="day" data-l="fi">Päivä 14</span><span class="day" data-l="en" hidden>Day 14</span><strong data-l="fi">Sähköposti 3 – hyödyllinen vinkki.</strong><strong data-l="en" hidden>Email 3 – a useful tip.</strong></li>
+		<li><span class="day" data-l="fi">Päivä 17</span><span class="day" data-l="en" hidden>Day 17</span><strong data-l="fi">Puhelu 2</strong><strong data-l="en" hidden>Call 2</strong><span class="tag" data-l="fi">jos ei vastausta</span><span class="tag" data-l="en" hidden>if no reply</span></li>
+		<li><span class="day" data-l="fi">Päivä 21</span><span class="day" data-l="en" hidden>Day 21</span><strong data-l="fi">Sähköposti 4 – kohtelias lopetus. Merkitse tila ja palaa asiaan 3–4 kuukauden päästä.</strong><strong data-l="en" hidden>Email 4 – polite close. Set the status and revisit in 3–4 months.</strong></li>
+	</ol>
+	<p class="note" data-l="fi">Heti kun paikka vastaa, sarja pysähtyy: jatka keskustelua, ja käytä tapaamisen jälkeen viimeistä pohjaa. Kausiajatus: pikkujoulut suunnitellaan elo–lokakuussa, kevään ja kesän häät tammi–huhtikuussa – mainitse lähin kausi.</p>
+	<p class="note" data-l="en" hidden>As soon as the venue replies, the sequence stops: continue the conversation, and use the last template after a meeting. Seasons: Christmas parties are planned Aug–Oct, spring and summer weddings Jan–Apr – mention the nearest one.</p>
+</section>
+
+<section id="emails">
+	<h2 data-l="fi">Sähköpostit</h2>
+	<h2 data-l="en" hidden>Emails</h2>
+	<p class="note" data-l="fi">Vihreällä merkityt kohdat täytetään joka kerta. Ensimmäinen lause kannattaa aina muokata paikan mukaan – esim. maininta paikan tilasta tai tapahtumasta.</p>
+	<p class="note" data-l="en" hidden>Green-marked parts are filled in every time. Always tailor the first sentence to the venue – e.g. mention one of its spaces or events.</p>
+
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Sähköposti 1 · päivä 0</p><p class="when" data-l="en" hidden>Email 1 · day 0</p>
+				<h3 data-l="fi">Esittäytyminen</h3><h3 data-l="en" hidden>Introduction</h3>
+				<p class="goal" data-l="fi">Tavoite: 15 minuutin puhelu tai käynti paikan päällä.</p><p class="goal" data-l="en" hidden>Goal: a 15-minute call or a site visit.</p>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi">
+			<p class="subject"><b>Aihe:</b> Ääni ja valot <span class="ph">[Paikan]</span> tapahtumiin<span class="alt">Vaihtoehto: Tekniikkakumppani <span class="ph">[Paikan]</span> juhliin ja kokouksiin</span></p>
+<div class="body">Hei <span class="ph">[Etunimi]</span>,
+
+olen Juha Kameli Audiosta. Toteutamme tapahtumien äänet ja valot Uudellamaalla ja sen ulkopuolella – yritystilaisuuksista ja kokouksista häihin ja keikkoihin.
+
+<span class="ph">[Henkilökohtainen lause, esim. "Huomasin, että teillä järjestetään paljon yritysten pikkujouluja ja häitä."]</span> Moni asiakkaanne kysyy varmasti jossain vaiheessa, kuka hoitaa äänentoiston. Haluaisimme olla kumppani, jota <span class="ph">[Paikka]</span> voi suositella – tai jolle tekniikan voi antaa kokonaan hoidettavaksi, kun oma kalusto tai henkilökunta ei riitä.
+
+Käytännössä:
+– suunnittelemme tekniikan tilan ja ohjelman mukaan ja hoidamme kuljetuksen, kasauksen, tapahtuman ja purun
+– teillä on yksi yhteyshenkilö, ja asiakkaanne saavat tarjouksen suoraan meiltä
+– teemme myös alihankintaa, jos tarvitsette lisää kalustoa tai teknikon omaan tekniikkaanne
+
+Esimerkki: Järvenpään rantapuiston vappujuhlan äänentoisto jo neljättä vuotta peräkkäin:
+https://www.kameliaudio.fi/vappujuhlan-aanentoisto-jarvenpaa/
+
+Sopisiko 15 minuutin puhelu ensi viikolla? Voin myös tulla käymään ja katsomaan tilat paikan päällä.
+
+Ystävällisin terveisin
+Juha Pöysä
+Vastaava teknikko, studiomestari
+Kameli Audio
+040 572 7838 · juha@kameliaudio.fi
+www.kameliaudio.fi
+
+PS. Jos et ole oikea henkilö tai et halua lisää viestejä, vastaa vain lyhyesti – en kirjoita uudelleen.</div>
+		</div>
+		<div class="msg" data-l="en" hidden>
+			<p class="subject"><b>Subject:</b> Sound and lighting for <span class="ph">[Venue]</span>'s events<span class="alt">Alternative: A technology partner for <span class="ph">[Venue]</span>'s parties and meetings</span></p>
+<div class="body">Hi <span class="ph">[First name]</span>,
+
+I'm Juha from Kameli Audio. We deliver sound and lighting for events across Uusimaa and beyond – from corporate events and meetings to weddings and gigs.
+
+<span class="ph">[Personal sentence, e.g. "I noticed you host many company Christmas parties and weddings."]</span> I'm sure your clients sometimes ask who could handle the sound. We'd like to be the partner <span class="ph">[Venue]</span> can recommend – or hand the technology over to completely when your own equipment or staff isn't enough.
+
+In practice:
+– we plan the setup around the space and the programme, and handle transport, setup, the event and teardown
+– you have one contact person, and your clients get a quote directly from us
+– we also work as a subcontractor if you need extra equipment or a technician alongside your own
+
+An example: sound for the May Day festival in Järvenpää's lakeside park, four years in a row:
+https://www.kameliaudio.fi/vappujuhlan-aanentoisto-jarvenpaa/
+
+Would a 15-minute call next week work? I'm also happy to visit and see the spaces.
+
+Best regards,
+Juha Pöysä
+Lead technician, studio manager
+Kameli Audio
++358 40 572 7838 · juha@kameliaudio.fi
+www.kameliaudio.fi
+
+PS. If you're not the right person or would rather not hear from me again, just reply briefly – I won't write again.</div>
+		</div>
+	</article>
+
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Sähköposti 2 · päivä 7</p><p class="when" data-l="en" hidden>Email 2 · day 7</p>
+				<h3 data-l="fi">Lyhyt muistutus ja oikea henkilö</h3><h3 data-l="en" hidden>Short follow-up and the right person</h3>
+				<p class="goal" data-l="fi">Vastaa samaan ketjuun. Tavoite: vastaus tai oikean yhteyshenkilön nimi.</p><p class="goal" data-l="en" hidden>Reply in the same thread. Goal: a reply, or the right contact's name.</p>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi">
+			<p class="subject"><b>Aihe:</b> Re: Ääni ja valot <span class="ph">[Paikan]</span> tapahtumiin</p>
+<div class="body">Hei <span class="ph">[Etunimi]</span>,
+
+palaan vielä lyhyesti edelliseen viestiini.
+
+Tapahtumapaikalla ääni nousee usein esiin vasta, kun jokin ei toimi: mikrofoni kiertää, puhe ei kuulu takariveille tai tekniikka myöhästyy. Siksi ehdotan yksinkertaista aloitusta: kun seuraavan kerran asiakkaanne kysyy äänentoistoa tai valoja, ohjatkaa hänet meille tai välittäkää kysely – teemme tarjouksen ja pidämme teidät ajan tasalla.
+
+Kokous- ja konferenssitekniikasta lisää täällä:
+https://www.kameliaudio.fi/aanentoisto-kokouksiin-ja-konferensseihin/
+
+Kuka teillä vastaa tapahtumien tekniikasta – oletko sinä oikea henkilö, vai kenelle voisin olla yhteydessä?
+
+Terveisin
+Juha
+040 572 7838</div>
+		</div>
+		<div class="msg" data-l="en" hidden>
+			<p class="subject"><b>Subject:</b> Re: Sound and lighting for <span class="ph">[Venue]</span>'s events</p>
+<div class="body">Hi <span class="ph">[First name]</span>,
+
+just a quick follow-up on my previous email.
+
+At a venue, sound usually comes up only when something goes wrong: a microphone feeds back, speeches don't reach the back rows, or the equipment arrives late. So here's a simple way to start: next time a client asks about sound or lighting, point them to us or forward the request – we'll send a quote and keep you in the loop.
+
+More on meeting and conference sound:
+https://www.kameliaudio.fi/aanentoisto-kokouksiin-ja-konferensseihin/
+
+Who handles event technology at your venue – is that you, or who should I contact?
+
+Best,
+Juha
++358 40 572 7838</div>
+		</div>
+	</article>
+
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Sähköposti 3 · päivä 14</p><p class="when" data-l="en" hidden>Email 3 · day 14</p>
+				<h3 data-l="fi">Hyödyllinen vinkki</h3><h3 data-l="en" hidden>A useful tip</h3>
+				<p class="goal" data-l="fi">Annetaan jotain hyödyllistä ilman pyyntöä. Tavoite: muistijälki ja käynti.</p><p class="goal" data-l="en" hidden>Give something useful without asking. Goal: be remembered, and a visit.</p>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi">
+			<p class="subject"><b>Aihe:</b> 3 asiaa, jotka kannattaa varmistaa ennen tilaisuutta</p>
+<div class="body">Hei <span class="ph">[Etunimi]</span>,
+
+lyhyt vinkki, josta voi olla hyötyä, kun asiakkaanne suunnittelevat tilaisuutta <span class="ph">[Paikassa]</span>. Nämä kolme asiaa ratkaisevat useimmiten, onnistuuko tilaisuuden ääni:
+
+1. Mikrofonit: montako puhujaa, paneelia tai esiintyjää on yhtä aikaa – ja tarvitaanko langattomia.
+2. Kuuluvuus koko tilaan: kaiuttimet sijoitetaan niin, että puhe kuuluu myös takariveillä ja sivuilla ilman, että eturivissä on liian kovaa.
+3. Vastuuhenkilö: kuka on paikalla tilaisuuden aikana, jos jokin ei toimi.
+
+Jos haluatte, tulen mielelläni käymään ja katsomaan tilat – kerron samalla, millainen tekniikka niihin sopii eri kokoisissa tilaisuuksissa. Sopisiko jokin päivä <span class="ph">[viikolla X]</span>?
+
+Terveisin
+Juha Pöysä
+Kameli Audio · 040 572 7838</div>
+		</div>
+		<div class="msg" data-l="en" hidden>
+			<p class="subject"><b>Subject:</b> 3 things to check before an event</p>
+<div class="body">Hi <span class="ph">[First name]</span>,
+
+a short tip that may help when your clients plan an event at <span class="ph">[Venue]</span>. These three things usually decide whether the sound works:
+
+1. Microphones: how many speakers, panellists or performers at the same time – and whether they need wireless mics.
+2. Coverage of the whole room: speakers placed so that talks are heard at the back and sides without being too loud in the front row.
+3. A person in charge: who is on site during the event if something stops working.
+
+If you like, I'd be glad to visit and look at the spaces – and tell you what setup suits them for events of different sizes. Would a day in <span class="ph">[week X]</span> work?
+
+Best regards,
+Juha Pöysä
+Kameli Audio · +358 40 572 7838</div>
+		</div>
+	</article>
+
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Sähköposti 4 · päivä 21</p><p class="when" data-l="en" hidden>Email 4 · day 21</p>
+				<h3 data-l="fi">Kohtelias lopetus</h3><h3 data-l="en" hidden>Polite close</h3>
+				<p class="goal" data-l="fi">Viimeinen viesti. Saa usein eniten vastauksia.</p><p class="goal" data-l="en" hidden>The last email. It often gets the most replies.</p>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi">
+			<p class="subject"><b>Aihe:</b> Viimeinen viesti tästä aiheesta</p>
+<div class="body">Hei <span class="ph">[Etunimi]</span>,
+
+en halua täyttää postilaatikkoasi, joten tämä on viimeinen viestini tästä aiheesta.
+
+Jos tapahtumatekniikka ei ole juuri nyt ajankohtaista, ymmärrän hyvin. Jos taas jossain vaiheessa tarvitsette ääni- tai valokumppania – tai haluatte suositella luotettavaa tekijää asiakkaillenne – tavoitat minut tästä osoitteesta tai numerosta 040 572 7838.
+
+Kiitos ajastasi ja hyvää <span class="ph">[joulun aikaa / kevättä]</span>!
+
+Juha Pöysä
+Kameli Audio · www.kameliaudio.fi</div>
+		</div>
+		<div class="msg" data-l="en" hidden>
+			<p class="subject"><b>Subject:</b> My last email on this</p>
+<div class="body">Hi <span class="ph">[First name]</span>,
+
+I don't want to fill your inbox, so this is my last email on this topic.
+
+If event technology isn't a priority right now, I completely understand. And if at some point you need a sound or lighting partner – or want to recommend a reliable one to your clients – you can reach me at this address or on +358 40 572 7838.
+
+Thanks for your time, and have a <span class="ph">[lovely holiday season / good spring]</span>!
+
+Juha Pöysä
+Kameli Audio · www.kameliaudio.fi</div>
+		</div>
+	</article>
+
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Tapaamisen tai puhelun jälkeen · sama päivä</p><p class="when" data-l="en" hidden>After a meeting or call · same day</p>
+				<h3 data-l="fi">Kiitos ja seuraava askel</h3><h3 data-l="en" hidden>Thanks and next step</h3>
+				<p class="goal" data-l="fi">Lyhyt yhteenveto, jotta sovittu ei unohdu.</p><p class="goal" data-l="en" hidden>A short recap so nothing agreed gets lost.</p>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi">
+			<p class="subject"><b>Aihe:</b> Kiitos tapaamisesta – yhteenveto</p>
+<div class="body">Hei <span class="ph">[Etunimi]</span>,
+
+kiitos tapaamisesta tänään! Lyhyesti, mitä sovimme:
+
+– <span class="ph">[esim. Kun asiakas kysyy äänentoistoa, ohjaatte hänet minulle / välitätte kyselyn.]</span>
+– <span class="ph">[esim. Lähetän esimerkkitarjouksen tyypillisestä 100 hengen illallisesta.]</span>
+– <span class="ph">[esim. Käyn katsomassa juhlasalin kaapeloinnin ja virrat ennen joulukuuta.]</span>
+
+Minut tavoittaa parhaiten numerosta 040 572 7838 tai tästä osoitteesta. Palaan asiaan <span class="ph">[päivämäärä]</span>.
+
+Terveisin
+Juha</div>
+		</div>
+		<div class="msg" data-l="en" hidden>
+			<p class="subject"><b>Subject:</b> Thanks for meeting – summary</p>
+<div class="body">Hi <span class="ph">[First name]</span>,
+
+thanks for meeting today! A short recap of what we agreed:
+
+– <span class="ph">[e.g. When a client asks about sound, you'll point them to me / forward the request.]</span>
+– <span class="ph">[e.g. I'll send a sample quote for a typical 100-guest dinner.]</span>
+– <span class="ph">[e.g. I'll check the hall's cabling and power before December.]</span>
+
+The best way to reach me is +358 40 572 7838 or this address. I'll get back to you on <span class="ph">[date]</span>.
+
+Best,
+Juha</div>
+		</div>
+	</article>
+</section>
+
+<section id="linkedin">
+	<h2>LinkedIn</h2>
+	<p class="note" data-l="fi">Kontaktipyynnön saate (alle 200 merkkiä) löytyy myös Excelin Guide-välilehdeltä. Hyväksynnän jälkeen ei myydä heti – ensin kiitos ja kiinnostus heidän toimintaansa.</p>
+	<p class="note" data-l="en" hidden>The connection note (under 200 characters) is also on the Guide sheet of the Excel tracker. After they accept, don't sell straight away – thank them and show interest in what they do.</p>
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Päivä 0 · kontaktipyyntö</p><p class="when" data-l="en" hidden>Day 0 · connection request</p>
+				<h3 data-l="fi">Saate</h3><h3 data-l="en" hidden>Connection note</h3>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi"><div class="body">Hei <span class="ph">[Etunimi]</span>! Olen Juha Kameli Audiosta – teemme tapahtumien ääni- ja valotekniikkaa Uudellamaalla. Seuraan mielelläni <span class="ph">[Paikan]</span> tapahtumia, olisi kiva verkostoitua!</div></div>
+		<div class="msg" data-l="en" hidden><div class="body">Hi <span class="ph">[First name]</span>! I'm Juha from Kameli Audio – we do sound and lighting for events across Uusimaa. I'd be glad to follow <span class="ph">[Venue]</span>'s events and connect!</div></div>
+	</article>
+	<article class="card">
+		<div class="card-head">
+			<div>
+				<p class="when" data-l="fi">Päivä 10 · hyväksynnän jälkeen</p><p class="when" data-l="en" hidden>Day 10 · after they accept</p>
+				<h3 data-l="fi">Ensimmäinen viesti</h3><h3 data-l="en" hidden>First message</h3>
+			</div>
+			<button class="copy" type="button">Copy</button>
+		</div>
+		<div class="msg" data-l="fi"><div class="body">Kiitos kontaktista, <span class="ph">[Etunimi]</span>! <span class="ph">[Paikka]</span> näyttää upealta paikalta juhlille ja kokouksille. Lähetin hiljattain sähköpostia siitä, voisimmeko olla teidän tekniikkakumppaninne silloin, kun asiakkaanne tarvitsevat ääntä tai valoja. Jos sopii, juttelisin mielelläni vartin – milloin sinulle passaisi?</div></div>
+		<div class="msg" data-l="en" hidden><div class="body">Thanks for connecting, <span class="ph">[First name]</span>! <span class="ph">[Venue]</span> looks like a great place for parties and meetings. I recently emailed about whether we could be your technology partner when your clients need sound or lighting. If it suits you, I'd love a quick 15-minute chat – when would work for you?</div></div>
+	</article>
+	<ul class="tips" data-l="fi">
+		<li>Seuraa paikan yrityssivua ja tykkää/kommentoi sen julkaisuja silloin tällöin – nimi tulee tutuksi ennen viestiä.</li>
+		<li>Jaa omia asiakastarinoita ja lyhyitä videoita (projektisuunnitelman "LinkedInin Äänimies") – paikkojen myyjät näkevät ne syötteessään.</li>
+		<li>5–10 kontaktipyyntöä päivässä näyttää LinkedInille luontevalta.</li>
+	</ul>
+	<ul class="tips" data-l="en" hidden>
+		<li>Follow the venue's company page and like or comment on its posts now and then – your name becomes familiar before you message.</li>
+		<li>Share your case studies and short videos (the plan's "LinkedIn sound guy" idea) – venue sales staff will see them in their feed.</li>
+		<li>5–10 connection requests a day looks natural to LinkedIn.</li>
+	</ul>
+</section>
+
+<section id="call">
+	<h2 data-l="fi">Puhelukäsikirjoitus</h2>
+	<h2 data-l="en" hidden>Call script</h2>
+	<p class="note" data-l="fi">Ei luettavaksi sanasta sanaan – rakenne ja valmiit lauseet tukena. Tavoite on aina sama: sovittu seuraava askel (tapaaminen, käynti tai uusi soittoaika).</p>
+	<p class="note" data-l="en" hidden>Not to read word for word – a structure with ready phrases. The goal is always the same: an agreed next step (meeting, site visit or a new call time). Spoken lines are given in Finnish with English below.</p>
+	<div class="script">
+		<div class="step"><div class="label" data-l="fi">Ennen soittoa</div><div class="label" data-l="en" hidden>Before the call</div>
+			<div><ul class="qs" data-l="fi"><li>Avaa paikan rivi Excelistä ja katso verkkosivu: tilat, tapahtumatyypit, onko omaa tekniikkaa.</li><li>Kalenteri auki, jotta tapaamisen voi sopia heti.</li><li>Yksi asia, jonka haluat tietää: kuka päättää tapahtumien tekniikasta.</li></ul>
+			<ul class="qs" data-l="en" hidden><li>Open the venue's row in the Excel tracker and check the website: spaces, event types, in-house technology.</li><li>Calendar open, so a meeting can be agreed straight away.</li><li>One thing you want to find out: who decides on event technology.</li></ul></div></div>
+		<div class="step"><div class="label" data-l="fi">Vaihde</div><div class="label" data-l="en" hidden>Switchboard</div>
+			<div class="say"><p><q>Hei, Juha Pöysä Kameli Audiosta. Kuka teillä vastaa kokous- ja tapahtumamyynnistä?</q></p><p class="note" data-l="en" hidden>"Hi, Juha Pöysä from Kameli Audio. Who handles meetings and events sales at your venue?"</p><p class="note" data-l="fi">Jos kysytään syytä: <q>Haluaisin esitellä tapahtumatekniikkaa, jota voitte tarjota asiakkaillenne.</q> Pyydä nimi ja suora numero tai sähköposti.</p><p class="note" data-l="en" hidden>If asked why: "I'd like to introduce event technology you can offer your clients." Ask for the name and a direct number or email.</p></div></div>
+		<div class="step"><div class="label" data-l="fi">Avaus</div><div class="label" data-l="en" hidden>Opener</div>
+			<div class="say"><p><q>Hei <span class="ph">[Etunimi]</span>, Juha Kameli Audiosta. Lähetin viime viikolla sähköpostia – onko sinulla kaksi minuuttia, vai soitanko paremmalla hetkellä?</q></p><p class="note" data-l="en" hidden>"Hi [first name], Juha from Kameli Audio. I emailed you last week – do you have two minutes, or shall I call at a better time?"</p></div></div>
+		<div class="step"><div class="label" data-l="fi">Syy soittoon</div><div class="label" data-l="en" hidden>Reason for calling</div>
+			<div class="say"><p><q>Teemme tapahtumien äänet ja valot Uudellamaalla. Haluaisimme olla <span class="ph">[Paikan]</span> luotettava tekniikkakumppani silloin, kun asiakkaanne tarvitsevat enemmän kuin talon perustekniikan – tai kun omaa teknikkoa ei ole paikalla.</q></p><p class="note" data-l="en" hidden>"We do sound and lighting for events across Uusimaa. We'd like to be [Venue]'s reliable technology partner when your clients need more than the house basics – or when your own technician isn't available."</p></div></div>
+		<div class="step"><div class="label" data-l="fi">Kysymykset</div><div class="label" data-l="en" hidden>Questions</div>
+			<div><ul class="qs" data-l="fi"><li>Miten asiakkaanne hoitavat nyt äänentoiston ja valot?</li><li>Onko teillä omaa tekniikkaa tai teknikkoa?</li><li>Millaisia tapahtumia teillä on eniten – kokouksia, juhlia, häitä, keikkoja?</li><li>Missä tekniikka tuottaa eniten päänvaivaa?</li><li>Onko teillä jo kumppani, jota suosittelette?</li><li>Kuka muu osallistuu päätökseen?</li></ul>
+			<ul class="qs" data-l="en" hidden><li>How do your clients arrange sound and lighting today?</li><li>Do you have your own equipment or technician?</li><li>What events do you host most – meetings, parties, weddings, gigs?</li><li>Where does technology cause the most hassle?</li><li>Do you already have a partner you recommend?</li><li>Who else is involved in the decision?</li></ul></div></div>
+		<div class="step"><div class="label" data-l="fi">Ehdotus vastausten mukaan</div><div class="label" data-l="en" hidden>Tailor the offer</div>
+			<div><ul class="qs" data-l="fi"><li><strong>Oma tekniikka:</strong> lisäkalusto ja teknikko isoihin tilaisuuksiin, alihankinta.</li><li><strong>Ei omaa tekniikkaa:</strong> kokonaispalvelu suunnittelusta purkuun, yksi yhteyshenkilö.</li><li><strong>Häät ja juhlat:</strong> ääni ja valot yhdessä, asennus ja purku asiakkaan aikataululla.</li><li><strong>Kokoukset:</strong> mikitys, kuuluvuus koko tilaan, teknikko paikalla.</li></ul>
+			<ul class="qs" data-l="en" hidden><li><strong>In-house technology:</strong> extra equipment and a technician for big events, subcontracting.</li><li><strong>No in-house technology:</strong> full service from planning to teardown, one contact.</li><li><strong>Weddings and parties:</strong> sound and lighting together, setup and teardown on the client's schedule.</li><li><strong>Meetings:</strong> microphones, coverage of the whole room, technician on site.</li></ul></div></div>
+		<div class="step"><div class="label" data-l="fi">Lopetus</div><div class="label" data-l="en" hidden>Close</div>
+			<div class="say"><p><q>Sopisiko, että tulen käymään <span class="ph">[päivä]</span> ja katsotaan tilat yhdessä?</q></p><p class="note" data-l="fi">Jos ei: <q>Saanko lähettää lyhyen esittelyn ja soittaa uudelleen <span class="ph">[päivämäärä]</span>?</q></p><p class="note" data-l="en" hidden>"Could I visit on [day] so we can look at the spaces together?" If not: "May I send a short introduction and call again on [date]?"</p></div></div>
+		<div class="step"><div class="label" data-l="fi">Vastaaja</div><div class="label" data-l="en" hidden>Voicemail</div>
+			<div class="say"><p><q>Hei <span class="ph">[Etunimi]</span>, Juha Pöysä Kameli Audiosta, numeroni on 040 572 7838. Teemme tapahtumien äänet ja valot, ja haluaisin kysyä, voisimmeko olla <span class="ph">[Paikan]</span> tekniikkakumppani. Lähetän vielä lyhyen sähköpostin ja soitan uudelleen <span class="ph">[päivä]</span>. Kiitos!</q></p><p class="note" data-l="en" hidden>"Hi [first name], Juha Pöysä from Kameli Audio, my number is 040 572 7838. We do sound and lighting for events, and I'd like to ask whether we could be [Venue]'s technology partner. I'll send a short email and call again on [day]. Thanks!"</p></div></div>
+		<div class="step"><div class="label" data-l="fi">Puhelun jälkeen</div><div class="label" data-l="en" hidden>After the call</div>
+			<div><ul class="qs" data-l="fi"><li>Päivitä Exceliin: tila, seuraava askel ja seurantapäivä.</li><li>Lähetä yhteenveto samana päivänä (pohja yllä).</li><li>Merkitse oikean henkilön nimi ja rooli LinkedIn-sarakkeeseen.</li></ul>
+			<ul class="qs" data-l="en" hidden><li>Update the Excel tracker: status, next step and follow-up date.</li><li>Send the recap email the same day (template above).</li><li>Add the right person's name and role to the LinkedIn column.</li></ul></div></div>
+	</div>
+</section>
+
+<section id="objections">
+	<h2 data-l="fi">Vastaväitteet</h2>
+	<h2 data-l="en" hidden>Objections</h2>
+	<div class="table-wrap">
+		<table data-l="fi">
+			<thead><tr><th>Kun kuulet</th><th>Vastaa esimerkiksi</th></tr></thead>
+			<tbody>
+				<tr><td>”Meillä on oma tekniikka.”</td><td>”Hyvä! Moni paikka käyttää meitä silloin, kun tilaisuus on talon kalustolle liian iso tai tarvitaan teknikko paikalle. Onko teillä tapahtumia, joissa oma kalusto ei riitä?”</td></tr>
+				<tr><td>”Meillä on jo kumppani.”</td><td>”Hienoa, että asia on hoidossa. Olisiko hyödyllistä, että teillä on varavaihtoehto ruuhkaviikoille, esimerkiksi pikkujoulukaudelle?”</td></tr>
+				<tr><td>”Lähetä sähköpostia.”</td><td>”Teen niin. Jotta lähetän oikeaa tietoa: millaisia tapahtumia teillä on eniten? Saanko soittaa <span class="ph">[päivämäärä]</span>, kun olet ehtinyt katsoa?”</td></tr>
+				<tr><td>”Asiakkaat hoitavat tekniikan itse.”</td><td>”Moni asiakas kysyy silti paikalta suositusta. Voisitteko mainita meidät vaihtoehtona? Lähetän lyhyen esittelyn, jonka voitte välittää eteenpäin.”</td></tr>
+				<tr><td>”Mitä se maksaa?”</td><td>”Se riippuu tilasta ja ohjelmasta – pieni kokous on aivan eri mittaluokka kuin iso gaala. Teen mielelläni esimerkkitarjouksen teidän tyypillisestä tilaisuudestanne.”</td></tr>
+				<tr><td>”Ei ole nyt ajankohtaista.”</td><td>”Selvä, kiitos suorasta vastauksesta. Saanko palata asiaan <span class="ph">[kevään hääkauden / syksyn pikkujoulukauden]</span> alla?”</td></tr>
+			</tbody>
+		</table>
+		<table data-l="en" hidden>
+			<thead><tr><th>When you hear</th><th>Answer, for example</th></tr></thead>
+			<tbody>
+				<tr><td>"We have our own equipment."</td><td>"Great! Many venues use us when an event is too big for the house equipment or a technician is needed on site. Do you have events where your own setup isn't enough?"</td></tr>
+				<tr><td>"We already have a partner."</td><td>"Good that it's covered. Would it help to have a backup for the busiest weeks, like the Christmas party season?"</td></tr>
+				<tr><td>"Send me an email."</td><td>"Will do. So I send the right information: what events do you host most? May I call on [date] once you've had a look?"</td></tr>
+				<tr><td>"Clients arrange the technology themselves."</td><td>"Many clients still ask the venue for a recommendation. Could you mention us as an option? I'll send a short introduction you can forward."</td></tr>
+				<tr><td>"What does it cost?"</td><td>"It depends on the space and the programme – a small meeting is a very different scale from a big gala. I'm happy to prepare a sample quote for a typical event of yours."</td></tr>
+				<tr><td>"Not relevant right now."</td><td>"Understood, thanks for being direct. May I get back to you before [the spring wedding season / the autumn Christmas party season]?"</td></tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+</div></main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function () {
+	var current = 'fi';
+	try { current = localStorage.getItem('kameli-lang') || 'fi'; } catch (e) {}
+	function setLang(l) {
+		current = l;
+		document.querySelectorAll('[data-l]').forEach(function (el) { el.hidden = el.getAttribute('data-l') !== l; });
+		document.getElementById('btn-fi').setAttribute('aria-pressed', String(l === 'fi'));
+		document.getElementById('btn-en').setAttribute('aria-pressed', String(l === 'en'));
+		document.querySelectorAll('.copy').forEach(function (b) { b.textContent = l === 'fi' ? 'Kopioi' : 'Copy'; });
+		document.documentElement.lang = l;
+		try { localStorage.setItem('kameli-lang', l); } catch (e) {}
+	}
+	document.getElementById('btn-fi').addEventListener('click', function () { setLang('fi'); });
+	document.getElementById('btn-en').addEventListener('click', function () { setLang('en'); });
+	var toast = document.getElementById('toast'), t;
+	function show(msg) { toast.textContent = msg; toast.hidden = false; clearTimeout(t); t = setTimeout(function () { toast.hidden = true; }, 1800); }
+	document.querySelectorAll('.copy').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			var msg = btn.closest('.card').querySelector('.msg[data-l="' + current + '"]');
+			var subject = msg.querySelector('.subject');
+			var text = (subject ? subject.firstChild.parentNode.innerText.split('\n')[0] + '\n\n' : '') + msg.querySelector('.body').innerText;
+			var done = function () { show(current === 'fi' ? 'Kopioitu' : 'Copied'); };
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				navigator.clipboard.writeText(text).then(done, function () { select(msg); });
+			} else { select(msg); }
+		});
+	});
+	function select(node) {
+		var r = document.createRange(); r.selectNodeContents(node.querySelector('.body'));
+		var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+		show(current === 'fi' ? 'Valittu – paina Ctrl+C / Cmd+C' : 'Selected – press Ctrl+C / Cmd+C');
+	}
+	setLang(current);
+})();
+</script>
