@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patu &ndash; verkoston yhteinen sivu (konsepti)</title>
+<meta name="description" content="Konsepti Patu-verkoston yhteiselle sivulle: tukkujen löytäminen, Lounasklubi ja verkkokauppa yhdessä paikassa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    --ink:#15181b; --ink-soft:#394047; --paper:#f7f6f2; --surface:#ffffff;
+    --surface-2:#eceae3; --gold:#b8862c; --gold-deep:#8f6a20; --slate:#5c6268;
+    --line:rgba(21,24,27,0.12);
+    --shadow:0 1px 2px rgba(21,24,27,0.06), 0 12px 28px -14px rgba(21,24,27,0.2);
+    --radius:14px; --container:1180px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",system-ui,sans-serif;font-size:1rem;line-height:1.6;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{font-family:"Jost",sans-serif;font-weight:600;line-height:1.15;margin:0;letter-spacing:-0.01em;}
+  p{margin:0;}
+  ul{margin:0;padding:0;list-style:none;}
+  .container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem);}
+  .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:"Jost",sans-serif;font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);}
+  .eyebrow::before{content:"";width:20px;height:2px;background:var(--gold);flex:none;}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#fff !important;padding:.65rem 1.25rem;border-radius:999px;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid transparent;transition:background .15s ease, transform .15s ease;white-space:nowrap;}
+  .btn:hover{background:var(--gold-deep);transform:translateY(-1px);}
+  .btn.btn-outline{background:transparent;color:var(--ink) !important;border-color:var(--line);}
+  .btn.btn-outline:hover{border-color:var(--gold);color:var(--gold-deep) !important;background:transparent;}
+
+  .concept-banner{background:var(--ink);color:#f2efe9;font-size:.85rem;text-align:center;padding:.6rem 1rem;font-family:"Jost",sans-serif;letter-spacing:.02em;}
+  .concept-banner strong{color:#fff;}
+
+  .site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 90%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:.9rem;}
+  .wordmark{font-family:"Jost",sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:.02em;text-decoration:none;color:var(--ink);}
+  .wordmark span{color:var(--gold-deep);}
+  .primary-nav{display:flex;align-items:center;gap:clamp(1rem,2vw,1.9rem);flex-wrap:wrap;}
+  .primary-nav a{text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink-soft);}
+  .primary-nav a:hover{color:var(--ink);}
+
+  .hero{padding-block:clamp(3.5rem,8vw,5.5rem);border-bottom:1px solid var(--line);}
+  .hero-copy{max-width:40rem;display:flex;flex-direction:column;gap:1.1rem;}
+  .hero h1{font-size:clamp(2rem,1.6rem + 2vw,3.1rem);}
+  .hero .lead{font-size:1.1rem;color:var(--ink-soft);max-width:36rem;}
+  .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.5rem;}
+
+  section{padding-block:clamp(3rem,6vw,4.5rem);}
+  .section-head{display:flex;flex-direction:column;gap:.8rem;max-width:42rem;margin-bottom:clamp(1.75rem,4vw,2.5rem);}
+  .section-head h2{font-size:clamp(1.5rem,1.3rem + 1vw,2.1rem);}
+  .section-head p{color:var(--ink-soft);font-size:1rem;}
+
+  .tukut-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+  .tukku-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.9rem;}
+  .tukku-card .mark{height:40px;display:flex;align-items:center;}
+  .tukku-card .mark img{height:36px;width:auto;}
+  .tukku-card .mark.placeholder{font-family:"Jost",sans-serif;font-weight:700;font-size:1rem;color:var(--slate);}
+  .tukku-card h3{font-size:1.05rem;}
+  .tukku-card .region{font-size:.85rem;color:var(--slate);}
+  .tukku-card .go{margin-top:auto;font-size:.85rem;font-weight:600;color:var(--gold-deep);text-decoration:none;}
+  @media (max-width:980px){.tukut-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.tukut-grid{grid-template-columns:1fr;}}
+
+  .split{background:var(--surface-2);}
+  .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,3.5rem);align-items:center;}
+  .split-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.75rem,4vw,2.5rem);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1rem;}
+  .split-card h3{font-size:1.25rem;}
+  .split-card p{color:var(--ink-soft);font-size:.95rem;}
+  @media (max-width:820px){.split-grid{grid-template-columns:1fr;}}
+
+  .site-footer{background:var(--ink);color:#cfd0cd;padding-block:3rem 2rem;}
+  .site-footer .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.85rem;}
+  .site-footer strong{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="concept-banner">KONSEPTI &mdash; havainnekuva mahdollisesta Patu-verkoston yhteisestä sivusta, <strong>ei nykyisen patunetti.fi:n sisältö</strong></div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="wordmark" href="#">PATU<span>NETTI</span></a>
+    <nav class="primary-nav">
+      <a href="#tukut">Löydä tukkusi</a>
+      <a href="https://patunetti.fi/ajankohtaista/cat/lounasklubi" target="_blank" rel="noopener">Lounasklubi</a>
+      <a class="btn" href="https://patunetti.fi/customer/account/login" target="_blank" rel="noopener">Verkkokauppaan</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-copy">
+        <span class="eyebrow">Suomen Palvelutukkurit Oy &middot; Patu-verkosto</span>
+        <h1>Yhdeksän paikallista tukkua, yksi tuttu palvelu</h1>
+        <p class="lead">Patu on paikallisten yrittäjien omistama palvelutukkuverkosto. Jokainen tukku tuntee oman alueensa, mutta samat periaatteet, tarjoukset ja palvelulupaus kulkevat mukana joka tukulla.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#tukut">Löydä oma tukkusi</a>
+          <a class="btn btn-outline" href="https://patunetti.fi/customer/account/login" target="_blank" rel="noopener">Siirry verkkokauppaan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tukut">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Koko verkosto</span>
+        <h2>Löydä oma Patu-tukkusi</h2>
+        <p>Jokainen tukku palvelee omalla alueellaan. Valitse oma, niin pääset suoraan paikalliselle sivulle ja yhteystietoihin.</p>
+      </div>
+      <div class="tukut-grid">
+        <div class="tukku-card">
+          <div class="mark"><img src="assets/images/logo.png" alt="Palvelutukku Kolmio"></div>
+          <h3>Palvelutukku Kolmio</h3>
+          <p class="region">Lahti &middot; Päijät-Häme, Kymenlaakso, Etelä-Karjala</p>
+          <a class="go" href="index.html">Siirry sivulle &rarr;</a>
+        </div>
+        <div class="tukku-card">
+          <div class="mark placeholder">PALVELUTUKKU<br>IMMONEN</div>
+          <h3>Palvelutukku Immonen</h3>
+          <p class="region">Pori &middot; Satakunta</p>
+          <a class="go" href="https://immosentukku.fi/" target="_blank" rel="noopener">Siirry sivulle &rarr;</a>
+        </div>
+        <div class="tukku-card">
+          <div class="mark placeholder">PALVELUTUKKU<br>ITÄ-SUOMI</div>
+          <h3>Palvelutukku Itä-Suomi</h3>
+          <p class="region">Mikkeli &middot; Etelä-Savo</p>
+          <a class="go" href="https://palvelutukkuitasuomi.fi/" target="_blank" rel="noopener">Siirry sivulle &rarr;</a>
+        </div>
+        <div class="tukku-card">
+          <div class="mark placeholder">PALVELUTUKKU<br>POHJOINEN</div>
+          <h3>Palvelutukku Pohjoinen</h3>
+          <p class="region">Pohjois-Suomi</p>
+          <a class="go" href="https://palvelutukkupohjoinen.fi/" target="_blank" rel="noopener">Siirry sivulle &rarr;</a>
+        </div>
+      </div>
+      <p style="margin-top:1.5rem;font-size:.85rem;color:var(--slate);">Nelj&auml;s rivi n&auml;ytt&auml;&auml; vain tunnetut tukut &mdash; oikealla sivulla kaikki yhdeks&auml;n olisivat mukana, omilla oikeilla tunnuksillaan.</p>
+    </div>
+  </section>
+
+  <section class="split">
+    <div class="container split-grid">
+      <div class="split-card">
+        <span class="eyebrow">Sis&auml;lt&ouml;</span>
+        <h3>Lounasklubi</h3>
+        <p>Reseptit, kampanjat ja ajankohtaiset uutiset koko verkostolta samassa paikassa &mdash; riippumatta siit&auml;, mik&auml; tukku asiakasta palvelee.</p>
+        <a class="btn btn-outline" href="https://patunetti.fi/ajankohtaista/cat/lounasklubi" target="_blank" rel="noopener">Avaa Lounasklubi</a>
+      </div>
+      <div class="split-card">
+        <span class="eyebrow">Tilaaminen</span>
+        <h3>Yhteinen verkkokauppa</h3>
+        <p>Asiakkaat kirjautuvat samaan verkkokauppaan riippumatta siit&auml;, mik&auml; Patu-tukku heit&auml; palvelee &mdash; tilaushistoria ja tuotteet pysyv&auml;t tutussa paikassa.</p>
+        <a class="btn btn-outline" href="https://patunetti.fi/customer/account/login" target="_blank" rel="noopener">Kirjaudu verkkokauppaan</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span><strong>Patu</strong> &mdash; Suomen Palvelutukkurit Oy</span>
+    <span>Konsepti &middot; koonnut Kira Krysanov</span>
+  </div>
+</footer>
+
+</body>
+</html>
