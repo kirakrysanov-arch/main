@@ -322,6 +322,23 @@
     gap:1rem;flex-wrap:wrap;
   }
   .promo-cta-row p{color:var(--slate);font-size:.875rem;max-width:28rem;}
+  .promo-subscribe{
+    margin-top:1.75rem;padding-top:1.75rem;border-top:1px dashed var(--line);
+    display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap;
+  }
+  .promo-subscribe .sub-copy{display:flex;align-items:flex-start;gap:.75rem;max-width:26rem;}
+  .promo-subscribe .sub-copy svg{flex:none;width:20px;height:20px;margin-top:.15rem;color:var(--orange-deep);}
+  .promo-subscribe .sub-copy strong{display:block;color:var(--ink);font-size:.95rem;}
+  .promo-subscribe .sub-copy span{color:var(--slate);font-size:.85rem;}
+  .subscribe-form{display:flex;gap:.6rem;flex-wrap:wrap;}
+  .subscribe-form input[type=email]{
+    font:inherit;font-size:.9rem;padding:.65rem .9rem;border-radius:999px;
+    border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:15rem;
+  }
+  .subscribe-form input[type=email]:focus{outline:2px solid var(--orange);outline-offset:1px;}
+  .subscribe-success{display:none;color:var(--orange-deep);font-weight:600;font-size:.9rem;margin-top:.75rem;width:100%;}
+  .subscribe-success.is-visible{display:block;}
+  @media (max-width:560px){.subscribe-form{width:100%;}.subscribe-form input[type=email]{flex:1;min-width:0;}}
 
   @media (max-width:900px){.promo-gallery{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:520px){.promo-gallery{grid-template-columns:1fr 1fr;}.promo-head{align-items:flex-start;}}
@@ -621,6 +638,20 @@
           <p>Nämä ovat esimerkkinostoja valikoimastamme — ajantasaiset hinnat ja koko tuotevalikoima löytyvät viikoittain päivittyvästä PDF:stä.</p>
           <a class="btn" href="https://www.palvelutukkukolmio.fi/wp-content/uploads/2026/09/Viikkotarjous-viikot-37-38.pdf" target="_blank" rel="noopener">Lataa viikon tarjoukset (PDF)</a>
         </div>
+        <div class="promo-subscribe">
+          <div class="sub-copy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <div>
+              <strong>Tilaa viikkotarjoukset sähköpostiisi</strong>
+              <span>Uusi tarjous suoraan postilaatikkoosi joka viikko — ei tarvitse muistaa käydä sivulla erikseen.</span>
+            </div>
+          </div>
+          <form id="subscribeForm" class="subscribe-form">
+            <input type="email" id="sub-email" name="email" placeholder="Sähköpostiosoitteesi" required>
+            <button type="submit" class="btn btn-outline">Tilaa</button>
+            <p class="subscribe-success" id="subscribeSuccess">Kiitos! Saat ensi viikon tarjoukset sähköpostiisi.</p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -897,6 +928,17 @@
   (function(){
     var form = document.getElementById('leadForm');
     var success = document.getElementById('leadFormSuccess');
+    if(!form || !success) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      success.classList.add('is-visible');
+      form.reset();
+    });
+  })();
+
+  (function(){
+    var form = document.getElementById('subscribeForm');
+    var success = document.getElementById('subscribeSuccess');
     if(!form || !success) return;
     form.addEventListener('submit', function(e){
       e.preventDefault();
