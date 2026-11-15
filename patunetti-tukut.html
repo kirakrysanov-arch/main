@@ -10,32 +10,31 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap">
 <style>
   :root{
-    --ink:#13151a; --ink-soft:#3c4047; --paper:#f6f5f1; --surface:#ffffff;
-    --surface-2:#edece6; --forest:#1a5c38; --forest-deep:#0f3f26; --slate:#5d6168;
-    --line:rgba(19,21,26,0.1);
-    --shadow:0 1px 2px rgba(19,21,26,0.05), 0 16px 32px -18px rgba(19,21,26,0.28);
-    --radius:10px; --container:1180px;
+    --ink:#1a1816; --ink-soft:#3c3936; --paper:#f8f6f1; --surface:#ffffff;
+    --surface-2:#f1ede4; --rust:#b5542a; --rust-deep:#8a3f1f; --slate:#605c56;
+    --line:rgba(26,24,22,0.12);
+    --shadow:0 1px 2px rgba(26,24,22,0.06), 0 12px 28px -14px rgba(26,24,22,0.18);
+    --radius:14px; --container:1180px;
   }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",system-ui,sans-serif;font-size:1rem;line-height:1.65;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Karla",system-ui,sans-serif;font-size:1rem;line-height:1.6;}
   img{max-width:100%;display:block;}
   a{color:inherit;text-decoration:none;}
-  h1,h2,h3,h4{font-family:"Jost",sans-serif;font-weight:600;line-height:1.18;margin:0;letter-spacing:-0.01em;}
+  h1,h2,h3,h4{font-family:"Jost",sans-serif;font-weight:600;line-height:1.15;margin:0;letter-spacing:-0.01em;text-wrap:balance;}
   p{margin:0;}
   ul{margin:0;padding:0;list-style:none;}
   .container{max-width:var(--container);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem);}
-  .kicker{display:inline-flex;align-items:center;gap:.55rem;font-family:"Jost",sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--forest);}
-  .kicker::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6;}
-  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:#fff !important;padding:.72rem 1.4rem;border-radius:8px;font-weight:600;font-size:.88rem;border:1px solid transparent;transition:background .15s ease;}
-  .btn:hover{background:var(--forest-deep);}
+  .kicker{display:inline-flex;align-items:center;gap:.6rem;font-family:"Jost",sans-serif;font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rust-deep);}
+  .kicker::before{content:"";width:20px;height:2px;background:var(--rust);flex:none;}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--rust);color:#fff !important;padding:.65rem 1.25rem;border-radius:999px;font-weight:600;font-size:.9rem;border:1px solid transparent;transition:background .15s ease, transform .15s ease;}
+  .btn:hover{background:var(--rust-deep);transform:translateY(-1px);}
 
-  .site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:.75rem;}
+  .site-header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .site-header .container{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:.9rem;}
   .logo img{height:40px;width:auto;}
-  .primary-nav{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.6rem);flex-wrap:wrap;}
-  .primary-nav a{font-size:.92rem;font-weight:500;color:var(--ink-soft);}
-  .primary-nav a.current{color:var(--ink);font-weight:700;}
-  .primary-nav a:hover{color:var(--ink);}
+  .primary-nav{display:flex;align-items:center;gap:clamp(1rem,2vw,1.9rem);flex-wrap:wrap;}
+  .primary-nav a{font-size:.95rem;font-weight:500;color:var(--ink-soft);padding-block:.35rem;border-bottom:2px solid transparent;}
+  .primary-nav a:hover,.primary-nav a.current{color:var(--ink);border-color:var(--rust);}
 
   .page-head{padding-block:clamp(2.5rem,6vw,3.5rem) clamp(2rem,5vw,3rem);}
   .page-head h1{font-size:clamp(1.8rem,1.5rem + 1.5vw,2.6rem);}
@@ -46,7 +45,7 @@
   .lists{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
   .lists h4{font-size:.95rem;margin-bottom:.6rem;}
   .lists li{font-size:.92rem;color:var(--ink-soft);padding:.3rem 0;border-bottom:1px dashed var(--line);}
-  .cta-link{display:inline-block;margin-top:1.5rem;color:var(--forest-deep);font-weight:600;font-size:.95rem;}
+  .cta-link{display:inline-block;margin-top:1.5rem;color:var(--rust-deep);font-weight:600;font-size:.95rem;}
   @media (max-width:900px){.intro-grid{grid-template-columns:1fr;}}
 
   .contact-section{background:var(--surface-2);padding-block:clamp(3rem,6vw,4rem);}
@@ -55,7 +54,7 @@
   .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.9rem;}
   .contact-card .mark img{height:28px;width:auto;}
   .contact-card .mark.text{font-family:"Jost",sans-serif;font-weight:700;font-size:.95rem;color:var(--ink-soft);}
-  .contact-card .region{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--forest-deep);}
+  .contact-card .region{font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--rust-deep);}
   .contact-loc{font-size:.85rem;color:var(--ink-soft);}
   .contact-loc strong{display:block;color:var(--ink);font-size:.88rem;margin-bottom:.1rem;}
   .contact-loc + .contact-loc{margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--line);}
@@ -64,13 +63,13 @@
 
   .form-cta{text-align:center;margin-top:2.5rem;}
 
-  .site-footer{background:var(--ink);color:#c9cbc6;padding-block:3rem 2rem;}
+  .site-footer{background:var(--surface-2);color:var(--ink-soft);border-top:1px solid var(--line);padding-block:clamp(3rem,6vw,4.5rem) 2rem;}
   .footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:clamp(2rem,5vw,3rem);}
-  .site-footer h4{color:#fff;font-size:1rem;margin-bottom:.9rem;}
-  .footer-col p{font-size:.9rem;margin-bottom:.35rem;color:#c9cbc6;}
-  .footer-col a{font-size:.9rem;display:block;margin-bottom:.5rem;color:#c9cbc6;}
-  .footer-col a:hover{color:#fff;}
-  .footer-bottom{max-width:var(--container);margin:2.5rem auto 0;padding:1.5rem clamp(1.25rem,4vw,3rem) 0;border-top:1px solid rgba(255,255,255,.12);font-size:.82rem;color:#8d9088;}
+  .site-footer h4{color:var(--ink);font-size:1.05rem;margin-bottom:1rem;}
+  .footer-col p{font-size:.95rem;margin-bottom:.4rem;color:var(--ink-soft);}
+  .footer-col a{font-size:.95rem;display:block;margin-bottom:.5rem;color:var(--ink-soft);}
+  .footer-col a:hover{color:var(--rust-deep);}
+  .footer-bottom{max-width:var(--container);margin:2.5rem auto 0;padding:1.5rem clamp(1.25rem,4vw,3rem) 0;border-top:1px solid var(--line);font-size:.85rem;color:var(--slate);}
   @media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
@@ -229,7 +228,7 @@
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-col">
-      <h4><img src="assets/patunetti/logo-tight.png" alt="Patu" style="height:30px;width:auto;filter:invert(1) brightness(2);"></h4>
+      <h4 style="margin-bottom:1rem;"><img src="assets/patunetti/logo-tight.png" alt="Patu" style="height:32px;width:auto;"></h4>
       <p>Suomen palvelutukkurit Oy<br>Äyritie 8 E<br>01510 Vantaa</p>
       <p>Toimitusjohtaja Jaakko Huikuri</p>
       <p><a href="mailto:jaakko.huikuri@palvelutukkurit.fi">jaakko.huikuri@palvelutukkurit.fi</a></p>
