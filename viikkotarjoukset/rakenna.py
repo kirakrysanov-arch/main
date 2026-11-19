@@ -125,8 +125,7 @@ def aariviiva(path, paksuus=0.05):
     return out
 
 
-MAX_W = 215          # tuotekuvan enimmäisleveys sivulla (pt)
-PALLO_DX, PALLO_R = 64.5, 41  # hintapallon keskipisteen siirto sarakkeen keskeltä ja säde (pt)
+MAX_W = 215  # tuotekuvan enimmäisleveys sivulla (pt)
 
 
 def kierretty(path, code, deg):
@@ -140,33 +139,13 @@ def kierretty(path, code, deg):
     return out
 
 
-def sovita_kuva(path, cx, badge_top, bottom, max_w, max_h):
-    """Suurin koko (pt), jolla keskitetty, perusviivalle asetettu kuva ei peitä
-    hintapalloa. Tarkistetaan kuvan näkyvät pikselit pallon ympyrää vasten."""
+def sovita_kuva(path, max_w, max_h):
+    """Kuvan koko (pt), kun se sovitetaan kuva-alueeseen; hintapallo saa peittää kulman."""
     from PIL import Image
     with Image.open(path) as im:
-        a = im.getchannel("A")
-    iw, ih = a.size
-    k = 160 / max(iw, ih)
-    small = a.resize((max(1, round(iw * k)), max(1, round(ih * k))))
-    px = small.load()
-    pts = [(x + 0.5, y + 0.5) for y in range(small.height) for x in range(small.width) if px[x, y] > 100]
-    bx, by = cx + PALLO_DX, badge_top + 50.5
-
-    def osuu(s):
-        w, h = iw * s, ih * s
-        left, top = cx - w / 2, bottom - h
-        fx, fy = w / small.width, h / small.height
-        return any((left + x * fx - bx) ** 2 + (top + y * fy - by) ** 2 < PALLO_R ** 2 for x, y in pts)
-
-    hi = min(max_w / iw, max_h / ih)
-    if not osuu(hi):
-        return iw * hi, ih * hi
-    lo = 0.0
-    for _ in range(18):
-        mid = (lo + hi) / 2
-        lo, hi = (mid, hi) if not osuu(mid) else (lo, mid)
-    return iw * lo, ih * lo
+        iw, ih = im.size
+    k = min(max_w / iw, max_h / ih)
+    return iw * k, ih * k
 
 
 def find_qr(tip):
@@ -222,9 +201,8 @@ def overlay_html(layout, items, week):
         rot = SAADOT.get(it["code"], {}).get("rotate", 0)
         img = aariviiva(kierretty(img, it["code"], -rot) if img and rot else img)
         if img:
-            # kuva keskitetään tekstin yläpuolelle ja sen alareuna on samalla
-            # perusviivalla; koko valitaan niin, ettei kuva osu hintapalloon
-            w, h = sovita_kuva(img, cx, row["badge"], y1, MAX_W, y1 - y0)
+            # kuva keskitetään tekstin yläpuolelle ja sen alareuna on samalla perusviivalla
+            w, h = sovita_kuva(img, MAX_W, y1 - y0)
             out.append(f'<div class="ph-img" style="left:{cx - w / 2:.1f}pt;top:{y1 - h:.1f}pt;'
                        f'width:{w:.1f}pt;height:{h:.1f}pt"><img src="{data_uri(img)}"></div>')
         else:
