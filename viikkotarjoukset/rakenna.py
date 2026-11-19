@@ -48,7 +48,6 @@ SAADOT = {
     "100186": {"scale": 0.9, "dx": -14, "dy": 30},   # Atria kanan filee
     "130338": {"scale": 0.88, "dx": -16, "dy": 14},  # Atria säräjuuresainekset
     "144753": {"scale": 0.86, "dx": -16, "dy": 12},  # Saarioinen currykastike
-    "100257": {"scale": 0.88, "dx": -18, "dy": 30},  # Atria kasleri
     "140241": {"scale": 0.92, "dx": -12, "dy": 42},  # Kalaneuvos kirjolohifilee
     "144153": {"scale": 0.86, "dx": -18, "dy": 32},  # Eesti Pagar appelsiini-suklaakakku
     "114377": {"scale": 0.88, "dx": -18, "dy": 22},  # Lagerblad jättilihapulla
@@ -65,6 +64,18 @@ SAADOT = {
     "138678": {"scale": 0.82, "dx": -30, "dy": 14},  # Wotkin's riistakäristys
     "141190": {"scale": 0.9, "dx": -32, "dy": 8},    # GastroMax muovikauha S
     "138751": {"scale": 0.9, "dx": -32, "dy": 8},    # GastroMax muovikauha M
+    # vko 49-2
+    "100206": {"scale": 0.86, "dx": -18, "dy": 30},  # Atria kanan reisikoipi
+    "102262": {"scale": 0.84, "dx": -26, "dy": 12},  # Tropic appelsiinitäysmehu
+    "135125": {"scale": 0.8, "dx": -26, "dy": 16},   # Saarioinen nuudeli-ateriapohja
+    "101915": {"scale": 0.8, "dx": -28, "dy": 16},   # Spice up! thai currytahna
+    "141466": {"scale": 0.8, "dx": -22, "dy": 28},   # Sempio gochujang
+    "116848": {"scale": 0.82, "dx": -24, "dy": 26},  # Spice up! täysjyvänuudeli
+    "100257": {"scale": 0.88, "dx": -18, "dy": 30},  # Atria kasleri
+    "100239": {"scale": 0.9, "dx": -14, "dy": 40},   # Atria ulkofilee
+    "103031": {"scale": 0.8, "dx": -30, "dy": 12},   # HK naudan ulkofilee
+    "114357": {"scale": 0.86, "dx": -18, "dy": 26},  # HK naudan sisäpaisti
+    "103090": {"scale": 0.9, "dx": -14, "dy": 36},   # HK aito nakki
 }
 
 # Asettelu kummallekin pohjalle (pt, sivun yläreunasta).
@@ -139,11 +150,15 @@ def find_qr(tip):
 
 
 def week_label(items):
-    weeks = sorted({d.isocalendar()[1] for it in items for d in (it["from"], it["to"])
-                    if isinstance(d, (dt.date, dt.datetime))})
-    if not weeks:
+    # ensimmäisen alkupäivän ja viimeisen loppupäivän viikot, jotta vuodenvaihde
+    # menee oikein (esim. 30.11.-17.1. -> "49-2", ei "2-49")
+    starts = [it["from"] for it in items if isinstance(it["from"], (dt.date, dt.datetime))]
+    ends = [it["to"] for it in items if isinstance(it["to"], (dt.date, dt.datetime))]
+    if not starts and not ends:
         return None
-    return f"{weeks[0]}-{weeks[-1]}" if len(weeks) > 1 else str(weeks[0])
+    first = min(starts or ends).isocalendar()[1]
+    last = max(ends or starts).isocalendar()[1]
+    return f"{first}-{last}" if first != last else str(first)
 
 
 def overlay_html(layout, items, week):

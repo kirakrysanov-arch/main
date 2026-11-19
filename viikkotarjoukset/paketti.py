@@ -51,7 +51,8 @@ def page_to_ig(src_png, out):
 
 def main():
     pages = sorted(glob.glob(os.path.join(HERE, "Viikkotarjoukset-vko-*-sivu-[0-9].pdf")))
-    weeks = sorted({re.search(r"vko-([\d-]+)-sivu", p).group(1) for p in pages})[-1]
+    # uusimmat sivut (muokkausajan mukaan): viikkonumerot eivät järjesty vuodenvaihteen yli
+    weeks = re.search(r"vko-([\d-]+)-sivu", max(pages, key=os.path.getmtime)).group(1)
     pages = [p for p in pages if f"vko-{weeks}-" in p]
     name = f"Viikkotarjoukset-vko-{weeks}"
     root = os.path.join(HERE, "build", name)
