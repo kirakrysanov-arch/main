@@ -44,6 +44,7 @@ SAADOT = {
 LAYOUTS = {
     "perus": {  # pohja ilman käyttövinkkejä
         "template": "pohjat/pohja-perus.pdf",
+        "kuva": (210, 182, 19500),  # kuva-alueen leveys, korkeus ja tavoitepinta-ala (pt)
         "covers": [(20, 250, 773, 590), (20, 622, 773, 958)],
         "rows": [
             {"img": (268, 478), "badge": 264, "text": 488},
@@ -52,6 +53,7 @@ LAYOUTS = {
     },
     "vinkit": {  # pohja, jossa käyttövinkit ja QR-koodit
         "template": "pohjat/pohja-vinkit.pdf",
+        "kuva": (196, 138, 13500),
         "covers": [(20, 205, 773, 585), (20, 602, 773, 982)],
         "rows": [
             {"tip": 212, "img": (318, 476), "badge": 312, "text": 486},
@@ -125,7 +127,11 @@ def aariviiva(path, paksuus=0.05):
     return out
 
 
-MAX_W = 215  # tuotekuvan enimmäisleveys sivulla (pt)
+# Tuotelohkon välit (pt), samat joka sarakkeessa: vinkki -> hintapallo ja kuva -> tekstit.
+# Kuva-alueen koko on asettelukohtainen (LAYOUTS[..]["kuva"]).
+KUVA_RAKO = 10              # kuva-alueen ja tuotenimen väli
+PALLO_NOUSU = 22            # kuinka paljon hintapallo nousee kuva-alueen yläpuolelle
+VINKKI_RAKO = 4             # käyttövinkin ja hintapallon väli
 
 
 def kierretty(path, code, deg):
@@ -139,12 +145,13 @@ def kierretty(path, code, deg):
     return out
 
 
-def sovita_kuva(path, max_w, max_h):
-    """Kuvan koko (pt), kun se sovitetaan kuva-alueeseen; hintapallo saa peittää kulman."""
+def sovita_kuva(path, max_w, max_h, area):
+    """Kuvan koko (pt): suunnilleen sama pinta-ala kaikille tuotteille, jotta
+    leveät tai isot tuotteet eivät näytä muita kookkaammilta; enintään kuva-alue."""
     from PIL import Image
     with Image.open(path) as im:
         iw, ih = im.size
-    k = min(max_w / iw, max_h / ih)
+    k = min((area / (iw * ih)) ** 0.5, max_w / iw, max_h / ih)
     return iw * k, ih * k
 
 
@@ -189,27 +196,32 @@ def overlay_html(layout, items, week):
     for i, it in enumerate(items[:6]):
         r, c = divmod(i, 3)
         row, cx = L["rows"][r], COLS[c]
+        T = row["text"]
+        KW, KH, KA = L["kuva"]
+        box_top = T - KUVA_RAKO - KH            # kuva-alueen yläreuna
+        badge_top = box_top - PALLO_NOUSU       # hintapallo kuva-alueen oikeaan yläkulmaan
         if "tip" in row:
-            t = row["tip"]
             qr = find_qr(it["tip"])
             qr_html = (f'<img src="{data_uri(qr)}">' if qr else '<span>QR</span>')
-            out.append(f'<div class="kv" style="left:{cx-63}pt;top:{t+8}pt">Käyttövinkki</div>')
-            out.append(f'<div class="qr{"" if qr else " ph"}" style="left:{cx+19}pt;top:{t}pt">{qr_html}</div>')
-            out.append(f'<div class="tip" style="left:{cx-110}pt;top:{t+44}pt">{e(it["tip"])}</div>')
-        y0, y1 = row["img"]
+            # käyttövinkki ankkuroidaan alareunastaan juuri hintapallon yläpuolelle
+            out.append(f'<div class="vinkki" style="left:{cx-115}pt;top:{badge_top - VINKKI_RAKO}pt">'
+                       f'<div class="vh"><span class="kv">Käyttövinkki</span>'
+                       f'<span class="qr{"" if qr else " ph"}">{qr_html}</span></div>'
+                       f'<div class="tip">{e(it["tip"])}</div></div>')
         img = find("kuvat", it["code"])
         rot = SAADOT.get(it["code"], {}).get("rotate", 0)
         img = aariviiva(kierretty(img, it["code"], -rot) if img and rot else img)
         if img:
-            # kuva keskitetään tekstin yläpuolelle ja sen alareuna on samalla perusviivalla
-            w, h = sovita_kuva(img, MAX_W, y1 - y0)
-            out.append(f'<div class="ph-img" style="left:{cx - w / 2:.1f}pt;top:{y1 - h:.1f}pt;'
+            # kuvat keskitetään kuva-alueeseen ja skaalataan suunnilleen samaan pinta-alaan
+            # ja asetetaan samalle perusviivalle tuotenimen yläpuolelle
+            w, h = sovita_kuva(img, KW, KH, KA)
+            out.append(f'<div class="ph-img" style="left:{cx - w / 2:.1f}pt;top:{box_top + KH - h:.1f}pt;'
                        f'width:{w:.1f}pt;height:{h:.1f}pt"><img src="{data_uri(img)}"></div>')
         else:
-            out.append(f'<div class="ph-img ph" style="left:{cx-80}pt;top:{y0+20}pt;width:160pt;height:{y1-y0-30}pt">'
+            out.append(f'<div class="ph-img ph" style="left:{cx-80}pt;top:{box_top}pt;width:160pt;height:{KH}pt">'
                        f'<span>TUOTEKUVA<br>{e(it["code"])}</span></div>')
         bx = cx + 14
-        out.append(f'<div class="badge" style="left:{bx}pt;top:{row["badge"]}pt">'
+        out.append(f'<div class="badge" style="left:{bx}pt;top:{badge_top}pt">'
                    f'<img src="{badge}"><div class="bt"><b>€{money(it["price"])}</b>'
                    f'<i>{e(it["unit"])}</i></div></div>')
         vat = (it["price"] * it["alv"]).quantize(Decimal("0.01"), ROUND_HALF_UP)
@@ -229,10 +241,12 @@ body>div{{position:absolute}}
 .cover{{background:{BG}}}
 .week{{right:47.5pt;top:41pt;font:29pt/1 'Just Another Hand';color:#364153;white-space:nowrap}}
 .foot{{font:400 9pt/9pt 'DM Sans';color:#364153;white-space:nowrap}}
-.kv{{font:16pt/1 'Just Another Hand';color:#4a5565;width:76pt;text-align:center}}
-.qr{{width:42pt;height:42pt;background:#fff}}
+.vinkki{{width:230pt;transform:translateY(-100%);display:flex;flex-direction:column;align-items:center;gap:3pt}}
+.vh{{display:flex;align-items:center;gap:10pt}}
+.kv{{font:16pt/1 'Just Another Hand';color:#4a5565}}
+.qr{{display:block;width:42pt;height:42pt;background:#fff}}
 .qr img{{width:100%;height:100%;display:block;image-rendering:pixelated}}
-.tip{{width:220pt;text-align:center;font:22pt/0.95 'Just Another Hand';color:#8fb584;text-wrap:balance}}
+.tip{{width:220pt;text-align:center;margin:0 auto;font:22pt/0.95 'Just Another Hand';color:#8fb584;text-wrap:balance}}
 .ph{{border:1.2pt dashed #8fb584;border-radius:6pt;display:flex;align-items:center;justify-content:center;
      text-align:center;font:600 9pt/1.4 'DM Sans';color:#8fb584;letter-spacing:.05em;box-sizing:border-box}}
 .ph-img img{{width:100%;height:100%;display:block}}
