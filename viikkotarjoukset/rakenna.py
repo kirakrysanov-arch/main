@@ -137,7 +137,7 @@ def find(folder, stem):
     return None
 
 
-def aariviiva(path, paksuus=0.022):
+def aariviiva(path, paksuus=0.05):
     """Lisää tuotekuvan ympärille valkoisen ääriviivan (tarramainen tyyli).
     Paksuus suhteessa kuvan pidempään sivuun; tulos tallennetaan build/aariviiva/."""
     if not path:
@@ -148,7 +148,7 @@ def aariviiva(path, paksuus=0.022):
     out = os.path.join(out_dir, os.path.splitext(os.path.basename(path))[0] + ".png")
     with Image.open(path) as im:
         im = im.convert("RGBA")
-    r = max(4, round(max(im.size) * paksuus))
+    r = max(9, round(max(im.size) * paksuus))
     pad = r + 2
     big = Image.new("RGBA", (im.width + 2 * pad, im.height + 2 * pad), (0, 0, 0, 0))
     big.paste(im, (pad, pad))
