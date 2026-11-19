@@ -34,48 +34,10 @@ def alv_kerroin(formula):
 BG = "#e8f5e3"
 COLS = [166, 397, 629]  # sarakkeiden keskikohdat (pt)
 
-# Kuvakohtaiset säädöt tuotenumeron mukaan: koko (scale) ja siirto (dx, dy, pt),
-# esim. jotta hintapallo ei peitä tuotetta.
+# Kuvakohtainen kallistus tuotenumeron mukaan (asteina, negatiivinen = vastapäivään).
+# Koko ja paikka lasketaan automaattisesti (sovita_kuva).
 SAADOT = {
-    "137653": {"scale": 0.86, "dx": -18, "dy": 28},  # Hätälä lohimurekemassa
-    "131717": {"scale": 0.9, "dx": -14, "dy": 40},   # Atria tryffelikassler
-    "128394": {"scale": 0.88, "dx": -16, "dy": 30},  # Eesti Pagar porkkanakakku
-    "103821": {"scale": 0.78, "dx": -12, "dy": 10},            # Sauvon maustekurkkukuutio
     "145141": {"scale": 0.86, "dx": -22, "dy": 8, "rotate": -15},  # Miyata pankojauho, kallistus vastapäivään
-    # vko 45-46
-    "111265": {"scale": 0.86, "dx": -18, "dy": 28},  # Atria naudan sisäpaisti
-    "104826": {"scale": 0.78, "dx": -28, "dy": 16},  # Arla smetana
-    "100186": {"scale": 0.9, "dx": -14, "dy": 30},   # Atria kanan filee
-    "130338": {"scale": 0.88, "dx": -16, "dy": 14},  # Atria säräjuuresainekset
-    "144753": {"scale": 0.86, "dx": -16, "dy": 12},  # Saarioinen currykastike
-    "140241": {"scale": 0.92, "dx": -12, "dy": 42},  # Kalaneuvos kirjolohifilee
-    "144153": {"scale": 0.86, "dx": -18, "dy": 32},  # Eesti Pagar appelsiini-suklaakakku
-    "114377": {"scale": 0.88, "dx": -18, "dy": 22},  # Lagerblad jättilihapulla
-    "111201": {"scale": 0.88, "dx": -16, "dy": 28},  # Saarioinen kermaperunat
-    # vko 47-48
-    "102936": {"scale": 0.88, "dx": -18, "dy": 24},  # Kariniemen paistileike
-    "139447": {"scale": 0.84, "dx": -32, "dy": 12},  # Eleplant rypsiöljyvalmiste
-    "142631": {"scale": 0.84, "dx": -22, "dy": 30},  # Fazer Briossi
-    "103882": {"scale": 0.88, "dx": -18, "dy": 24},  # Lagerblad jauhelihapihvi
-    "113937": {"scale": 0.84, "dx": -24, "dy": 30},  # Snellman porsaan kuutio
-    "145128": {"scale": 0.8, "dx": -34, "dy": 14},   # Seara koipireisi
-    "142041": {"scale": 0.8, "dx": -34, "dy": 14},   # Fazer ruokakaura
-    "138540": {"scale": 0.9, "dx": -16, "dy": 26},   # Görans Döner kanakebablastu
-    "138678": {"scale": 0.82, "dx": -30, "dy": 14},  # Wotkin's riistakäristys
-    "141190": {"scale": 0.9, "dx": -32, "dy": 8},    # GastroMax muovikauha S
-    "138751": {"scale": 0.9, "dx": -32, "dy": 8},    # GastroMax muovikauha M
-    # vko 49-2
-    "100206": {"scale": 0.86, "dx": -18, "dy": 30},  # Atria kanan reisikoipi
-    "102262": {"scale": 0.84, "dx": -26, "dy": 12},  # Tropic appelsiinitäysmehu
-    "135125": {"scale": 0.8, "dx": -26, "dy": 16},   # Saarioinen nuudeli-ateriapohja
-    "101915": {"scale": 0.8, "dx": -28, "dy": 16},   # Spice up! thai currytahna
-    "141466": {"scale": 0.8, "dx": -22, "dy": 28},   # Sempio gochujang
-    "116848": {"scale": 0.82, "dx": -24, "dy": 26},  # Spice up! täysjyvänuudeli
-    "100257": {"scale": 0.88, "dx": -18, "dy": 30},  # Atria kasleri
-    "100239": {"scale": 0.9, "dx": -14, "dy": 40},   # Atria ulkofilee
-    "103031": {"scale": 0.8, "dx": -30, "dy": 12},   # HK naudan ulkofilee
-    "114357": {"scale": 0.86, "dx": -18, "dy": 26},  # HK naudan sisäpaisti
-    "103090": {"scale": 0.9, "dx": -14, "dy": 36},   # HK aito nakki
 }
 
 # Asettelu kummallekin pohjalle (pt, sivun yläreunasta).
@@ -163,6 +125,50 @@ def aariviiva(path, paksuus=0.05):
     return out
 
 
+MAX_W = 215          # tuotekuvan enimmäisleveys sivulla (pt)
+PALLO_DX, PALLO_R = 64.5, 41  # hintapallon keskipisteen siirto sarakkeen keskeltä ja säde (pt)
+
+
+def kierretty(path, code, deg):
+    from PIL import Image
+    out_dir = os.path.join(HERE, "build", "kierto")
+    os.makedirs(out_dir, exist_ok=True)
+    out = os.path.join(out_dir, f"{code}.png")
+    with Image.open(path) as im:
+        im = im.convert("RGBA").rotate(-deg, resample=Image.BICUBIC, expand=True)
+        im.crop(im.getbbox()).save(out)
+    return out
+
+
+def sovita_kuva(path, cx, badge_top, bottom, max_w, max_h):
+    """Suurin koko (pt), jolla keskitetty, perusviivalle asetettu kuva ei peitä
+    hintapalloa. Tarkistetaan kuvan näkyvät pikselit pallon ympyrää vasten."""
+    from PIL import Image
+    with Image.open(path) as im:
+        a = im.getchannel("A")
+    iw, ih = a.size
+    k = 160 / max(iw, ih)
+    small = a.resize((max(1, round(iw * k)), max(1, round(ih * k))))
+    px = small.load()
+    pts = [(x + 0.5, y + 0.5) for y in range(small.height) for x in range(small.width) if px[x, y] > 100]
+    bx, by = cx + PALLO_DX, badge_top + 50.5
+
+    def osuu(s):
+        w, h = iw * s, ih * s
+        left, top = cx - w / 2, bottom - h
+        fx, fy = w / small.width, h / small.height
+        return any((left + x * fx - bx) ** 2 + (top + y * fy - by) ** 2 < PALLO_R ** 2 for x, y in pts)
+
+    hi = min(max_w / iw, max_h / ih)
+    if not osuu(hi):
+        return iw * hi, ih * hi
+    lo = 0.0
+    for _ in range(18):
+        mid = (lo + hi) / 2
+        lo, hi = (mid, hi) if not osuu(mid) else (lo, mid)
+    return iw * lo, ih * lo
+
+
 def find_qr(tip):
     folder = os.path.join(HERE, "qr")
     word = re.split(r"[\s,]+", tip.strip().lower())[0] if tip.strip() else ""
@@ -212,16 +218,19 @@ def overlay_html(layout, items, week):
             out.append(f'<div class="qr{"" if qr else " ph"}" style="left:{cx+19}pt;top:{t}pt">{qr_html}</div>')
             out.append(f'<div class="tip" style="left:{cx-110}pt;top:{t+44}pt">{e(it["tip"])}</div>')
         y0, y1 = row["img"]
-        img = aariviiva(find("kuvat", it["code"]))
+        img = find("kuvat", it["code"])
+        rot = SAADOT.get(it["code"], {}).get("rotate", 0)
+        img = aariviiva(kierretty(img, it["code"], -rot) if img and rot else img)
         if img:
-            a = SAADOT.get(it["code"], {})
-            tf = f'translate({a.get("dx", 0)}pt,{a.get("dy", 0)}pt) scale({a.get("scale", 1)}) rotate({a.get("rotate", 0)}deg)'
-            out.append(f'<div class="ph-img" style="left:{cx-100}pt;top:{y0}pt;height:{y1-y0}pt">'
-                       f'<img src="{data_uri(img)}" style="transform:{tf}"></div>')
+            # kuva keskitetään tekstin yläpuolelle ja sen alareuna on samalla
+            # perusviivalla; koko valitaan niin, ettei kuva osu hintapalloon
+            w, h = sovita_kuva(img, cx, row["badge"], y1, MAX_W, y1 - y0)
+            out.append(f'<div class="ph-img" style="left:{cx - w / 2:.1f}pt;top:{y1 - h:.1f}pt;'
+                       f'width:{w:.1f}pt;height:{h:.1f}pt"><img src="{data_uri(img)}"></div>')
         else:
             out.append(f'<div class="ph-img ph" style="left:{cx-80}pt;top:{y0+20}pt;width:160pt;height:{y1-y0-30}pt">'
                        f'<span>TUOTEKUVA<br>{e(it["code"])}</span></div>')
-        bx = cx + 5
+        bx = cx + 14
         out.append(f'<div class="badge" style="left:{bx}pt;top:{row["badge"]}pt">'
                    f'<img src="{badge}"><div class="bt"><b>€{money(it["price"])}</b>'
                    f'<i>{e(it["unit"])}</i></div></div>')
@@ -248,8 +257,7 @@ body>div{{position:absolute}}
 .tip{{width:220pt;text-align:center;font:22pt/0.95 'Just Another Hand';color:#8fb584;text-wrap:balance}}
 .ph{{border:1.2pt dashed #8fb584;border-radius:6pt;display:flex;align-items:center;justify-content:center;
      text-align:center;font:600 9pt/1.4 'DM Sans';color:#8fb584;letter-spacing:.05em;box-sizing:border-box}}
-.ph-img:not(.ph){{width:200pt;display:flex;align-items:center;justify-content:center}}
-.ph-img img{{max-width:100%;max-height:100%;object-fit:contain}}
+.ph-img img{{width:100%;height:100%;display:block}}
 .badge{{width:101pt;height:101pt}}
 .badge img{{width:100%;height:100%;display:block}}
 .bt{{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
