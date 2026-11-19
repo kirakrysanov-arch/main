@@ -1,9 +1,11 @@
 """Valmistelee tuotekuvat ja QR-koodit rakenna.py:tä varten.
 
-    python3 viikkotarjoukset/valmistele_kuvat.py <kuvakansio> [<qr-kansio>] [--ai 104826,...]
+    python3 viikkotarjoukset/valmistele_kuvat.py <kuvakansio> [<qr-kansio>] [--ai 104826,...] [--kuori 145128,...]
 
 --ai: luettelon tuotenumeroiden taustat poistetaan tekoälymallilla (rembg),
 kun tuote itse on valkoinen ja tavallinen poisto syö siitä palan.
+--kuori: tuotteesta pidetään kaikki sen ulkoreunan sisällä (täytetty kupera kuori),
+kun vaalea pussi tai pakkaus muuten saisi reikiä.
 
 Tuotekuvat: tiedostonimen alussa oleva tuotenumero (esim. "137653_lohi.png")
 ratkaisee tuotteen. Valkoinen tausta poistetaan reunoilta alkaen, joten kuva
@@ -58,14 +60,35 @@ def remove_bg_ai(im):
     return out
 
 
-def main(src, qr_src=None, ai_codes=()):
+def remove_bg_hull(im, white=246):
+    import cv2  # pip install opencv-python-headless
+    import numpy as np
+    arr = np.array(im.convert("RGB"))
+    fg = (arr.min(axis=2) < white).astype(np.uint8) * 255
+    fg = cv2.morphologyEx(fg, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+    cnts, _ = cv2.findContours(fg, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    hull = cv2.convexHull(np.vstack([c for c in cnts if cv2.contourArea(c) > 50]))
+    mask = np.zeros(fg.shape, np.uint8)
+    cv2.fillPoly(mask, [hull], 255)
+    m = Image.fromarray(mask).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(0.8))
+    out = im.convert("RGBA")
+    out.putalpha(m)
+    return out
+
+
+def main(src, qr_src=None, ai_codes=(), hull_codes=()):
     os.makedirs(os.path.join(HERE, "kuvat"), exist_ok=True)
     for name in sorted(os.listdir(src)):
         m = re.match(r"(\d{5,})", unicodedata.normalize("NFC", name))
         if not m or name.startswith("."):
             continue
         im = Image.open(os.path.join(src, name))
-        im = remove_bg_ai(im) if m.group(1) in ai_codes else remove_white_bg(im)
+        if m.group(1) in hull_codes:
+            im = remove_bg_hull(im)
+        elif m.group(1) in ai_codes:
+            im = remove_bg_ai(im)
+        else:
+            im = remove_white_bg(im)
         bbox = im.getbbox()
         if bbox:
             im = im.crop(bbox)
@@ -90,9 +113,10 @@ def main(src, qr_src=None, ai_codes=()):
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    ai = ()
-    if "--ai" in args:
-        i = args.index("--ai")
-        ai = tuple(args[i + 1].split(","))
-        del args[i:i + 2]
-    main(*args[:2], ai_codes=ai)
+    opts = {}
+    for flag in ("--ai", "--kuori"):
+        if flag in args:
+            i = args.index(flag)
+            opts[flag] = tuple(args[i + 1].split(","))
+            del args[i:i + 2]
+    main(*args[:2], ai_codes=opts.get("--ai", ()), hull_codes=opts.get("--kuori", ()))
