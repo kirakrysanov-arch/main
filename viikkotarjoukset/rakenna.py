@@ -137,6 +137,32 @@ def find(folder, stem):
     return None
 
 
+def aariviiva(path, paksuus=0.022):
+    """Lisää tuotekuvan ympärille valkoisen ääriviivan (tarramainen tyyli).
+    Paksuus suhteessa kuvan pidempään sivuun; tulos tallennetaan build/aariviiva/."""
+    if not path:
+        return path
+    from PIL import Image, ImageFilter
+    out_dir = os.path.join(HERE, "build", "aariviiva")
+    os.makedirs(out_dir, exist_ok=True)
+    out = os.path.join(out_dir, os.path.splitext(os.path.basename(path))[0] + ".png")
+    with Image.open(path) as im:
+        im = im.convert("RGBA")
+    r = max(4, round(max(im.size) * paksuus))
+    pad = r + 2
+    big = Image.new("RGBA", (im.width + 2 * pad, im.height + 2 * pad), (0, 0, 0, 0))
+    big.paste(im, (pad, pad))
+    a = big.getchannel("A").point(lambda v: 255 if v > 40 else 0)
+    # pyöreä laajennus: sumenna ja kynnystä, jolloin kulmat pyöristyvät
+    halo = a.filter(ImageFilter.GaussianBlur(r * 0.6)).point(lambda v: 255 if v > 18 else 0)
+    halo = halo.filter(ImageFilter.GaussianBlur(0.8))
+    base = Image.new("RGBA", big.size, (255, 255, 255, 0))
+    base.putalpha(halo)
+    base.alpha_composite(big)
+    base.crop(base.getbbox()).save(out)
+    return out
+
+
 def find_qr(tip):
     folder = os.path.join(HERE, "qr")
     word = re.split(r"[\s,]+", tip.strip().lower())[0] if tip.strip() else ""
@@ -186,7 +212,7 @@ def overlay_html(layout, items, week):
             out.append(f'<div class="qr{"" if qr else " ph"}" style="left:{cx+19}pt;top:{t}pt">{qr_html}</div>')
             out.append(f'<div class="tip" style="left:{cx-110}pt;top:{t+44}pt">{e(it["tip"])}</div>')
         y0, y1 = row["img"]
-        img = find("kuvat", it["code"])
+        img = aariviiva(find("kuvat", it["code"]))
         if img:
             a = SAADOT.get(it["code"], {})
             tf = f'translate({a.get("dx", 0)}pt,{a.get("dy", 0)}pt) scale({a.get("scale", 1)}) rotate({a.get("rotate", 0)}deg)'
