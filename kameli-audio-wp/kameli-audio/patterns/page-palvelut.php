@@ -16,7 +16,7 @@ echo kameli_audio_section_open( 'valkoinen' )
 	. kameli_audio_section_head(
 		'Mitä teemme',
 		'Tekniikkaratkaisut tapahtumiin ja tuotantoihin',
-		'Olemme erikoistuneet tarjoamaan huippuluokan ääni- ja valoratkaisuja kaikenlaisiin tapahtumiin ja tuotantoihin. Olipa kyseessä yritystilaisuus, yksityisjuhla tai musiikkituotanto, meillä on osaaminen ja välineet tehdä siitä ikimuistoinen. Ota yhteyttä, niin suunnitellaan yhdessä täydellinen elämys!'
+		'Olemme erikoistuneet äänentoistoon tapahtumiin ja äänituotantoon. Ääniteknikkomme hoitaa äänen kokouksissa, seminaareissa, kick-offeissa ja juhlissa alusta loppuun – tilan omilla laitteilla tai omalla kalustollamme. Artisteille teemme live- ja studiotuotantoja omalla Oasis Studiollamme. Ota yhteyttä, niin suunnitellaan tilaisuutesi ääni yhdessä!'
 	)
 	. kameli_audio_service_cards()
 	. kameli_audio_section_close();

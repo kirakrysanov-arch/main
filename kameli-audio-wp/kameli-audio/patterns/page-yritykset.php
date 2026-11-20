@@ -10,43 +10,66 @@
  * @package kameli-audio
  */
 
-echo kameli_audio_hero( 'Yritykset', 'Yritystapahtumat & tapahtumajärjestäjät', 'Huolellisesti suunniteltu ääni ja valo luovat tunnelman, varmistavat sujuvuuden ja tekevät tapahtumastasi elämyksen.', true );
+echo kameli_audio_hero( 'Yritykset', 'Ääniteknikko tapahtumaan ja kokoukseen', 'Ääniteknikko paikalla koko tilaisuuden ajan – kokouksissa, seminaareissa, kick-offeissa ja yritysjuhlissa. Äänentoisto tapahtumiin Uudellamaalla ja sen ulkopuolella.', true );
 
 echo kameli_audio_service_rows(
 	'Mitä tarjoamme',
 	array(
 		array(
-			'Yritysjuhlat ja henkilöstötilaisuudet',
-			'Olipa kyseessä satapäinen pikkujoulugaala, henkilöstöpäivän iltaohjelma tai intiimi juhlatilaisuus, varmistamme että saat juhlaasi kokonaisuuden, joka tuntuu huolitellulta ja ammattilaisen käsialalta — ilman, että sinun tarvitsee huolehtia teknisistä yksityiskohdista.',
+			'Ääniteknikko kokoukseen ja seminaariin',
+			'Hotellien ja kokoustilojen laitteet ovat usein hyvät, mutta tilaisuuden aikana niitä ei hoida kukaan. Kun mikrofoni pätkii tai esityksen video ei soi, paikalle kiirehtii henkilökunta, jolla on samaan aikaan muutakin tehtävää. Ääniteknikkomme on paikalla alusta loppuun ja huolehtii, että:',
 			array(
-				'Puheet, juonnot ja yllätysohjelmat kuuluvat selkeästi kaikkialle tilaan',
-				'Musiikki soi halutulla alueella tasaisella volyymilla ja laadukkaasti',
-				'Esiintyjät saavat ammattilaistason teknisen tuen, jotta show toimii ja yleisö viihtyy',
+				'Langattomat mikrofonit, paristot ja taajuudet on tarkistettu ennen kuin vieraat saapuvat',
+				'Esittäjien läppärit, videot ja etäpuhujat on testattu etukäteen',
+				'Puhe kuuluu selvästi takariveille asti, ilman kiertoa',
+				'Ongelmat korjataan heti – ohjelma ei pysähdy tekniikan takia',
 			)
 		),
 		array(
-			'Lanseeraukset ja promootiotapahtumat',
-			'Kun hetki on tärkeä, ääni ratkaisee. Varmistamme, että tuote- tai palvelulanseerauksesi saa ansaitsemansa huomion täydellisellä äänitekniikalla ja ammattimaisella toteutuksella. Huolehdimme puolestasi:',
+			'Kick-offit ja henkilöstötilaisuudet',
+			'Kick-offissa johto kertoo suunnan koko henkilöstölle. Silloin jokaisen puheenvuoron pitää kuulua ja ohjelman edetä aikataulussa – aamun avauksesta illan juhlaan.',
 			array(
-				'Mikityksestä ja lavatekniikasta, jotta puheenvuorot, keskustelut ja demot kuuluvat jokaiseen nurkkaan',
-				'Tarkkaan suunnitellusta äänimaisemasta, joka tukee brändiäsi ja hetken dramatiikkaa',
-				'Tarvittavan tekniikan paikalle asennuksineen ja purkuineen',
+				'Puheenvuorot, paneelit ja kysymysosuudet langattomilla mikrofoneilla',
+				'Musiikit, videot ja palkintojenjaot oikeaan aikaan',
+				'Päivän ohjelma ja illan esiintyjät saman teknikon hoidossa',
+				'Käytämme tilan omia laitteita tai tuomme tarvittaessa omamme',
 			)
 		),
 		array(
-			'Asiakas- ja sidosryhmätapahtumat',
-			'Vakuuta asiakkaasi ja sidosryhmäsi. Asiakas- ja sidosryhmätapahtumissa ääni ei ole vain tekninen yksityiskohta — se on osa yrityksesi brändiä, luottamusta ja tunnelmaa. Huolehdimme, että:',
+			'Yritysjuhlat, lanseeraukset ja asiakastilaisuudet',
+			'Pikkujouluissa, lanseerauksissa sekä asiakas- ja sidosryhmätapahtumissa ääni ei ole vain tekninen yksityiskohta – se on osa yrityksesi brändiä ja tunnelmaa. Huolehdimme, että:',
 			array(
-				'Puheenvuorot ja keskustelut kuuluvat selkeästi, oli kyseessä johtoryhmän esitys, asiantuntijapuheenvuoro tai fireside chat',
-				'Tilaisuuden rytmi ja tunnelma pysyvät hallussa taustamusiikilla, spiikeillä ja äänimaisemalla',
-				'Eri ohjelmanumeroiden tekninen toteutus (lavalle poistumiset, videoinsertit, panelistit, yllätysesiintyjät) toimii saumattomasti',
-				'VIP-, media- tai kumppanivieraiden odotukset täyttyvät laadukkaalla ja luotettavalla äänituella',
-			),
-			'Lopputuloksena syntyy tilaisuus, joka tuntuu huolitellulta ja ammattimaiselta — ja jossa yrityksesi tärkeimmät yleisöt saavat kokea, että heistä välitetään.'
+				'Puheet, juonnot ja keskustelut kuuluvat selkeästi kaikkialle tilaan',
+				'Musiikki soi halutulla alueella tasaisella voimakkuudella',
+				'Esiintyjät saavat ammattitason teknisen tuen',
+				'Tekniikka asennetaan ja puretaan teidän aikataulunne mukaan',
+			)
+		),
+		array(
+			'Hotelleille ja tapahtumapaikoille',
+			'Haluatteko tarjota asiakkaillenne ääniteknikon osana kokouspakettia? Toimimme tapahtumapaikkojen luottoteknikkona: teknikko käyttää talon laitteita, asiakkaanne saavat sujuvan tilaisuuden ja henkilökuntanne voi keskittyä omaan työhönsä.',
+			array(
+				'Yksi yhteyshenkilö teille ja asiakkaillenne',
+				'Lisäkalusto isompiin tilaisuuksiin tarvittaessa',
+				'Apu myös ruuhkaviikoille, kuten kick-off- ja pikkujoulukaudelle',
+			)
 		),
 	)
 );
 
+echo kameli_audio_section_open( 'vaalea' )
+	. kameli_audio_section_head( 'Usein kysyttyä', 'Ääniteknikko tapahtumaan – usein kysyttyä' )
+	. kameli_audio_heading( 'Tarvitaanko ääniteknikkoa, jos tilassa on omat laitteet?', 3 )
+	. kameli_audio_paragraph( 'Usein kyllä. Laitteet eivät ole ongelma, vaan se, ettei kukaan hoida niitä tilaisuuden aikana. Ääniteknikko testaa mikrofonit ja esitykset etukäteen, säätää äänen puhujien mukaan ja korjaa ongelmat heti.' )
+	. kameli_audio_heading( 'Mitä äänitekniikkaa seminaariin tarvitaan?', 3 )
+	. kameli_audio_paragraph( 'Tyypillisesti langattomat käsi- tai mikroportit puhujille, lisämikrofonit paneeliin ja kysymyksiin, kaiuttimet koko tilan kuuluvuuteen sekä ääni esittäjien tietokoneilta. Mitoitamme tekniikan tilan ja ohjelman mukaan.' )
+	. kameli_audio_heading( 'Toimitteko myös Uudenmaan ulkopuolella?', 3 )
+	. kameli_audio_paragraph( 'Kyllä. Toimimme pääasiassa Uudellamaalla, mutta tulemme mielellämme myös sen ulkopuolelle.' )
+	. kameli_audio_heading( 'Tarjoatteko valotekniikkaa?', 3 )
+	. kameli_audio_paragraph( 'Emme. Keskitymme ääneen: äänentoistoon tapahtumiin ja ääniteknikkoon paikan päällä.' )
+	. kameli_audio_section_close();
+
 echo kameli_audio_why_us();
-echo kameli_audio_cta();
+echo kameli_audio_case_studies_section();
+echo kameli_audio_cta( 'Tarvitsetteko ääniteknikon seuraavaan tilaisuuteen?', 'Kerro päivä, paikka ja ohjelma, niin palaamme asiaan.' );
 echo kameli_audio_contact_section();

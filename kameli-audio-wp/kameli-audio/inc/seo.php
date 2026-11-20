@@ -21,20 +21,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 function kameli_audio_seo_defaults() {
 	return array(
 		'etusivu'             => array(
-			'Kameli Audio – tapahtumatekniikka ja äänitysstudio, Uusimaa',
-			'Äänentoisto, valot ja tapahtumatekniikka yritystapahtumiin, juhliin ja keikoille Uudellamaalla ja sen ulkopuolella sekä oma äänitysstudio. Pyydä tarjous!',
+			'Kameli Audio – äänentoisto tapahtumiin ja äänitysstudio, Uusimaa',
+			'Äänentoisto tapahtumiin ja ääniteknikko kokouksiin, seminaareihin, kick-offeihin ja juhliin Uudellamaalla ja sen ulkopuolella sekä oma äänitysstudio.',
 		),
 		'palvelut'            => array(
-			'Palvelut: äänentoisto, valot ja studio | Kameli Audio',
-			'Tapahtumatekniikkaa yrityksille ja juhliin sekä live- ja studiotuotantoja artisteille. Suunnittelusta purkuun koko Uudellamaalla ja sen ulkopuolella.',
+			'Palvelut: äänentoisto tapahtumiin ja studio | Kameli Audio',
+			'Ääniteknikko ja äänentoisto yritystapahtumiin, kokouksiin ja juhliin sekä live- ja studiotuotannot artisteille. Uusimaa ja sen ulkopuolella.',
 		),
 		'palvelut/yritykset'  => array(
-			'Äänentoisto ja valot yritystapahtumiin | Kameli Audio',
-			'Tapahtumatekniikka pikkujouluihin, seminaareihin, lanseerauksiin ja asiakastilaisuuksiin: äänentoisto, mikitys ja valot suunnittelusta purkuun.',
+			'Ääniteknikko tapahtumaan ja kokoukseen | Kameli Audio',
+			'Ääniteknikko kokoukseen, seminaariin ja kick-offiin. Äänitekniikka ja äänentoisto tapahtumiin alusta loppuun, myös tilan omilla laitteilla.',
 		),
 		'palvelut/yksityiset' => array(
-			'Äänentoisto ja valot häihin ja juhliin | Kameli Audio',
-			'Äänentoisto ja valaistus häihin, merkkipäiville ja juhliin. Tekniikka asennetaan ja puretaan teidän aikataulunne mukaan. Pyydä tarjous!',
+			'Äänentoisto häihin ja juhliin | Kameli Audio',
+			'Äänentoisto ja mikitys häihin, merkkipäiville ja juhliin. Tekniikka asennetaan ja puretaan teidän aikataulunne mukaan. Pyydä tarjous!',
 		),
 		'palvelut/artistit'   => array(
 			'Äänitysstudio, miksaus ja keikkamiksaus | Kameli Audio',
@@ -69,6 +69,14 @@ function kameli_audio_old_seo_defaults() {
 		'Tapahtumatekniikkaa yrityksille ja juhliin sekä live- ja studiotuotantoja artisteille. Suunnittelusta purkuun pääkaupunkiseudulla.',
 		'Äänitys Oasis Studiolla Vantaan Hakkilassa, miksaus ja masterointi sekä live-tuotannot: PA-treenit, kiertueiden valmistelu ja keikkamiksaus.',
 		'Kerro tapahtumastasi tai projektistasi, niin palaamme asiaan. Juha Pöysä ja Sakari Juntura – Kameli Audio, Oasis Studio, Hakkila, Vantaa.',
+		'Kameli Audio – tapahtumatekniikka ja äänitysstudio, Uusimaa',
+		'Äänentoisto, valot ja tapahtumatekniikka yritystapahtumiin, juhliin ja keikoille Uudellamaalla ja sen ulkopuolella sekä oma äänitysstudio. Pyydä tarjous!',
+		'Palvelut: äänentoisto, valot ja studio | Kameli Audio',
+		'Tapahtumatekniikkaa yrityksille ja juhliin sekä live- ja studiotuotantoja artisteille. Suunnittelusta purkuun koko Uudellamaalla ja sen ulkopuolella.',
+		'Äänentoisto ja valot yritystapahtumiin | Kameli Audio',
+		'Tapahtumatekniikka pikkujouluihin, seminaareihin, lanseerauksiin ja asiakastilaisuuksiin: äänentoisto, mikitys ja valot suunnittelusta purkuun.',
+		'Äänentoisto ja valot häihin ja juhliin | Kameli Audio',
+		'Äänentoisto ja valaistus häihin, merkkipäiville ja juhliin. Tekniikka asennetaan ja puretaan teidän aikataulunne mukaan. Pyydä tarjous!',
 	);
 }
 
@@ -318,7 +326,7 @@ function kameli_audio_business_schema() {
 		'url'         => home_url( '/' ),
 		'logo'        => get_theme_file_uri( 'assets/images/kameli-audio-logo-tumma.png' ),
 		'image'       => get_theme_file_uri( 'assets/images/kameli-audio-logo-tumma.png' ),
-		'description' => 'Tapahtumatekniikkaa – äänentoisto ja valot – yritystapahtumiin, juhliin ja keikoille sekä äänitys, miksaus ja masterointi omalla Oasis Studiolla – koko Uudellamaalla ja sen ulkopuolella.',
+		'description' => 'Äänentoisto tapahtumiin ja ääniteknikko kokouksiin, seminaareihin, kick-offeihin, juhliin ja keikoille sekä äänitys, miksaus ja masterointi omalla Oasis Studiolla – koko Uudellamaalla ja sen ulkopuolella.',
 		'address'     => array(
 			'@type'           => 'PostalAddress',
 			'addressLocality' => 'Vantaa',
@@ -326,7 +334,7 @@ function kameli_audio_business_schema() {
 			'addressCountry'  => 'FI',
 		),
 		'areaServed'  => array( 'Uusimaa', 'Etelä-Suomi', 'Suomi' ),
-		'knowsAbout'  => array( 'Tapahtumatekniikka', 'Äänentoisto', 'Valotekniikka', 'Äänitys', 'Miksaus', 'Masterointi', 'Keikkamiksaus' ),
+		'knowsAbout'  => array( 'Äänentoisto tapahtumiin', 'Ääniteknikko', 'Kokous- ja seminaaritekniikka', 'Äänitys', 'Miksaus', 'Masterointi', 'Keikkamiksaus' ),
 		'email'       => kameli_audio_contact_recipient(),
 		'telephone'   => '+358405727838',
 	);

@@ -304,8 +304,8 @@ function kameli_audio_service_card( $icon, $title, $text, $url ) {
 function kameli_audio_service_cards() {
 	return kameli_audio_columns(
 		array(
-			kameli_audio_service_card( 'ikoni-yritykset.svg', 'Yritystapahtumat', 'Ammattimaiset tekniikkapalvelut konferensseihin, messuille ja yritystilaisuuksiin.', kameli_audio_page_url( 'palvelut/yritykset' ) ),
-			kameli_audio_service_card( 'ikoni-yksityiset.svg', 'Yksityistapahtumat', 'Tee juhlastasi ikimuistoinen parhaalla mahdollisella ääni- ja valokalustolla.', kameli_audio_page_url( 'palvelut/yksityiset' ) ),
+			kameli_audio_service_card( 'ikoni-yritykset.svg', 'Yritystapahtumat', 'Ääniteknikko kokouksiin, seminaareihin, kick-offeihin ja yritysjuhliin – paikalla koko tilaisuuden ajan.', kameli_audio_page_url( 'palvelut/yritykset' ) ),
+			kameli_audio_service_card( 'ikoni-yksityiset.svg', 'Yksityistapahtumat', 'Selkeä äänentoisto häihin, merkkipäiville ja juhliin – puheet kuuluvat ja musiikki soi.', kameli_audio_page_url( 'palvelut/yksityiset' ) ),
 			kameli_audio_service_card( 'ikoni-artistit.svg', 'Bändit & Artistit', 'Live- ja studiotuotannot saman katon alla – demoista valmiisiin julkaisuihin.', kameli_audio_page_url( 'palvelut/artistit' ) ),
 		),
 		array(),
