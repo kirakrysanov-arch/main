@@ -249,6 +249,106 @@ foreach ( array( 'created_product_cat', 'edited_product_cat', 'delete_product_ca
 	add_action( $palitra_hook, 'palitra_flush_menu_cache' );
 }
 
+/* -------------------------------------------------------------------------
+ * Brand sync: WooCommerce's CSV importer does not fill the built-in
+ * "Бренды" (product_brand) list, so we copy each product's «Бренд»
+ * attribute into it. Runs in the admin, after imports and on save.
+ * ---------------------------------------------------------------------- */
+
+function palitra_brand_attribute_taxonomy() {
+	if ( ! function_exists( 'wc_get_attribute_taxonomies' ) ) {
+		return '';
+	}
+	foreach ( wc_get_attribute_taxonomies() as $attr ) {
+		$label = function_exists( 'mb_strtolower' ) ? mb_strtolower( $attr->attribute_label ) : strtolower( $attr->attribute_label );
+		if ( in_array( $label, array( 'бренд', 'brand', 'производитель' ), true ) ) {
+			return wc_attribute_taxonomy_name( $attr->attribute_name );
+		}
+	}
+	return '';
+}
+
+function palitra_sync_product_brand( $product_id ) {
+	if ( ! taxonomy_exists( 'product_brand' ) ) {
+		return false;
+	}
+	$tax = palitra_brand_attribute_taxonomy();
+	if ( ! $tax || ! taxonomy_exists( $tax ) ) {
+		return false;
+	}
+	$current = wp_get_object_terms( $product_id, 'product_brand', array( 'fields' => 'ids' ) );
+	if ( ! is_wp_error( $current ) && ! empty( $current ) ) {
+		return false; // Already has a brand: never overwrite manual choices.
+	}
+	$names = wp_get_object_terms( $product_id, $tax, array( 'fields' => 'names' ) );
+	if ( is_wp_error( $names ) || empty( $names ) ) {
+		return false;
+	}
+	$ids = array();
+	foreach ( $names as $name ) {
+		$term = term_exists( $name, 'product_brand' );
+		if ( ! $term ) {
+			$term = wp_insert_term( $name, 'product_brand' );
+		}
+		if ( ! is_wp_error( $term ) && $term ) {
+			$ids[] = (int) ( is_array( $term ) ? $term['term_id'] : $term );
+		}
+	}
+	if ( $ids ) {
+		wp_set_object_terms( $product_id, $ids, 'product_brand' );
+		return true;
+	}
+	return false;
+}
+
+function palitra_sync_all_brands() {
+	if ( ! taxonomy_exists( 'product_brand' ) || ! palitra_brand_attribute_taxonomy() ) {
+		return 0;
+	}
+	$ids = get_posts(
+		array(
+			'post_type'      => 'product',
+			'post_status'    => array( 'publish', 'draft', 'pending', 'private' ),
+			'fields'         => 'ids',
+			'posts_per_page' => 500,
+			'no_found_rows'  => true,
+			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+				array(
+					'taxonomy' => 'product_brand',
+					'operator' => 'NOT EXISTS',
+				),
+			),
+		)
+	);
+	$done = 0;
+	foreach ( $ids as $id ) {
+		if ( palitra_sync_product_brand( $id ) ) {
+			$done++;
+		}
+	}
+	if ( $done ) {
+		palitra_flush_menu_cache();
+	}
+	return $done;
+}
+
+/* In the admin at most every 2 minutes, so new imports get brands without any action. */
+add_action( 'admin_init', function () {
+	if ( wp_doing_ajax() || get_transient( 'palitra_brand_sync_lock' ) ) {
+		return;
+	}
+	set_transient( 'palitra_brand_sync_lock', 1, 2 * MINUTE_IN_SECONDS );
+	palitra_sync_all_brands();
+} );
+
+/* Right after each product is imported or saved. */
+add_action( 'woocommerce_product_import_inserted_product_object', function ( $product ) {
+	if ( is_object( $product ) && method_exists( $product, 'get_id' ) ) {
+		palitra_sync_product_brand( $product->get_id() );
+	}
+} );
+add_action( 'woocommerce_update_product', 'palitra_sync_product_brand', 20 );
+
 /** First brand of a product (name + url), or null. */
 function palitra_product_brand( $product_id ) {
 	if ( ! taxonomy_exists( 'product_brand' ) ) {
