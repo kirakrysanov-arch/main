@@ -133,7 +133,7 @@ if ( ! function_exists( 'palitra_get_brands' ) ) {
  */
 if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 	function palitra_get_menu_tree() {
-		$cached = get_transient( 'palitra_menu_tree_v2' );
+		$cached = get_transient( 'palitra_menu_tree_v3' );
 		if ( is_array( $cached ) ) {
 			return $cached;
 		}
@@ -237,6 +237,7 @@ if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 				'count'    => count( $ids ),
 				'children' => $children,
 				'brands'   => $brands,
+				'image'    => palitra_category_image( $top, $ids ),
 				'_order'   => isset( $order[ $top->name ] ) ? $order[ $top->name ] : 100 + count( $tree ),
 			);
 		}
@@ -248,15 +249,67 @@ if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 			}
 		);
 
-		set_transient( 'palitra_menu_tree_v2', $tree, 12 * HOUR_IN_SECONDS );
+		set_transient( 'palitra_menu_tree_v3', $tree, 12 * HOUR_IN_SECONDS );
 		return $tree;
 	}
 }
 
+
+/**
+ * Image for a category card: the category's own thumbnail if set,
+ * otherwise the photo of its most expensive product that has one.
+ */
+function palitra_category_image( $term, $ids ) {
+	$thumb = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
+	if ( $thumb ) {
+		$url = wp_get_attachment_image_url( $thumb, 'woocommerce_thumbnail' );
+		if ( $url ) {
+			return $url;
+		}
+	}
+	if ( empty( $ids ) ) {
+		return '';
+	}
+	$pick = get_posts(
+		array(
+			'post_type'      => 'product',
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
+			'posts_per_page' => 1,
+			'no_found_rows'  => true,
+			'post__in'       => array_map( 'intval', $ids ),
+			'meta_key'       => '_price', // phpcs:ignore WordPress.DB.SlowDBQuery
+			'orderby'        => 'meta_value_num',
+			'order'          => 'DESC',
+			'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+				array(
+					'key'     => '_thumbnail_id',
+					'compare' => 'EXISTS',
+				),
+			),
+		)
+	);
+	if ( empty( $pick ) ) {
+		return '';
+	}
+	$url = get_the_post_thumbnail_url( $pick[0], 'woocommerce_thumbnail' );
+	return $url ? $url : '';
+}
+
 function palitra_flush_menu_cache() {
-	delete_transient( 'palitra_menu_tree_v2' );
+	delete_transient( 'palitra_menu_tree_v3' );
 }
 add_action( 'save_post_product', 'palitra_flush_menu_cache' );
+add_action( 'updated_post_meta', function ( $mid, $post_id, $key ) {
+	if ( '_thumbnail_id' === $key && 'product' === get_post_type( $post_id ) ) {
+		palitra_flush_menu_cache();
+	}
+}, 10, 3 );
+add_action( 'added_post_meta', function ( $mid, $post_id, $key ) {
+	if ( '_thumbnail_id' === $key && 'product' === get_post_type( $post_id ) ) {
+		palitra_flush_menu_cache();
+	}
+}, 10, 3 );
 add_action( 'deleted_post', 'palitra_flush_menu_cache' );
 add_action( 'woocommerce_product_import_inserted_product_object', 'palitra_flush_menu_cache' );
 foreach ( array( 'created_product_cat', 'edited_product_cat', 'delete_product_cat', 'created_product_brand', 'edited_product_brand', 'delete_product_brand' ) as $palitra_hook ) {

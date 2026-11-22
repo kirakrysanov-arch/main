@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.3.0
+Version:      2.4.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -450,6 +450,13 @@ table th, table td { background: #fff !important; }
 .pl-cat:hover { background: #efede8; color: var(--ink); }
 .pl-cat__art { height: 64px; display: flex; align-items: flex-end; margin-bottom: 18px; }
 .pl-cat__svg { height: 100%; width: auto; }
+.pl-cat.has-photo { padding: 0 0 16px; overflow: hidden; }
+.pl-cat.has-photo .pl-cat__art { height: auto; aspect-ratio: 1 / 1; margin: 0 0 14px; display: block; background: var(--soft); }
+.pl-cat.has-photo .pl-cat__art img { width: 100%; height: 100%; object-fit: contain; padding: 10%; box-sizing: border-box; mix-blend-mode: multiply; transition: transform .3s ease; }
+.pl-cat.has-photo:hover .pl-cat__art img { transform: scale(1.04); }
+.pl-cat.has-photo .pl-cat__name, .pl-cat.has-photo .pl-cat__count { padding: 0 16px; }
+.pl-cat:not(.has-photo) .pl-cat__art { aspect-ratio: 1 / 1; height: auto; align-items: center; justify-content: center; margin: -20px -18px 14px; }
+.pl-cat:not(.has-photo) .pl-cat__svg { height: 46%; }
 .pl-cat__name { font-weight: 600; font-size: 15.5px; line-height: 1.25; }
 .pl-cat__count { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 
@@ -555,7 +562,7 @@ table th, table td { background: #fff !important; }
 	.pl-brand__mono { width: 40px; height: 40px; font-size: 14px; }
 	.pl-brand__name { font-size: 15.5px; }
 	.pl-cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-	.pl-cat__art { height: 48px; margin-bottom: 12px; }
+	.pl-cat:not(.has-photo) .pl-cat__art { margin: -20px -18px 10px; }
 	.pl-about__stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 	.pl-about__stats strong { font-size: 22px; }
 	.pl-footer { grid-template-columns: 1fr 1fr; gap: 28px 20px; }

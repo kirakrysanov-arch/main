@@ -136,12 +136,16 @@ function palitra_home_categories() {
 	palitra_section_head( 'Каталог', palitra_shop_url(), 'Все товары' );
 	echo '<div class="pl-cats">';
 	foreach ( $tree as $c ) {
+		$art = ! empty( $c['image'] )
+			? sprintf( '<img src="%s" alt="%s" loading="lazy" decoding="async">', esc_url( $c['image'] ), esc_attr( $c['name'] ) )
+			: palitra_sticks_svg( palitra_category_colours( $c['name'] ), 'pl-cat__svg' );
 		printf(
-			'<a class="pl-cat" href="%1$s"><span class="pl-cat__art">%2$s</span><span class="pl-cat__name">%3$s</span><span class="pl-cat__count">%4$s</span></a>',
+			'<a class="pl-cat%5$s" href="%1$s"><span class="pl-cat__art">%2$s</span><span class="pl-cat__name">%3$s</span><span class="pl-cat__count">%4$s</span></a>',
 			esc_url( $c['url'] ),
-			palitra_sticks_svg( palitra_category_colours( $c['name'] ), 'pl-cat__svg' ), // phpcs:ignore
+			$art, // phpcs:ignore
 			esc_html( $c['name'] ),
-			esc_html( palitra_count_label( $c['count'] ) )
+			esc_html( palitra_count_label( $c['count'] ) ),
+			! empty( $c['image'] ) ? ' has-photo' : ''
 		);
 	}
 	echo '</div></section>';
