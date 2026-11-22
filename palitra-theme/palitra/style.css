@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.4.0
+Version:      2.5.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -29,7 +29,7 @@ Text Domain:  palitra
 	--muted: #6f6f6f;
 	--line: #e7e5e1;
 	--soft: #f6f5f2;
-	--accent: #b4532a;
+	--accent: #642128;
 	--radius: 10px;
 	--max: 1320px;
 	--font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -60,7 +60,7 @@ a { color: var(--ink); text-decoration: none; }
 a:hover, a:focus { color: var(--accent); }
 .entry-content a, .term-description a { text-decoration: underline; text-underline-offset: 2px; }
 hr { background: var(--line); }
-::selection { background: #f2d0a4; color: var(--ink); }
+::selection { background: #ecd6d9; color: var(--ink); }
 
 /* ===== Buttons & fields ===== */
 button, input[type="button"], input[type="reset"], input[type="submit"],
@@ -102,7 +102,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--ink); outline: n
 .pl-topbar { background: var(--ink); color: #d9d9d9; font-size: 12.5px; }
 .pl-topbar__inner { display: flex; justify-content: center; align-items: center; gap: 14px; min-height: 34px; }
 .pl-topbar a { color: #fff; font-weight: 600; }
-.pl-topbar a:hover { color: #f2d0a4; }
+.pl-topbar a:hover { color: #e9c7cb; }
 .pl-topbar__sep { width: 3px; height: 3px; border-radius: 50%; background: #777; }
 
 /* ===== Header ===== */
@@ -120,13 +120,16 @@ input:focus, textarea:focus, select:focus { border-color: var(--ink); outline: n
 	grid-template-columns: auto minmax(0, 1fr) auto;
 	align-items: center;
 	gap: 32px;
-	padding-top: 18px !important;
+	padding-top: 12px !important;
 	padding-bottom: 18px;
 }
 .pl-burger { display: none; }
 .pl-logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
 .pl-logo:hover { color: var(--ink); }
 .pl-logo__svg { height: 30px; width: auto; display: block; }
+.pl-logo__img { display: block; height: 76px; width: auto; }
+.pl-logo__img--sm { height: 52px; }
+.pl-footer__logo { height: 84px; margin-bottom: 14px; }
 .pl-logo__text { font-size: 22px; font-weight: 700; letter-spacing: -.03em; color: var(--ink); margin: 0; }
 
 .pl-search { position: relative; max-width: 640px; width: 100%; justify-self: center; margin: 0; }
@@ -530,6 +533,7 @@ table th, table td { background: #fff !important; }
 	}
 	.pl-logo { justify-self: start; }
 	.pl-logo__svg { height: 24px; }
+	.pl-logo__img { height: 54px; }
 	.pl-logo__text { font-size: 19px; }
 	.pl-search { grid-column: 1 / -1; grid-row: 2; max-width: none; }
 	.pl-search input[type="search"] { height: 44px; }

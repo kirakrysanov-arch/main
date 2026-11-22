@@ -347,7 +347,7 @@ function palitra_footer() {
 	?>
 	<div class="pl-footer">
 		<div class="pl-footer__brand">
-			<p class="pl-logo__text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></p>
+			<img class="pl-logo__img pl-footer__logo" src="<?php echo esc_url( palitra_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="82" height="86">
 			<p>Материалы для рисования и живописи: пастель, масляные и акварельные краски, гуашь, бумага.</p>
 		</div>
 		<div>

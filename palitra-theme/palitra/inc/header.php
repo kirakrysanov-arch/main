@@ -42,6 +42,17 @@ function palitra_topbar() {
 	<?php
 }
 
+function palitra_logo_url() {
+	return get_stylesheet_directory_uri() . '/assets/logo.svg';
+}
+
+/* Browser-tab icon from the logo, unless a Site Icon is set in the Customizer. */
+add_action( 'wp_head', function () {
+	if ( ! has_site_icon() ) {
+		printf( '<link rel="icon" type="image/svg+xml" href="%s">' . "\n", esc_url( palitra_logo_url() ) );
+	}
+}, 3 );
+
 function palitra_cart_link_html() {
 	if ( ! function_exists( 'WC' ) || ! function_exists( 'wc_get_cart_url' ) ) {
 		return '';
@@ -75,8 +86,7 @@ function palitra_header() {
 			<button type="button" class="pl-burger" aria-controls="pl-drawer" aria-expanded="false" aria-label="Открыть меню"><?php echo palitra_icon( 'menu' ); // phpcs:ignore ?></button>
 
 			<a class="pl-logo" href="<?php echo esc_url( $home ); ?>" rel="home">
-				<span class="pl-logo__mark" aria-hidden="true"><?php echo palitra_sticks_svg( array( '#e8b4b8', '#f2d0a4', '#a8c69f', '#9db4d6' ), 'pl-logo__svg' ); // phpcs:ignore ?></span>
-				<span class="pl-logo__text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
+				<img class="pl-logo__img" src="<?php echo esc_url( palitra_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="82" height="86">
 			</a>
 
 			<form class="pl-search" role="search" method="get" action="<?php echo esc_url( $home ); ?>">
@@ -155,7 +165,7 @@ function palitra_header() {
 	<div id="pl-drawer" class="pl-drawer" hidden>
 		<div class="pl-drawer__panel" role="dialog" aria-modal="true" aria-label="Меню">
 			<div class="pl-drawer__head">
-				<span class="pl-logo__text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span>
+				<img class="pl-logo__img pl-logo__img--sm" src="<?php echo esc_url( palitra_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" width="82" height="86">
 				<button type="button" class="pl-drawer__close" aria-label="Закрыть меню"><?php echo palitra_icon( 'close' ); // phpcs:ignore ?></button>
 			</div>
 			<?php if ( $brands ) : ?>
