@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PALITRA_VERSION', '2.7.0' );
+define( 'PALITRA_VERSION', '2.7.1' );
 define( 'PALITRA_OZON_URL', 'https://ozon.ru/s/palitra-3140957' );
 define( 'PALITRA_VK_URL', 'https://vk.com/palitra_hobby_art' );
 define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );

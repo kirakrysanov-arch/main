@@ -18,6 +18,10 @@ add_action( 'init', function () {
 	remove_action( 'homepage', 'storefront_popular_products', 50 );
 	remove_action( 'homepage', 'storefront_on_sale_products', 60 );
 	remove_action( 'homepage', 'storefront_best_selling_products', 70 );
+	// Storefront's own "Shop by Brand" block (WooCommerce Brands) duplicates «Покупайте по брендам».
+	remove_action( 'homepage', 'storefront_woocommerce_brands_homepage_section', 80 );
+	// …and its brand line on product pages duplicates the theme's brand link.
+	remove_action( 'woocommerce_single_product_summary', 'storefront_woocommerce_brands_single', 4 );
 } );
 
 add_filter( 'storefront_recent_products_args', function ( $args ) {
