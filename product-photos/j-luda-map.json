@@ -1,0 +1,23 @@
+{
+ "J. Luda Blue 12": {
+  "name": "Пастель J. Luda Blue 12 цветов",
+  "src": "J. Luda Blue 12",
+  "images": [
+   "https://www.jludacolors.com/wp-content/uploads/2021/10/Blue12-1-scaled.jpg"
+  ]
+ },
+ "J. Luda Midnight 12": {
+  "name": "Пастель J. Luda Midnight 12 цветов",
+  "src": "J. Luda Midnight 12",
+  "images": [
+   "https://www.jludacolors.com/wp-content/uploads/2024/02/midnight12-1-scaled.jpg"
+  ]
+ },
+ "Пастель J. Luda Dark 12": {
+  "name": "Пастель J. Luda Dark 12 цветов",
+  "src": "J. Luda Dark 12",
+  "images": [
+   "https://www.jludacolors.com/wp-content/uploads/2022/11/dark12-scaled.jpg"
+  ]
+ }
+}
