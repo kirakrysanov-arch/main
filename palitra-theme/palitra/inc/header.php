@@ -148,8 +148,10 @@ function palitra_header() {
 											</ul>
 										</div>
 									<?php endif; ?>
-									<a class="pl-mega__promo" href="<?php echo esc_url( $cat['url'] ); ?>">
-										<?php echo palitra_sticks_svg( palitra_category_colours( $cat['name'] ), 'pl-mega__art' ); // phpcs:ignore ?>
+									<a class="pl-mega__promo<?php echo empty( $cat['image'] ) ? ' no-photo' : ''; ?>" href="<?php echo esc_url( $cat['url'] ); ?>">
+										<?php if ( ! empty( $cat['image'] ) ) : ?>
+											<img class="pl-mega__img" src="<?php echo esc_url( $cat['image'] ); ?>" alt="" loading="lazy">
+										<?php endif; ?>
 										<span><?php echo esc_html( $cat['name'] ); ?></span>
 										<small><?php echo esc_html( palitra_count_label( $cat['count'] ) ); ?> <?php echo palitra_icon( 'arrow' ); // phpcs:ignore ?></small>
 									</a>

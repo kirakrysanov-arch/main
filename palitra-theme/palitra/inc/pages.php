@@ -27,6 +27,66 @@ add_filter( 'storefront_recent_products_args', function ( $args ) {
 	return $args;
 } );
 
+/**
+ * Hero photo: Customizer choice, else the largest photo of a Unison Colour
+ * pastel set, else of any pastel product. Never a drawing.
+ */
+function palitra_hero_image() {
+	static $cache = null;
+	if ( null !== $cache ) {
+		return $cache;
+	}
+	$cache = false;
+	$id    = (int) get_theme_mod( 'palitra_hero_image' );
+	if ( $id ) {
+		$src = wp_get_attachment_image_url( $id, 'full' );
+		if ( $src ) {
+			$cache = array( 'src' => $src, 'link' => palitra_shop_url() );
+			return $cache;
+		}
+	}
+	$queries = array();
+	if ( taxonomy_exists( 'product_brand' ) ) {
+		$queries[] = array( array( 'taxonomy' => 'product_brand', 'field' => 'name', 'terms' => 'Unison Colour' ) );
+	}
+	$queries[] = array( array( 'taxonomy' => 'product_cat', 'field' => 'name', 'terms' => 'Пастель', 'include_children' => true ) );
+	foreach ( $queries as $tax ) {
+		$ids = get_posts(
+			array(
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'fields'         => 'ids',
+				'posts_per_page' => 1,
+				'no_found_rows'  => true,
+				'tax_query'      => $tax, // phpcs:ignore WordPress.DB.SlowDBQuery
+				'meta_key'       => '_price', // phpcs:ignore WordPress.DB.SlowDBQuery
+				'orderby'        => 'meta_value_num',
+				'order'          => 'DESC',
+				'meta_query'     => array( array( 'key' => '_thumbnail_id', 'compare' => 'EXISTS' ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
+			)
+		);
+		if ( $ids ) {
+			$src = get_the_post_thumbnail_url( $ids[0], 'large' );
+			if ( $src ) {
+				$cache = array( 'src' => $src, 'link' => get_permalink( $ids[0] ) );
+				return $cache;
+			}
+		}
+	}
+	return $cache;
+}
+
+/* Customizer: choose the home page banner photo. */
+add_action( 'customize_register', function ( $wp_customize ) {
+	$wp_customize->add_section( 'palitra_home', array( 'title' => 'Главная страница (Палитра)', 'priority' => 30 ) );
+	$wp_customize->add_setting( 'palitra_hero_image', array( 'sanitize_callback' => 'absint' ) );
+	$wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'palitra_hero_image', array(
+		'label'     => 'Фото в баннере',
+		'section'   => 'palitra_home',
+		'mime_type' => 'image',
+	) ) );
+} );
+
 add_action( 'homepage', 'palitra_home_hero', 5 );
 function palitra_home_hero() {
 	$tree   = palitra_get_menu_tree();
@@ -47,9 +107,12 @@ function palitra_home_hero() {
 				<a class="button pl-button-ghost" href="<?php echo esc_url( palitra_brands_page_url() ); ?>">Все бренды</a>
 			</div>
 		</div>
-		<div class="pl-hero__art" aria-hidden="true">
-			<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/hero.svg' ); ?>" alt="" width="640" height="520">
-		</div>
+		<?php $hero = palitra_hero_image(); ?>
+		<?php if ( $hero ) : ?>
+			<a class="pl-hero__art" href="<?php echo esc_url( $hero['link'] ); ?>" tabindex="-1" aria-hidden="true">
+				<img src="<?php echo esc_url( $hero['src'] ); ?>" alt="" loading="eager" fetchpriority="high">
+			</a>
+		<?php endif; ?>
 	</section>
 	<?php
 }
@@ -138,14 +201,14 @@ function palitra_home_categories() {
 	foreach ( $tree as $c ) {
 		$art = ! empty( $c['image'] )
 			? sprintf( '<img src="%s" alt="%s" loading="lazy" decoding="async">', esc_url( $c['image'] ), esc_attr( $c['name'] ) )
-			: palitra_sticks_svg( palitra_category_colours( $c['name'] ), 'pl-cat__svg' );
+			: '<span class="pl-cat__word" aria-hidden="true">' . esc_html( $c['name'] ) . '</span>';
 		printf(
 			'<a class="pl-cat%5$s" href="%1$s"><span class="pl-cat__art">%2$s</span><span class="pl-cat__name">%3$s</span><span class="pl-cat__count">%4$s</span></a>',
 			esc_url( $c['url'] ),
 			$art, // phpcs:ignore
 			esc_html( $c['name'] ),
 			esc_html( palitra_count_label( $c['count'] ) ),
-			! empty( $c['image'] ) ? ' has-photo' : ''
+			! empty( $c['image'] ) ? ' has-photo' : ' no-photo'
 		);
 	}
 	echo '</div></section>';

@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.5.0
+Version:      2.6.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -217,7 +217,8 @@ input:focus, textarea:focus, select:focus { border-color: var(--ink); outline: n
 	background: var(--soft); border-radius: var(--radius); padding: 22px; min-height: 190px; color: var(--ink);
 }
 .pl-mega__promo:hover { color: var(--ink); background: #efede8; }
-.pl-mega__art { height: 72px; width: auto; margin-bottom: auto; align-self: flex-start; }
+.pl-mega__img { width: 100%; height: 130px; object-fit: contain; mix-blend-mode: multiply; margin-bottom: auto; }
+.pl-mega__promo.no-photo { justify-content: flex-end; }
 .pl-mega__promo span { font-weight: 600; font-size: 17px; margin-top: 16px; }
 .pl-mega__promo small { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-size: 13px; }
 .pl-mega__promo small .pl-icon { width: 14px; height: 14px; }
@@ -411,8 +412,10 @@ table th, table td { background: #fff !important; }
 .pl-hero__lead { font-size: 16.5px; color: var(--text); max-width: 32em; margin: 0 0 28px; }
 .pl-hero__actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .pl-hero__actions .button { padding: 1em 1.6em; font-size: 15px; }
-.pl-hero__art { position: relative; min-height: 260px; }
-.pl-hero__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+.pl-hero__art { position: relative; min-height: 260px; display: block; background: transparent; }
+.pl-hero__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.pl-hero--text { grid-template-columns: 1fr; min-height: 0; }
+.pl-hero--text .pl-hero__text { max-width: 760px; }
 
 .pl-usp ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); }
 .pl-usp li { display: flex; gap: 14px; align-items: center; padding: 20px 22px; }
@@ -451,15 +454,17 @@ table th, table td { background: #fff !important; }
 	transition: background .15s ease;
 }
 .pl-cat:hover { background: #efede8; color: var(--ink); }
-.pl-cat__art { height: 64px; display: flex; align-items: flex-end; margin-bottom: 18px; }
-.pl-cat__svg { height: 100%; width: auto; }
 .pl-cat.has-photo { padding: 0 0 16px; overflow: hidden; }
 .pl-cat.has-photo .pl-cat__art { height: auto; aspect-ratio: 1 / 1; margin: 0 0 14px; display: block; background: var(--soft); }
 .pl-cat.has-photo .pl-cat__art img { width: 100%; height: 100%; object-fit: contain; padding: 10%; box-sizing: border-box; mix-blend-mode: multiply; transition: transform .3s ease; }
 .pl-cat.has-photo:hover .pl-cat__art img { transform: scale(1.04); }
 .pl-cat.has-photo .pl-cat__name, .pl-cat.has-photo .pl-cat__count { padding: 0 16px; }
-.pl-cat:not(.has-photo) .pl-cat__art { aspect-ratio: 1 / 1; height: auto; align-items: center; justify-content: center; margin: -20px -18px 14px; }
-.pl-cat:not(.has-photo) .pl-cat__svg { height: 46%; }
+.pl-cat.no-photo { padding: 0 0 16px; overflow: hidden; }
+.pl-cat.no-photo .pl-cat__art { aspect-ratio: 1 / 1; height: auto; margin: 0 0 14px; display: flex; align-items: flex-end; padding: 18px; box-sizing: border-box; }
+.pl-cat__word { font-size: 21px; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; color: var(--ink); }
+.pl-cat.no-photo .pl-cat__name { display: none; }
+.pl-cat.no-photo .pl-cat__art { background: #ecebe6; }
+.pl-cat.no-photo .pl-cat__name, .pl-cat.no-photo .pl-cat__count { padding: 0 16px; }
 .pl-cat__name { font-weight: 600; font-size: 15.5px; line-height: 1.25; }
 .pl-cat__count { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
 
@@ -566,7 +571,7 @@ table th, table td { background: #fff !important; }
 	.pl-brand__mono { width: 40px; height: 40px; font-size: 14px; }
 	.pl-brand__name { font-size: 15.5px; }
 	.pl-cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-	.pl-cat:not(.has-photo) .pl-cat__art { margin: -20px -18px 10px; }
+	.pl-cat__word { font-size: 17px; }
 	.pl-about__stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
 	.pl-about__stats strong { font-size: 22px; }
 	.pl-footer { grid-template-columns: 1fr 1fr; gap: 28px 20px; }

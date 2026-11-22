@@ -432,35 +432,6 @@ function palitra_product_brand( $product_id ) {
 	);
 }
 
-/** Small inline art: a row of pastel sticks. */
-function palitra_sticks_svg( array $colours, $class = '' ) {
-	$n   = count( $colours );
-	$w   = 22;
-	$gap = 7;
-	$vw  = $n * $w + ( $n - 1 ) * $gap;
-	$out = sprintf( '<svg class="%s" viewBox="0 0 %d 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">', esc_attr( $class ), $vw );
-	foreach ( $colours as $i => $c ) {
-		$x    = $i * ( $w + $gap );
-		$y    = ( $i % 2 ) ? 12 : 2;
-		$out .= sprintf( '<rect x="%d" y="%d" width="%d" height="%d" rx="6" fill="%s"/>', $x, $y, $w, 98 - $y, esc_attr( $c ) );
-		$out .= sprintf( '<rect x="%d" y="%d" width="%d" height="18" fill="#fff" opacity=".28"/>', $x, $y + 34, $w );
-	}
-	return $out . '</svg>';
-}
-
-function palitra_category_colours( $name ) {
-	$map = array(
-		'Пастель'           => array( '#e8b4b8', '#f2d0a4', '#a8c69f', '#9db4d6', '#c3a6d8' ),
-		'Масляные краски'   => array( '#7a2e2e', '#c8962e', '#2f4f3a', '#24364f', '#d9cbb3' ),
-		'Акварель'          => array( '#8fc1d4', '#b9d7a6', '#f4c7a1', '#e6a5b9', '#a9a4d6' ),
-		'Гуашь'             => array( '#e2574c', '#f3b23e', '#3e8e6c', '#2f62a7', '#ece6da' ),
-		'Акриловые краски'  => array( '#ff6f59', '#ffd23f', '#3bceac', '#4062bb', '#ee4266' ),
-		'Бумага'            => array( '#efe5cf', '#e3d5b8', '#d8c6a5', '#c9b089', '#eadfca' ),
-		'Карандаши и кисти' => array( '#3b3b3b', '#6b6b6b', '#a0743c', '#c49a6c', '#2b2b2b' ),
-	);
-	return isset( $map[ $name ] ) ? $map[ $name ] : array( '#d9d4ca', '#c9c2b4', '#b8b0a0', '#a89f8d', '#e5e0d8' );
-}
-
 /** Simple line icons used in the header and USP strip. */
 function palitra_icon( $name ) {
 	$paths = array(
