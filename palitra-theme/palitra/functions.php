@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PALITRA_VERSION', '2.2.0' );
+define( 'PALITRA_VERSION', '2.3.0' );
 define( 'PALITRA_OZON_URL', 'https://ozon.ru/s/palitra-3140957' );
 define( 'PALITRA_VK_URL', 'https://vk.com/palitra_hobby_art' );
 define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );
@@ -15,6 +15,7 @@ define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );
 require_once __DIR__ . '/inc/data.php';
 require_once __DIR__ . '/inc/header.php';
 require_once __DIR__ . '/inc/pages.php';
+require_once __DIR__ . '/inc/seo.php';
 
 /* -------------------------------------------------------------------------
  * Assets

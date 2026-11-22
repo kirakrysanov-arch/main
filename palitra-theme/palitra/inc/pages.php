@@ -95,12 +95,13 @@ function palitra_brand_card( $b ) {
 		$mark = '<span class="pl-brand__mono" aria-hidden="true">' . esc_html( $init ) . '</span>';
 	}
 	return sprintf(
-		'<a class="pl-brand" href="%1$s"><span class="pl-brand__logo">%5$s</span><span class="pl-brand__name">%2$s</span><span class="pl-brand__meta">%3$s%4$s</span></a>',
+		'<a class="pl-brand" href="%1$s"><span class="pl-brand__logo">%5$s</span><span class="pl-brand__name">%2$s</span>%6$s<span class="pl-brand__meta">%3$s%4$s</span></a>',
 		esc_url( $b['url'] ),
 		esc_html( $b['name'] ),
 		$b['country'] ? esc_html( $b['country'] ) . ' · ' : '',
 		esc_html( palitra_count_label( $b['count'] ) ),
-		$mark // phpcs:ignore WordPress.Security.EscapeOutput -- built above with escaping.
+		$mark, // phpcs:ignore WordPress.Security.EscapeOutput -- built above with escaping.
+		( function_exists( 'palitra_brand_ru_info' ) && ( $ru = palitra_brand_ru_info( $b['name'] ) ) ) ? '<span class="pl-brand__ru">' . esc_html( $ru[0] ) . '</span>' : ''
 	);
 }
 

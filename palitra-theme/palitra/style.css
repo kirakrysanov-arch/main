@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.2.0
+Version:      2.3.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -438,6 +438,7 @@ table th, table td { background: #fff !important; }
 .pl-brand__mono { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--soft); color: var(--muted); font-weight: 700; font-size: 17px; letter-spacing: .02em; }
 .pl-brand { justify-content: flex-start; gap: 10px; }
 .pl-brand__meta { margin-top: auto; }
+.pl-brand__ru { font-size: 13px; color: var(--muted); margin-top: -6px; }
 .pl-brand__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1.2; }
 .pl-brand__meta { font-size: 12.5px; color: var(--muted); }
 
@@ -459,6 +460,10 @@ table th, table td { background: #fff !important; }
 .pl-about__stats div { background: var(--soft); border-radius: var(--radius); padding: 20px 16px; }
 .pl-about__stats strong { display: block; font-size: 28px; font-weight: 700; letter-spacing: -.03em; color: var(--ink); }
 .pl-about__stats span { font-size: 13px; color: var(--muted); }
+
+.pl-title-ru { display: block; font-size: .45em; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 4px; }
+.pl-intro { max-width: 52em; color: var(--text); font-size: 14.5px; margin: 6px 0 4px; }
+.pl-intro p { margin: 0; }
 
 /* ===== Brands A–Z page ===== */
 .pl-page-brands .entry-header { margin-bottom: 8px; }
