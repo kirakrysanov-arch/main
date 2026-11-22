@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.1.0
+Version:      2.2.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -429,10 +429,15 @@ table th, table td { background: #fff !important; }
 .pl-brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
 .pl-brand {
 	display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
-	border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 18px; min-height: 108px; background: #fff;
+	border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 18px; min-height: 150px; background: #fff;
 	transition: border-color .15s ease, box-shadow .15s ease;
 }
 .pl-brand:hover { border-color: var(--ink); box-shadow: 0 8px 24px -16px rgba(0, 0, 0, .35); color: var(--ink); }
+.pl-brand__logo { display: flex; align-items: center; height: 52px; margin-bottom: 2px; }
+.pl-brand__logo img { max-height: 52px; max-width: 100%; width: auto; height: auto; object-fit: contain; object-position: left center; display: block; }
+.pl-brand__mono { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--soft); color: var(--muted); font-weight: 700; font-size: 17px; letter-spacing: .02em; }
+.pl-brand { justify-content: flex-start; gap: 10px; }
+.pl-brand__meta { margin-top: auto; }
 .pl-brand__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1.2; }
 .pl-brand__meta { font-size: 12.5px; color: var(--muted); }
 
@@ -539,7 +544,10 @@ table th, table td { background: #fff !important; }
 	.pl-usp small { font-size: 12px; }
 	.pl-section__title, .storefront-product-section .section-title { font-size: 21px !important; }
 	.pl-brands-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-	.pl-brand { padding: 14px; min-height: 88px; gap: 10px; }
+	.pl-brand { padding: 14px; min-height: 88px; gap: 8px; }
+	.pl-brand__logo { height: 40px; }
+	.pl-brand__logo img { max-height: 40px; }
+	.pl-brand__mono { width: 40px; height: 40px; font-size: 14px; }
 	.pl-brand__name { font-size: 15.5px; }
 	.pl-cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 	.pl-cat__art { height: 48px; margin-bottom: 12px; }

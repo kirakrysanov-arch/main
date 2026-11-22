@@ -38,6 +38,19 @@ function palitra_brand_country( $name ) {
 	return isset( $map[ $key ] ) ? $map[ $key ] : '';
 }
 
+/** URL of the brand's logo bundled in assets/brands/{slug}.png, or ''. */
+function palitra_brand_logo( $name ) {
+	$slug = function_exists( 'mb_strtolower' ) ? mb_strtolower( trim( $name ) ) : strtolower( trim( $name ) );
+	$slug = str_replace( array( "'", '’', '.' ), '', $slug );
+	$slug = preg_replace( '/[^a-z0-9]+/', '-', $slug );
+	$slug = trim( $slug, '-' );
+	if ( '' === $slug ) {
+		return '';
+	}
+	$file = '/assets/brands/' . $slug . '.png';
+	return file_exists( get_stylesheet_directory() . $file ) ? get_stylesheet_directory_uri() . $file : '';
+}
+
 /** Preferred order of top-level categories in the menu. */
 function palitra_category_order() {
 	return array( 'Пастель', 'Масляные краски', 'Акварель', 'Гуашь', 'Акриловые краски', 'Бумага', 'Карандаши и кисти' );
@@ -100,6 +113,7 @@ if ( ! function_exists( 'palitra_get_brands' ) ) {
 				'url'     => $url,
 				'count'   => (int) $t->count,
 				'country' => palitra_brand_country( $t->name ),
+				'logo'    => palitra_brand_logo( $t->name ),
 			);
 		}
 		usort(
