@@ -8,7 +8,6 @@ Unison Colour	Unison Summer Sparkle	Пастель Unison Mini Summer Sparkle 8 
 Sennelier	Sennelier Discovery	Набор масляной пастели Sennelier Discovery (6 цветов)
 Sennelier	Sennelier Pastel Card Naples Yellow	Бумага для пастели Sennelier 6 листов 30х40 см Naples Yellow
 Michael Harding	Michael Harding Tropical	Набор масляных красок Michael Harding Tropical 6 цветов по 40 мл
-Michael Harding	Michael Harding Ocean Shore	Набор акварельных красок Michael Harding Ocean Shore 6 цветов по 15 мл
 Sennelier	Extra-fine Sennelier Primary	Набор гуаши Extra-fine Sennelier Primary
 Sennelier	Extra-fine Sennelier European Robin	Набор гуаши Extra-fine Sennelier European Robin
 Sennelier	Extra-fine Sennelier Mountain Landscape	Набор гуаши Extra-fine Sennelier Mountain Landscape
@@ -20,8 +19,6 @@ General's	General's Black & White 3шт	Набор карандашей General'
 Sennelier	Sennelier Emerald Sea (6 половинок)	Набор мягкой пастели Sennelier Emerald Sea (6 половинок)
 Sennelier	Sennelier Summer Sky (6 половинок)	Набор мягкой пастели Sennelier Summer Sky (6 половинок)
 Winsor&Newton	Winsor & Newton 6x5ml Foundation	Набор акварельных красок Winsor & Newton 6x5ml Foundation
-Michael Harding	Michael Harding Bricklane 10	Набор масляных красок Michael Harding Bricklane 10 цветов по 40 мл
-Michael Harding	Michael Harding Desert 10	Набор масляных красок Michael Harding Desert 10 цветов по 40 мл
 Schmincke	Schmincke PRIMAcryl professional 8 цветов по 60 мл	Набор акриловых красок Schmincke PRIMAcryl professional 8 цветов по 60 мл
 Schmincke	Schmincke PRIMAcryl professional Fabian Utta 8 цве	Набор акриловых красок Schmincke PRIMAcryl professional Fabian Utta 8 цветов по 60 мл
 Michael Harding	Michael Harding On the Move 6 цветов по 15 мл	Набор акварельных красок Michael Harding On the Move 6 цветов по 15 мл
