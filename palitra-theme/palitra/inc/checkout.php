@@ -39,33 +39,28 @@ add_filter( 'woocommerce_cart_needs_shipping_address', '__return_false' );
 
 add_filter( 'woocommerce_default_address_fields', 'palitra_address_fields', 20 );
 function palitra_address_fields( $fields ) {
-	unset( $fields['company'], $fields['address_1'], $fields['address_2'] );
+	unset( $fields['company'], $fields['address_2'], $fields['state'] );
 
-	$order = array(
-		'first_name' => 10,
-		'last_name'  => 20,
-		'country'    => 40,
-		'city'       => 50,
-		'state'      => 60,
-		'postcode'   => 70,
-	);
-	foreach ( $order as $key => $priority ) {
-		if ( isset( $fields[ $key ] ) ) {
-			$fields[ $key ]['priority'] = $priority;
-		}
+	if ( isset( $fields['country'] ) ) {
+		$fields['country']['priority'] = 40;
 	}
 	if ( isset( $fields['city'] ) ) {
 		$fields['city']['label']       = 'Город';
-		$fields['city']['placeholder'] = 'Например, Москва';
-		$fields['city']['class']       = array( 'form-row-wide' );
-	}
-	unset( $fields['state'] );
-	if ( isset( $fields['city'] ) ) {
-		$fields['city']['class'] = array( 'form-row-first' );
+		$fields['city']['placeholder'] = 'Начните вводить, например: Москва';
+		$fields['city']['class']       = array( 'form-row-first' );
+		$fields['city']['priority']    = 50;
 	}
 	if ( isset( $fields['postcode'] ) ) {
-		$fields['postcode']['label'] = 'Индекс';
-		$fields['postcode']['class'] = array( 'form-row-last' );
+		$fields['postcode']['label']    = 'Индекс';
+		$fields['postcode']['class']    = array( 'form-row-last' );
+		$fields['postcode']['priority'] = 55;
+	}
+	if ( isset( $fields['address_1'] ) ) {
+		$fields['address_1']['label']       = 'Улица, дом, квартира';
+		$fields['address_1']['placeholder'] = 'Например: ул. Ленина, д. 5, кв. 12';
+		$fields['address_1']['class']       = array( 'form-row-wide' );
+		$fields['address_1']['required']    = true;
+		$fields['address_1']['priority']    = 60;
 	}
 	return $fields;
 }
@@ -75,9 +70,10 @@ add_filter( 'woocommerce_get_country_locale', function ( $locale ) {
 	$locale['RU'] = array_merge(
 		isset( $locale['RU'] ) ? $locale['RU'] : array(),
 		array(
-			'city'     => array( 'label' => 'Город', 'priority' => 50 ),
-			'state'    => array( 'required' => false, 'hidden' => true ),
-			'postcode' => array( 'label' => 'Индекс', 'required' => true, 'priority' => 70 ),
+			'city'      => array( 'label' => 'Город', 'priority' => 50 ),
+			'state'     => array( 'required' => false, 'hidden' => true ),
+			'postcode'  => array( 'label' => 'Индекс', 'required' => true, 'priority' => 55 ),
+			'address_1' => array( 'label' => 'Улица, дом, квартира', 'required' => true, 'priority' => 60 ),
 		)
 	);
 	return $locale;
@@ -181,3 +177,35 @@ add_filter( 'woocommerce_cart_ready_to_calc_shipping', function ( $ready ) {
 add_action( 'woocommerce_cart_totals_before_order_total', function () {
 	echo '<tr class="pl-cart-delivery"><th>Доставка</th><td data-title="Доставка"><strong>Бесплатно</strong><br><small>Пункт выдачи Ozon выберете при оформлении заказа</small></td></tr>';
 } );
+
+/* -------------------------------------------------------------------------
+ * 5. Typing suggestions (DaData): city, street + house (fills the postcode),
+ *    first name, surname, email. Needs a free DaData API key:
+ *    Внешний вид → Настроить → «Подсказки при оформлении (DaData)».
+ * ---------------------------------------------------------------------- */
+
+add_action( 'customize_register', function ( $wp_customize ) {
+	$wp_customize->add_section( 'palitra_dadata', array(
+		'title'       => 'Подсказки при оформлении (DaData)',
+		'priority'    => 161,
+		'description' => 'Подсказки города, улицы и дома, индекса, имени и email при оформлении заказа. Зарегистрируйтесь на dadata.ru (бесплатно до 10 000 подсказок в день) и вставьте «API-ключ» из личного кабинета. Секретный ключ НЕ нужен.',
+	) );
+	$wp_customize->add_setting( 'palitra_dadata_key', array( 'sanitize_callback' => 'sanitize_text_field' ) );
+	$wp_customize->add_control( 'palitra_dadata_key', array(
+		'label'   => 'API-ключ DaData',
+		'section' => 'palitra_dadata',
+		'type'    => 'text',
+	) );
+} );
+
+add_action( 'wp_enqueue_scripts', function () {
+	if ( ! function_exists( 'is_checkout' ) || ! is_checkout() || is_order_received_page() ) {
+		return;
+	}
+	$key = trim( (string) get_theme_mod( 'palitra_dadata_key', '' ) );
+	if ( '' === $key ) {
+		return;
+	}
+	wp_enqueue_script( 'palitra-suggest', get_stylesheet_directory_uri() . '/assets/js/checkout-suggest.js', array( 'jquery' ), PALITRA_VERSION, true );
+	wp_localize_script( 'palitra-suggest', 'palitraSuggest', array( 'token' => $key ) );
+}, 40 );
