@@ -65,11 +65,13 @@ function palitra_new_product_ids( $limit = 8 ) {
 			'orderby'        => 'date',
 			'order'          => 'DESC',
 			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+				'relation' => 'AND',
 				array(
 					'taxonomy' => 'product_tag',
 					'field'    => 'term_id',
 					'terms'    => (int) $t->term_id,
 				),
+				palitra_visibility_clause(),
 			),
 		)
 	);

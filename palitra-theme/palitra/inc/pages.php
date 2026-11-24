@@ -62,7 +62,7 @@ function palitra_hero_image() {
 				'fields'         => 'ids',
 				'posts_per_page' => 1,
 				'no_found_rows'  => true,
-				'tax_query'      => $tax, // phpcs:ignore WordPress.DB.SlowDBQuery
+				'tax_query'      => array_merge( array( 'relation' => 'AND' ), $tax, array( palitra_visibility_clause() ) ), // phpcs:ignore WordPress.DB.SlowDBQuery
 				'meta_key'       => '_price', // phpcs:ignore WordPress.DB.SlowDBQuery
 				'orderby'        => 'meta_value_num',
 				'order'          => 'DESC',
@@ -333,7 +333,7 @@ function palitra_archive_chips() {
 		if ( $country ) {
 			echo '<span>' . esc_html( $country ) . '</span>';
 		}
-		echo '<span>' . esc_html( palitra_count_label( (int) $term->count ) ) . '</span>';
+		echo '<span>' . esc_html( palitra_count_label( (int) ( palitra_brand_counts()[ $term->slug ] ?? 0 ) ) ) . '</span>';
 		echo '<a href="' . esc_url( palitra_brands_page_url() ) . '">Все бренды</a>';
 		echo '</p>';
 

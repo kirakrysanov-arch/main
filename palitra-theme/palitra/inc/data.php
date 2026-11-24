@@ -51,6 +51,66 @@ function palitra_brand_logo( $name ) {
 	return file_exists( get_stylesheet_directory() . $file ) ? get_stylesheet_directory_uri() . $file : '';
 }
 
+/* -------------------------------------------------------------------------
+ * Catalog visibility: follow WooCommerce «Скрывать отсутствующие товары».
+ * ---------------------------------------------------------------------- */
+
+function palitra_hide_out_of_stock() {
+	return 'yes' === get_option( 'woocommerce_hide_out_of_stock_items' );
+}
+
+/** tax_query clause that removes hidden products (and out-of-stock ones when WooCommerce hides them). */
+function palitra_visibility_clause() {
+	$terms = array( 'exclude-from-catalog' );
+	if ( palitra_hide_out_of_stock() ) {
+		$terms[] = 'outofstock';
+	}
+	return array(
+		'taxonomy' => 'product_visibility',
+		'field'    => 'name',
+		'terms'    => $terms,
+		'operator' => 'NOT IN',
+	);
+}
+
+/** IDs of all products a customer can see in the catalog. */
+function palitra_visible_product_ids() {
+	static $ids = null;
+	if ( null === $ids ) {
+		$ids = get_posts(
+			array(
+				'post_type'      => 'product',
+				'post_status'    => 'publish',
+				'fields'         => 'ids',
+				'posts_per_page' => -1,
+				'no_found_rows'  => true,
+				'tax_query'      => array( palitra_visibility_clause() ), // phpcs:ignore WordPress.DB.SlowDBQuery
+			)
+		);
+	}
+	return $ids;
+}
+
+/** Brand slug => number of visible products. */
+function palitra_brand_counts() {
+	$cached = get_transient( 'palitra_brand_counts_v1' );
+	if ( is_array( $cached ) ) {
+		return $cached;
+	}
+	$counts = array();
+	$ids    = palitra_visible_product_ids();
+	if ( $ids && taxonomy_exists( 'product_brand' ) ) {
+		$rel = wp_get_object_terms( $ids, 'product_brand', array( 'fields' => 'all_with_object_id' ) );
+		if ( ! is_wp_error( $rel ) ) {
+			foreach ( $rel as $t ) {
+				$counts[ $t->slug ] = ( $counts[ $t->slug ] ?? 0 ) + 1;
+			}
+		}
+	}
+	set_transient( 'palitra_brand_counts_v1', $counts, 12 * HOUR_IN_SECONDS );
+	return $counts;
+}
+
 /** Preferred order of top-level categories in the menu. */
 function palitra_category_order() {
 	return array( 'Пастель', 'Масляные краски', 'Акварель', 'Гуашь', 'Акриловые краски', 'Бумага', 'Карандаши и кисти' );
@@ -101,17 +161,18 @@ if ( ! function_exists( 'palitra_get_brands' ) ) {
 		if ( is_wp_error( $terms ) ) {
 			return array();
 		}
-		$out = array();
+		$out    = array();
+		$counts = palitra_brand_counts();
 		foreach ( $terms as $t ) {
 			$url = get_term_link( $t );
-			if ( is_wp_error( $url ) ) {
-				continue;
+			if ( is_wp_error( $url ) || empty( $counts[ $t->slug ] ) ) {
+				continue; // no products a customer can see
 			}
 			$out[] = array(
 				'name'    => $t->name,
 				'slug'    => $t->slug,
 				'url'     => $url,
-				'count'   => (int) $t->count,
+				'count'   => (int) $counts[ $t->slug ],
 				'country' => palitra_brand_country( $t->name ),
 				'logo'    => palitra_brand_logo( $t->name ),
 			);
@@ -133,7 +194,7 @@ if ( ! function_exists( 'palitra_get_brands' ) ) {
  */
 if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 	function palitra_get_menu_tree() {
-		$cached = get_transient( 'palitra_menu_tree_v3' );
+		$cached = get_transient( 'palitra_menu_tree_v4' );
 		if ( is_array( $cached ) ) {
 			return $cached;
 		}
@@ -170,17 +231,27 @@ if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 					'posts_per_page' => -1,
 					'no_found_rows'  => true,
 					'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery
+						'relation' => 'AND',
 						array(
 							'taxonomy'         => 'product_cat',
 							'field'            => 'term_id',
 							'terms'            => $top->term_id,
 							'include_children' => true,
 						),
+						palitra_visibility_clause(),
 					),
 				)
 			);
 			if ( empty( $ids ) ) {
 				continue;
+			}
+			// Visible products per sub-category.
+			$child_counts = array();
+			$crel         = wp_get_object_terms( $ids, 'product_cat', array( 'fields' => 'all_with_object_id' ) );
+			if ( ! is_wp_error( $crel ) ) {
+				foreach ( $crel as $ct ) {
+					$child_counts[ $ct->term_id ] = ( $child_counts[ $ct->term_id ] ?? 0 ) + 1;
+				}
 			}
 
 			$children = array();
@@ -194,12 +265,12 @@ if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 			if ( ! is_wp_error( $kids ) ) {
 				foreach ( $kids as $k ) {
 					$kurl = get_term_link( $k );
-					if ( ! is_wp_error( $kurl ) ) {
+					if ( ! is_wp_error( $kurl ) && ! empty( $child_counts[ $k->term_id ] ) ) {
 						$children[] = array(
 							'name'  => $k->name,
 							'slug'  => $k->slug,
 							'url'   => $kurl,
-							'count' => (int) $k->count,
+							'count' => (int) $child_counts[ $k->term_id ],
 						);
 					}
 				}
@@ -249,7 +320,7 @@ if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 			}
 		);
 
-		set_transient( 'palitra_menu_tree_v3', $tree, 12 * HOUR_IN_SECONDS );
+		set_transient( 'palitra_menu_tree_v4', $tree, 12 * HOUR_IN_SECONDS );
 		return $tree;
 	}
 }
@@ -287,6 +358,7 @@ function palitra_category_image( $term, $ids ) {
 					'compare' => 'EXISTS',
 				),
 			),
+			'tax_query'      => array( palitra_visibility_clause() ), // phpcs:ignore WordPress.DB.SlowDBQuery
 		)
 	);
 	if ( empty( $pick ) ) {
@@ -297,8 +369,13 @@ function palitra_category_image( $term, $ids ) {
 }
 
 function palitra_flush_menu_cache() {
-	delete_transient( 'palitra_menu_tree_v3' );
+	delete_transient( 'palitra_menu_tree_v4' );
+	delete_transient( 'palitra_brand_counts_v1' );
 }
+/* Out of stock / back in stock (incl. the Ozon sync) and the WooCommerce hide setting. */
+add_action( 'woocommerce_product_set_stock_status', 'palitra_flush_menu_cache' );
+add_action( 'woocommerce_variation_set_stock_status', 'palitra_flush_menu_cache' );
+add_action( 'update_option_woocommerce_hide_out_of_stock_items', 'palitra_flush_menu_cache' );
 add_action( 'save_post_product', 'palitra_flush_menu_cache' );
 add_action( 'updated_post_meta', function ( $mid, $post_id, $key ) {
 	if ( '_thumbnail_id' === $key && 'product' === get_post_type( $post_id ) ) {
