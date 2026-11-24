@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Палитра — синхронизация остатков с Ozon
  * Description:       Синхронизирует остатки товаров между WooCommerce и складом FBS на Ozon. Товары сопоставляются по артикулу (SKU на сайте = артикул на Ozon). Цены не меняются.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Палитра
@@ -381,8 +381,34 @@ final class Palitra_Ozon_Sync {
 		if ( $old['dry_run'] && ! $new['dry_run'] ) {
 			self::log( 'info', 'Тестовый режим выключен — синхронизация работает по-настоящему.' );
 		}
-		wp_safe_redirect( admin_url( 'admin.php?page=palitra-ozon-sync&saved=1' ) );
+		$then = sanitize_key( $in['then'] ?? '' );
+		$arg  = '';
+		if ( 'test' === $then ) {
+			$arg = self::run_connection_test();
+		} elseif ( 'pull' === $then ) {
+			delete_transient( 'pos_pull_lock' );
+			self::pull( true );
+			$arg = 'pulled';
+		}
+		wp_safe_redirect( admin_url( 'admin.php?page=palitra-ozon-sync&saved=1' . ( $arg ? '&done=' . $arg : '' ) ) );
 		exit;
+	}
+
+	/** @return string 'ok' | 'fail' */
+	private static function run_connection_test() {
+		$s = self::settings();
+		if ( ! $s['client_id'] || ! $s['api_key'] ) {
+			self::log( 'error', 'Проверка подключения: Client-Id или API-ключ не заполнены.' );
+			return 'fail';
+		}
+		$w = self::warehouses();
+		if ( is_wp_error( $w ) ) {
+			self::log( 'error', 'Проверка подключения: ' . $w->get_error_message() );
+			return 'fail';
+		}
+		set_transient( 'pos_warehouses', $w, DAY_IN_SECONDS );
+		self::log( 'info', 'Подключение к Ozon работает. Складов: ' . count( $w ) . ( $w ? ' (' . implode( ', ', wp_list_pluck( $w, 'name' ) ) . ')' : '' ) . '.' );
+		return 'ok';
 	}
 
 	public static function handle_action() {
@@ -393,15 +419,7 @@ final class Palitra_Ozon_Sync {
 		$do  = sanitize_key( $_POST['do'] ?? '' ); // phpcs:ignore WordPress.Security.NonceVerification
 		$arg = '';
 		if ( 'test' === $do ) {
-			$w = self::warehouses();
-			if ( is_wp_error( $w ) ) {
-				self::log( 'error', 'Проверка подключения: ' . $w->get_error_message() );
-				$arg = 'fail';
-			} else {
-				set_transient( 'pos_warehouses', $w, HOUR_IN_SECONDS );
-				self::log( 'info', 'Подключение к Ozon работает. Складов: ' . count( $w ) . '.' );
-				$arg = 'ok';
-			}
+			$arg = self::run_connection_test();
 		} elseif ( 'pull' === $do ) {
 			delete_transient( 'pos_pull_lock' );
 			self::pull( true );
@@ -461,7 +479,7 @@ final class Palitra_Ozon_Sync {
 					<tr>
 						<th scope="row"><label for="pos_key">API-ключ</label></th>
 						<td><input id="pos_key" name="api_key" type="password" class="regular-text" value="" placeholder="<?php echo $s['api_key'] ? '•••••••• (сохранён — оставьте пустым, чтобы не менять)' : ''; ?>" autocomplete="new-password">
-						<p class="description">Нужен ключ с правами на товары и остатки.</p></td>
+						<p class="description"><?php echo $s['api_key'] ? '✅ Ключ сохранён.' : '❌ Ключ ещё не сохранён.'; ?> Нужен ключ с правами на товары и остатки.</p></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="pos_wh">Склад FBS</label></th>
@@ -500,19 +518,11 @@ final class Palitra_Ozon_Sync {
 						<td><label><input type="checkbox" name="dry_run" value="1" <?php checked( $s['dry_run'] ); ?>> Только журнал, ничего не менять</label></td>
 					</tr>
 				</table>
-				<?php submit_button( 'Сохранить' ); ?>
-			</form>
-
-			<h2>Действия</h2>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline-block;margin-right:8px">
-				<input type="hidden" name="action" value="pos_action"><input type="hidden" name="do" value="test">
-				<?php wp_nonce_field( 'pos_action' ); ?>
-				<?php submit_button( 'Проверить подключение', 'secondary', 'submit', false ); ?>
-			</form>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline-block;margin-right:8px">
-				<input type="hidden" name="action" value="pos_action"><input type="hidden" name="do" value="pull">
-				<?php wp_nonce_field( 'pos_action' ); ?>
-				<?php submit_button( 'Синхронизировать сейчас (Ozon → сайт)', 'primary', 'submit', false ); ?>
+				<p class="submit">
+					<button type="submit" name="then" value="" class="button button-primary">Сохранить</button>
+					<button type="submit" name="then" value="test" class="button">Сохранить и проверить подключение</button>
+					<button type="submit" name="then" value="pull" class="button">Сохранить и синхронизировать сейчас (Ozon → сайт)</button>
+				</p>
 			</form>
 			<p>Последняя синхронизация: <strong><?php echo esc_html( $fmt( $last ) ); ?></strong> · Следующая: <strong><?php echo esc_html( $fmt( $next ) ); ?></strong></p>
 
