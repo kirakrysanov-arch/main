@@ -231,7 +231,13 @@
 			},
 			pick: function ( s, input ) {
 				var d = s.data || {};
+				if ( d.geo_lat && d.geo_lon ) {
+					window.palitraGeo = { lat: +d.geo_lat, lng: +d.geo_lon, address: input.value };
+				}
 				input.value = s.value + ( d.house ? '' : ', ' );
+				if ( window.palitraGeo ) {
+					window.palitraGeo.address = input.value;
+				}
 				changed( input );
 				if ( d.postal_code ) {
 					setValue( postcode, d.postal_code );
@@ -280,6 +286,29 @@
 			}
 		} );
 	}
+
+	/**
+	 * Coordinates of the customer's address (used by the pickup-point map).
+	 * Resolves { lat, lng } or rejects.
+	 */
+	window.palitraLocate = function () {
+		var city = ( $( 'billing_city' ) || {} ).value || '';
+		var street = ( $( 'billing_address_1' ) || {} ).value || '';
+		if ( ! street.trim() ) {
+			return Promise.reject( new Error( 'no street' ) );
+		}
+		var g = window.palitraGeo;
+		if ( g && g.address === street ) {
+			return Promise.resolve( g );
+		}
+		return request( 'address', { query: city + ', ' + street, count: 1, locations: [ { country_iso_code: 'RU' } ] } ).then( function ( res ) {
+			var d = res[ 0 ] && res[ 0 ].data;
+			if ( d && d.geo_lat && d.geo_lon ) {
+				return { lat: +d.geo_lat, lng: +d.geo_lon };
+			}
+			throw new Error( 'no coordinates' );
+		} );
+	};
 
 	if ( document.readyState === 'loading' ) {
 		document.addEventListener( 'DOMContentLoaded', init );
