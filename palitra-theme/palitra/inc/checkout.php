@@ -59,10 +59,9 @@ function palitra_address_fields( $fields ) {
 		$fields['city']['placeholder'] = 'Например, Москва';
 		$fields['city']['class']       = array( 'form-row-wide' );
 	}
-	if ( isset( $fields['state'] ) ) {
-		$fields['state']['label']    = 'Область / край';
-		$fields['state']['required'] = false;
-		$fields['state']['class']    = array( 'form-row-first' );
+	unset( $fields['state'] );
+	if ( isset( $fields['city'] ) ) {
+		$fields['city']['class'] = array( 'form-row-first' );
 	}
 	if ( isset( $fields['postcode'] ) ) {
 		$fields['postcode']['label'] = 'Индекс';
@@ -77,7 +76,7 @@ add_filter( 'woocommerce_get_country_locale', function ( $locale ) {
 		isset( $locale['RU'] ) ? $locale['RU'] : array(),
 		array(
 			'city'     => array( 'label' => 'Город', 'priority' => 50 ),
-			'state'    => array( 'label' => 'Область / край', 'required' => false, 'priority' => 60 ),
+			'state'    => array( 'required' => false, 'hidden' => true ),
 			'postcode' => array( 'label' => 'Индекс', 'required' => true, 'priority' => 70 ),
 		)
 	);
@@ -90,13 +89,11 @@ function palitra_billing_fields( $fields ) {
 		$fields['billing_phone']['required']    = true;
 		$fields['billing_phone']['label']       = 'Телефон';
 		$fields['billing_phone']['placeholder'] = '+7 900 000-00-00';
-		$fields['billing_phone']['description'] = 'Пришлём SMS, когда заказ прибудет в пункт выдачи Ozon.';
 		$fields['billing_phone']['priority']    = 25;
 		$fields['billing_phone']['class']       = array( 'form-row-first' );
 	}
 	if ( isset( $fields['billing_email'] ) ) {
 		$fields['billing_email']['label']       = 'Email';
-		$fields['billing_email']['description'] = 'Для чека и статуса заказа.';
 		$fields['billing_email']['priority']    = 26;
 		$fields['billing_email']['class']       = array( 'form-row-last' );
 	}
@@ -106,13 +103,8 @@ function palitra_billing_fields( $fields ) {
 	return $fields;
 }
 
-add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
-	if ( isset( $fields['order']['order_comments'] ) ) {
-		$fields['order']['order_comments']['label']       = 'Комментарий к заказу';
-		$fields['order']['order_comments']['placeholder'] = 'Необязательно';
-	}
-	return $fields;
-}, 20 );
+/* No order comments field. */
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
 /* Headings in Russian shop wording. */
 add_filter( 'gettext', function ( $translation, $text, $domain ) {
@@ -122,7 +114,7 @@ add_filter( 'gettext', function ( $translation, $text, $domain ) {
 	switch ( $text ) {
 		case 'Billing details':
 		case 'Billing &amp; Shipping':
-			return 'Получатель';
+			return 'Контакты и доставка';
 		case 'Additional information':
 			return 'Комментарий';
 		case 'Your order':
@@ -137,18 +129,23 @@ add_filter( 'woocommerce_order_button_text', function () {
 	return 'Перейти к оплате';
 } );
 
-/* Step labels above the sections. */
-add_action( 'woocommerce_checkout_before_customer_details', function () {
-	echo '<p class="pl-checkout-steps"><span>1. Получатель</span><span>2. Пункт выдачи Ozon</span><span>3. Оплата</span></p>';
+/* Nothing extra on the page: no coupon box, no long privacy paragraph,
+   no separate "terms" checkbox (acceptance is stated next to the button). */
+add_action( 'wp', function () {
+	if ( ! function_exists( 'is_checkout' ) || ! is_checkout() ) {
+		return;
+	}
+	remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+	remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
+	remove_action( 'storefront_before_content', 'woocommerce_breadcrumb', 10 );
 } );
+add_filter( 'woocommerce_checkout_show_terms', '__return_false' );
 
-/* Reassurance under the order button. */
-add_action( 'woocommerce_review_order_after_submit', function () {
-	echo '<ul class="pl-checkout-trust">'
-		. '<li>' . palitra_icon( 'truck' ) . '<span>Бесплатная доставка Ozon в пункт выдачи</span></li>' // phpcs:ignore
-		. '<li>' . palitra_icon( 'shield' ) . '<span>Безопасная оплата через Ozon Pay, чек на email</span></li>' // phpcs:ignore
-		. '</ul>';
-} );
+add_action( 'woocommerce_review_order_before_submit', function () {
+	$offer = get_page_by_path( 'oferta', OBJECT, 'page' );
+	$link  = $offer ? '<a href="' . esc_url( get_permalink( $offer ) ) . '" target="_blank" rel="noopener">публичной оферты</a>' : 'публичной оферты';
+	echo '<p class="pl-checkout-note">Нажимая «Перейти к оплате», вы принимаете условия ' . $link . '. Доставка — бесплатно, в выбранный пункт выдачи Ozon.</p>'; // phpcs:ignore
+}, 20 );
 
 /* -------------------------------------------------------------------------
  * 3. Full-width cart & checkout (no catalogue sidebar).

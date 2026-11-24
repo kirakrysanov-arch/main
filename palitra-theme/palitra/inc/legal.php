@@ -296,7 +296,7 @@ add_action( 'woocommerce_review_order_before_submit', function () {
 	$url = $p ? get_permalink( $p ) : '';
 	echo '<p class="form-row validate-required" style="margin-bottom:12px"><label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">';
 	echo '<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="palitra_pd_consent" value="1"> ';
-	echo '<span>' . esc_html( palitra_consent_label() ) . ( $url ? ' (<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">согласие</a>)' : '' ) . '</span> <abbr class="required" title="обязательно">*</abbr>';
+	echo '<span>Я даю ' . ( $url ? '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">согласие на обработку персональных данных</a>' : 'согласие на обработку персональных данных' ) . '</span> <abbr class="required" title="обязательно">*</abbr>';
 	echo '</label></p>';
 } );
 add_action( 'woocommerce_checkout_process', function () {

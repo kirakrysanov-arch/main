@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Golos Text встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      3.0.0
+Version:      3.1.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -833,3 +833,42 @@ ul.products li.product .button:hover { background: var(--accent) !important; bor
 	.page-template-template-homepage .site-main > * { margin-bottom: 52px; }
 	.single-product div.product .product_title { font-size: 1.7em; }
 }
+
+/* ===== Checkout, minimal (3.1) ===== */
+.pl-checkout-page .entry-header { margin: 18px 0 22px; }
+.pl-checkout-page .entry-title { font-size: 2.2em; }
+form.checkout #customer_details .woocommerce-billing-fields { border: 0; padding: 0; background: transparent; margin: 0; }
+form.checkout #customer_details h3 { font-size: 1.25em; margin-bottom: 18px; }
+form.checkout .woocommerce-additional-fields { display: none; }
+@media (min-width: 900px) {
+	form.checkout { grid-template-columns: minmax(0, 560px) 440px; justify-content: space-between; column-gap: 64px; }
+}
+.woocommerce form .form-row label { font-size: 14px; color: #555; font-weight: 400; }
+.woocommerce form .form-row .required { display: none; }
+.woocommerce form .form-row input.input-text { padding: 14px 16px; font-size: 16px; border-color: #dcd9d3; }
+.woocommerce form .form-row { margin-bottom: 16px; }
+
+form.checkout #order_review { padding: 28px; border-radius: 12px; }
+form.checkout #order_review::before { font-size: 1.25em; margin-bottom: 8px; }
+.woocommerce-checkout-review-order-table tr { padding: 12px 0; }
+.woocommerce-checkout-review-order-table th,
+.woocommerce-checkout-review-order-table td { font-size: 15px; font-weight: 400; color: var(--ink); }
+.woocommerce-checkout-review-order-table tr.woocommerce-shipping-totals th { color: #555; font-size: 14px; }
+.woocommerce-checkout-review-order-table tr.order-total th,
+.woocommerce-checkout-review-order-table tr.order-total td { font-size: 20px; }
+
+/* One payment method: a quiet single line, no box, no description */
+#payment .payment_methods { margin: 4px 0 14px !important; }
+#payment .payment_methods > li { background: transparent !important; border: 0; padding: 0 !important; }
+#payment .payment_methods li .payment_box { display: none !important; }
+#payment .payment_methods > li > label { font-weight: 500; font-size: 15px; }
+#payment .form-row.validate-required { font-size: 14px; line-height: 1.45; margin-bottom: 10px; }
+#payment .form-row.validate-required a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+#payment input[type="checkbox"] { accent-color: var(--accent); width: 17px; height: 17px; vertical-align: -3px; margin-right: 6px; }
+.pl-checkout-note { font-size: 12.5px; line-height: 1.5; color: var(--muted); margin: 0 0 14px; }
+.pl-checkout-note a { color: var(--muted); text-decoration: underline; }
+#place_order { margin-top: 4px; }
+.pl-checkout-steps, .pl-checkout-trust { display: none; }
+.pl-checkout-page .hentry { margin-bottom: 0; padding-bottom: 0; }
+.pl-checkout-page .entry-header { margin: 28px 0 28px; padding: 0; text-align: left; }
+.pl-checkout-page .entry-content > .woocommerce > .woocommerce-notices-wrapper:empty { display: none; }
