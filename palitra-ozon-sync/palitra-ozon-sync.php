@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Палитра — синхронизация остатков с Ozon
  * Description:       Синхронизирует остатки товаров между WooCommerce и складом FBS на Ozon. Товары сопоставляются по артикулу (SKU на сайте = артикул на Ozon). Цены не меняются.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Палитра
@@ -144,12 +144,32 @@ final class Palitra_Ozon_Sync {
 		return 'HTTP ' . $r[0] . ( $msg ? ': ' . $msg : '' );
 	}
 
+	/**
+	 * Warehouse list. Tries the current and the older API version and accepts either
+	 * response shape; logs Ozon's raw answer when nothing usable comes back.
+	 */
 	public static function warehouses() {
-		$r = self::api( '/v1/warehouse/list', array() );
-		if ( is_wp_error( $r ) || 200 !== $r[0] ) {
-			return new WP_Error( 'pos_api', self::api_error_text( $r ) );
+		$errors = array();
+		foreach ( array( array( '/v2/warehouse/list', array( 'limit' => 200 ) ), array( '/v1/warehouse/list', array() ) ) as $try ) {
+			$r = self::api( $try[0], $try[1] );
+			if ( is_wp_error( $r ) ) {
+				return new WP_Error( 'pos_api', $r->get_error_message() );
+			}
+			if ( 401 === $r[0] || 403 === $r[0] ) {
+				return new WP_Error( 'pos_api', self::api_error_text( $r ) . ' — проверьте Client-Id, API-ключ и права ключа.' );
+			}
+			if ( 200 !== $r[0] ) {
+				$errors[] = $try[0] . ': ' . self::api_error_text( $r );
+				continue;
+			}
+			$list = POS_Logic::parse_warehouses( $r[1] );
+			if ( $list ) {
+				return $list;
+			}
+			$raw      = wp_json_encode( $r[1] );
+			$errors[] = $try[0] . ': складов не найдено, ответ Ozon: ' . ( function_exists( 'mb_substr' ) ? mb_substr( $raw, 0, 300 ) : substr( $raw, 0, 300 ) );
 		}
-		return POS_Logic::parse_warehouses( $r[1] );
+		return new WP_Error( 'pos_api', implode( ' | ', $errors ) );
 	}
 
 	/** All FBS stock on Ozon: offer_id => available (present − reserved). */

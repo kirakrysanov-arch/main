@@ -87,14 +87,32 @@ final class POS_Logic {
 
 	/** /v1/warehouse/list → [['id' => int, 'name' => string]] */
 	public static function parse_warehouses( $data ) {
-		$out = array();
-		foreach ( (array) ( $data['result'] ?? array() ) as $w ) {
-			if ( isset( $w['warehouse_id'] ) ) {
-				$out[] = array(
-					'id'   => (string) $w['warehouse_id'],
-					'name' => (string) ( $w['name'] ?? ( 'Склад ' . $w['warehouse_id'] ) ),
-				);
+		$list = array();
+		if ( is_array( $data ) ) {
+			// v1: {result: [...]}; v2: {warehouses: [...]} or {result: {warehouses: [...]}} or {items: [...]}
+			foreach ( array( 'result', 'warehouses', 'items' ) as $k ) {
+				if ( isset( $data[ $k ] ) && is_array( $data[ $k ] ) ) {
+					$list = $data[ $k ];
+					break;
+				}
 			}
+			if ( isset( $list['warehouses'] ) && is_array( $list['warehouses'] ) ) {
+				$list = $list['warehouses'];
+			}
+		}
+		$out = array();
+		foreach ( $list as $w ) {
+			if ( ! is_array( $w ) ) {
+				continue;
+			}
+			$id = $w['warehouse_id'] ?? ( $w['id'] ?? null );
+			if ( null === $id || '' === (string) $id ) {
+				continue;
+			}
+			$out[] = array(
+				'id'   => (string) $id,
+				'name' => (string) ( $w['name'] ?? ( $w['warehouse_name'] ?? ( 'Склад ' . $id ) ) ),
+			);
 		}
 		return $out;
 	}

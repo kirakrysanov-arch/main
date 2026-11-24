@@ -44,5 +44,8 @@ check( 'push C not updated', $res['C']['ok'] . '|' . $res['C']['error'], '|не 
 // warehouses
 check( 'warehouses', POS_Logic::parse_warehouses( array( 'result' => array( array( 'warehouse_id' => 1020000123, 'name' => 'Склад Москва FBS' ), array( 'name' => 'no id' ) ) ) ), array( array( 'id' => '1020000123', 'name' => 'Склад Москва FBS' ) ) );
 
+check( 'warehouses v2 shape', POS_Logic::parse_warehouses( array( 'warehouses' => array( array( 'warehouse_id' => 5, 'name' => 'A' ) ) ) ), array( array( 'id' => '5', 'name' => 'A' ) ) );
+check( 'warehouses nested', POS_Logic::parse_warehouses( array( 'result' => array( 'warehouses' => array( array( 'id' => 6, 'warehouse_name' => 'B' ) ) ) ) ), array( array( 'id' => '6', 'name' => 'B' ) ) );
+check( 'warehouses empty', POS_Logic::parse_warehouses( array( 'result' => array() ) ), array() );
 echo $fail ? "\n$fail FAILED\n" : "\nall passed\n";
 exit( $fail ? 1 : 0 );
