@@ -164,3 +164,20 @@ add_filter( 'body_class', function ( $classes ) {
 	}
 	return $classes;
 } );
+
+/* -------------------------------------------------------------------------
+ * 4. Cart: no address / delivery calculator — the address and the pickup
+ *    point are entered once, at checkout. The cart just says delivery is free.
+ * ---------------------------------------------------------------------- */
+
+add_filter( 'pre_option_woocommerce_enable_shipping_calc', function () {
+	return 'no';
+} );
+
+add_filter( 'woocommerce_cart_ready_to_calc_shipping', function ( $ready ) {
+	return ( function_exists( 'is_cart' ) && is_cart() ) ? false : $ready;
+} );
+
+add_action( 'woocommerce_cart_totals_before_order_total', function () {
+	echo '<tr class="pl-cart-delivery"><th>Доставка</th><td data-title="Доставка"><strong>Бесплатно</strong><br><small>Пункт выдачи Ozon выберете при оформлении заказа</small></td></tr>';
+} );
