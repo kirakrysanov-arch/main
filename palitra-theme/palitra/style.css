@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.10.0
+Version:      2.11.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -315,7 +315,7 @@ ul.products::before, ul.products::after { display: none !important; content: non
 }
 ul.products li.product a.woocommerce-LoopProduct-link { display: flex; flex-direction: column; flex: 1; color: var(--ink); }
 ul.products li.product img {
-	aspect-ratio: 1 / 1; object-fit: contain; width: 100%;
+	aspect-ratio: 1 / 1; object-fit: contain; object-position: center; width: 100%; height: auto;
 	background: var(--soft); border-radius: var(--radius); padding: 8%; box-sizing: border-box;
 	mix-blend-mode: multiply; margin: 0 0 14px; box-shadow: none;
 	transition: opacity .2s ease;

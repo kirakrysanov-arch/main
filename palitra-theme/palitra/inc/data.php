@@ -333,7 +333,7 @@ if ( ! function_exists( 'palitra_get_menu_tree' ) ) {
 function palitra_category_image( $term, $ids ) {
 	$thumb = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
 	if ( $thumb ) {
-		$url = wp_get_attachment_image_url( $thumb, 'woocommerce_thumbnail' );
+		$url = wp_get_attachment_image_url( $thumb, 'woocommerce_single' );
 		if ( $url ) {
 			return $url;
 		}
@@ -364,7 +364,7 @@ function palitra_category_image( $term, $ids ) {
 	if ( empty( $pick ) ) {
 		return '';
 	}
-	$url = get_the_post_thumbnail_url( $pick[0], 'woocommerce_thumbnail' );
+	$url = get_the_post_thumbnail_url( $pick[0], 'woocommerce_single' );
 	return $url ? $url : '';
 }
 

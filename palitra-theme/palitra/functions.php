@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PALITRA_VERSION', '2.10.0' );
+define( 'PALITRA_VERSION', '2.11.0' );
 define( 'PALITRA_OZON_URL', 'https://ozon.ru/s/palitra-3140957' );
 define( 'PALITRA_VK_URL', 'https://vk.com/palitra_hobby_art' );
 define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );
@@ -148,6 +148,12 @@ add_filter( 'storefront_related_products_args', function ( $args ) {
 	$args['posts_per_page'] = 4;
 	$args['columns']        = 4;
 	return $args;
+} );
+
+/* Product cards use the uncropped image size, so wide or tall photos are never cut —
+   the card shows the whole photo inside its square tile (object-fit: contain). */
+add_filter( 'single_product_archive_thumbnail_size', function () {
+	return 'woocommerce_single';
 } );
 
 add_filter( 'woocommerce_placeholder_img_src', function () {
