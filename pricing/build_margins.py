@@ -87,17 +87,22 @@ def main(report_path):
         if it['cost']:
             it['ozon_profit'] = it['ozon_keep'] - it['cost']
             it['site_profit'] = it['site_keep'] - it['cost']
-            it['site_margin'] = it['site_profit'] / it['site']
+            # costs per sale = purchase cost + channel fees (site: acquiring + tax; Ozon: all marketplace fees + tax)
+            it['site_costs'] = it['cost'] + (it['site'] - it['site_keep'])
+            it['ozon_costs'] = it['cost'] + (it['ozon'] - it['ozon_keep'])
+            it['site_margin'] = it['site_profit'] / it['site_costs']
+            it['ozon_margin'] = it['ozon_profit'] / it['ozon_costs']
         else:
-            it['ozon_profit'] = it['site_profit'] = it['site_margin'] = None
+            it['ozon_profit'] = it['site_profit'] = it['site_margin'] = it['ozon_margin'] = None
+            it['site_costs'] = it['ozon_costs'] = None
 
     # ---- workbook
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = 'Цены и маржа'
     head = ['Себестоимость, ₽', 'Источник себестоимости', 'Категория', 'Линейка', 'Товар', 'Артикул',
-            'Цена Ozon, ₽', 'Остаётся с Ozon, ₽', 'Прибыль Ozon, ₽', 'Данные Ozon',
-            'Цена на сайте, ₽', 'Остаётся с сайта, ₽', 'Прибыль сайт, ₽', 'Маржа сайт, %', 'Сайт vs Ozon, ₽']
+            'Цена Ozon, ₽', 'Остаётся с Ozon, ₽', 'Прибыль Ozon, ₽', 'Маржа Ozon, % к затратам', 'Данные Ozon',
+            'Цена на сайте, ₽', 'Затраты сайт (себест. + эквайринг + налог), ₽', 'Прибыль сайт, ₽', 'Маржа сайт, % к затратам', 'Сайт vs Ozon, ₽']
     ws.append(head)
     for c in ws[1]:
         c.font = Font(bold=True)
@@ -107,19 +112,20 @@ def main(report_path):
     for it in items:
         diff = (it['site_profit'] - it['ozon_profit']) if it['cost'] else None
         ws.append([it['cost'], it['cost_src'], it['category'], it['line'], it['name'], it['sku'],
-                   it['ozon'], it['ozon_keep'], it['ozon_profit'], it['ozon_src'],
-                   it['site'], it['site_keep'], it['site_profit'], it['site_margin'], diff])
+                   it['ozon'], it['ozon_keep'], it['ozon_profit'], it['ozon_margin'], it['ozon_src'],
+                   it['site'], it['site_costs'], it['site_profit'], it['site_margin'], diff])
         r = ws.max_row
-        ws.cell(r, 14).number_format = '0%'
-        for col in (1, 7, 8, 9, 11, 12, 13, 15):
+        for col in (10, 15):
+            ws.cell(r, col).number_format = '0%'
+        for col in (1, 7, 8, 9, 12, 13, 14, 16):
             ws.cell(r, col).number_format = '# ##0'
         if it['cost_src'] != 'отчёт Ozon':
             ws.cell(r, 1).fill = est
             ws.cell(r, 2).fill = est
         if it['site_margin'] is not None and it['site_margin'] < 0.2:
-            for col in (13, 14):
+            for col in (14, 15):
                 ws.cell(r, col).fill = warn
-    widths = [14, 24, 24, 34, 70, 34, 12, 14, 13, 18, 13, 14, 13, 11, 13]
+    widths = [14, 24, 24, 34, 70, 34, 12, 14, 13, 13, 18, 13, 18, 13, 13, 13]
     for i, w in enumerate(widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = w
     ws.freeze_panes = 'C2'
@@ -127,7 +133,7 @@ def main(report_path):
 
     # summary per line
     s = wb.create_sheet('Сводка по линейкам')
-    s.append(['Линейка', 'Товаров', 'Себестоимость, ₽', 'Цена Ozon, ₽', 'Прибыль Ozon, ₽', 'Цена сайт, ₽', 'Прибыль сайт, ₽', 'Маржа сайт, %'])
+    s.append(['Линейка', 'Товаров', 'Себестоимость, ₽', 'Цена Ozon, ₽', 'Прибыль Ozon, ₽', 'Маржа Ozon, % к затратам', 'Цена сайт, ₽', 'Прибыль сайт, ₽', 'Маржа сайт, % к затратам'])
     for c in s[1]:
         c.font = Font(bold=True)
     L = collections.OrderedDict()
@@ -141,12 +147,16 @@ def main(report_path):
                 return '—'
             f = lambda x: f'{int(round(x)):,}'.replace(',', ' ')
             return f(v[0]) if len(v) == 1 else f'{f(v[0])} – {f(v[-1])}'
-        m = [it['site_margin'] for it in its if it['site_margin'] is not None]
-        mtxt = '—' if not m else (f'{round(min(m)*100)}%' if round(min(m)*100) == round(max(m)*100) else f'{round(min(m)*100)}–{round(max(m)*100)}%')
-        row = [line, len(its), rng('cost'), rng('ozon'), rng('ozon_profit'), rng('site'), rng('site_profit'), mtxt]
+        def pct(key):
+            m = [it[key] for it in its if it[key] is not None]
+            if not m:
+                return '—'
+            a, b = round(min(m) * 100), round(max(m) * 100)
+            return f'{a}%' if a == b else f'{a}–{b}%'
+        row = [line, len(its), rng('cost'), rng('ozon'), rng('ozon_profit'), pct('ozon_margin'), rng('site'), rng('site_profit'), pct('site_margin')]
         s.append(row)
         summary.append(row)
-    for i, w in enumerate([42, 9, 18, 18, 18, 18, 18, 14], 1):
+    for i, w in enumerate([42, 9, 18, 18, 18, 16, 18, 18, 16], 1):
         s.column_dimensions[get_column_letter(i)].width = w
 
     n = wb.create_sheet('Как считали')
@@ -155,7 +165,10 @@ def main(report_path):
         'Если товара нет в отчёте — себестоимость взята у такого же товара той же линейки и цены (жёлтая заливка), иначе «нет данных».',
         'Остаётся с Ozon — сколько вы реально получаете за 1 шт после комиссии, логистики, рекламы, прочих удержаний и налога: по факту продаж за ноябрь, иначе среднее по линейке/магазину.',
         f'Остаётся с сайта — цена на сайте минус эквайринг Ozon Pay {ACQUIRING*100:.1f}% и налог {SITE_TAX*100:.0f}%. Доставка не учтена.',
-        'Прибыль = Остаётся − Себестоимость. Красная заливка — маржа на сайте ниже 20%.',
+        'Прибыль = Остаётся − Себестоимость.',
+        'Маржа, % к затратам = Прибыль ÷ (Себестоимость + эквайринг + налог) для сайта; для Ozon — Прибыль ÷ (Себестоимость + все удержания Ozon и налог).',
+        'Пример: цена 12 000 ₽, себестоимость 6 277 ₽ → затраты 6 277 + 264 + 720 = 7 261 ₽, прибыль 4 739 ₽, маржа 4 739 ÷ 7 261 = 65%.',
+        'Красная заливка — маржа на сайте ниже 20% к затратам.',
     ]:
         n.append([line])
     n.column_dimensions['A'].width = 140
@@ -168,7 +181,7 @@ def main(report_path):
     for row in summary:
         print(' | '.join(str(x) for x in row))
     low = [it for it in items if it['site_margin'] is not None and it['site_margin'] < 0.2]
-    print('low margin on site (<20%):', [(it['name'][:50], round(it['site_margin'] * 100)) for it in low])
+    print('low margin on site (<20% of costs):', [(it['name'][:50], round(it['site_margin'] * 100)) for it in low])
     better = sum(1 for it in items if it['cost'] and it['site_profit'] >= it['ozon_profit'])
     print('site profit >= ozon profit for', better, 'of', sum(1 for it in items if it['cost']))
 
