@@ -124,7 +124,7 @@ function palitra_home_hero() {
 add_action( 'homepage', 'palitra_home_usp', 8 );
 function palitra_home_usp() {
 	$items = array(
-		array( 'truck', 'Доставка Ozon по России', 'В пункты выдачи Ozon' ),
+		array( 'truck', 'Бесплатная доставка', 'В пункты выдачи Ozon по России' ),
 		array( 'shield', 'Оригинальная продукция', 'Напрямую от производителей' ),
 		array( 'spark', 'Новинки каждую неделю', 'Редкие наборы и лимитки' ),
 		array( 'chat', 'Поможем с выбором', 'Подберём материалы под задачу' ),
@@ -378,7 +378,7 @@ add_action( 'woocommerce_single_product_summary', 'palitra_single_notes', 35 );
 function palitra_single_notes() {
 	?>
 	<ul class="pl-single__notes">
-		<li><?php echo palitra_icon( 'truck' ); // phpcs:ignore ?><span>Отправка за 1–2 дня. Доставка Ozon в любой пункт выдачи по России.</span></li>
+		<li><?php echo palitra_icon( 'truck' ); // phpcs:ignore ?><span>Отправка за 1–2 дня. Бесплатная доставка Ozon в любой пункт выдачи по России.</span></li>
 		<li><?php echo palitra_icon( 'shield' ); // phpcs:ignore ?><span>Только оригинальная продукция.</span></li>
 		<?php $ret = get_page_by_path( 'vozvrat' ); ?>
 		<li><?php echo palitra_icon( 'arrow' ); // phpcs:ignore ?><span>Возврат — через Ozon Доставку<?php if ( $ret && 'publish' === $ret->post_status ) : ?>, <a href="<?php echo esc_url( get_permalink( $ret ) ); ?>">условия возврата</a><?php endif; ?>.</span></li>

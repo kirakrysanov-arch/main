@@ -32,7 +32,7 @@ function palitra_topbar() {
 	?>
 	<div class="pl-topbar">
 		<div class="col-full pl-topbar__inner">
-			<span>Доставка по всей России</span>
+			<span>Бесплатная доставка по всей России</span>
 			<span class="pl-topbar__sep" aria-hidden="true"></span>
 			<span class="pl-hide-sm">Только оригинальная продукция</span>
 			<span class="pl-topbar__sep pl-hide-sm" aria-hidden="true"></span>
