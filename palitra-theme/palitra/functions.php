@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PALITRA_VERSION', '2.8.1' );
+define( 'PALITRA_VERSION', '2.9.0' );
 define( 'PALITRA_OZON_URL', 'https://ozon.ru/s/palitra-3140957' );
 define( 'PALITRA_VK_URL', 'https://vk.com/palitra_hobby_art' );
 define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );
@@ -17,6 +17,7 @@ require_once __DIR__ . '/inc/header.php';
 require_once __DIR__ . '/inc/pages.php';
 require_once __DIR__ . '/inc/seo.php';
 require_once __DIR__ . '/inc/new.php';
+require_once __DIR__ . '/inc/legal.php';
 
 /* -------------------------------------------------------------------------
  * Assets
@@ -123,6 +124,9 @@ function palitra_setup() {
 		);
 	}
 
+	if ( function_exists( 'palitra_create_legal_pages' ) ) {
+		palitra_create_legal_pages();
+	}
 	palitra_flush_menu_cache();
 	update_option( 'palitra_setup_version', PALITRA_VERSION );
 }

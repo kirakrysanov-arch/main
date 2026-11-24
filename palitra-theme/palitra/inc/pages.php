@@ -412,7 +412,8 @@ function palitra_footer() {
 		. palitra_page_link( array( 'vozvrat', 'pravila-vozvrata' ), 'Возврат' )
 		. palitra_page_link( array( 'oferta', 'publichnaya-oferta' ), 'Публичная оферта' )
 		. ( $privacy ? sprintf( '<li><a href="%s">Политика конфиденциальности</a></li>', esc_url( $privacy ) ) : '' )
-		. palitra_page_link( array( 'kontakty', 'contacts' ), 'Контакты' );
+		. palitra_page_link( array( 'soglasie-na-obrabotku-personalnyh-dannyh' ), 'Согласие на обработку персональных данных' )
+		. palitra_page_link( array( 'kontakty', 'contacts' ), 'Контакты и реквизиты' );
 	?>
 	<div class="pl-footer">
 		<div class="pl-footer__brand">
