@@ -1,10 +1,10 @@
 /*
 Theme Name:   Палитра
 Theme URI:    https://palitrart.ru/
-Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Inter встроен в тему.
+Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Golos Text встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      2.11.0
+Version:      3.0.0
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -12,15 +12,15 @@ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain:  palitra
 */
 
-/* ===== Font: Inter (SIL Open Font License, assets/fonts/OFL-Inter.txt) ===== */
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/inter-cyrillic-500-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url(assets/fonts/inter-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url(assets/fonts/inter-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/inter-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
-@font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/inter-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
+/* ===== Font: Golos Text (SIL Open Font License, assets/fonts/OFL-GolosText.txt) ===== */
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/golos-text-cyrillic-400-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 400; font-display: swap; src: url(assets/fonts/golos-text-latin-400-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/golos-text-cyrillic-500-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 500; font-display: swap; src: url(assets/fonts/golos-text-latin-500-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 600; font-display: swap; src: url(assets/fonts/golos-text-cyrillic-600-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 600; font-display: swap; src: url(assets/fonts/golos-text-latin-600-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/golos-text-cyrillic-700-normal.woff2) format("woff2"); unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/golos-text-latin-700-normal.woff2) format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2122,U+2212; }
 
 /* ===== Tokens ===== */
 :root {
@@ -32,7 +32,7 @@ Text Domain:  palitra
 	--accent: #642128;
 	--radius: 10px;
 	--max: 1320px;
-	--font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+	--font: "Golos Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 /* ===== Base ===== */
@@ -711,4 +711,125 @@ form.checkout #order_review::before { content: "Ваш заказ"; display: blo
 }
 @media (max-width: 600px) {
 	.woocommerce form .form-row-first, .woocommerce form .form-row-last { float: none; width: 100%; }
+}
+
+/* =====================================================================
+ * Layout 3.0 — larger type, airy white product cards (gallery feel)
+ * ===================================================================== */
+:root { --max: 1400px; --radius: 8px; }
+body { font-size: 16px; line-height: 1.6; letter-spacing: -.003em; }
+.col-full { padding-left: 32px; padding-right: 32px; }
+h1, .page-title, .entry-title, .woocommerce-products-header__title { font-size: 2.5em; font-weight: 700; letter-spacing: -.03em; }
+h2 { letter-spacing: -.025em; }
+
+/* Top bar + header */
+.pl-topbar { font-size: 13.5px; }
+.pl-topbar__inner { min-height: 38px; }
+.pl-header__row { padding-top: 14px !important; padding-bottom: 20px; gap: 40px; }
+.pl-search { max-width: 720px; }
+.pl-search input[type="search"] { height: 52px; font-size: 16px; padding-left: 22px; border-radius: 12px; }
+.pl-search button { top: 6px; right: 6px; height: 40px; width: 44px; }
+.pl-action, .pl-cart { height: 48px; min-width: 48px; }
+.pl-action svg, .pl-cart svg { width: 24px; height: 24px; }
+
+/* Main menu: bigger, spaced, centred like a gallery shop */
+.pl-nav__list { gap: 6px 10px; }
+.pl-nav__link { font-size: 15.5px; padding: 15px 14px; font-weight: 500; }
+.pl-nav__item--brands .pl-nav__link { font-weight: 700; }
+.pl-mega__list li a, .pl-mega__brands li a { font-size: 15.5px; padding: 7px 0; }
+.pl-mega__title { font-size: 12.5px; }
+
+/* Breadcrumb */
+.storefront-breadcrumb { font-size: 14px; padding-top: 22px; margin-bottom: 14px; }
+
+/* Archive header */
+.woocommerce-products-header { padding: 4px 0 8px; }
+.woocommerce-products-header__title.page-title { font-size: 2.6em; margin-bottom: 12px; }
+.term-description { font-size: 16.5px; line-height: 1.65; color: #555; max-width: 52em; }
+.pl-chip { font-size: 14.5px; padding: 8px 16px; }
+.pl-chip small { font-size: 12.5px; }
+.pl-chips__label { font-size: 14px; }
+.storefront-sorting { font-size: 14.5px; margin: 26px 0 32px; padding-bottom: 16px; }
+.woocommerce-ordering select { font-size: 14.5px; padding: 10px 14px; }
+
+/* Sidebar filters */
+@media (min-width: 768px) {
+	.left-sidebar .content-area, .right-sidebar .content-area { width: calc(100% - 300px); }
+	.left-sidebar .widget-area, .right-sidebar .widget-area { width: 260px; margin-right: 40px; }
+}
+.widget-area { font-size: 15px; }
+.widget-area .widget .widget-title, .widget-area .widget .widgettitle,
+.wpc-filter-title, .wpc-filters-section .widget-title { font-size: 13px !important; letter-spacing: .07em; margin-bottom: 14px !important; }
+.wpc-filters-main-wrap label, .wpc-term-item label { font-size: 15px; line-height: 1.5; }
+.wpc-term-item { padding: 3px 0; }
+.wpc-term-count { font-size: 13px; }
+.wpc-filters-main-wrap input[type="checkbox"], .wpc-filters-main-wrap input[type="radio"] { width: 18px; height: 18px; margin-right: 8px; vertical-align: -3px; }
+.wpc-filters-section { padding-bottom: 20px !important; margin-bottom: 20px !important; }
+
+/* Product grid: white cards, photo on white, generous spacing */
+.site-main ul.products, ul.products { gap: 56px 32px; }
+ul.products li.product { padding: 0; }
+ul.products li.product img {
+	background: #fff; padding: 4%; border-radius: 0; mix-blend-mode: normal;
+	margin: 0 0 18px; border-bottom: 1px solid var(--line);
+	transition: transform .35s ease;
+}
+ul.products li.product:hover img { opacity: 1; transform: scale(1.03); }
+ul.products li.product a.woocommerce-LoopProduct-link { overflow: hidden; }
+.pl-card__brand { font-size: 12.5px; font-weight: 700; letter-spacing: .09em; color: var(--ink); margin-bottom: 6px; }
+ul.products li.product .woocommerce-loop-product__title, ul.products li.product h2, ul.products li.product h3 {
+	font-size: 16px !important; font-weight: 400; line-height: 1.45; color: #333; margin-bottom: 12px;
+	-webkit-line-clamp: 3; min-height: 4.35em;
+}
+ul.products li.product:hover .woocommerce-loop-product__title { color: var(--accent); }
+ul.products li.product .price { font-size: 20px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 14px; }
+ul.products li.product .button {
+	font-size: 15px; padding: 13px 16px; border-radius: 6px;
+	background: var(--ink) !important; color: #fff !important; border-color: var(--ink) !important;
+}
+ul.products li.product .button:hover { background: var(--accent) !important; border-color: var(--accent) !important; }
+.pl-badge-new { top: 12px; left: 12px; font-size: 11.5px; padding: 5px 10px; border-radius: 4px; }
+
+/* Home sections */
+.pl-section__title, .storefront-product-section .section-title { font-size: 30px !important; font-weight: 700; letter-spacing: -.03em; }
+.page-template-template-homepage .site-main > * { margin-bottom: 80px; }
+.pl-brand__name { font-size: 17px; }
+.pl-cat__name { font-size: 17px; }
+.pl-usp strong { font-size: 15px; }
+.pl-usp small { font-size: 13.5px; }
+.pl-hero__lead { font-size: 18px; line-height: 1.6; }
+.pl-about p { font-size: 17px; line-height: 1.7; }
+
+/* Single product */
+.single-product div.product .product_title { font-size: 2.2em; font-weight: 700; letter-spacing: -.03em; line-height: 1.15; }
+.single-product div.product p.price, .single-product div.product span.price { font-size: 2em; }
+.single-product div.product .woocommerce-product-details__short-description { font-size: 17px; line-height: 1.65; color: #444; }
+.single-product div.product .woocommerce-product-gallery img { background: #fff; mix-blend-mode: normal; }
+.single-product div.product form.cart .single_add_to_cart_button { min-height: 54px; font-size: 16.5px; max-width: 360px; }
+.single-product div.product form.cart .quantity .qty { min-height: 54px; font-size: 16px; }
+.pl-single__notes { font-size: 15px; }
+.woocommerce-tabs ul.tabs li a { font-size: 17px; }
+.woocommerce-Tabs-panel { font-size: 16.5px; line-height: 1.7; }
+.related.products > h2, .upsells.products > h2 { font-size: 1.7em; font-weight: 700; }
+
+/* Footer */
+.pl-footer { font-size: 15.5px; }
+.pl-footer__title { font-size: 13px; }
+
+@media (max-width: 1199px) {
+	.site-main ul.products, ul.products { gap: 44px 24px; }
+}
+@media (max-width: 767px) {
+	body { font-size: 16px; }
+	.col-full { padding-left: 16px; padding-right: 16px; }
+	h1, .page-title, .entry-title, .woocommerce-products-header__title,
+	.woocommerce-products-header__title.page-title { font-size: 1.85em; }
+	.site-main ul.products, ul.products { gap: 36px 14px; }
+	ul.products li.product .woocommerce-loop-product__title { font-size: 14.5px !important; min-height: 4.35em; }
+	ul.products li.product .price { font-size: 17px; }
+	ul.products li.product .button { font-size: 14px; padding: 11px 10px; }
+	.pl-card__brand { font-size: 11.5px; }
+	.pl-section__title, .storefront-product-section .section-title { font-size: 24px !important; }
+	.page-template-template-homepage .site-main > * { margin-bottom: 52px; }
+	.single-product div.product .product_title { font-size: 1.7em; }
 }

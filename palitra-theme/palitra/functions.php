@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PALITRA_VERSION', '2.11.0' );
+define( 'PALITRA_VERSION', '3.0.0' );
 define( 'PALITRA_OZON_URL', 'https://ozon.ru/s/palitra-3140957' );
 define( 'PALITRA_VK_URL', 'https://vk.com/palitra_hobby_art' );
 define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );
@@ -38,14 +38,14 @@ function palitra_enqueue() {
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_dequeue_style( 'storefront-child-style' ); // Storefront loads the child stylesheet itself; we load our own copy.
-	wp_dequeue_style( 'storefront-fonts' );       // No Google Fonts: Inter ships with the theme.
+	wp_dequeue_style( 'storefront-fonts' );       // No Google Fonts: Golos Text ships with the theme.
 }, 99 );
 
 add_filter( 'storefront_google_font_families', '__return_empty_array' );
 
 add_action( 'wp_head', function () {
 	$base = get_stylesheet_directory_uri() . '/assets/fonts/';
-	foreach ( array( 'inter-cyrillic-400', 'inter-cyrillic-600' ) as $f ) {
+	foreach ( array( 'golos-text-cyrillic-400', 'golos-text-cyrillic-600' ) as $f ) {
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( $base . $f . '-normal.woff2' ) );
 	}
 }, 1 );
