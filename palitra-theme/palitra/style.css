@@ -4,7 +4,7 @@ Theme URI:    https://palitrart.ru/
 Description:  Тема магазина «Палитра» — художественные материалы. Дочерняя тема Storefront: чистый современный дизайн, меню каталога с брендами, страница «Бренды» от А до Я, бренды в карточках товаров. Шрифт Golos Text встроен в тему.
 Author:       Палитра
 Template:     storefront
-Version:      3.2.1
+Version:      3.2.2
 Requires at least: 6.4
 Requires PHP: 7.4
 License:      GNU General Public License v3 or later
@@ -885,3 +885,15 @@ form.checkout #order_review::before { font-size: 1.25em; margin-bottom: 8px; }
 .pl-suggest__item { padding: 10px 16px; font-size: 15px; line-height: 1.35; color: var(--ink); cursor: pointer; }
 .pl-suggest__item:hover, .pl-suggest__item.is-active { background: var(--soft); }
 .woocommerce form .form-row:focus-within { position: relative; z-index: 40; }
+
+/* ===== Fixes after live check (3.2.2) ===== */
+/* Filters: hide options with 0 products (unless the customer has ticked one) */
+.wpc-term-item.wpc-term-count-0:not(:has(input:checked)) { display: none !important; }
+/* Product page: Storefront's previous/next product tabs on the screen edges */
+.storefront-product-pagination { display: none !important; }
+@media (max-width: 767px) {
+	/* Category intro: 3 lines on phones so products come into view sooner */
+	.term-description { font-size: 15px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+	.term-description p { margin: 0; }
+	.pl-header__row { padding-bottom: 10px; }
+}

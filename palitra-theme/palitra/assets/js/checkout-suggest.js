@@ -35,9 +35,16 @@
 	}
 
 	/* Tell WooCommerce the address changed, so delivery is recalculated. */
+	var updTimer = null;
 	function changed( input ) {
 		if ( window.jQuery ) {
 			window.jQuery( input ).trigger( 'change' );
+			if ( /city|postcode|address_1/.test( input.id || '' ) ) {
+				clearTimeout( updTimer );
+				updTimer = setTimeout( function () {
+					window.jQuery( document.body ).trigger( 'update_checkout' );
+				}, 300 );
+			}
 		} else {
 			input.dispatchEvent( new Event( 'change', { bubbles: true } ) );
 		}

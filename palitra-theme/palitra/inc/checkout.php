@@ -47,18 +47,18 @@ function palitra_address_fields( $fields ) {
 	if ( isset( $fields['city'] ) ) {
 		$fields['city']['label']       = 'Город';
 		$fields['city']['placeholder'] = 'Начните вводить, например: Москва';
-		$fields['city']['class']       = array( 'form-row-first' );
+		$fields['city']['class']       = array( 'form-row-first', 'address-field', 'update_totals_on_change' );
 		$fields['city']['priority']    = 50;
 	}
 	if ( isset( $fields['postcode'] ) ) {
 		$fields['postcode']['label']    = 'Индекс';
-		$fields['postcode']['class']    = array( 'form-row-last' );
+		$fields['postcode']['class']    = array( 'form-row-last', 'address-field', 'update_totals_on_change' );
 		$fields['postcode']['priority'] = 55;
 	}
 	if ( isset( $fields['address_1'] ) ) {
 		$fields['address_1']['label']       = 'Улица, дом, квартира';
 		$fields['address_1']['placeholder'] = 'Например: ул. Ленина, д. 5, кв. 12';
-		$fields['address_1']['class']       = array( 'form-row-wide' );
+		$fields['address_1']['class']       = array( 'form-row-wide', 'address-field' );
 		$fields['address_1']['required']    = true;
 		$fields['address_1']['priority']    = 60;
 	}
@@ -98,6 +98,26 @@ function palitra_billing_fields( $fields ) {
 	}
 	return $fields;
 }
+
+/* Phone: required and right after the name. WooCommerce's own «phone field» setting
+   and later filters can override the billing filter, so enforce it at the end too. */
+add_filter( 'pre_option_woocommerce_checkout_phone_field', function () {
+	return 'required';
+} );
+add_filter( 'woocommerce_checkout_fields', function ( $fields ) {
+	if ( isset( $fields['billing']['billing_phone'] ) ) {
+		$fields['billing']['billing_phone']['required']    = true;
+		$fields['billing']['billing_phone']['label']       = 'Телефон';
+		$fields['billing']['billing_phone']['placeholder'] = '+7 900 000-00-00';
+		$fields['billing']['billing_phone']['priority']    = 25;
+		$fields['billing']['billing_phone']['class']       = array( 'form-row-first' );
+	}
+	if ( isset( $fields['billing']['billing_email'] ) ) {
+		$fields['billing']['billing_email']['priority'] = 26;
+		$fields['billing']['billing_email']['class']    = array( 'form-row-last' );
+	}
+	return $fields;
+}, PHP_INT_MAX );
 
 /* No order comments field. */
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );

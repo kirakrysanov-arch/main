@@ -106,7 +106,33 @@ function palitra_seo_description() {
 	if ( function_exists( 'is_product_category' ) && is_product_category() ) {
 		$term = get_queried_object();
 		$d    = wp_strip_all_tags( term_description( $term ) );
-		return $d ? $d : palitra_category_intro( $term->name );
+		if ( ! $d ) {
+			$d = palitra_category_intro( $term->name );
+		}
+		if ( ! $d && $term->parent ) {
+			$parent = get_term( $term->parent, 'product_cat' );
+			$d      = $term->name . ( $parent && ! is_wp_error( $parent ) ? ' — ' . mb_strtolower( $parent->name ) : '' ) . ' в магазине «Палитра»: оригинальные материалы для художников, бесплатная доставка Ozon по всей России.';
+		}
+		return $d;
+	}
+	if ( function_exists( 'is_product_tag' ) && is_product_tag() ) {
+		$term = get_queried_object();
+		if ( function_exists( 'palitra_new_tag' ) && palitra_new_tag() && (int) palitra_new_tag()->term_id === (int) $term->term_id ) {
+			return 'Новые поступления в магазине «Палитра»: свежие наборы пастели и красок Unison Colour, Terry Ludwig, J. Luda, Michael Harding. Бесплатная доставка Ozon.';
+		}
+		return 'Купить: ' . $term->name . ' — художественные материалы в магазине «Палитра». Оригинальная продукция, бесплатная доставка Ozon по всей России.';
+	}
+	if ( function_exists( 'is_shop' ) && is_shop() ) {
+		return 'Каталог магазина «Палитра»: профессиональная пастель, масляные и акварельные краски, гуашь, бумага и кисти от Unison Colour, Terry Ludwig, Schmincke, Sennelier, PanPastel, Michael Harding. Бесплатная доставка Ozon.';
+	}
+	if ( is_page() && ! is_front_page() ) {
+		$text = wp_strip_all_tags( strip_shortcodes( (string) get_post_field( 'post_content', get_queried_object_id() ) ) );
+		$text = trim( preg_replace( '/\s+/u', ' ', $text ) );
+		if ( mb_strlen( $text ) > 40 ) {
+			$cut = mb_substr( $text, 0, 155 );
+			return preg_replace( '/\s+\S*$/u', '', $cut ) . '…';
+		}
+		return get_the_title() . ' — магазин художественных материалов «Палитра».';
 	}
 	if ( is_front_page() ) {
 		return 'Палитра — магазин художественных материалов: пастель Unison, Terry Ludwig, Schmincke, Sennelier, PanPastel, краски Michael Harding, Winsor & Newton. Доставка по всей России.';

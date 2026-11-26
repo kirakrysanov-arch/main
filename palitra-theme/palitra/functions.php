@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PALITRA_VERSION', '3.2.1' );
+define( 'PALITRA_VERSION', '3.2.2' );
 define( 'PALITRA_OZON_URL', 'https://ozon.ru/s/palitra-3140957' );
 define( 'PALITRA_VK_URL', 'https://vk.com/palitra_hobby_art' );
 define( 'PALITRA_TIKTOK_URL', 'https://www.tiktok.com/@palitra_artstore' );
@@ -155,6 +155,26 @@ add_filter( 'storefront_related_products_args', function ( $args ) {
 add_filter( 'single_product_archive_thumbnail_size', function () {
 	return 'woocommerce_single';
 } );
+
+/* Catalogue: products with a photo first (within the chosen sorting), so pages
+   don't start with grey placeholders. */
+add_filter( 'posts_clauses', function ( $clauses, $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return $clauses;
+	}
+	if ( ! function_exists( 'is_shop' ) ) {
+		return $clauses;
+	}
+	$is_catalog     = is_shop() || is_product_taxonomy();
+	$is_prod_search = $query->is_search() && 'product' === $query->get( 'post_type' );
+	if ( ! $is_catalog && ! $is_prod_search ) {
+		return $clauses;
+	}
+	global $wpdb;
+	$clauses['join']   .= " LEFT JOIN {$wpdb->postmeta} AS pl_thumb ON ( pl_thumb.post_id = {$wpdb->posts}.ID AND pl_thumb.meta_key = '_thumbnail_id' ) ";
+	$clauses['orderby'] = '( pl_thumb.meta_value IS NULL OR pl_thumb.meta_value = \'\' OR pl_thumb.meta_value = \'0\' ) ASC' . ( $clauses['orderby'] ? ', ' . $clauses['orderby'] : '' );
+	return $clauses;
+}, 20, 2 );
 
 add_filter( 'woocommerce_placeholder_img_src', function () {
 	return get_stylesheet_directory_uri() . '/assets/placeholder.svg';
